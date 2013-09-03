@@ -58,6 +58,83 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/11/29/xiu-fu-zenoss321-graphs-range-bug/"><h2>修复zenoss3.2.1 graphs range bug</h2></a>
+        <div class= "well small"> 四 29 十一月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>前段时间将<strong>zenoss</strong>升级到3.2.1 (别问咱怎么使用这么老的版本,领导要求stable,
+目前zenoss只有3.2.1是最新的stable版本),然后昨天使用的时候发现了一个小小的bug,
+就是在device的graphs中, 选择range会出现性能图不更新的情况.</p>
+<p>要修复这个bug,确定<em>java</em>版本是否大于1.6</p>
+<p>我自己debian 由于没有安装java 因此我这里安装一下</p>
+<p><code>apt-get install sun-java6-jdk</code></p>
+<p>然后确认下java版本</p>
+<p><code>java -version</code></p>
+<div class="highlight"><pre><span class="n">java</span> <span class="n">version</span> “1<span class="p">.</span>6<span class="p">.</span>0<span class="n">_26</span>″
+<span class="n">Java</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> <span class="n">SE</span> <span class="n">Runtime</span> <span class="n">Environment</span> <span class="p">(</span><span class="n">build</span> 1<span class="p">.</span>6<span class="p">.</span>0<span class="n">_26</span><span class="o">-</span><span class="n">b03</span><span class="p">)</span>
+<span class="n">Java</span> <span class="n">HotSpot</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> 64<span class="o">-</span><span class="n">Bit</span> <span class="n">Server ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/11/29/xiu-fu-zenoss321-graphs-range-bug/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/10/18/nginx-shuang-ji-re-bei-shi-zhan/"><h2>nginx 双机热备-实战</h2></a>
+        <div class= "well small"> 四 18 十月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>上次发布了<em>nginx</em>做负载均衡器使用, 这次在原有的基础上加上了 <strong>双机热备</strong>
+另外,此篇文章做为引子,为的是引导使用<strong>keepalived</strong>文中的配置,请酌情修改
+这只是一个简单的<strong>keepalived</strong>应用, 关于文中使用到的<strong>keepalived</strong>参数很少, 
+更多的内容看blog中的keepalived配置文件详解 那篇文章</p>
+<p>首先上一个 <strong>nginx高可用</strong> 架构图</p>
+<p><img alt="" src="/image/2012-10-18-163233-300x225.png" /></p>
+<h2>配置</h2>
+<p>总共两台机器 A , B</p>
+<p>在A,B机器上面 配置好 nginx调度器, 相同的配置.</p>
+<p>A nginx 跑在 eth0 192.168.2.12 上</p>
+<p>B nginx 跑在 eth0 192.168.2.11 上</p>
+<p>在A ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/10/18/nginx-shuang-ji-re-bei-shi-zhan/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/10/16/keepalivedyuan-li-yu-shi-zhan-jing-jiang/"><h2>Keepalived原理与实战精讲</h2></a>
+        <div class= "well small"> 二 16 十月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p><strong>此为转贴</strong>
+<a href="http://bbs.ywlm.net/thread-845-1-1.html">原文地址</a></p>
+<p><img alt="" src="/image/Keepalived.png" /></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/10/16/keepalivedyuan-li-yu-shi-zhan-jing-jiang/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2012/09/10/python-jin-du-tiao/"><h2>python 进度条</h2></a>
         <div class= "well small"> 一 10 九月 2012
 
@@ -114,42 +191,15 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p>用法就是这么简单。</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/">read more</a></div>
     </div>	
 				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/09/08/duo-xian-cheng-sshfen-fa-jiao-ben/"><h2>多线程ssh分发脚本</h2></a>
-        <div class= "well small"> 六 08 九月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>说到自动化运维工具, 那是一个满天飞. 我也首推<code>puppet</code>,无疑灰常的强大.但是强大
-是强大. 就是有点依赖部署,如果部署不好,后期使用会很难受,各种不顺手. 现在我就是这样,
-使用puppet是一个前辈部署的.我们puppet应用也灰常简单.就是做服务器应用平台初始化用,</p>
-<p>很多简单的操作.比如10几台需要更新杀毒软件,这个时候使用puppet,又需要重新建立配
-置文件,(ps:都是前期没有做好规划).这样一个简单的工作就变的复杂话了,如果不使用自动
-运维工具,那么… 恩. 你就将新的病毒库一个一个scp到各个主机上. 然后一个一个登录主
-机,执行一遍<code>update</code> 命令吧..</p>
-<p>这个时候如果有一个自动ssh登录工具, 并且具备<code>scp</code>功能的工具就好了. 
-我记得以前有一个叫做<strong>abs</strong>的shell脚本. 利用<strong>ssh+sshpass+except</strong> 做的自动登录ssh,
-并且避免一个一个输入密码的烦恼, 这也是一个很不错的小工具, 不过..google了半天 
-都没有线索 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/08/duo-xian-cheng-sshfen-fa-jiao-ben/">read more</a></div>
-    </div>	
-				
             <div class="pagination">
 <ul>
     <li class="prev"><a href="http://eleveni386.7axu.com/tag/yun-wei.html">&larr; Previous</a></li>
 
     <li class=""><a href="http://eleveni386.7axu.com/tag/yun-wei.html">1</a></li>
     <li class="active"><a href="http://eleveni386.7axu.com/tag/yun-wei2.html">2</a></li>
+    <li class=""><a href="http://eleveni386.7axu.com/tag/yun-wei3.html">3</a></li>
 
-    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+    <li class="next"><a href="http://eleveni386.7axu.com/tag/yun-wei3.html">Next &rarr;</a></li>
 
 </ul>
 </div>    

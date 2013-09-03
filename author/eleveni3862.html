@@ -58,6 +58,100 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/03/11/ji-ci-an-zhuang-fcitxguo-cheng/"><h2>记一次安装fcitx过程</h2></a>
+        <div class= "well small"> 一 11 三月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>今天实在无法忍受<em>ibus</em>的启动速度和词汇准确性了. 将ibus更换成<strong>fcitx</strong>, </p>
+<div class="highlight"><pre><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">fcitx</span>
+<span class="n">im</span><span class="o">-</span><span class="k">switch</span> <span class="o">-</span><span class="n">s</span> <span class="n">fcitx</span>
+<span class="n">im</span><span class="o">-</span><span class="k">switch</span> <span class="o">-</span><span class="n">s</span> <span class="n">fcitx</span> <span class="o">-</span><span class="n">z</span> <span class="n">default</span>
+</pre></div>
+
+
+<p>然后在<em>autostart</em>中加入fcitx的自启动.. 注销X界面之后, 发现fcitx是启动起来了, 
+只是应用程序的默认输入法还是<em>Ibus</em>, 于是google之 ,找到了fcitx环境变量设置, 
+在<strong>~/.xprofile</strong> 中加入fcitx的环境变量:</p>
+<div class="highlight"><pre><span class="n">export</span> <span class="n">GTK_IM_MODULE</span><span class="p">=</span><span class="n">fcitx</span>
+<span class="n">export</span> <span class="n">XMODIFIERS</span><span class="p">=@</span><span class="n">im</span><span class="p">=</span><span class="n">fcitx</span>
+<span class="n">export</span> <span class="n">QT_IM_MODULE</span><span class="p">=</span><span class="n">fcitx</span>
+</pre></div>
+
+
+<p>注销X界面 再次进入系统,<code>echo $GTK_IM_MODULE</code> 发现这个变量已经是fcitx, 但是应用
+程序默认输入法还是<strong>Ibus</strong> , 来来回回折腾了几次 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/03/11/ji-ci-an-zhuang-fcitxguo-cheng/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/"><h2>记. 一次ddos攻击,导致服务器死机</h2></a>
+        <div class= "well small"> 五 29 三月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>背景</h2>
+<p>某年某月某天,eleven所属单位 被未知生物ddos攻击, 攻击时间 凌晨00:15 左右, 
+eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上面命令找出服务器弱点.
+同时还原攻击现场,</p>
+<h2>检查</h2>
+<p>通过<strong>Zenoss</strong>监控图, 看见在00:15左右, 突然进来了大量的数据包, 大概40w左右, 
+但是流量没有明显异常(即没有瞬间增高), 好吧, 看见这个现象就猜到了.. 小包<strong>DDos</strong>攻击.
+通过服务器的message日志里面看见了<em>syn flood on 80</em> 记录,结合监控图上的大量数据包,
+断定服务器被人采用<strong>syn半开攻击</strong>手法给攻击</p>
+<h2>服务器配置</h2>
+<p>观察了服务器的内核参数配置,因为我记得我们所有服务器都有对于<strong>syn flood</strong>的防御策略,
+在sysctl.conf里面<strong>syn_cookies</strong>已经开启, 而且也看见syn队列增加到了1w6, 
+按理来说单纯的半开攻击应该对于我们机器是无压力的说 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/"><h2>记. 一次邮箱密码丢失</h2></a>
+        <div class= "well small"> 一 17 九月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>话说某年某月某天, 某人丢失公司分配的邮箱密码,</p>
+<p>在虚拟机中的windows,用foxmail客户端, 因为某些原因密码丢失,而公司邮件又需要用
+该客户端发送,于是就有了下面的过程,</p>
+<p>在物理机中的雷鸟客户端保存了密码, 首先需要客户端上的密码加密,主要是smtp密码传输加密</p>
+<p>好了,然后就用<strong>tcpdump</strong> 就可以了,</p>
+<p><code>tcpdump -X -i eth0 port 587 -vv</code></p>
+<p>TLS/STARTTLS 端口是587 ,雷鸟和foxmail都自动认出来端口是587,所以我也捕抓发往587端口的数据</p>
+<p>从结果中分析,下图是客户端跟服务端验证过程</p>
+<p><img alt="" src="/image/2012-09-17-163233_1365x306_scrot1.png" /></p>
+<p>得到一个base64的密码,</p>
+<p><code>echo -n "password" | base64 -d</code></p>
+<p>解开就是明文密码</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/"><h2>加密你的HTTP请求(穿墙)</h2></a>
         <div class= "well small"> 五 17 五月 2013
 
@@ -119,181 +213,6 @@ rm -rf <span class="nv">$time</span>.png
 <p>当我需要与朋友分享某图的时候， 直接按下 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/12/14/jie-tu-zi-dong-fen-xiang-jiao-ben/">read more</a></div>
     </div>	
 				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/05/17/kangle-zuo-httpni-ming-dai-li/"><h2>Kangle 做HTTP匿名代理</h2></a>
-        <div class= "well small"> 五 17 五月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><blockquote>
-<p>kangle web服务器（简称：kangle）是一款跨平台、功能强大、安全稳定、
-易操作的高性能web服务器和反向代理服务器软件。除此：kangle也是一款专为做虚拟主机
-研发的web服务器。实现虚拟主机独立进程、独立身份运行。用户之间安全隔离，一个用户
-出问题不影响其他用户。安全支持php、asp、asp·net、java、ruby等多种动态开发语言。
-                                                        百度百科</p>
-</blockquote>
-<h2>安装</h2>
-<p>下载源码
-  <code>wget http://www.kanglesoft.com/download/src/kangle-3.2.3.tar.gz</code></p>
-<p>编译环境</p>
-<p><code>apt-get install build-essential</code></p>
-<p>安装pcre库</p>
-<p><code>apt-get install libpcre++-dev</code></p>
-<p>安装ssl库</p>
-<p><code>apt-get install libssl-dev ...</code></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/05/17/kangle-zuo-httpni-ming-dai-li/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/10/16/keepalivedyuan-li-yu-shi-zhan-jing-jiang/"><h2>Keepalived原理与实战精讲</h2></a>
-        <div class= "well small"> 二 16 十月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p><strong>此为转贴</strong>
-<a href="http://bbs.ywlm.net/thread-845-1-1.html">原文地址</a></p>
-<p><img alt="" src="/image/Keepalived.png" /></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/10/16/keepalivedyuan-li-yu-shi-zhan-jing-jiang/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/09/29/liang-ge-xiao-jiao-ben-tian-qi-cha-xun-he-zhong-ying-ri-fan-yi/"><h2>两个小脚本- 天气查询和中英日翻译</h2></a>
-        <div class= "well small"> 六 29 九月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>最近在和朋友弄gtalk群聊, 框架已经写好, 并且可以正常使用, 有兴趣的朋友欢迎加入, 
-我们gtalk群<strong>pythonerclub@gmail.com</strong> (开发者<a href="(http://www.linuxzen.com/)">Cold</a>)加它为好友就可以进入我们
-群组, 群聊 功能指令输入 <code>$help</code>.</p>
-<p>在写功能机器人的时候, 顺便给自己方便方便, 就从机器人那边的部分功能代码 ,
-copy到本地, 就是天气查询, 和翻译</p>
-<p>脚本效果截图:</p>
-<p><img alt="" src="/image/2012-09-29-121615.png" /></p>
-<p>翻译 是用的google翻译, 天气查询用的中央气象局天气预报, 显示当天天气</p>
-<p><a href="(http://code.google.com/p/sharepythoncode/downloads/detail?name=Complex.tar.gz&amp;can=2&amp;q=#makechanges)">源码</a></p>
-<p>安装使用很简单, 解压之后 将Complex/* 丢到/usr/sbin/下,</p>
-<p>天气查询, 就要求一个参数, 就是市级地名</p>
-<p><code>tq 广州</code></p>
-<p>翻译 , 默认是英汉翻译,需要其它翻译,比如汉-&gt;英, 汉-&gt;日,日-&gt;汉,</p>
-<p><code>fanyi eleven ...</code></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/29/liang-ge-xiao-jiao-ben-tian-qi-cha-xun-he-zhong-ying-ri-fan-yi/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/"><h2>Linux桌面流量监控工具</h2></a>
-        <div class= "well small"> 五 26 四月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><h2>大图show</h2>
-<p><img alt="" src="/image/1365580966.png" /></p>
-<p><a href="(https://github.com/eleveni386/netmonitor)"><strong>悬浮窗口-- 流量监视器</strong></a></p>
-<p>一个利用<strong>pcap</strong>写的流量监视工具</p>
-<h2>依赖</h2>
-<p><strong>python-pypcap</strong></p>
-<p><strong>python-dpkt</strong></p>
-<p>请自行下载安装两个包</p>
-<h2>启动</h2>
-<p>执行<code>./netmon</code> 第一次执行会要求输入密码, 之后不再需要 此次更新:</p>
-<h2>更新</h2>
-<p>2013-04-25</p>
-<p>修正UI被流量采集模块堵塞问题</p>
-<p>2013-04-10:</p>
-<p>降低cpu占用率, 由原来的12-20% 到现在的3%
-重写了流量采集代码, 结构更加合理,更易阅读
-使用圆角悬浮窗口,更加美观</p>
-<p>后续:</p>
-<p>增加进程流量限制
-增加网络进程list</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/09/20/nethogs-jian-kong-mei-ge-jin-cheng-ju-ti-shi-yong-de-liu-liang/"><h2>nethogs, 监控每一个进程具体使用的流量</h2></a>
-        <div class= "well small"> 四 20 九月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>最近无聊 想找一个具有悬浮窗口的流量监视工具, 可以实时向我汇报, 使用流量最大的
-进程 是哪一个, 然后还可以告诉我 目的地是什么地方就好了,</p>
-<p>各种google之后,找到了,<strong>nethogs</strong>. 这个玩意,</p>
-<p>额, 它可以实时显示使用了网络的进程的流量,以及发送的包数,</p>
-<p><img alt="" src="/image/2012-09-20-101834.png" /></p>
-<h2>安装</h2>
-<p><code>apt-get install nethogs</code></p>
-<p>tips: 该工具需要root用户才能运行.</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/20/nethogs-jian-kong-mei-ge-jin-cheng-ju-ti-shi-yong-de-liu-liang/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/10/18/nginx-shuang-ji-re-bei-shi-zhan/"><h2>nginx 双机热备-实战</h2></a>
-        <div class= "well small"> 四 18 十月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>上次发布了<em>nginx</em>做负载均衡器使用, 这次在原有的基础上加上了 <strong>双机热备</strong>
-另外,此篇文章做为引子,为的是引导使用<strong>keepalived</strong>文中的配置,请酌情修改
-这只是一个简单的<strong>keepalived</strong>应用, 关于文中使用到的<strong>keepalived</strong>参数很少, 
-更多的内容看blog中的keepalived配置文件详解 那篇文章</p>
-<p>首先上一个 <strong>nginx高可用</strong> 架构图</p>
-<p><img alt="" src="/image/2012-10-18-163233-300x225.png" /></p>
-<h2>配置</h2>
-<p>总共两台机器 A , B</p>
-<p>在A,B机器上面 配置好 nginx调度器, 相同的配置.</p>
-<p>A nginx 跑在 eth0 192.168.2.12 上</p>
-<p>B nginx 跑在 eth0 192.168.2.11 上</p>
-<p>在A ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/10/18/nginx-shuang-ji-re-bei-shi-zhan/">read more</a></div>
-    </div>	
-				
             <div class="pagination">
 <ul>
     <li class="prev"><a href="http://eleveni386.7axu.com/author/eleveni386.html">&larr; Previous</a></li>
@@ -302,6 +221,8 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
     <li class="active"><a href="http://eleveni386.7axu.com/author/eleveni3862.html">2</a></li>
     <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3863.html">3</a></li>
     <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3864.html">4</a></li>
+    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3865.html">5</a></li>
+    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3866.html">6</a></li>
 
     <li class="next"><a href="http://eleveni386.7axu.com/author/eleveni3863.html">Next &rarr;</a></li>
 
