@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/jian-kong-xi-tong.atom.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2012-11-29T00:00:00+08:00</updated><entry><title>修复zenoss3.2.1 graphs range bug</title><link href="http://eleveni386.7axu.com/posts/2012/11/29/xiu-fu-zenoss321-graphs-range-bug/" rel="alternate"></link><updated>2012-11-29T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2012-11-29:posts/2012/11/29/xiu-fu-zenoss321-graphs-range-bug/</id><summary type="html">&lt;p&gt;前段时间将&lt;strong&gt;zenoss&lt;/strong&gt;升级到3.2.1 (别问咱怎么使用这么老的版本,领导要求stable,
+目前zenoss只有3.2.1是最新的stable版本),然后昨天使用的时候发现了一个小小的bug,
+就是在device的graphs中, 选择range会出现性能图不更新的情况.&lt;/p&gt;
+&lt;p&gt;要修复这个bug,确定&lt;em&gt;java&lt;/em&gt;版本是否大于1.6&lt;/p&gt;
+&lt;p&gt;我自己debian 由于没有安装java 因此我这里安装一下&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;apt-get install sun-java6-jdk&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;然后确认下java版本&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;java -version&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;java&lt;/span&gt; &lt;span class="n"&gt;version&lt;/span&gt; “1&lt;span class="p"&gt;.&lt;/span&gt;6&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="n"&gt;_26&lt;/span&gt;″
+&lt;span class="n"&gt;Java&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TM&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;SE&lt;/span&gt; &lt;span class="n"&gt;Runtime&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;build&lt;/span&gt; 1&lt;span class="p"&gt;.&lt;/span&gt;6&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="n"&gt;_26&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b03&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Java&lt;/span&gt; &lt;span class="n"&gt;HotSpot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TM&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 64&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Bit&lt;/span&gt; &lt;span class="n"&gt;Server&lt;/span&gt; &lt;span class="n"&gt;VM&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;build&lt;/span&gt; 20&lt;span class="p"&gt;.&lt;/span&gt;1&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b02&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mixed&lt;/span&gt; &lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后切换到zenoss用户下执行以下操作 &lt;code&gt;su zenoss&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;打上26403补丁&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/usr/local/zenoss/zenoss/bin/zenpatch 26403&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Getting&lt;/span&gt; &lt;span class="n"&gt;patch&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;Internet&lt;/span&gt;…
+
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zenoss&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;trac&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;changeset&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;26403?&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;diff&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;26403
+
+&lt;span class="c"&gt;% Total % Received % Xferd Average Speed Time Time Time Current&lt;/span&gt;
+&lt;span class="n"&gt;Dload&lt;/span&gt; &lt;span class="n"&gt;Upload&lt;/span&gt; &lt;span class="n"&gt;Total&lt;/span&gt; &lt;span class="n"&gt;Spent&lt;/span&gt; &lt;span class="n"&gt;Left&lt;/span&gt; &lt;span class="n"&gt;Speed&lt;/span&gt;
+100 1899 0 1899 0 0 1845 0 –&lt;span class="p"&gt;:&lt;/span&gt;–&lt;span class="p"&gt;:&lt;/span&gt;– 0&lt;span class="p"&gt;:&lt;/span&gt;00&lt;span class="p"&gt;:&lt;/span&gt;01 –&lt;span class="p"&gt;:&lt;/span&gt;–&lt;span class="p"&gt;:&lt;/span&gt;– 2748
+&lt;span class="n"&gt;determining&lt;/span&gt; &lt;span class="n"&gt;strip&lt;/span&gt; &lt;span class="nb"&gt;size&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;zenoss&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;zenoss&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Products&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;r26403&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;patch&lt;/span&gt;
+
+&lt;span class="n"&gt;Applying&lt;/span&gt; &lt;span class="n"&gt;patch&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;3
+&lt;span class="n"&gt;patch&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; –&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;3 &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;r26403&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;patch&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Stripping&lt;/span&gt; &lt;span class="n"&gt;trailing&lt;/span&gt; &lt;span class="n"&gt;CRs&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;patch&lt;/span&gt;&lt;span class="p"&gt;.)&lt;/span&gt;
+&lt;span class="n"&gt;patching&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;ZenUI3&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;browser&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;resources&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;js&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;zenoss&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ComponentPanel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;js&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Stripping&lt;/span&gt; &lt;span class="n"&gt;trailing&lt;/span&gt; &lt;span class="n"&gt;CRs&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;patch&lt;/span&gt;&lt;span class="p"&gt;.)&lt;/span&gt;
+&lt;span class="n"&gt;patching&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;ZenUI3&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;browser&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;resources&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;js&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;zenoss&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;graphPanel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;js&lt;/span&gt;
+&lt;span class="n"&gt;zenoss&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="n"&gt;bgp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;guangzhou&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;17&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;$ &lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zenoss&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;trac&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;export&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;26262&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;trunk&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;inst&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;buildjs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;
+–2012&lt;span class="o"&gt;-&lt;/span&gt;11&lt;span class="o"&gt;-&lt;/span&gt;29 13&lt;span class="p"&gt;:&lt;/span&gt;56&lt;span class="p"&gt;:&lt;/span&gt;21– &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zenoss&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;trac&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;export&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;26262&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;trunk&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;inst&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;buildjs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;
+&lt;span class="n"&gt;Resolving&lt;/span&gt; &lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zenoss&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;… 204&lt;span class="p"&gt;.&lt;/span&gt;12&lt;span class="p"&gt;.&lt;/span&gt;105&lt;span class="p"&gt;.&lt;/span&gt;194
+&lt;span class="n"&gt;Connecting&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zenoss&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;204&lt;span class="p"&gt;.&lt;/span&gt;12&lt;span class="p"&gt;.&lt;/span&gt;105&lt;span class="p"&gt;.&lt;/span&gt;194&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;80… &lt;span class="n"&gt;connected&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;HTTP&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt; &lt;span class="n"&gt;sent&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;awaiting&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;… 200 &lt;span class="n"&gt;OK&lt;/span&gt;
+&lt;span class="n"&gt;Length&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; 1714 &lt;span class="p"&gt;(&lt;/span&gt;1&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="n"&gt;K&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;application&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;Saving&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; “&lt;span class="n"&gt;buildjs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;1”
+
+100&lt;span class="c"&gt;%[====================================&lt;/span&gt;
+
+&lt;span class="o"&gt;==================================&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;
+
+&lt;span class="o"&gt;======================================&lt;/span&gt;
+
+&lt;span class="o"&gt;================&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; 1&lt;span class="p"&gt;,&lt;/span&gt;714 –&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;K&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; 0&lt;span class="n"&gt;s&lt;/span&gt;
+
+2012&lt;span class="o"&gt;-&lt;/span&gt;11&lt;span class="o"&gt;-&lt;/span&gt;29 13&lt;span class="p"&gt;:&lt;/span&gt;56&lt;span class="p"&gt;:&lt;/span&gt;22 &lt;span class="p"&gt;(&lt;/span&gt;388 &lt;span class="n"&gt;MB&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; – “&lt;span class="n"&gt;buildjs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;1” &lt;span class="n"&gt;saved&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;1714&lt;span class="o"&gt;/&lt;/span&gt;1714&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;26403&lt;/em&gt;中包括了&lt;em&gt;Graph&lt;/em&gt;和&lt;em&gt;Component&lt;/em&gt;两部分JS文件的更新，其主要功能是重新定义&lt;em&gt;setDrange&lt;/em&gt;方法，
+并在选项中正确调用这一方法，使得性能图像中的时间范围与选项中的同步。&lt;/p&gt;
+&lt;p&gt;具体说明见&lt;a href="http://dev.zenoss.org/trac/changeset/26403"&gt;http://dev.zenoss.org/trac/changeset/26403&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;下载JSBulid程序，运行使JS补丁生效&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zenoss&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;trac&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;export&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;26262&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;trunk&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;inst&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;buildjs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;
+&lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="n"&gt;buildjs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;zenoss&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;zenoss&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;zopectl&lt;/span&gt; &lt;span class="n"&gt;restart&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;最后清除浏览器历史记录，重新打开，即可&lt;/p&gt;
+&lt;h2&gt;结语&lt;/h2&gt;
+&lt;p&gt;以上bug 我是在看到&lt;strong&gt;mura&lt;/strong&gt;的&lt;a href="(http://blog.chinaunix.net/uid-17326582-id-3187987.html)"&gt;BLOG&lt;/a&gt;才解决的&lt;/p&gt;</summary><category term="监控工具"></category><category term="运维"></category></entry><entry><title>zenoss的SSH command</title><link href="http://eleveni386.7axu.com/posts/2012/08/24/zenossde-ssh-command/" rel="alternate"></link><updated>2012-08-24T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2012-08-24:posts/2012/08/24/zenossde-ssh-command/</id><summary type="html">&lt;h2&gt;安装&lt;/h2&gt;
+&lt;p&gt;安装easy_install&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;peak&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;telecommunity&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dist&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ez_setup&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;ez_setup&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装zenplugins.py&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;easy_install&lt;/span&gt; &lt;span class="n"&gt;Zenoss&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Plugins&lt;/span&gt;
+路径 &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;zenplugins&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;测试&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;zenplugins.py mem&lt;/code&gt; 获取内存信息,&lt;/p&gt;
+&lt;p&gt;出现如下信息,为安装正确&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;MEM&lt;/span&gt; &lt;span class="n"&gt;OK&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;memAvailReal&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;90583040 &lt;span class="n"&gt;hrSwapSize&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;10001932288 &lt;span class="n"&gt;hrMemorySize&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;16855810048 &lt;span class="n"&gt;pageSize&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;4096 &lt;span class="n"&gt;memAvailSwap&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;9998671872
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;使用&lt;/h2&gt;
+&lt;p&gt;将主机添加到  &lt;strong&gt;/devices/cmd&lt;/strong&gt;
+  修改&lt;strong&gt;/devices/cmd&lt;/strong&gt;的&lt;code&gt;zProperties&lt;/code&gt;如下位置&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;zProperties&lt;/span&gt;           &lt;span class="n"&gt;Value&lt;/span&gt;
+
+&lt;span class="n"&gt;zCollectorPlugins&lt;/span&gt;     &lt;span class="n"&gt;snmp&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;portscan&lt;/span&gt;
+&lt;span class="n"&gt;zCommandPassword&lt;/span&gt;      &lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;SSH&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;remote&lt;/span&gt; &lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;zCommandPath&lt;/span&gt;          &lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;zenplugin&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="n"&gt;zCommandUsername&lt;/span&gt;      &lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;SSH&lt;/span&gt; &lt;span class="n"&gt;Username&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;remote&lt;/span&gt; &lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;zSnmpMonitorIgnore&lt;/span&gt;    &lt;span class="n"&gt;True&lt;/span&gt;
+&lt;span class="n"&gt;zTransportPreference&lt;/span&gt;  &lt;span class="n"&gt;command&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在&lt;code&gt;zSnmpMonitorIgnore&lt;/code&gt;  这里,选择 &lt;code&gt;false&lt;/code&gt;, 原因是, 后面我们需要snmp与ssh方式共存,因此不能禁止snmp监控&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;zproperties&lt;/code&gt; 选项的位置&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/image/zproperties.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;修改监控模板&lt;/h3&gt;
+&lt;p&gt;FileSystem 不需要修改默认. /device/cmd 就是通过ssh 方式获取&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ethernetCsmacd&lt;/strong&gt; (网卡,流量获取) 默认是通过ssh 方式获取,不过如果用ssh方式获
+取,会将原有的流量清空.因此,我们需要网卡.流量.使用snmp方式监控,修改如下&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;删除原有的/service/cmd&lt;/li&gt;
+&lt;li&gt;选择/devices ,选择覆盖(override template)模板,覆盖路径选择 /service/cmd&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;完成之后是这样&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="//image/template.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;添加主机&lt;/h3&gt;
+&lt;p&gt;将xxx.xxx.xxx.xxx移动至/service/cmd 中, 重建建模两次.&lt;/p&gt;
+&lt;p&gt;然后刷新页面观察 FileSystem是否由(3)变成(6), 这个是通过ssh方式获取到的分区个数.
+snmp只能获取到3个,ssh可以获取到6个,包括了/tmp 等&lt;/p&gt;
+&lt;p&gt;然后在interface 中,将eth0_0类似的网卡monitor取消掉&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="//image/server1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;产生这样的原因是, 列表是通过ssh方式获取的,但是后来我们采用snmp监控. 也就是说,
+snmp会尝试获取这个列表的内容,但是eth0_0 是没有正确OID的,于是会报一些未知错误,
+我们将eth0_0类似的监控给关闭就是为了避免这个错误,同时,并不会影响监控.因为eth0 和
+eth0_0 本是一张网卡仅有一个OID,&lt;/p&gt;
+&lt;h2&gt;检查&lt;/h2&gt;
+&lt;p&gt;以上步骤做完之后. 等待个10分钟. 看看流量图是否正常. 磁盘分区监控是否正常有图
+有数据.. 看看其他的图形是否有受到影响(一般不会)&lt;/p&gt;</summary><category term="监控"></category><category term="zenoss"></category></entry></feed>

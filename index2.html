@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Eleven.I386's Blog</title>
+    <meta name="description" content="">
+    <meta name="author" content="eleven.i386">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://eleveni386.7axu.com/theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="http://eleveni386.7axu.com/feeds/rss.xml" type="application/atom+xml" rel="alternate" title="ElevenI386'blog Atom Feed" />
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/local.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+                    
+                            <li><a href="http://eleveni386.7axu.com/pages/guan-yu-bo-zhu.html">关于博主</a></li>
+                        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+                
+
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/"><h2>加密你的HTTP请求(穿墙)</h2></a>
+        <div class= "well small"> 五 17 五月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>之前用<strong>kangle</strong>在香港的vps上做了一个http代理
+  但是在使用的时候发现,访问国外的一些站点 还是无法正常访问,但是在vps上面访问正常,
+而且kangle日志里面看见国外那些站点返回的状态码也是200,说明vps请求那些站点是没问题的
+那么问题就是发生在客户端跟vps之间了,因为这一段的数据是明文的HTTP请求, 很容易被上层运营商过滤掉
+那么我们就将客户端跟vps之间这段http过程加密就好了,</p>
+<h2>Stunnel</h2>
+<blockquote>
+<p>Stunnel 是一种程序，使程序员和系统管理员可以很轻松地对任意 TCP 会话加密。
+您可以很轻松地在客户机和服务器上启用 SSL ― 而且这样做不会影响程序源代码。
+Stunnel 服务器主要执行两个功能：
+一，首先，接收未加密的数据流，进行 SSL 加密，然后将其通过网络发送；
+二，对已进行 SSL 加密的数据流进行解密，并将其通过网络发送给另一个程序
+（该程序通常驻留在同一机器上，以避免本地网络上的窥探攻击）。</p>
+</blockquote>
+<p><a href="https://www.stunnel.org/downloads.html">下载地址</a></p>
+<h2>安装注意</h2>
+<p>在make install 的时候会要求你输入一些信息,用来生成证书, 按照提示输入即可</p>
+<h2>配置</h2>
+<h3>这里仅作为proxy</h3>
+<div class="highlight"><pre><span class="n">syslog</span> <span class="p">=</span> <span class="n">yes</span>  #使用 ...</pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/05/17/kangle-zuo-httpni-ming-dai-li/"><h2>Kangle 做HTTP匿名代理</h2></a>
+        <div class= "well small"> 五 17 五月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><blockquote>
+<p>kangle web服务器（简称：kangle）是一款跨平台、功能强大、安全稳定、
+易操作的高性能web服务器和反向代理服务器软件。除此：kangle也是一款专为做虚拟主机
+研发的web服务器。实现虚拟主机独立进程、独立身份运行。用户之间安全隔离，一个用户
+出问题不影响其他用户。安全支持php、asp、asp·net、java、ruby等多种动态开发语言。
+                                                        百度百科</p>
+</blockquote>
+<h2>安装</h2>
+<p>下载源码
+  <code>wget http://www.kanglesoft.com/download/src/kangle-3.2.3.tar.gz</code></p>
+<p>编译环境</p>
+<p><code>apt-get install build-essential</code></p>
+<p>安装pcre库</p>
+<p><code>apt-get install libpcre++-dev</code></p>
+<p>安装ssl库</p>
+<p><code>apt-get install libssl-dev ...</code></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/05/17/kangle-zuo-httpni-ming-dai-li/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/"><h2>Linux桌面流量监控工具</h2></a>
+        <div class= "well small"> 五 26 四月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>大图show</h2>
+<p><img alt="" src="/image/1365580966.png" /></p>
+<p><a href="(https://github.com/eleveni386/netmonitor)"><strong>悬浮窗口-- 流量监视器</strong></a></p>
+<p>一个利用<strong>pcap</strong>写的流量监视工具</p>
+<h2>依赖</h2>
+<p><strong>python-pypcap</strong></p>
+<p><strong>python-dpkt</strong></p>
+<p>请自行下载安装两个包</p>
+<h2>启动</h2>
+<p>执行<code>./netmon</code> 第一次执行会要求输入密码, 之后不再需要 此次更新:</p>
+<h2>更新</h2>
+<p>2013-04-25</p>
+<p>修正UI被流量采集模块堵塞问题</p>
+<p>2013-04-10:</p>
+<p>降低cpu占用率, 由原来的12-20% 到现在的3%
+重写了流量采集代码, 结构更加合理,更易阅读
+使用圆角悬浮窗口,更加美观</p>
+<p>后续:</p>
+<p>增加进程流量限制
+增加网络进程list</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/04/25/wang-qia-zhong-duan-bang-ding/"><h2>网卡中断绑定</h2></a>
+        <div class= "well small"> 四 25 四月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><blockquote>
+<p>中断亲和力是指将一个或多个中断源绑定到特定的 CPU 上运行</p>
+</blockquote>
+<h2>操作</h2>
+<p><a href="http://liuxin1982.blog.51cto.com/4338970/1019825">参考</a></p>
+<p>今天我是来吐槽该文中的一个shell脚本</p>
+<div class="highlight"><pre><span class="c"># setting up irq affinity according to /proc/interrupts</span>
+<span class="c"># 2008-11-25 Robert Olsson</span>
+<span class="c"># 2009-02-19 updated by Jesse Brandeburg</span>
+<span class="c">#</span>
+<span class="c"># &gt; Dave Miller:</span>
+<span class="c"># (To get consistent naming in /proc/interrups)</span>
+<span class="c"># I would suggest that people use something like:</span>
+<span class="c"># char buf[IFNAMSIZ+6];</span>
+<span class="c">#</span>
+<span class="c"># sprintf(buf, &quot;%s-%s-%d&quot;,</span>
+<span class="c">#         netdev-&gt;name ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/04/25/wang-qia-zhong-duan-bang-ding/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/"><h2>记. 一次ddos攻击,导致服务器死机</h2></a>
+        <div class= "well small"> 五 29 三月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>背景</h2>
+<p>某年某月某天,eleven所属单位 被未知生物ddos攻击, 攻击时间 凌晨00:15 左右, 
+eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上面命令找出服务器弱点.
+同时还原攻击现场,</p>
+<h2>检查</h2>
+<p>通过<strong>Zenoss</strong>监控图, 看见在00:15左右, 突然进来了大量的数据包, 大概40w左右, 
+但是流量没有明显异常(即没有瞬间增高), 好吧, 看见这个现象就猜到了.. 小包<strong>DDos</strong>攻击.
+通过服务器的message日志里面看见了<em>syn flood on 80</em> 记录,结合监控图上的大量数据包,
+断定服务器被人采用<strong>syn半开攻击</strong>手法给攻击</p>
+<h2>服务器配置</h2>
+<p>观察了服务器的内核参数配置,因为我记得我们所有服务器都有对于<strong>syn flood</strong>的防御策略,
+在sysctl.conf里面<strong>syn_cookies</strong>已经开启, 而且也看见syn队列增加到了1w6, 
+按理来说单纯的半开攻击应该对于我们机器是无压力的说 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/03/11/ji-ci-an-zhuang-fcitxguo-cheng/"><h2>记一次安装fcitx过程</h2></a>
+        <div class= "well small"> 一 11 三月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>今天实在无法忍受<em>ibus</em>的启动速度和词汇准确性了. 将ibus更换成<strong>fcitx</strong>, </p>
+<div class="highlight"><pre><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">fcitx</span>
+<span class="n">im</span><span class="o">-</span><span class="k">switch</span> <span class="o">-</span><span class="n">s</span> <span class="n">fcitx</span>
+<span class="n">im</span><span class="o">-</span><span class="k">switch</span> <span class="o">-</span><span class="n">s</span> <span class="n">fcitx</span> <span class="o">-</span><span class="n">z</span> <span class="n">default</span>
+</pre></div>
+
+
+<p>然后在<em>autostart</em>中加入fcitx的自启动.. 注销X界面之后, 发现fcitx是启动起来了, 
+只是应用程序的默认输入法还是<em>Ibus</em>, 于是google之 ,找到了fcitx环境变量设置, 
+在<strong>~/.xprofile</strong> 中加入fcitx的环境变量:</p>
+<div class="highlight"><pre><span class="n">export</span> <span class="n">GTK_IM_MODULE</span><span class="p">=</span><span class="n">fcitx</span>
+<span class="n">export</span> <span class="n">XMODIFIERS</span><span class="p">=@</span><span class="n">im</span><span class="p">=</span><span class="n">fcitx</span>
+<span class="n">export</span> <span class="n">QT_IM_MODULE</span><span class="p">=</span><span class="n">fcitx</span>
+</pre></div>
+
+
+<p>注销X界面 再次进入系统,<code>echo $GTK_IM_MODULE</code> 发现这个变量已经是fcitx, 但是应用
+程序默认输入法还是<strong>Ibus</strong> , 来来回回折腾了几次 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/03/11/ji-ci-an-zhuang-fcitxguo-cheng/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/02/28/wps-for-linux-bate1-shi-yong/"><h2>wps for linux Bate1 试用</h2></a>
+        <div class= "well small"> 四 28 二月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>虽然很早就知道了<strong>wps for linux</strong>的测试版本出来了,不过一直懒的去下载,直至今天
+公司要求所有的windows系统同事卸载有点软的office而安装<strong>wps</strong>,我才突然想到,
+我也该换换了,咱用的<strong>openoffice</strong>实在拿不出手了..</p>
+<p>于是到wps的官方下载了测试版本回来, 不需要安装, 解压即可以使用,里面有三个东西
+是需要用到的,</p>
+<ol>
+<li>
+<p>wps/wps word文档</p>
+</li>
+<li>
+<p>wps/et excel</p>
+</li>
+<li>
+<p>wps/wpp 幻灯片</p>
+</li>
+</ol>
+<p>好了,直接打开看看效果</p>
+<p><img alt="" src="/image/1362046109.png" /></p>
+<p>看上去好像不错,再来张excel的</p>
+<p><img alt="" src="/image/1362046180.png" /></p>
+<p>也有点样子,现在可以将它们投入到工作当中了..</p>
+<p>于是找了一个doc文档双击打开… 尼玛,怎么还是openoffice打开的哇.. 
+好吧,貌似我们忘记了<em>文件关联</em>的事情了..</p>
+<p>下面让我们建立<em>doc</em>,<em>xls</em>文件关联到<strong>wps</strong>和<strong>et</strong>这两个wps程序上</p>
+<p><a href="(http://linux-wiki.cn/wiki/zh-hans/%E6%96%87%E4%BB%B6%E5%85%B3%E8%81%94)">文件关联 ...</a></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/02/28/wps-for-linux-bate1-shi-yong/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/12/14/jie-tu-zi-dong-fen-xiang-jiao-ben/"><h2>截图自动分享脚本</h2></a>
+        <div class= "well small"> 五 14 十二月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<span class="nb">time</span><span class="o">=</span><span class="sb">`</span>date +%H:%M:%S<span class="sb">`</span>
+<span class="nv">msg</span><span class="o">=</span><span class="sb">`</span>scrot -s <span class="s2">&quot;$time.png&quot;</span> -e <span class="s2">&quot;curl -sF &#39;name=@$time.png&#39; http://eleveni386.7axu.com/Image/&quot;</span><span class="sb">`</span>
+gxmessage -center -title <span class="s2">&quot;eleveni386.7axu.com&quot;</span> <span class="nv">$msg</span>
+rm -rf <span class="nv">$time</span>.png
+</pre></div>
+</td></tr></table>
+
+<p>将这个脚本绑定到任意快捷键，我将脚本保存为<em>scrot.sh</em> 并 绑定到了<code>A+s</code>快捷键上</p>
+<p>当我需要与朋友分享某图的时候， 直接按下 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/12/14/jie-tu-zi-dong-fen-xiang-jiao-ben/">read more</a></div>
+    </div>	
+				
+            <div class="pagination">
+<ul>
+    <li class="prev"><a href="http://eleveni386.7axu.com/index.html">&larr; Previous</a></li>
+
+    <li class=""><a href="http://eleveni386.7axu.com/index.html">1</a></li>
+    <li class="active"><a href="http://eleveni386.7axu.com/index2.html">2</a></li>
+    <li class=""><a href="http://eleveni386.7axu.com/index3.html">3</a></li>
+    <li class=""><a href="http://eleveni386.7axu.com/index4.html">4</a></li>
+
+    <li class="next"><a href="http://eleveni386.7axu.com/index3.html">Next &rarr;</a></li>
+
+</ul>
+</div>    
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="http://eleveni386.7axu.com/">Archives</a>
+                <li><a href="http://eleveni386.7axu.com/tags.html">Tags</a>
+                <li><a href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate">Atom feed</a></li>
+                            </ul>
+            </div>
+
+
+                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+                                   
+            </ul>
+            </div>
+            
+
+                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                            <li><a href="http://www.linuxzen.com/">cold</a></li>
+                            <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
+                            <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
+                            <li><a href="http://neteue.com/">小邪兽</a></li>
+                        </ul>
+            </div>
+            
+
+                        <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                                <li><a href="https://github.com/eleveni386">github</a></li>
+                                <li><a href="https://plus.google.com/102949387282276761880/posts/p/pub">G+</a></li>
+                            </ul>
+            </div>
+            </div>
+            
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a> &copy; eleven.i386 2012</p>
+<script src="http://v1.cnzz.com/stat.php?id=4484286&web_id=4484286" language="JavaScript"></script>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<a href="https://github.com/eleveni386"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
+</html>

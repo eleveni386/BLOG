@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/linuxzhuo-mian.atom.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2013-08-23T00:00:00+08:00</updated><entry><title>tmux多panel同步</title><link href="http://eleveni386.7axu.com/posts/2013/08/23/tmuxduo-paneltong-bu/" rel="alternate"></link><updated>2013-08-23T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-08-23:posts/2013/08/23/tmuxduo-paneltong-bu/</id><summary type="html">&lt;p&gt;上一篇说过 我已经使用&lt;strong&gt;tmux&lt;/strong&gt; 代替&lt;strong&gt;SecureCRT&lt;/strong&gt;进行运维工作 , 
+为此写了一个&lt;a href="https://github.com/eleveni386/clipm"&gt;密码管理工具&lt;/a&gt;,来配合&lt;strong&gt;tmux&lt;/strong&gt;使用,
+经过两天的使用,感觉良好.&lt;strong&gt;KeepassX&lt;/strong&gt; 已经直接被我卸载了,今天要说的是&lt;strong&gt;SecureCRT&lt;/strong&gt;另外一个功能
+&lt;strong&gt;批量执行命令&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;用过&lt;strong&gt;SecureCRT&lt;/strong&gt;的孩纸,都知道它有一个很方便的功能,开启多个终端的时候,可以同时在这些终端输入命令,
+极大的方便了我们的工作,我搬家到&lt;strong&gt;tmux&lt;/strong&gt; 也一直纠结这个功能.经过多次google之后 终于被我找到了.原来&lt;strong&gt;tmux&lt;/strong&gt;
+也是有批量执行命令的, &lt;strong&gt;tmux panel sync&lt;/strong&gt;, &lt;strong&gt;panel同步&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;使用效果如下:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://blog.sanctum.geek.nz/wp-content/uploads/2012/08/synchronize-panes.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;(PS:这里偷了别人的图,我懒得找gif制作工具)&lt;/p&gt;
+&lt;p&gt;开启这个功能:  &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:setw synchronize-panes&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;这是一个开关,需要的时候键入, 不需要的时候键入同样的指令,即可关闭.&lt;/p&gt;
+&lt;p&gt;友情提示:将它绑定到某一个快捷键上效果更佳哦 :-)&lt;/p&gt;
+&lt;p&gt;btw, 我的tmux配置, 许多是参考网络上现有的.没太多个性化的东西.不过胜在实用&lt;/p&gt;
+&lt;h2&gt;Base&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;terminal&lt;/span&gt; “&lt;span class="n"&gt;screen&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;256&lt;span class="n"&gt;color&lt;/span&gt;”
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;display&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt; 3000
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;history&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;limit&lt;/span&gt; 65535
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;mouse&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pane&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;mouse&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;mouse&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;resize&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pane&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;mouse&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;window&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Key bind&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;prefix&lt;/span&gt; &lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;
+&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;prefix&lt;/span&gt;
+
+&lt;span class="n"&gt;unbind&lt;/span&gt; ‘”‘
+&lt;span class="n"&gt;bind&lt;/span&gt; – &lt;span class="n"&gt;splitw&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;
+&lt;span class="n"&gt;unbind&lt;/span&gt; &lt;span class="c"&gt;%&lt;/span&gt;
+&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;splitw&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;
+&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="n"&gt;run&lt;/span&gt; “&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;eleven&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Yunio&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;SystemBackup&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tmux&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;shell&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tmux&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;cpy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;”
+&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tmux&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt; &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;display&lt;/span&gt; “&lt;span class="n"&gt;Reloaded&lt;/span&gt;!”
+&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;setw&lt;/span&gt; &lt;span class="n"&gt;synchronize&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;panes&lt;/span&gt;
+
+&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="n"&gt;selectp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;U&lt;/span&gt;
+&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="nb"&gt;j&lt;/span&gt; &lt;span class="n"&gt;selectp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;
+&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="n"&gt;selectp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;L&lt;/span&gt;
+&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="n"&gt;selectp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;status bar&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;option&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;vi&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;option&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;utf8&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;option&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;interval&lt;/span&gt; 1
+&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;option&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;justify&lt;/span&gt; “&lt;span class="n"&gt;centre&lt;/span&gt;”
+&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;option&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;left&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;length&lt;/span&gt; 60
+&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;option&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;right&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;length&lt;/span&gt; 90
+&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;option&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;left&lt;/span&gt; “#&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;soft&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tmux&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;powerline&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;powerline&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="n"&gt;left&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;”
+&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;option&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;right&lt;/span&gt; “#&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;soft&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tmux&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;powerline&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;powerline&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="n"&gt;right&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;”
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Other&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;option&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt; &lt;span class="n"&gt;vi&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;option&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;utf8&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="tmux"></category><category term="运维"></category></entry><entry><title>记一次安装fcitx过程</title><link href="http://eleveni386.7axu.com/posts/2013/03/11/ji-ci-an-zhuang-fcitxguo-cheng/" rel="alternate"></link><updated>2013-03-11T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-03-11:posts/2013/03/11/ji-ci-an-zhuang-fcitxguo-cheng/</id><summary type="html">&lt;p&gt;今天实在无法忍受&lt;em&gt;ibus&lt;/em&gt;的启动速度和词汇准确性了. 将ibus更换成&lt;strong&gt;fcitx&lt;/strong&gt;, &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;fcitx&lt;/span&gt;
+&lt;span class="n"&gt;im&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;switch&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;fcitx&lt;/span&gt;
+&lt;span class="n"&gt;im&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;switch&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;fcitx&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后在&lt;em&gt;autostart&lt;/em&gt;中加入fcitx的自启动.. 注销X界面之后, 发现fcitx是启动起来了, 
+只是应用程序的默认输入法还是&lt;em&gt;Ibus&lt;/em&gt;, 于是google之 ,找到了fcitx环境变量设置, 
+在&lt;strong&gt;~/.xprofile&lt;/strong&gt; 中加入fcitx的环境变量:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;export&lt;/span&gt; &lt;span class="n"&gt;GTK_IM_MODULE&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;fcitx&lt;/span&gt;
+&lt;span class="n"&gt;export&lt;/span&gt; &lt;span class="n"&gt;XMODIFIERS&lt;/span&gt;&lt;span class="p"&gt;=@&lt;/span&gt;&lt;span class="n"&gt;im&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;fcitx&lt;/span&gt;
+&lt;span class="n"&gt;export&lt;/span&gt; &lt;span class="n"&gt;QT_IM_MODULE&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;fcitx&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注销X界面 再次进入系统,&lt;code&gt;echo $GTK_IM_MODULE&lt;/code&gt; 发现这个变量已经是fcitx, 但是应用
+程序默认输入法还是&lt;strong&gt;Ibus&lt;/strong&gt; , 来来回回折腾了几次, 忍不住吐槽了下Ibus的无耻.. 
+结果无意中dpkg -l |grep ibus 发现….:&lt;/p&gt;
+&lt;p&gt;尼玛,为啥我系统里面还有ibus… 为啥我明明记得昨天已经将ibus给卸载了, 
+… 唉, 咱这个记性哇 ,不过吐槽ibus的话咱还是不会收回的…. 
+俗话不是说,该吐槽时就吐槽么… &lt;/p&gt;
+&lt;p&gt;好了, 将ibus所有东西给卸载掉, 注销X界面 之后, 这个世界终于干净了!!!&lt;/p&gt;</summary><category term="fcitx"></category><category term="桌面"></category><category term="输入法"></category></entry><entry><title>截图自动分享脚本</title><link href="http://eleveni386.7axu.com/posts/2012/12/14/jie-tu-zi-dong-fen-xiang-jiao-ben/" rel="alternate"></link><updated>2012-12-14T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2012-12-14:posts/2012/12/14/jie-tu-zi-dong-fen-xiang-jiao-ben/</id><summary type="html">&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="nb"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;date +%H:%M:%S&lt;span class="sb"&gt;`&lt;/span&gt;
+&lt;span class="nv"&gt;msg&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;scrot -s &lt;span class="s2"&gt;&amp;quot;$time.png&amp;quot;&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;curl -sF &amp;#39;name=@$time.png&amp;#39; http://eleveni386.7axu.com/Image/&amp;quot;&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
+gxmessage -center -title &lt;span class="s2"&gt;&amp;quot;eleveni386.7axu.com&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$msg&lt;/span&gt;
+rm -rf &lt;span class="nv"&gt;$time&lt;/span&gt;.png
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;将这个脚本绑定到任意快捷键，我将脚本保存为&lt;em&gt;scrot.sh&lt;/em&gt; 并 绑定到了&lt;code&gt;A+s&lt;/code&gt;快捷键上&lt;/p&gt;
+&lt;p&gt;当我需要与朋友分享某图的时候， 直接按下&lt;code&gt;A+s&lt;/code&gt; ，然后我会得到一个这样的结果&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/image/123.png" /&gt;&lt;/p&gt;
+&lt;p&gt;复制中间的链接，发送给亲朋好友吧， 对于linux下gtalk不带图片分享功能的我来说灰常方便了&lt;/p&gt;</summary><category term="shell"></category><category term="图床"></category><category term="桌面工具"></category></entry><entry><title>忘记密码之 Svn</title><link href="http://eleveni386.7axu.com/posts/2012/11/28/wang-ji-mi-ma-zhi-svn/" rel="alternate"></link><updated>2012-11-28T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2012-11-28:posts/2012/11/28/wang-ji-mi-ma-zhi-svn/</id><summary type="html">&lt;p&gt;今天,突发奇想在虚拟机中装一个&lt;em&gt;svn客户端&lt;/em&gt;,这样就省的每次更改或者提交日志文档的时候,
+需要将文件从虚拟机中拖到本地,然后输入&lt;code&gt;svn ci&lt;/code&gt; 命令了, 于是,遂安装之.. 在&lt;code&gt;checkout&lt;/code&gt;的时候,
+突然想到自己不记得密码了,(一直以来所有密码都是直接保存的,自己记不住)&lt;/p&gt;
+&lt;p&gt;于是找管理员要, 一看, .. 咱们svn管理员没在线, 看来还是要自己动手,&lt;/p&gt;
+&lt;p&gt;工具准备: &lt;strong&gt;file&lt;/strong&gt;一枚, &lt;strong&gt;cat&lt;/strong&gt;一把&lt;/p&gt;
+&lt;p&gt;由于我之前一直都是在linux下用命令提交更新, 在linux下已经&lt;code&gt;checkout&lt;/code&gt;过一次了,
+同时我也选择了保存密码到本地, 因此 在我本地的某一个地方肯定会有svn的相关记录,
+于是google之.. 找到了 svn的密码文件是保存在&lt;strong&gt;$HOME/.subversion/auth/svn.simple&lt;/strong&gt; 下,
+由于我在code.google.com上也有一个svn帐号,因此我这里有两个文件,&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/image/2012-11-28-104153-300x31.png" /&gt;&lt;/p&gt;
+&lt;p&gt;由于不清楚这两个文件是啥, 于是&lt;code&gt;file&lt;/code&gt;之, 得到两只&lt;strong&gt;ASCII text&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;看见是&lt;em&gt;ASCII text&lt;/em&gt;之后,果断&lt;code&gt;cat&lt;/code&gt; 之 得到&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/image/2012-11-28-105014-300x149.png" /&gt;&lt;/p&gt;
+&lt;p&gt;被我抹掉的部分就是svn的密码了,取出来,到虚拟机里填上, ok ,成功&lt;code&gt;checkout&lt;/code&gt;了,&lt;/p&gt;</summary><category term="Svn"></category><category term="安全"></category><category term="桌面"></category></entry><entry><title>桌面秀 tint2成果</title><link href="http://eleveni386.7axu.com/posts/2012/11/22/zhuo-mian-xiu-tint2cheng-guo/" rel="alternate"></link><updated>2012-11-22T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2012-11-22:posts/2012/11/22/zhuo-mian-xiu-tint2cheng-guo/</id><summary type="html">&lt;p&gt;&lt;img alt="" src="/image/2012-11-22-135629-300x168.png" /&gt;&lt;/p&gt;
+&lt;p&gt;再来张&lt;strong&gt;tint2&lt;/strong&gt;的特写&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/image/2012-11-22-140328.png" /&gt;&lt;/p&gt;
+&lt;p&gt;喜欢这个效果的,可以留言给我,咱给配置文件 :)&lt;/p&gt;
+&lt;p&gt;鉴于ubuntu论坛 有童鞋要我&lt;strong&gt;tint2&lt;/strong&gt;的配置文件, 点击这里&lt;a href="(http://code.google.com/p/sharepythoncode/downloads/detail?name=tint2rc&amp;amp;can=2&amp;amp;q=#makechanges)"&gt;下载&lt;/a&gt;&lt;/p&gt;</summary><category term="tint2"></category><category term="桌面"></category><category term="壁纸"></category></entry></feed>

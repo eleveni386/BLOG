@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Eleven.I386's Blog</title>
+    <meta name="description" content="">
+    <meta name="author" content="eleven.i386">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://eleveni386.7axu.com/theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="http://eleveni386.7axu.com/feeds/rss.xml" type="application/atom+xml" rel="alternate" title="ElevenI386'blog Atom Feed" />
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/local.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+                    
+                            <li><a href="http://eleveni386.7axu.com/pages/guan-yu-bo-zhu.html">关于博主</a></li>
+                        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+                
+
+        
+
+
+    <div class='article'>
+        <div class="content-title">
+            <a href="http://eleveni386.7axu.com/posts/2012/11/29/xiu-fu-zenoss321-graphs-range-bug/"><h1>修复zenoss3.2.1 graphs range bug</h1></a>
+            四 29 十一月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ 
+        </div>
+        
+        <div><p>前段时间将<strong>zenoss</strong>升级到3.2.1 (别问咱怎么使用这么老的版本,领导要求stable,
+目前zenoss只有3.2.1是最新的stable版本),然后昨天使用的时候发现了一个小小的bug,
+就是在device的graphs中, 选择range会出现性能图不更新的情况.</p>
+<p>要修复这个bug,确定<em>java</em>版本是否大于1.6</p>
+<p>我自己debian 由于没有安装java 因此我这里安装一下</p>
+<p><code>apt-get install sun-java6-jdk</code></p>
+<p>然后确认下java版本</p>
+<p><code>java -version</code></p>
+<div class="highlight"><pre><span class="n">java</span> <span class="n">version</span> “1<span class="p">.</span>6<span class="p">.</span>0<span class="n">_26</span>″
+<span class="n">Java</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> <span class="n">SE</span> <span class="n">Runtime</span> <span class="n">Environment</span> <span class="p">(</span><span class="n">build</span> 1<span class="p">.</span>6<span class="p">.</span>0<span class="n">_26</span><span class="o">-</span><span class="n">b03</span><span class="p">)</span>
+<span class="n">Java</span> <span class="n">HotSpot</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> 64<span class="o">-</span><span class="n">Bit</span> <span class="n">Server</span> <span class="n">VM</span> <span class="p">(</span><span class="n">build</span> 20<span class="p">.</span>1<span class="o">-</span><span class="n">b02</span><span class="p">,</span> <span class="n">mixed</span> <span class="n">mode</span><span class="p">)</span>
+</pre></div>
+
+
+<p>然后切换到zenoss用户下执行以下操作 <code>su zenoss</code></p>
+<p>打上26403补丁</p>
+<p><code>/usr/local/zenoss/zenoss/bin/zenpatch 26403</code></p>
+<div class="highlight"><pre><span class="n">Getting</span> <span class="n">patch</span> <span class="n">from</span> <span class="n">Internet</span>…
+
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dev</span><span class="p">.</span><span class="n">zenoss</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">trac</span><span class="o">/</span><span class="n">changeset</span><span class="o">/</span>26403?<span class="n">format</span><span class="p">=</span><span class="n">diff</span><span class="o">&amp;</span><span class="n">new</span><span class="p">=</span>26403
+
+<span class="c">% Total % Received % Xferd Average Speed Time Time Time Current</span>
+<span class="n">Dload</span> <span class="n">Upload</span> <span class="n">Total</span> <span class="n">Spent</span> <span class="n">Left</span> <span class="n">Speed</span>
+100 1899 0 1899 0 0 1845 0 –<span class="p">:</span>–<span class="p">:</span>– 0<span class="p">:</span>00<span class="p">:</span>01 –<span class="p">:</span>–<span class="p">:</span>– 2748
+<span class="n">determining</span> <span class="n">strip</span> <span class="nb">size</span> <span class="k">for</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">Products</span><span class="o">/</span><span class="n">r26403</span><span class="p">.</span><span class="n">patch</span>
+
+<span class="n">Applying</span> <span class="n">patch</span> <span class="n">with</span> <span class="n">strip</span><span class="p">=</span>3
+<span class="n">patch</span> <span class="o">-</span><span class="n">b</span> –<span class="n">strip</span><span class="p">=</span>3 <span class="o">&lt;</span> <span class="n">r26403</span><span class="p">.</span><span class="n">patch</span>
+<span class="p">(</span><span class="n">Stripping</span> <span class="n">trailing</span> <span class="n">CRs</span> <span class="n">from</span> <span class="n">patch</span><span class="p">.)</span>
+<span class="n">patching</span> <span class="n">file</span> <span class="n">ZenUI3</span><span class="o">/</span><span class="n">browser</span><span class="o">/</span><span class="n">resources</span><span class="o">/</span><span class="n">js</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">ComponentPanel</span><span class="p">.</span><span class="n">js</span>
+<span class="p">(</span><span class="n">Stripping</span> <span class="n">trailing</span> <span class="n">CRs</span> <span class="n">from</span> <span class="n">patch</span><span class="p">.)</span>
+<span class="n">patching</span> <span class="n">file</span> <span class="n">ZenUI3</span><span class="o">/</span><span class="n">browser</span><span class="o">/</span><span class="n">resources</span><span class="o">/</span><span class="n">js</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">form</span><span class="o">/</span><span class="n">graphPanel</span><span class="p">.</span><span class="n">js</span>
+<span class="n">zenoss</span><span class="p">@</span><span class="n">bgp</span><span class="o">-</span><span class="n">guangzhou</span><span class="o">-</span>17<span class="p">:</span><span class="o">~</span>$ <span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dev</span><span class="p">.</span><span class="n">zenoss</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">trac</span><span class="o">/</span><span class="n">export</span><span class="o">/</span>26262<span class="o">/</span><span class="n">trunk</span><span class="o">/</span><span class="n">inst</span><span class="o">/</span><span class="n">buildjs</span><span class="p">.</span><span class="n">sh</span>
+–2012<span class="o">-</span>11<span class="o">-</span>29 13<span class="p">:</span>56<span class="p">:</span>21– <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dev</span><span class="p">.</span><span class="n">zenoss</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">trac</span><span class="o">/</span><span class="n">export</span><span class="o">/</span>26262<span class="o">/</span><span class="n">trunk</span><span class="o">/</span><span class="n">inst</span><span class="o">/</span><span class="n">buildjs</span><span class="p">.</span><span class="n">sh</span>
+<span class="n">Resolving</span> <span class="n">dev</span><span class="p">.</span><span class="n">zenoss</span><span class="p">.</span><span class="n">org</span>… 204<span class="p">.</span>12<span class="p">.</span>105<span class="p">.</span>194
+<span class="n">Connecting</span> <span class="n">to</span> <span class="n">dev</span><span class="p">.</span><span class="n">zenoss</span><span class="p">.</span><span class="n">org</span><span class="o">|</span>204<span class="p">.</span>12<span class="p">.</span>105<span class="p">.</span>194<span class="o">|</span><span class="p">:</span>80… <span class="n">connected</span><span class="p">.</span>
+<span class="n">HTTP</span> <span class="n">request</span> <span class="n">sent</span><span class="p">,</span> <span class="n">awaiting</span> <span class="n">response</span>… 200 <span class="n">OK</span>
+<span class="n">Length</span><span class="p">:</span> 1714 <span class="p">(</span>1<span class="p">.</span>7<span class="n">K</span><span class="p">)</span> <span class="p">[</span><span class="n">application</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">sh</span><span class="p">]</span>
+<span class="n">Saving</span> <span class="n">to</span><span class="p">:</span> “<span class="n">buildjs</span><span class="p">.</span><span class="n">sh</span><span class="p">.</span>1”
+
+100<span class="c">%[====================================</span>
+
+<span class="o">==================================</span><span class="p">=</span>
+
+<span class="o">======================================</span>
+
+<span class="o">================&gt;</span><span class="p">]</span> 1<span class="p">,</span>714 –<span class="p">.</span><span class="o">-</span><span class="n">K</span><span class="o">/</span><span class="n">s</span> <span class="n">in</span> 0<span class="n">s</span>
+
+2012<span class="o">-</span>11<span class="o">-</span>29 13<span class="p">:</span>56<span class="p">:</span>22 <span class="p">(</span>388 <span class="n">MB</span><span class="o">/</span><span class="n">s</span><span class="p">)</span> – “<span class="n">buildjs</span><span class="p">.</span><span class="n">sh</span><span class="p">.</span>1” <span class="n">saved</span> <span class="p">[</span>1714<span class="o">/</span>1714<span class="p">]</span>
+</pre></div>
+
+
+<p><em>26403</em>中包括了<em>Graph</em>和<em>Component</em>两部分JS文件的更新，其主要功能是重新定义<em>setDrange</em>方法，
+并在选项中正确调用这一方法，使得性能图像中的时间范围与选项中的同步。</p>
+<p>具体说明见<a href="http://dev.zenoss.org/trac/changeset/26403">http://dev.zenoss.org/trac/changeset/26403</a></p>
+<p>下载JSBulid程序，运行使JS补丁生效</p>
+<div class="highlight"><pre><span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dev</span><span class="p">.</span><span class="n">zenoss</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">trac</span><span class="o">/</span><span class="n">export</span><span class="o">/</span>26262<span class="o">/</span><span class="n">trunk</span><span class="o">/</span><span class="n">inst</span><span class="o">/</span><span class="n">buildjs</span><span class="p">.</span><span class="n">sh</span>
+<span class="n">sh</span> <span class="n">buildjs</span><span class="p">.</span><span class="n">sh</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">zopectl</span> <span class="n">restart</span>
+</pre></div>
+
+
+<p>最后清除浏览器历史记录，重新打开，即可</p>
+<h2>结语</h2>
+<p>以上bug 我是在看到<strong>mura</strong>的<a href="(http://blog.chinaunix.net/uid-17326582-id-3187987.html)">BLOG</a>才解决的</p></div>
+        <hr />
+    </div>
+		
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/08/24/zenossde-ssh-command/"><h2>zenoss的SSH command</h2></a>
+        <div class= "well small"> 五 24 八月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>安装</h2>
+<p>安装easy_install</p>
+<div class="highlight"><pre><span class="n">wget</span> <span class="o">-</span><span class="n">q</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">peak</span><span class="p">.</span><span class="n">telecommunity</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">dist</span><span class="o">/</span><span class="n">ez_setup</span><span class="p">.</span><span class="n">py</span>
+<span class="n">python</span> <span class="n">ez_setup</span><span class="p">.</span><span class="n">py</span>
+</pre></div>
+
+
+<p>安装zenplugins.py</p>
+<div class="highlight"><pre><span class="n">easy_install</span> <span class="n">Zenoss</span><span class="o">-</span><span class="n">Plugins</span>
+路径 <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">zenplugins</span><span class="p">.</span><span class="n">py</span>
+</pre></div>
+
+
+<h2>测试</h2>
+<p><code>zenplugins.py mem</code> 获取内存信息,</p>
+<p>出现如下信息,为安装正确</p>
+<div class="highlight"><pre><span class="n">MEM</span> <span class="n">OK</span><span class="p">;</span><span class="o">|</span><span class="n">memAvailReal</span><span class="p">=</span>90583040 <span class="n">hrSwapSize</span><span class="p">=</span>10001932288 <span class="n">hrMemorySize</span><span class="p">=</span>16855810048 <span class="n">pageSize</span><span class="p">=</span>4096 <span class="n">memAvailSwap</span><span class="p">=</span>9998671872
+</pre></div>
+
+
+<h2>使用</h2>
+<p>将主机添加到  <strong>/devices/cmd</strong>
+  修改<strong>/devices/cmd ...</strong></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/08/24/zenossde-ssh-command/">read more</a></div>
+    </div>	
+				
+            <div class="pagination">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
+</ul>
+</div>    
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="http://eleveni386.7axu.com/">Archives</a>
+                <li><a href="http://eleveni386.7axu.com/tags.html">Tags</a>
+                <li><a href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate">Atom feed</a></li>
+                            </ul>
+            </div>
+
+
+                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+                                   
+            </ul>
+            </div>
+            
+
+                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                            <li><a href="http://www.linuxzen.com/">cold</a></li>
+                            <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
+                            <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
+                            <li><a href="http://neteue.com/">小邪兽</a></li>
+                        </ul>
+            </div>
+            
+
+                        <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                                <li><a href="https://github.com/eleveni386">github</a></li>
+                                <li><a href="https://plus.google.com/102949387282276761880/posts/p/pub">G+</a></li>
+                            </ul>
+            </div>
+            </div>
+            
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a> &copy; eleven.i386 2012</p>
+<script src="http://v1.cnzz.com/stat.php?id=4484286&web_id=4484286" language="JavaScript"></script>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<a href="https://github.com/eleveni386"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
+</html>

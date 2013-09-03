@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/vim.atom.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2013-08-13T00:00:00+08:00</updated><entry><title>vim中文乱码</title><link href="http://eleveni386.7axu.com/posts/2013/08/13/vimzhong-wen-luan-ma/" rel="alternate"></link><updated>2013-08-13T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-08-13:posts/2013/08/13/vimzhong-wen-luan-ma/</id><summary type="html">&lt;p&gt;今天 用本地客户端登录服务器编辑文件时, 出现中文乱码 表现为 某些字符正常显示, 某些又显示乱码, 有图有真相&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/image/DeepinScrot-3437-300x30.png" /&gt;&lt;/p&gt;
+&lt;p&gt;如图所示, 部分能显示出来,部分无法显示出来&lt;/p&gt;
+&lt;p&gt;用SecureCRT登录时,没有任何问题, 一开始以为是自己本地xfce-terminal字符编码问题,
+结果更换了几个终端都是同样的结果,gnome-terminal, xterm 都尝试过.. 看来问题还是服务器本身&lt;/p&gt;
+&lt;p&gt;在服务器上输入&lt;code&gt;locale&lt;/code&gt; &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;locale&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Cannot&lt;/span&gt; &lt;span class="kd"&gt;set&lt;/span&gt; &lt;span class="n"&gt;LC_CTYPE&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="n"&gt;locale&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;No&lt;/span&gt; &lt;span class="n"&gt;such&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;directory&lt;/span&gt;
+&lt;span class="n"&gt;locale&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Cannot&lt;/span&gt; &lt;span class="kd"&gt;set&lt;/span&gt; &lt;span class="n"&gt;LC_MESSAGES&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="n"&gt;locale&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;No&lt;/span&gt; &lt;span class="n"&gt;such&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;directory&lt;/span&gt;
+&lt;span class="n"&gt;locale&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Cannot&lt;/span&gt; &lt;span class="kd"&gt;set&lt;/span&gt; &lt;span class="n"&gt;LC_ALL&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="n"&gt;locale&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;No&lt;/span&gt; &lt;span class="n"&gt;such&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;directory&lt;/span&gt;
+&lt;span class="n"&gt;LANG&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;en_US&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;UTF&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;span class="n"&gt;LANGUAGE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;en_US&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;en&lt;/span&gt;
+&lt;span class="n"&gt;LC_CTYPE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;zh_CN&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;UTF&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;span class="n"&gt;LC_NUMERIC&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;LC_TIME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;LC_COLLATE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;zh_CN&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;UTF&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;span class="n"&gt;LC_MONETARY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;LC_MESSAGES&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;zh_CN&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;UTF&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;span class="n"&gt;LC_PAPER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;LC_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;LC_ADDRESS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;LC_TELEPHONE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;LC_MEASUREMENT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;LC_IDENTIFICATION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;LC_ALL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;发现&lt;strong&gt;Cannot set LC_CTYPE to default locale: No such file or director&lt;/strong&gt;之类的,
+我们服务器安装的时候 都是选择英文的安装方式, 按理来说不会出现zh_CN的字符集才对,
+这里不知道为啥会出现它们, 将它们修改为en_US,立刻就好了&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;export LC_ALL=en_US.UTF-8&lt;/code&gt;  &lt;/p&gt;
+&lt;p&gt;为了下次登录不必设置, 将它加入.bashrc  &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;echo "export LC_ALL=en_US.UTF-8 &amp;gt;&amp;gt; .bashrc&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;写完这篇blog, 去找了一下linux字符集相关资料, 在ubuntuwiki上找到了&lt;a href="http://wiki.ubuntu.org.cn/Locale#.E4.B8.80.E3.80.81.E4.B8.BA.E4.BB.80.E4.B9.88.E8.A6.81.E8.AE.BE.E5.AE.9Alocale"&gt;Locale&lt;/a&gt; 文章, 温习了一下字符集相关知识&lt;/p&gt;</summary><category term="vim"></category><category term="中文编码"></category><category term="linux"></category></entry></feed>

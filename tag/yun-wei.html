@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Eleven.I386's Blog</title>
+    <meta name="description" content="">
+    <meta name="author" content="eleven.i386">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://eleveni386.7axu.com/theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="http://eleveni386.7axu.com/feeds/rss.xml" type="application/atom+xml" rel="alternate" title="ElevenI386'blog Atom Feed" />
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/local.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+                    
+                            <li><a href="http://eleveni386.7axu.com/pages/guan-yu-bo-zhu.html">关于博主</a></li>
+                        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+                
+
+        
+
+
+    <div class='article'>
+        <div class="content-title">
+            <a href="http://eleveni386.7axu.com/posts/2013/08/30/clijian-yi-mi-ma-guan-li-gong-ju/"><h1>CLI简易密码管理工具</h1></a>
+            五 30 八月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ 
+        </div>
+        
+        <div><p>最近用上了<strong>tmux</strong>, 抛弃了<strong>SecureCRT</strong>,  但是没有便利的密码输入功能. 每次登录上服务器之后我都要将鼠标移动到状态栏 点击<strong>KeepassX</strong>,然后在<strong>Keepassx</strong>里面找到我需要的密码,然后在贴在<strong>tmux</strong>上..完成一次密码输入过程.  </p>
+<p>这种过程与使用<strong>tmux</strong>给我带来的便利(快捷键的存在,让我可以完全抛弃鼠标,事实用了<strong>tmux</strong>我就没有使用鼠标了.) 格格不入.. 感觉就像开着一辆跑车.结果却时不时的要停下来加油.. 这种感觉十分难受..(不打点会死星人)  </p>
+<p>于是就想到一个办法, 利用<strong>tmux</strong>的缓冲区, 来完成挑选密码的过程.  </p>
+<p>首先:  </p>
+<p><strong>tmux</strong>拥有自己的黏贴板,在<strong>tmux</strong>中复制的时候,可以通过<code>tmux show-buffer</code>找到复制的内容;</p>
+<p>然后:  </p>
+<p>使用一个工具,截获<strong>tmux</strong>的缓冲,得到里面的ip, 根据ip地址去数据内寻找相应的密码;</p>
+<p>带着这个想法, 在群里询问了一下群友, 是否有命令行版本的密码管理工具, 群友推荐一个叫做<a href="http://zx2c4.com/projects/password-store/">Pass</a>的东西,经过试用,感觉不适合这个地方, 因为<strong>Pass</strong>是交互式的CLI工具, 无法于tmux结合, 难到木有办法了? 那就自己动手吧</p>
+<p>经过一夜努力, 出来了这货<a href="https://github.com/eleveni386/clipm">clipm.py</a> 使用方法参考github的README</p></div>
+        <hr />
+    </div>
+		
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/08/23/tmuxduo-paneltong-bu/"><h2>tmux多panel同步</h2></a>
+        <div class= "well small"> 五 23 八月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>上一篇说过 我已经使用<strong>tmux</strong> 代替<strong>SecureCRT</strong>进行运维工作 , 
+为此写了一个<a href="https://github.com/eleveni386/clipm">密码管理工具</a>,来配合<strong>tmux</strong>使用,
+经过两天的使用,感觉良好.<strong>KeepassX</strong> 已经直接被我卸载了,今天要说的是<strong>SecureCRT</strong>另外一个功能
+<strong>批量执行命令</strong></p>
+<p>用过<strong>SecureCRT</strong>的孩纸,都知道它有一个很方便的功能,开启多个终端的时候,可以同时在这些终端输入命令,
+极大的方便了我们的工作,我搬家到<strong>tmux</strong> 也一直纠结这个功能.经过多次google之后 终于被我找到了.原来<strong>tmux</strong>
+也是有批量执行命令的, <strong>tmux panel sync</strong>, <strong>panel同步</strong></p>
+<p>使用效果如下:</p>
+<p><img alt="" src="http://blog.sanctum.geek.nz/wp-content/uploads/2012/08/synchronize-panes.gif" /></p>
+<p>(PS:这里偷了别人的图,我懒得找gif制作工具)</p>
+<p>开启这个功能:  </p>
+<p><code>:setw synchronize-panes</code></p>
+<p>这是一个开关,需要的时候键入, 不需要的时候键入同样的指令,即可关闭.</p>
+<p>友情提示 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/08/23/tmuxduo-paneltong-bu/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/06/03/pythondai-cookiesfang-wen/"><h2>python带cookies访问</h2></a>
+        <div class= "well small"> 一 03 六月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>本人是运维一枚,使用次数最多的就是Vandyke的<a href="https://secure.vandyke.com/cgi-bin/download_form.php?pid=securecrt_ubuntu1264_deb_71&amp;st=4&amp;">SecureCRT</a>.
+在win系统下面有各种大牛
+破解的scrt版本,但是在咱debian下面 就只能使用官方正版的,但是因为scrt是收费的,
+而且还死贵死贵($99), 咱这种中下农,搞不起这货, 只能使用它的免费30天,时间一到,
+要么就是删除它的认证文件,要么就是卸载原有的,然后重新安装, 非常麻烦…</p>
+<p>于是就想着能不能通过cron自动下载安装, 于是就有了第一版本的<a href="(https://code.google.com/p/sharepythoncode/downloads/detail?name=Vandyke_update.py&amp;can=2&amp;q=)">Vandyke_update.py</a> 脚本,
+通过抓包分析到Vandyke 的post数据,通过urllib2提交,并下载, 跑了一年都挺好的, </p>
+<p>但是今天有同事(ubuntu)使用我的脚本自动更新的时候,发现无效了,返回信息提示”Bad product id”,
+然后通过chrome的开发者工具跟踪了一下,发现post数据的字段改变了. 不再提供”sid”这个字段
+(每次Vandyke用户登录之后都会在cookie中分配这个这个id,是不变的),只好重新分析它post内容,</p>
+<p>看见它post内容变的非常简单,只有两个字段:</p>
+<ol>
+<li>pid(product id)</li>
+<li>status ...</li></ol> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/06/03/pythondai-cookiesfang-wen/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/04/25/wang-qia-zhong-duan-bang-ding/"><h2>网卡中断绑定</h2></a>
+        <div class= "well small"> 四 25 四月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><blockquote>
+<p>中断亲和力是指将一个或多个中断源绑定到特定的 CPU 上运行</p>
+</blockquote>
+<h2>操作</h2>
+<p><a href="http://liuxin1982.blog.51cto.com/4338970/1019825">参考</a></p>
+<p>今天我是来吐槽该文中的一个shell脚本</p>
+<div class="highlight"><pre><span class="c"># setting up irq affinity according to /proc/interrupts</span>
+<span class="c"># 2008-11-25 Robert Olsson</span>
+<span class="c"># 2009-02-19 updated by Jesse Brandeburg</span>
+<span class="c">#</span>
+<span class="c"># &gt; Dave Miller:</span>
+<span class="c"># (To get consistent naming in /proc/interrups)</span>
+<span class="c"># I would suggest that people use something like:</span>
+<span class="c"># char buf[IFNAMSIZ+6];</span>
+<span class="c">#</span>
+<span class="c"># sprintf(buf, &quot;%s-%s-%d&quot;,</span>
+<span class="c">#         netdev-&gt;name ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/04/25/wang-qia-zhong-duan-bang-ding/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/"><h2>记. 一次ddos攻击,导致服务器死机</h2></a>
+        <div class= "well small"> 五 29 三月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>背景</h2>
+<p>某年某月某天,eleven所属单位 被未知生物ddos攻击, 攻击时间 凌晨00:15 左右, 
+eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上面命令找出服务器弱点.
+同时还原攻击现场,</p>
+<h2>检查</h2>
+<p>通过<strong>Zenoss</strong>监控图, 看见在00:15左右, 突然进来了大量的数据包, 大概40w左右, 
+但是流量没有明显异常(即没有瞬间增高), 好吧, 看见这个现象就猜到了.. 小包<strong>DDos</strong>攻击.
+通过服务器的message日志里面看见了<em>syn flood on 80</em> 记录,结合监控图上的大量数据包,
+断定服务器被人采用<strong>syn半开攻击</strong>手法给攻击</p>
+<h2>服务器配置</h2>
+<p>观察了服务器的内核参数配置,因为我记得我们所有服务器都有对于<strong>syn flood</strong>的防御策略,
+在sysctl.conf里面<strong>syn_cookies</strong>已经开启, 而且也看见syn队列增加到了1w6, 
+按理来说单纯的半开攻击应该对于我们机器是无压力的说 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/11/29/xiu-fu-zenoss321-graphs-range-bug/"><h2>修复zenoss3.2.1 graphs range bug</h2></a>
+        <div class= "well small"> 四 29 十一月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>前段时间将<strong>zenoss</strong>升级到3.2.1 (别问咱怎么使用这么老的版本,领导要求stable,
+目前zenoss只有3.2.1是最新的stable版本),然后昨天使用的时候发现了一个小小的bug,
+就是在device的graphs中, 选择range会出现性能图不更新的情况.</p>
+<p>要修复这个bug,确定<em>java</em>版本是否大于1.6</p>
+<p>我自己debian 由于没有安装java 因此我这里安装一下</p>
+<p><code>apt-get install sun-java6-jdk</code></p>
+<p>然后确认下java版本</p>
+<p><code>java -version</code></p>
+<div class="highlight"><pre><span class="n">java</span> <span class="n">version</span> “1<span class="p">.</span>6<span class="p">.</span>0<span class="n">_26</span>″
+<span class="n">Java</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> <span class="n">SE</span> <span class="n">Runtime</span> <span class="n">Environment</span> <span class="p">(</span><span class="n">build</span> 1<span class="p">.</span>6<span class="p">.</span>0<span class="n">_26</span><span class="o">-</span><span class="n">b03</span><span class="p">)</span>
+<span class="n">Java</span> <span class="n">HotSpot</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> 64<span class="o">-</span><span class="n">Bit</span> <span class="n">Server ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/11/29/xiu-fu-zenoss321-graphs-range-bug/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/10/18/nginx-shuang-ji-re-bei-shi-zhan/"><h2>nginx 双机热备-实战</h2></a>
+        <div class= "well small"> 四 18 十月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>上次发布了<em>nginx</em>做负载均衡器使用, 这次在原有的基础上加上了 <strong>双机热备</strong>
+另外,此篇文章做为引子,为的是引导使用<strong>keepalived</strong>文中的配置,请酌情修改
+这只是一个简单的<strong>keepalived</strong>应用, 关于文中使用到的<strong>keepalived</strong>参数很少, 
+更多的内容看blog中的keepalived配置文件详解 那篇文章</p>
+<p>首先上一个 <strong>nginx高可用</strong> 架构图</p>
+<p><img alt="" src="/image/2012-10-18-163233-300x225.png" /></p>
+<h2>配置</h2>
+<p>总共两台机器 A , B</p>
+<p>在A,B机器上面 配置好 nginx调度器, 相同的配置.</p>
+<p>A nginx 跑在 eth0 192.168.2.12 上</p>
+<p>B nginx 跑在 eth0 192.168.2.11 上</p>
+<p>在A ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/10/18/nginx-shuang-ji-re-bei-shi-zhan/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/10/16/keepalivedyuan-li-yu-shi-zhan-jing-jiang/"><h2>Keepalived原理与实战精讲</h2></a>
+        <div class= "well small"> 二 16 十月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p><strong>此为转贴</strong>
+<a href="http://bbs.ywlm.net/thread-845-1-1.html">原文地址</a></p>
+<p><img alt="" src="/image/Keepalived.png" /></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/10/16/keepalivedyuan-li-yu-shi-zhan-jing-jiang/">read more</a></div>
+    </div>	
+				
+            <div class="pagination">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="http://eleveni386.7axu.com/tag/yun-wei.html">1</a></li>
+    <li class=""><a href="http://eleveni386.7axu.com/tag/yun-wei2.html">2</a></li>
+
+    <li class="next"><a href="http://eleveni386.7axu.com/tag/yun-wei2.html">Next &rarr;</a></li>
+
+</ul>
+</div>    
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="http://eleveni386.7axu.com/">Archives</a>
+                <li><a href="http://eleveni386.7axu.com/tags.html">Tags</a>
+                <li><a href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate">Atom feed</a></li>
+                            </ul>
+            </div>
+
+
+                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+                                   
+            </ul>
+            </div>
+            
+
+                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                            <li><a href="http://www.linuxzen.com/">cold</a></li>
+                            <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
+                            <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
+                            <li><a href="http://neteue.com/">小邪兽</a></li>
+                        </ul>
+            </div>
+            
+
+                        <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                                <li><a href="https://github.com/eleveni386">github</a></li>
+                                <li><a href="https://plus.google.com/102949387282276761880/posts/p/pub">G+</a></li>
+                            </ul>
+            </div>
+            </div>
+            
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a> &copy; eleven.i386 2012</p>
+<script src="http://v1.cnzz.com/stat.php?id=4484286&web_id=4484286" language="JavaScript"></script>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<a href="https://github.com/eleveni386"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
+</html>

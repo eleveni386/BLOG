@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/ruan-jian-tui-jian.atom.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2013-08-11T00:00:00+08:00</updated><entry><title>Clementine 音乐播放器</title><link href="http://eleveni386.7axu.com/posts/2013/08/11/clementine-yin-le-bo-fang-qi/" rel="alternate"></link><updated>2013-08-11T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-08-11:posts/2013/08/11/clementine-yin-le-bo-fang-qi/</id><summary type="html">&lt;p&gt;咱来推荐一款好看和好用的音乐播放器了 &amp;lt;(=＞﹏＜=)&amp;gt;&lt;/p&gt;
+&lt;p&gt;鉴于eleven苦苦追求多种音乐播放器无果之下…. 发现这货了…&lt;/p&gt;
+&lt;p&gt;虽然这货还是依然无法支持网络播放, 不过界面和易用性差不多抵消了我对无法支持网络播放的怨念了..&lt;/p&gt;
+&lt;p&gt;先上效果图:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/image/DeepinScrot-4032-300x187.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Clementine&lt;/strong&gt; 是一款多平台音乐播放器。 它的灵感来源于&lt;strong&gt;Amarok 1.4&lt;/strong&gt;
+致力于开发一个易于使用的界面，令您能够快速地搜索和播放您的音乐。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/image/DeepinScrot-4152-273x300.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;缺点&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;不支持网络播放&lt;/li&gt;
+&lt;li&gt;图形库基于QT&lt;/li&gt;
+&lt;li&gt;我的aac格式不支持&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;链接&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://www.clementine-player.org/"&gt;http://www.clementine-player.org/&lt;/a&gt;&lt;/p&gt;</summary><category term="播放器"></category><category term="linux桌面工具"></category><category term="娱乐"></category></entry><entry><title>wps for linux Bate1 试用</title><link href="http://eleveni386.7axu.com/posts/2013/02/28/wps-for-linux-bate1-shi-yong/" rel="alternate"></link><updated>2013-02-28T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-02-28:posts/2013/02/28/wps-for-linux-bate1-shi-yong/</id><summary type="html">&lt;p&gt;虽然很早就知道了&lt;strong&gt;wps for linux&lt;/strong&gt;的测试版本出来了,不过一直懒的去下载,直至今天
+公司要求所有的windows系统同事卸载有点软的office而安装&lt;strong&gt;wps&lt;/strong&gt;,我才突然想到,
+我也该换换了,咱用的&lt;strong&gt;openoffice&lt;/strong&gt;实在拿不出手了..&lt;/p&gt;
+&lt;p&gt;于是到wps的官方下载了测试版本回来, 不需要安装, 解压即可以使用,里面有三个东西
+是需要用到的,&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;wps/wps word文档&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;wps/et excel&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;wps/wpp 幻灯片&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;好了,直接打开看看效果&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/image/1362046109.png" /&gt;&lt;/p&gt;
+&lt;p&gt;看上去好像不错,再来张excel的&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/image/1362046180.png" /&gt;&lt;/p&gt;
+&lt;p&gt;也有点样子,现在可以将它们投入到工作当中了..&lt;/p&gt;
+&lt;p&gt;于是找了一个doc文档双击打开… 尼玛,怎么还是openoffice打开的哇.. 
+好吧,貌似我们忘记了&lt;em&gt;文件关联&lt;/em&gt;的事情了..&lt;/p&gt;
+&lt;p&gt;下面让我们建立&lt;em&gt;doc&lt;/em&gt;,&lt;em&gt;xls&lt;/em&gt;文件关联到&lt;strong&gt;wps&lt;/strong&gt;和&lt;strong&gt;et&lt;/strong&gt;这两个wps程序上&lt;/p&gt;
+&lt;p&gt;&lt;a href="(http://linux-wiki.cn/wiki/zh-hans/%E6%96%87%E4%BB%B6%E5%85%B3%E8%81%94)"&gt;文件关联&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;根据资料显示我们到&lt;em&gt;/usr/share/applications/&lt;/em&gt;目录去&lt;/p&gt;
+&lt;p&gt;找到openoffice的&lt;em&gt;.desktop&lt;/em&gt;文件,我们实行拿来主义, 直接复制一份&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cp libreoffice-calc.desktop wps-calc.desktop&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;然后打开&lt;strong&gt;wps-calc.desktop&lt;/strong&gt;修改一点点东西,起码要告诉系统,该用什么程序去打开
+你双击的文件对吧 用你喜欢的编辑器编辑它&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;[Desktop Entry]&lt;/span&gt;
+&lt;span class="na"&gt;Version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;1.0&lt;/span&gt;
+&lt;span class="na"&gt;Terminal&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;false&lt;/span&gt;
+&lt;span class="na"&gt;Icon&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/opt/wps/office6/cfgs/tastelink/et.ico&lt;/span&gt;
+&lt;span class="na"&gt;Type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;Application&lt;/span&gt;
+&lt;span class="na"&gt;Categories&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;Office;&lt;/span&gt;
+&lt;span class="na"&gt;Exec&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/opt/wps/et %f&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这里我们修改Exec 对应的部分,和Icon部分,另外原来的openoiffce打开文件变量是%U
+wps用%f 不然会提示你文件路径不存在&lt;/p&gt;
+&lt;p&gt;另外一个wrod也类似修改,之后保存&lt;/p&gt;
+&lt;p&gt;然后我们随便找一个doc文件,右键该文件,选择打开方式,在已安装应用程序中找到文档,
+在文档中选择你&lt;em&gt;wps Calc&lt;/em&gt; (这个名字是我起的,具体名字根据你自己的设置),
+别忘记下面的小方框勾选上.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/image/1362046657.png" /&gt;&lt;/p&gt;
+&lt;p&gt;之后确定, 以后系统上的excel文件都将利用wps的et来打开了. 
+这就替换了原来的office程序,骚年可以试试你的双击功能了,&lt;/p&gt;
+&lt;p&gt;good luckly! :-)&lt;/p&gt;</summary><category term="wps"></category><category term="办公软件"></category><category term="桌面"></category></entry><entry><title>nethogs, 监控每一个进程具体使用的流量</title><link href="http://eleveni386.7axu.com/posts/2012/09/20/nethogs-jian-kong-mei-ge-jin-cheng-ju-ti-shi-yong-de-liu-liang/" rel="alternate"></link><updated>2012-09-20T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2012-09-20:posts/2012/09/20/nethogs-jian-kong-mei-ge-jin-cheng-ju-ti-shi-yong-de-liu-liang/</id><summary type="html">&lt;p&gt;最近无聊 想找一个具有悬浮窗口的流量监视工具, 可以实时向我汇报, 使用流量最大的
+进程 是哪一个, 然后还可以告诉我 目的地是什么地方就好了,&lt;/p&gt;
+&lt;p&gt;各种google之后,找到了,&lt;strong&gt;nethogs&lt;/strong&gt;. 这个玩意,&lt;/p&gt;
+&lt;p&gt;额, 它可以实时显示使用了网络的进程的流量,以及发送的包数,&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/image/2012-09-20-101834.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;安装&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;apt-get install nethogs&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;tips: 该工具需要root用户才能运行.&lt;/p&gt;</summary><category term="工具"></category><category term="nethogs"></category><category term="监控"></category></entry><entry><title>sshpass 非交互ssh密码验证</title><link href="http://eleveni386.7axu.com/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/" rel="alternate"></link><updated>2012-09-09T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2012-09-09:posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/</id><summary type="html">&lt;h2&gt;转载linuxtoy文章&lt;/h2&gt;
+&lt;p&gt;OpenSSH 自带的 ssh 客户端程序（也就是 ‘ssh’ 命令）默认不允许你以非交互的方式传递密码，如：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ssh&lt;/span&gt; &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iredmail&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;EOF&lt;/span&gt; &lt;span class="n"&gt;ssh_password&lt;/span&gt; &lt;span class="n"&gt;ls&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;EOF&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Shell 里这样的输入重定向使用得非常普遍，而且通常都工作得很好。但是 ssh 不允许这
+样的方式来传递密码，所以需要远程连上服务器后进行的批处理就无法进行。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sshpass&lt;/code&gt; 的出现，解决了这一问题。它允许你用 &lt;code&gt;-p&lt;/code&gt; 参数指定明文密码，
+然后直接登录远程服务器。例如：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sshpass&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;ssh_password&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;ssh&lt;/span&gt; &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iredmail&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;用 &lt;code&gt;-p&lt;/code&gt; 指定了密码后，还需要在后面跟上标准的 ssh 连接命令。&lt;/p&gt;
+&lt;p&gt;用法就是这么简单。&lt;/p&gt;</summary><category term="运维"></category><category term="工具"></category></entry></feed>

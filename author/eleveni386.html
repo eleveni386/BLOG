@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Eleven.I386's Blog</title>
+    <meta name="description" content="">
+    <meta name="author" content="eleven.i386">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://eleveni386.7axu.com/theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="http://eleveni386.7axu.com/feeds/rss.xml" type="application/atom+xml" rel="alternate" title="ElevenI386'blog Atom Feed" />
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/local.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+                    
+                            <li><a href="http://eleveni386.7axu.com/pages/guan-yu-bo-zhu.html">关于博主</a></li>
+                        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+                
+
+        
+
+
+    <div class='article'>
+        <div class="content-title">
+            <a href="http://eleveni386.7axu.com/posts/2013/07/05/2345zi-dong-qian-dao-qi-bian-xie-jing-guo/"><h1>2345自动签到器编写经过</h1></a>
+            五 05 七月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ 
+        </div>
+        
+        <div><p>2345这个流氓东西 虽然我很不齿, 但是我还是继续每天签到. 
+不为别的,只为了给女友兑换腾迅那个无聊的xx钻. 10Q币/月 这笔钱就靠2345给我省下了..</p>
+<p>由于这个玩意推广着实在太累了.差不多一年没有继续推广过了..
+(就算推广也就那么几个人点击我的链接 :D ) 昨天给女友兑换Q币的时候,
+突然想到它的签到有积分赠送的,反正我也推广不起来,不如拿它的免费积分算鸟. 
+但是要我每天都记得要签到,这是何等痛苦的事情… 自动签到 势在必行.. </p>
+<p>说到签到,无非就是自动登录加访问特定url</p>
+<p>首先分析2345的登录机制和签到url在哪里</p>
+<p>拿出<strong>mitmproxy</strong> 然后设置chromium为本地代理,</p>
+<p><img alt="" src="/image/DeepinScrot-1803.png" /></p>
+<p>很好,登录过程全部抓出来了, (这里要说一下,因为2345登录的时候会自动跳转,
+用chromium的开发者工具无法中止它的跳转,无法得到post的内容和post的url,
+所以这里我使用mitmproxy, 这家伙是<a href="http://lilydjwg.is-programmer.com/">百合仙子</a>
+推荐给我的. 很不错的东西,很好用, 
+现在我也推荐给你们… :P )</p>
+<p>然后我们看看post的内容, 按下回车之后</p>
+<p><img alt="" src="/image/DeepinScrot-2146.png" /></p>
+<p>这里需要主意的是密码是经过md5加密的, 所以在post密码的时候,需要事前将它加密</p>
+<p>如何自动登录实在是很简单的事情.. 不再浪费篇章. 
+上面主要是表现下<strong>mitmproxy</strong>工具的犀利, 在这次开发过程中,全靠了它,我才能做下去.
+不然连登录过程都不清楚,如何编码? 更多关于mitmproxy请看<a href="http://mitmproxy.org/">mitmproxy</a>
+,(友情提示: 翻墙戴好装备,小心墙上玻璃 :P )</p>
+<p>用python搞这个,大家都会想到, 上<strong>urllib2</strong>, <strong>urllib</strong>,是的,我一开始也是直接上这2个模块. 
+刷刷,十几行代码写完… </p>
+<p>然后运行的时候, 却发现怎么样都无法登录, 经过几个小时的跟踪,跟踪,再跟踪.. 
+一再确认我的post数据没有错误, 然后看见了, 恩.. cookies这家伙.. 于是我又加上<strong>cookielib</strong>, 
+再次访问. 好吧, 再次失败..</p>
+<p>通过对比发现, 脚本登录过程和浏览器登录过程前面两步都没有问题, post的数据正确,
+服务器也给我加上了cookie,但是在第三步最后一个302到登录之后的页面的时候 出现问题了. 
+脚本没有附带上cookies去访问jifen.2345.com/index.php  , 然后我将cookies保存到文件. 
+发现cookies文件内果然是空的..这时怎么回事 ? 服务器明明给了我cookies .. 
+好了不要纠结了… (这个问题还是没想明白,但是我也懒的去搞明白了,因为我遇上了<strong>Requests</strong>)</p>
+<p><a href="http://cn.python-requests.org/en/latest/user/quickstart.html#cookies">关于Requests</a></p>
+<blockquote>
+<p><strong>Requests</strong> 是用Python语言编写，采用<strong>Apache2 Licensed</strong>开源协议的 HTTP 库
+Python 标准库中的 urllib2 模块提供了大部分你需要的HTTP功能,但是它的API彻底地被破坏 了。
+它是专为不同时间-不同网络而写的，这需要大量的工作（甚至是方法覆盖）去执行简单的任务。</p>
+</blockquote>
+<p>Requests官方介绍</p>
+<p>使用<strong>Requests</strong>之后,果断登录成功</p>
+<p><img alt="" src="/image/DeepinScrot-4411.png" /></p>
+<p>看到木有,带上了<strong>cookies</strong>有木有… 而且,用<strong>requests</strong>编码 心情很愉快的说.. 
+比每次用urllib2/urllib 要爽快多了.. 谁用谁知道..</p></div>
+        <hr />
+    </div>
+		
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/09/01/cai-yong-pelicanjing-tai-blog/"><h2>采用pelican静态blog</h2></a>
+        <div class= "well small"> 日 01 九月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>引子</h2>
+<blockquote>
+<p>因为我们的gtalk群组机器人需要更改Mysql为Mongo, 正好我也有想法使用静态博客程序</p>
+</blockquote>
+<p>在研究了几天<code>pelican</code>之后, 今天就开始动手搬家了.. 唉,只是可惜了我哪些google收录的说 :-(</p>
+<p>最终效果如您所见.. 如何您是我和<a href="(http://www.linuxzen.com/)">cold</a>的熟人,那么别惊讶为何我的blog和他的那么相似.</p>
+<p>介个要归结于,<code>pelican</code>有限的主题,和自己不擅长css的原因, 在众多主题中来回选择,
+不断尝试,最终介个入围了...</p>
+<p>使用中的主题<a href="(https://github.com/getpelican/pelican-themes/tree/master/tuxlite_tbs)">tuxlite_tbs</a></p>
+<p>目前已经可以正常访问, 不过还有一个问题存在, 本地与vps之间同步的问题, 本来在vps
+上建立了一个git的仓库, 但是由于git极度不熟练的缘故,导致我push的文件,始终无法在
+vps找到,更不要说设置nginx的root路径了, 于是,目前使用scp方式更新文件.... 表喷我傻... :-(</p>
+<p>经过这么几分钟的观察,感觉还算是满意的..</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/09/01/cai-yong-pelicanjing-tai-blog/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/08/11/clementine-yin-le-bo-fang-qi/"><h2>Clementine 音乐播放器</h2></a>
+        <div class= "well small"> 日 11 八月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>咱来推荐一款好看和好用的音乐播放器了 &lt;(=＞﹏＜=)&gt;</p>
+<p>鉴于eleven苦苦追求多种音乐播放器无果之下…. 发现这货了…</p>
+<p>虽然这货还是依然无法支持网络播放, 不过界面和易用性差不多抵消了我对无法支持网络播放的怨念了..</p>
+<p>先上效果图:</p>
+<p><img alt="" src="/image/DeepinScrot-4032-300x187.png" /></p>
+<p><strong>Clementine</strong> 是一款多平台音乐播放器。 它的灵感来源于<strong>Amarok 1.4</strong>
+致力于开发一个易于使用的界面，令您能够快速地搜索和播放您的音乐。</p>
+<p><img alt="" src="/image/DeepinScrot-4152-273x300.png" /></p>
+<h2>缺点</h2>
+<ol>
+<li>不支持网络播放</li>
+<li>图形库基于QT</li>
+<li>我的aac格式不支持</li>
+</ol>
+<h2>链接</h2>
+<p><a href="http://www.clementine-player.org/">http://www.clementine-player.org/</a></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/08/11/clementine-yin-le-bo-fang-qi/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/08/30/clijian-yi-mi-ma-guan-li-gong-ju/"><h2>CLI简易密码管理工具</h2></a>
+        <div class= "well small"> 五 30 八月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>最近用上了<strong>tmux</strong>, 抛弃了<strong>SecureCRT</strong>,  但是没有便利的密码输入功能. 每次登录上服务器之后我都要将鼠标移动到状态栏 点击<strong>KeepassX</strong>,然后在<strong>Keepassx</strong>里面找到我需要的密码,然后在贴在<strong>tmux</strong>上..完成一次密码输入过程.  </p>
+<p>这种过程与使用<strong>tmux</strong>给我带来的便利(快捷键的存在,让我可以完全抛弃鼠标,事实用了<strong>tmux</strong>我就没有使用鼠标了.) 格格不入.. 感觉就像开着一辆跑车.结果却时不时的要停下来加油.. 这种感觉十分难受..(不打点会死星人)  </p>
+<p>于是就想到一个办法, 利用<strong>tmux</strong>的缓冲区, 来完成挑选密码的过程.  </p>
+<p>首先:  </p>
+<p><strong>tmux</strong>拥有自己的黏贴板,在<strong>tmux</strong>中复制的时候,可以通过<code>tmux show-buffer</code>找到复制的内容;</p>
+<p>然后:  </p>
+<p>使用一个工具,截获<strong>tmux</strong>的缓冲,得到里面的ip, 根据ip地址去数据内寻找相应的密码 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/08/30/clijian-yi-mi-ma-guan-li-gong-ju/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/09/08/duo-xian-cheng-sshfen-fa-jiao-ben/"><h2>多线程ssh分发脚本</h2></a>
+        <div class= "well small"> 六 08 九月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>说到自动化运维工具, 那是一个满天飞. 我也首推<code>puppet</code>,无疑灰常的强大.但是强大
+是强大. 就是有点依赖部署,如果部署不好,后期使用会很难受,各种不顺手. 现在我就是这样,
+使用puppet是一个前辈部署的.我们puppet应用也灰常简单.就是做服务器应用平台初始化用,</p>
+<p>很多简单的操作.比如10几台需要更新杀毒软件,这个时候使用puppet,又需要重新建立配
+置文件,(ps:都是前期没有做好规划).这样一个简单的工作就变的复杂话了,如果不使用自动
+运维工具,那么… 恩. 你就将新的病毒库一个一个scp到各个主机上. 然后一个一个登录主
+机,执行一遍<code>update</code> 命令吧..</p>
+<p>这个时候如果有一个自动ssh登录工具, 并且具备<code>scp</code>功能的工具就好了. 
+我记得以前有一个叫做<strong>abs</strong>的shell脚本. 利用<strong>ssh+sshpass+except</strong> 做的自动登录ssh,
+并且避免一个一个输入密码的烦恼, 这也是一个很不错的小工具, 不过..google了半天 
+都没有线索 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/08/duo-xian-cheng-sshfen-fa-jiao-ben/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/03/11/ji-ci-an-zhuang-fcitxguo-cheng/"><h2>记一次安装fcitx过程</h2></a>
+        <div class= "well small"> 一 11 三月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>今天实在无法忍受<em>ibus</em>的启动速度和词汇准确性了. 将ibus更换成<strong>fcitx</strong>, </p>
+<div class="highlight"><pre><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">fcitx</span>
+<span class="n">im</span><span class="o">-</span><span class="k">switch</span> <span class="o">-</span><span class="n">s</span> <span class="n">fcitx</span>
+<span class="n">im</span><span class="o">-</span><span class="k">switch</span> <span class="o">-</span><span class="n">s</span> <span class="n">fcitx</span> <span class="o">-</span><span class="n">z</span> <span class="n">default</span>
+</pre></div>
+
+
+<p>然后在<em>autostart</em>中加入fcitx的自启动.. 注销X界面之后, 发现fcitx是启动起来了, 
+只是应用程序的默认输入法还是<em>Ibus</em>, 于是google之 ,找到了fcitx环境变量设置, 
+在<strong>~/.xprofile</strong> 中加入fcitx的环境变量:</p>
+<div class="highlight"><pre><span class="n">export</span> <span class="n">GTK_IM_MODULE</span><span class="p">=</span><span class="n">fcitx</span>
+<span class="n">export</span> <span class="n">XMODIFIERS</span><span class="p">=@</span><span class="n">im</span><span class="p">=</span><span class="n">fcitx</span>
+<span class="n">export</span> <span class="n">QT_IM_MODULE</span><span class="p">=</span><span class="n">fcitx</span>
+</pre></div>
+
+
+<p>注销X界面 再次进入系统,<code>echo $GTK_IM_MODULE</code> 发现这个变量已经是fcitx, 但是应用
+程序默认输入法还是<strong>Ibus</strong> , 来来回回折腾了几次 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/03/11/ji-ci-an-zhuang-fcitxguo-cheng/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/"><h2>记. 一次ddos攻击,导致服务器死机</h2></a>
+        <div class= "well small"> 五 29 三月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>背景</h2>
+<p>某年某月某天,eleven所属单位 被未知生物ddos攻击, 攻击时间 凌晨00:15 左右, 
+eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上面命令找出服务器弱点.
+同时还原攻击现场,</p>
+<h2>检查</h2>
+<p>通过<strong>Zenoss</strong>监控图, 看见在00:15左右, 突然进来了大量的数据包, 大概40w左右, 
+但是流量没有明显异常(即没有瞬间增高), 好吧, 看见这个现象就猜到了.. 小包<strong>DDos</strong>攻击.
+通过服务器的message日志里面看见了<em>syn flood on 80</em> 记录,结合监控图上的大量数据包,
+断定服务器被人采用<strong>syn半开攻击</strong>手法给攻击</p>
+<h2>服务器配置</h2>
+<p>观察了服务器的内核参数配置,因为我记得我们所有服务器都有对于<strong>syn flood</strong>的防御策略,
+在sysctl.conf里面<strong>syn_cookies</strong>已经开启, 而且也看见syn队列增加到了1w6, 
+按理来说单纯的半开攻击应该对于我们机器是无压力的说 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/"><h2>记. 一次邮箱密码丢失</h2></a>
+        <div class= "well small"> 一 17 九月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>话说某年某月某天, 某人丢失公司分配的邮箱密码,</p>
+<p>在虚拟机中的windows,用foxmail客户端, 因为某些原因密码丢失,而公司邮件又需要用
+该客户端发送,于是就有了下面的过程,</p>
+<p>在物理机中的雷鸟客户端保存了密码, 首先需要客户端上的密码加密,主要是smtp密码传输加密</p>
+<p>好了,然后就用<strong>tcpdump</strong> 就可以了,</p>
+<p><code>tcpdump -X -i eth0 port 587 -vv</code></p>
+<p>TLS/STARTTLS 端口是587 ,雷鸟和foxmail都自动认出来端口是587,所以我也捕抓发往587端口的数据</p>
+<p>从结果中分析,下图是客户端跟服务端验证过程</p>
+<p><img alt="" src="/image/2012-09-17-163233_1365x306_scrot1.png" /></p>
+<p>得到一个base64的密码,</p>
+<p><code>echo -n "password" | base64 -d</code></p>
+<p>解开就是明文密码</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/">read more</a></div>
+    </div>	
+				
+            <div class="pagination">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="http://eleveni386.7axu.com/author/eleveni386.html">1</a></li>
+    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3862.html">2</a></li>
+    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3863.html">3</a></li>
+    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3864.html">4</a></li>
+
+    <li class="next"><a href="http://eleveni386.7axu.com/author/eleveni3862.html">Next &rarr;</a></li>
+
+</ul>
+</div>    
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="http://eleveni386.7axu.com/">Archives</a>
+                <li><a href="http://eleveni386.7axu.com/tags.html">Tags</a>
+                <li><a href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate">Atom feed</a></li>
+                            </ul>
+            </div>
+
+
+                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+                                   
+            </ul>
+            </div>
+            
+
+                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                            <li><a href="http://www.linuxzen.com/">cold</a></li>
+                            <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
+                            <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
+                            <li><a href="http://neteue.com/">小邪兽</a></li>
+                        </ul>
+            </div>
+            
+
+                        <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                                <li><a href="https://github.com/eleveni386">github</a></li>
+                                <li><a href="https://plus.google.com/102949387282276761880/posts/p/pub">G+</a></li>
+                            </ul>
+            </div>
+            </div>
+            
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a> &copy; eleven.i386 2012</p>
+<script src="http://v1.cnzz.com/stat.php?id=4484286&web_id=4484286" language="JavaScript"></script>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<a href="https://github.com/eleveni386"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
+</html>

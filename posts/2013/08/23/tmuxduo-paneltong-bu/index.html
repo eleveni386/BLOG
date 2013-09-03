@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Eleven.I386's Blog</title>
+    <meta name="description" content="">
+    <meta name="author" content="eleven.i386">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://eleveni386.7axu.com/theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="http://eleveni386.7axu.com/feeds/rss.xml" type="application/atom+xml" rel="alternate" title="ElevenI386'blog Atom Feed" />
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/local.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+                    
+                            <li><a href="http://eleveni386.7axu.com/pages/guan-yu-bo-zhu.html">关于博主</a></li>
+                        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+            <div class='article'>
+        <div class="content-title">
+            <h1>tmux多panel同步</h1>
+            五 23 八月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+        </div>
+	
+        <div><p>上一篇说过 我已经使用<strong>tmux</strong> 代替<strong>SecureCRT</strong>进行运维工作 , 
+为此写了一个<a href="https://github.com/eleveni386/clipm">密码管理工具</a>,来配合<strong>tmux</strong>使用,
+经过两天的使用,感觉良好.<strong>KeepassX</strong> 已经直接被我卸载了,今天要说的是<strong>SecureCRT</strong>另外一个功能
+<strong>批量执行命令</strong></p>
+<p>用过<strong>SecureCRT</strong>的孩纸,都知道它有一个很方便的功能,开启多个终端的时候,可以同时在这些终端输入命令,
+极大的方便了我们的工作,我搬家到<strong>tmux</strong> 也一直纠结这个功能.经过多次google之后 终于被我找到了.原来<strong>tmux</strong>
+也是有批量执行命令的, <strong>tmux panel sync</strong>, <strong>panel同步</strong></p>
+<p>使用效果如下:</p>
+<p><img alt="" src="http://blog.sanctum.geek.nz/wp-content/uploads/2012/08/synchronize-panes.gif" /></p>
+<p>(PS:这里偷了别人的图,我懒得找gif制作工具)</p>
+<p>开启这个功能:  </p>
+<p><code>:setw synchronize-panes</code></p>
+<p>这是一个开关,需要的时候键入, 不需要的时候键入同样的指令,即可关闭.</p>
+<p>友情提示:将它绑定到某一个快捷键上效果更佳哦 :-)</p>
+<p>btw, 我的tmux配置, 许多是参考网络上现有的.没太多个性化的东西.不过胜在实用</p>
+<h2>Base</h2>
+<div class="highlight"><pre><span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">default</span><span class="o">-</span><span class="n">terminal</span> “<span class="n">screen</span><span class="o">-</span>256<span class="n">color</span>”
+<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">display</span><span class="o">-</span><span class="n">time</span> 3000
+<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">history</span><span class="o">-</span><span class="n">limit</span> 65535
+<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">mouse</span><span class="o">-</span><span class="n">select</span><span class="o">-</span><span class="n">pane</span> <span class="n">on</span>
+<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">mode</span><span class="o">-</span><span class="n">mouse</span> <span class="n">on</span>
+<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">mouse</span><span class="o">-</span><span class="n">resize</span><span class="o">-</span><span class="n">pane</span> <span class="n">on</span>
+<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">mouse</span><span class="o">-</span><span class="n">select</span><span class="o">-</span><span class="n">window</span> <span class="n">on</span>
+</pre></div>
+
+
+<h2>Key bind</h2>
+<div class="highlight"><pre><span class="n">unbind</span> <span class="n">C</span><span class="o">-</span><span class="n">b</span>
+<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">prefix</span> <span class="n">C</span><span class="o">-</span><span class="n">l</span>
+<span class="n">bind</span> <span class="n">C</span><span class="o">-</span><span class="n">l</span> <span class="n">send</span><span class="o">-</span><span class="n">prefix</span>
+
+<span class="n">unbind</span> ‘”‘
+<span class="n">bind</span> – <span class="n">splitw</span> <span class="o">-</span><span class="n">v</span>
+<span class="n">unbind</span> <span class="c">%</span>
+<span class="n">bind</span> <span class="o">|</span> <span class="n">splitw</span> <span class="o">-</span><span class="n">h</span>
+<span class="n">bind</span> <span class="n">c</span> <span class="n">run</span> “<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">Yunio</span><span class="o">/</span><span class="n">SystemBackup</span><span class="o">/</span><span class="n">tmux</span><span class="o">-</span><span class="n">shell</span><span class="o">/</span><span class="n">tmux</span><span class="o">-</span><span class="n">cpy</span><span class="p">.</span><span class="n">py</span>”
+<span class="n">bind</span> <span class="n">r</span> <span class="n">source</span><span class="o">-</span><span class="n">file</span> <span class="o">~/</span><span class="p">.</span><span class="n">tmux</span><span class="p">.</span><span class="n">conf</span> <span class="o">\</span><span class="p">;</span> <span class="n">display</span> “<span class="n">Reloaded</span>!”
+<span class="n">bind</span> <span class="n">s</span> <span class="n">setw</span> <span class="n">synchronize</span><span class="o">-</span><span class="n">panes</span>
+
+<span class="n">bind</span> <span class="n">k</span> <span class="n">selectp</span> <span class="o">-</span><span class="n">U</span>
+<span class="n">bind</span> <span class="nb">j</span> <span class="n">selectp</span> <span class="o">-</span><span class="n">D</span>
+<span class="n">bind</span> <span class="n">h</span> <span class="n">selectp</span> <span class="o">-</span><span class="n">L</span>
+<span class="n">bind</span> <span class="n">l</span> <span class="n">selectp</span> <span class="o">-</span><span class="n">R</span>
+</pre></div>
+
+
+<h2>status bar</h2>
+<div class="highlight"><pre><span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">keys</span> <span class="n">vi</span>
+<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">utf8</span> <span class="n">on</span>
+<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">interval</span> 1
+<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">justify</span> “<span class="n">centre</span>”
+<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">left</span><span class="o">-</span><span class="nb">length</span> 60
+<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">right</span><span class="o">-</span><span class="nb">length</span> 90
+<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">left</span> “#<span class="p">(</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">soft</span><span class="o">/</span><span class="n">tmux</span><span class="o">-</span><span class="n">powerline</span><span class="o">/</span><span class="n">powerline</span><span class="p">.</span><span class="n">sh</span> <span class="n">left</span><span class="p">)</span>”
+<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">right</span> “#<span class="p">(</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">soft</span><span class="o">/</span><span class="n">tmux</span><span class="o">-</span><span class="n">powerline</span><span class="o">/</span><span class="n">powerline</span><span class="p">.</span><span class="n">sh</span> <span class="n">right</span><span class="p">)</span>”
+</pre></div>
+
+
+<h2>Other</h2>
+<div class="highlight"><pre><span class="n">set</span><span class="o">-</span><span class="n">window</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">mode</span><span class="o">-</span><span class="n">keys</span> <span class="n">vi</span>
+<span class="n">set</span><span class="o">-</span><span class="n">window</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">utf8</span> <span class="n">on</span>
+</pre></div></div>
+	
+        <hr>
+    	   
+        <h2>Comments</h2>
+		<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'eleveni386sblog'; 
+    var disqus_title = 'tmux多panel同步';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="http://eleveni386.7axu.com/">Archives</a>
+                <li><a href="http://eleveni386.7axu.com/tags.html">Tags</a>
+                <li><a href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate">Atom feed</a></li>
+                            </ul>
+            </div>
+
+
+                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+                                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+                                   
+            </ul>
+            </div>
+            
+
+                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                            <li><a href="http://www.linuxzen.com/">cold</a></li>
+                            <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
+                            <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
+                            <li><a href="http://neteue.com/">小邪兽</a></li>
+                        </ul>
+            </div>
+            
+
+                        <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                                <li><a href="https://github.com/eleveni386">github</a></li>
+                                <li><a href="https://plus.google.com/102949387282276761880/posts/p/pub">G+</a></li>
+                            </ul>
+            </div>
+            </div>
+            
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a> &copy; eleven.i386 2012</p>
+<script src="http://v1.cnzz.com/stat.php?id=4484286&web_id=4484286" language="JavaScript"></script>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<a href="https://github.com/eleveni386"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
+</html>
