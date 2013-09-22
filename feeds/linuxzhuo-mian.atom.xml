@@ -1,5 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/linuxzhuo-mian.atom.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2013-08-23T00:00:00+08:00</updated><entry><title>tmux多panel同步</title><link href="http://eleveni386.7axu.com/posts/2013/08/23/tmuxduo-paneltong-bu/" rel="alternate"></link><updated>2013-08-23T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-08-23:posts/2013/08/23/tmuxduo-paneltong-bu/</id><summary type="html">&lt;p&gt;上一篇说过 我已经使用&lt;strong&gt;tmux&lt;/strong&gt; 代替&lt;strong&gt;SecureCRT&lt;/strong&gt;进行运维工作 , 
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/linuxzhuo-mian.atom.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2013-09-22T00:00:00+08:00</updated><entry><title>记.遗忘RTX密码</title><link href="http://eleveni386.7axu.com/posts/2013/09/22/ji-yi-wang-rtxmi-ma/" rel="alternate"></link><updated>2013-09-22T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-09-22:posts/2013/09/22/ji-yi-wang-rtxmi-ma/</id><summary type="html">&lt;h2&gt;引子&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在虚拟机中rtx密码是保存的,第一次拿到密码,没有做第三方的记录.
+中秋期间,wine了一个rtx. 结果发现自己忘记密码了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;过程&lt;/h2&gt;
+&lt;p&gt;由于有了之前的遗忘密码事件 (&lt;a href="(http://eleveni386.7axu.com/posts/2012/11/28/wang-ji-mi-ma-zhi-svn/)"&gt;遗忘密码之svn&lt;/a&gt;,&lt;a href="(http://eleveni386.7axu.com/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/)"&gt;记.一次邮箱密码丢失&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;一开始的思路是在登录rtx的时候抓包分析,rtx的验证数据包, 不过还是习惯性的google了一下
+没想到真找到了更简单的方法.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;有资料显示rtx在内存中明文存储密码
+by the goole&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;WINHEX打开RTX的内存&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;winhex打开rtx的内存
+    &lt;img alt="" src="/image/step.png" /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;点击图片中1的位置.&lt;strong&gt;open Ram&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;在窗口中找到rtx.&lt;/li&gt;
+&lt;li&gt;选择&lt;strong&gt;主要内存&lt;/strong&gt;.&lt;em&gt;Primary Memory&lt;/em&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查找16进制字符串&lt;strong&gt;40000000500061007300730077006F0072006400&lt;/strong&gt;
+    &lt;img alt="" src="/image/step1.png" /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;点击图片中1的位置.&lt;strong&gt;Find Hex values&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;在文本框内输入要搜索的16进制字符串&lt;strong&gt;40000000500061007300730077006F0072006400&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;password下面的位置就是明文密码
+    &lt;img alt="" src="/image/step2.png" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;结果&lt;/h2&gt;
+&lt;p&gt;好了,明文密码得到了.只是这样的rtx是否安全呢...&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;wine rtx&lt;/strong&gt; 真的很简单&lt;/p&gt;</summary><category term="安全"></category><category term="破解"></category><category term="rtx"></category></entry><entry><title>tmux多panel同步</title><link href="http://eleveni386.7axu.com/posts/2013/08/23/tmuxduo-paneltong-bu/" rel="alternate"></link><updated>2013-08-23T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-08-23:posts/2013/08/23/tmuxduo-paneltong-bu/</id><summary type="html">&lt;p&gt;上一篇说过 我已经使用&lt;strong&gt;tmux&lt;/strong&gt; 代替&lt;strong&gt;SecureCRT&lt;/strong&gt;进行运维工作 , 
 为此写了一个&lt;a href="https://github.com/eleveni386/clipm"&gt;密码管理工具&lt;/a&gt;,来配合&lt;strong&gt;tmux&lt;/strong&gt;使用,
 经过两天的使用,感觉良好.&lt;strong&gt;KeepassX&lt;/strong&gt; 已经直接被我卸载了,今天要说的是&lt;strong&gt;SecureCRT&lt;/strong&gt;另外一个功能
 &lt;strong&gt;批量执行命令&lt;/strong&gt;&lt;/p&gt;

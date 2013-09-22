@@ -58,8 +58,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="http://eleveni386.7axu.com/posts/2013/09/01/cai-yong-pelicanjing-tai-blog/"><h1>采用pelican静态blog</h1></a>
-            日 01 九月 2013
+            <a href="http://eleveni386.7axu.com/posts/2013/09/22/ji-yi-wang-rtxmi-ma/"><h1>记.遗忘RTX密码</h1></a>
+            日 22 九月 2013
 
 by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
  
@@ -69,6 +69,64 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
         </div>
         
         <div><h2>引子</h2>
+<blockquote>
+<p>在虚拟机中rtx密码是保存的,第一次拿到密码,没有做第三方的记录.
+中秋期间,wine了一个rtx. 结果发现自己忘记密码了</p>
+</blockquote>
+<h2>过程</h2>
+<p>由于有了之前的遗忘密码事件 (<a href="(http://eleveni386.7axu.com/posts/2012/11/28/wang-ji-mi-ma-zhi-svn/)">遗忘密码之svn</a>,<a href="(http://eleveni386.7axu.com/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/)">记.一次邮箱密码丢失</a>)</p>
+<p>一开始的思路是在登录rtx的时候抓包分析,rtx的验证数据包, 不过还是习惯性的google了一下
+没想到真找到了更简单的方法.</p>
+<blockquote>
+<p>有资料显示rtx在内存中明文存储密码
+by the goole</p>
+</blockquote>
+<h3>WINHEX打开RTX的内存</h3>
+<ol>
+<li>
+<p>winhex打开rtx的内存
+    <img alt="" src="/image/step.png" /></p>
+<ol>
+<li>点击图片中1的位置.<strong>open Ram</strong></li>
+<li>在窗口中找到rtx.</li>
+<li>选择<strong>主要内存</strong>.<em>Primary Memory</em></li>
+</ol>
+</li>
+<li>
+<p>查找16进制字符串<strong>40000000500061007300730077006F0072006400</strong>
+    <img alt="" src="/image/step1.png" /></p>
+<ol>
+<li>点击图片中1的位置.<strong>Find Hex values</strong></li>
+<li>在文本框内输入要搜索的16进制字符串<strong>40000000500061007300730077006F0072006400</strong></li>
+</ol>
+</li>
+<li>
+<p>password下面的位置就是明文密码
+    <img alt="" src="/image/step2.png" /></p>
+</li>
+</ol>
+<h2>结果</h2>
+<p>好了,明文密码得到了.只是这样的rtx是否安全呢...</p>
+<p><strong>wine rtx</strong> 真的很简单</p></div>
+        <hr />
+    </div>
+		
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/09/01/cai-yong-pelicanjing-tai-blog/"><h2>采用pelican静态blog</h2></a>
+        <div class= "well small"> 日 01 九月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>引子</h2>
 <blockquote>
 <p>因为我们的gtalk群组机器人需要更改Mysql为Mongo, 正好我也有想法使用静态博客程序</p>
 </blockquote>
@@ -80,10 +138,9 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p>目前已经可以正常访问, 不过还有一个问题存在, 本地与vps之间同步的问题, 本来在vps
 上建立了一个git的仓库, 但是由于git极度不熟练的缘故,导致我push的文件,始终无法在
 vps找到,更不要说设置nginx的root路径了, 于是,目前使用scp方式更新文件.... 表喷我傻... :-(</p>
-<p>经过这么几分钟的观察,感觉还算是满意的..</p></div>
-        <hr />
-    </div>
-		
+<p>经过这么几分钟的观察,感觉还算是满意的..</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/09/01/cai-yong-pelicanjing-tai-blog/">read more</a></div>
+    </div>	
+				
     
  
         
@@ -163,39 +220,6 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <div class="highlight"><pre><span class="n">locale</span><span class="o">:</span> <span class="n">Cannot</span> <span class="kd">set</span> <span class="n">LC_CTYPE</span> <span class="n">to</span> <span class="k">default</span> <span class="n">locale</span><span class="o">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
 <span class="n">locale</span><span class="o">:</span> <span class="n">Cannot</span> <span class="kd">set</span> <span class="n">LC_MESSAGES</span> <span class="n">to</span> <span class="k">default</span> <span class="n">locale</span><span class="o">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
 <span class="n">locale</span><span class="o">:</span> <span class="n">Cannot</span> <span class="kd">set</span> <span class="n">LC_ALL</span> <span class="n">to</span> <span class="k">default ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/08/13/vimzhong-wen-luan-ma/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/08/11/clementine-yin-le-bo-fang-qi/"><h2>Clementine 音乐播放器</h2></a>
-        <div class= "well small"> 日 11 八月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>咱来推荐一款好看和好用的音乐播放器了 &lt;(=＞﹏＜=)&gt;</p>
-<p>鉴于eleven苦苦追求多种音乐播放器无果之下…. 发现这货了…</p>
-<p>虽然这货还是依然无法支持网络播放, 不过界面和易用性差不多抵消了我对无法支持网络播放的怨念了..</p>
-<p>先上效果图:</p>
-<p><img alt="" src="/image/DeepinScrot-4032-300x187.png" /></p>
-<p><strong>Clementine</strong> 是一款多平台音乐播放器。 它的灵感来源于<strong>Amarok 1.4</strong>
-致力于开发一个易于使用的界面，令您能够快速地搜索和播放您的音乐。</p>
-<p><img alt="" src="/image/DeepinScrot-4152-273x300.png" /></p>
-<h2>缺点</h2>
-<ol>
-<li>不支持网络播放</li>
-<li>图形库基于QT</li>
-<li>我的aac格式不支持</li>
-</ol>
-<h2>链接</h2>
-<p><a href="http://www.clementine-player.org/">http://www.clementine-player.org/</a></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/08/11/clementine-yin-le-bo-fang-qi/">read more</a></div>
     </div>	
 				
             <div class="pagination">

@@ -58,111 +58,6 @@
  
 
     <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/10/18/nginx-shuang-ji-re-bei-shi-zhan/"><h2>nginx 双机热备-实战</h2></a>
-        <div class= "well small"> 四 18 十月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>上次发布了<em>nginx</em>做负载均衡器使用, 这次在原有的基础上加上了 <strong>双机热备</strong>
-另外,此篇文章做为引子,为的是引导使用<strong>keepalived</strong>文中的配置,请酌情修改
-这只是一个简单的<strong>keepalived</strong>应用, 关于文中使用到的<strong>keepalived</strong>参数很少, 
-更多的内容看blog中的keepalived配置文件详解 那篇文章</p>
-<p>首先上一个 <strong>nginx高可用</strong> 架构图</p>
-<p><img alt="" src="/image/2012-10-18-163233-300x225.png" /></p>
-<h2>配置</h2>
-<p>总共两台机器 A , B</p>
-<p>在A,B机器上面 配置好 nginx调度器, 相同的配置.</p>
-<p>A nginx 跑在 eth0 192.168.2.12 上</p>
-<p>B nginx 跑在 eth0 192.168.2.11 上</p>
-<p>在A ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/10/18/nginx-shuang-ji-re-bei-shi-zhan/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/10/16/keepalivedyuan-li-yu-shi-zhan-jing-jiang/"><h2>Keepalived原理与实战精讲</h2></a>
-        <div class= "well small"> 二 16 十月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p><strong>此为转贴</strong>
-<a href="http://bbs.ywlm.net/thread-845-1-1.html">原文地址</a></p>
-<p><img alt="" src="/image/Keepalived.png" /></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/10/16/keepalivedyuan-li-yu-shi-zhan-jing-jiang/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/09/29/liang-ge-xiao-jiao-ben-tian-qi-cha-xun-he-zhong-ying-ri-fan-yi/"><h2>两个小脚本- 天气查询和中英日翻译</h2></a>
-        <div class= "well small"> 六 29 九月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>最近在和朋友弄gtalk群聊, 框架已经写好, 并且可以正常使用, 有兴趣的朋友欢迎加入, 
-我们gtalk群<strong>pythonerclub@gmail.com</strong> (开发者<a href="(http://www.linuxzen.com/)">Cold</a>)加它为好友就可以进入我们
-群组, 群聊 功能指令输入 <code>$help</code>.</p>
-<p>在写功能机器人的时候, 顺便给自己方便方便, 就从机器人那边的部分功能代码 ,
-copy到本地, 就是天气查询, 和翻译</p>
-<p>脚本效果截图:</p>
-<p><img alt="" src="/image/2012-09-29-121615.png" /></p>
-<p>翻译 是用的google翻译, 天气查询用的中央气象局天气预报, 显示当天天气</p>
-<p><a href="(http://code.google.com/p/sharepythoncode/downloads/detail?name=Complex.tar.gz&amp;can=2&amp;q=#makechanges)">源码</a></p>
-<p>安装使用很简单, 解压之后 将Complex/* 丢到/usr/sbin/下,</p>
-<p>天气查询, 就要求一个参数, 就是市级地名</p>
-<p><code>tq 广州</code></p>
-<p>翻译 , 默认是英汉翻译,需要其它翻译,比如汉-&gt;英, 汉-&gt;日,日-&gt;汉,</p>
-<p><code>fanyi eleven ...</code></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/29/liang-ge-xiao-jiao-ben-tian-qi-cha-xun-he-zhong-ying-ri-fan-yi/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/09/20/nethogs-jian-kong-mei-ge-jin-cheng-ju-ti-shi-yong-de-liu-liang/"><h2>nethogs, 监控每一个进程具体使用的流量</h2></a>
-        <div class= "well small"> 四 20 九月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>最近无聊 想找一个具有悬浮窗口的流量监视工具, 可以实时向我汇报, 使用流量最大的
-进程 是哪一个, 然后还可以告诉我 目的地是什么地方就好了,</p>
-<p>各种google之后,找到了,<strong>nethogs</strong>. 这个玩意,</p>
-<p>额, 它可以实时显示使用了网络的进程的流量,以及发送的包数,</p>
-<p><img alt="" src="/image/2012-09-20-101834.png" /></p>
-<h2>安装</h2>
-<p><code>apt-get install nethogs</code></p>
-<p>tips: 该工具需要root用户才能运行.</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/20/nethogs-jian-kong-mei-ge-jin-cheng-ju-ti-shi-yong-de-liu-liang/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/"><h2>记. 一次邮箱密码丢失</h2></a>
         <div class= "well small"> 一 17 九月 2012
 
@@ -187,16 +82,12 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 				
             <div class="pagination">
 <ul>
-    <li class="prev"><a href="http://eleveni386.7axu.com/index4.html">&larr; Previous</a></li>
+    <li class="prev"><a href="http://eleveni386.7axu.com/tag/an-quan.html">&larr; Previous</a></li>
 
-    <li class=""><a href="http://eleveni386.7axu.com/index.html">1</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/index2.html">2</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/index3.html">3</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/index4.html">4</a></li>
-    <li class="active"><a href="http://eleveni386.7axu.com/index5.html">5</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/index6.html">6</a></li>
+    <li class=""><a href="http://eleveni386.7axu.com/tag/an-quan.html">1</a></li>
+    <li class="active"><a href="http://eleveni386.7axu.com/tag/an-quan2.html">2</a></li>
 
-    <li class="next"><a href="http://eleveni386.7axu.com/index6.html">Next &rarr;</a></li>
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
 
 </ul>
 </div>    
