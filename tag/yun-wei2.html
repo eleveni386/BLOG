@@ -58,6 +58,36 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/"><h2>记. 一次ddos攻击,导致服务器死机</h2></a>
+        <div class= "well small"> 五 29 三月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>背景</h2>
+<p>某年某月某天,eleven所属单位 被未知生物ddos攻击, 攻击时间 凌晨00:15 左右, 
+eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上面命令找出服务器弱点.
+同时还原攻击现场,</p>
+<h2>检查</h2>
+<p>通过<strong>Zenoss</strong>监控图, 看见在00:15左右, 突然进来了大量的数据包, 大概40w左右, 
+但是流量没有明显异常(即没有瞬间增高), 好吧, 看见这个现象就猜到了.. 小包<strong>DDos</strong>攻击.
+通过服务器的message日志里面看见了<em>syn flood on 80</em> 记录,结合监控图上的大量数据包,
+断定服务器被人采用<strong>syn半开攻击</strong>手法给攻击</p>
+<h2>服务器配置</h2>
+<p>观察了服务器的内核参数配置,因为我记得我们所有服务器都有对于<strong>syn flood</strong>的防御策略,
+在sysctl.conf里面<strong>syn_cookies</strong>已经开启, 而且也看见syn队列增加到了1w6, 
+按理来说单纯的半开攻击应该对于我们机器是无压力的说 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2012/11/29/xiu-fu-zenoss321-graphs-range-bug/"><h2>修复zenoss3.2.1 graphs range bug</h2></a>
         <div class= "well small"> 四 29 十一月 2012
 
@@ -156,39 +186,6 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p>我们可以利用<code>\r</code>, 转义符<code>\r</code>就可以把光标移动到行首而不换行，转义符<code>\n</code>就把光
 标移动到行首并且换行。 这里用一个例子来说明,这是我脚本中的一个函数,
 用于接收<code>paramiko.sftp_client.sftp</code> 中的put方法的callback数据 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/10/python-jin-du-tiao/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/"><h2>sshpass 非交互ssh密码验证</h2></a>
-        <div class= "well small"> 日 09 九月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><h2>转载linuxtoy文章</h2>
-<p>OpenSSH 自带的 ssh 客户端程序（也就是 ‘ssh’ 命令）默认不允许你以非交互的方式传递密码，如：</p>
-<div class="highlight"><pre><span class="n">ssh</span> <span class="n">www</span><span class="p">.</span><span class="n">iredmail</span><span class="p">.</span><span class="n">org</span> <span class="o">&lt;&lt;</span><span class="n">EOF</span> <span class="n">ssh_password</span> <span class="n">ls</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span> <span class="n">EOF</span>
-</pre></div>
-
-
-<p>Shell 里这样的输入重定向使用得非常普遍，而且通常都工作得很好。但是 ssh 不允许这
-样的方式来传递密码，所以需要远程连上服务器后进行的批处理就无法进行。</p>
-<p><code>sshpass</code> 的出现，解决了这一问题。它允许你用 <code>-p</code> 参数指定明文密码，
-然后直接登录远程服务器。例如：</p>
-<div class="highlight"><pre><span class="n">sshpass</span> <span class="o">-</span><span class="n">p</span> <span class="s">&#39;ssh_password&#39;</span> <span class="n">ssh</span> <span class="n">www</span><span class="p">.</span><span class="n">iredmail</span><span class="p">.</span><span class="n">org</span>
-</pre></div>
-
-
-<p>用 <code>-p</code> 指定了密码后，还需要在后面跟上标准的 ssh 连接命令。</p>
-<p>用法就是这么简单。</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/">read more</a></div>
     </div>	
 				
             <div class="pagination">

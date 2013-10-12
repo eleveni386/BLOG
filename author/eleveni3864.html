@@ -173,30 +173,24 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
  
 
     <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/"><h2>sshpass 非交互ssh密码验证</h2></a>
-        <div class= "well small"> 日 09 九月 2012
+        <a href="http://eleveni386.7axu.com/posts/2013/10/13/squid-url-tiao-zhuan/"><h2>Squid Url 跳转</h2></a>
+        <div class= "well small"> 日 13 十月 2013
 
 by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
  
 
 
  </div>
-        <div class="summary"><h2>转载linuxtoy文章</h2>
-<p>OpenSSH 自带的 ssh 客户端程序（也就是 ‘ssh’ 命令）默认不允许你以非交互的方式传递密码，如：</p>
-<div class="highlight"><pre><span class="n">ssh</span> <span class="n">www</span><span class="p">.</span><span class="n">iredmail</span><span class="p">.</span><span class="n">org</span> <span class="o">&lt;&lt;</span><span class="n">EOF</span> <span class="n">ssh_password</span> <span class="n">ls</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span> <span class="n">EOF</span>
-</pre></div>
-
-
-<p>Shell 里这样的输入重定向使用得非常普遍，而且通常都工作得很好。但是 ssh 不允许这
-样的方式来传递密码，所以需要远程连上服务器后进行的批处理就无法进行。</p>
-<p><code>sshpass</code> 的出现，解决了这一问题。它允许你用 <code>-p</code> 参数指定明文密码，
-然后直接登录远程服务器。例如：</p>
-<div class="highlight"><pre><span class="n">sshpass</span> <span class="o">-</span><span class="n">p</span> <span class="s">&#39;ssh_password&#39;</span> <span class="n">ssh</span> <span class="n">www</span><span class="p">.</span><span class="n">iredmail</span><span class="p">.</span><span class="n">org</span>
-</pre></div>
-
-
-<p>用 <code>-p</code> 指定了密码后，还需要在后面跟上标准的 ssh 连接命令。</p>
-<p>用法就是这么简单。</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/">read more</a></div>
+        <div class="summary"><h2>需求</h2>
+<p>当Iphone/Ipad/Android 等访问 http://www.xxx.com 时跳转到 
+http://www.xxx.com/mobile/xxx/mobile.html?ref=www.xxi.com/</p>
+<h2>分析</h2>
+<p>squid不自带 url重写/跳转 功能, 要实现这些功能需要借助 <strong>重定向器</strong> 来解决</p>
+<p>通过<code>redirect_program</code> 指定一个重定向器 来处理url的重写/跳转</p>
+<p><code>redirect_program</code> 可以用perl/php/python 甚至shell来编写</p>
+<h2>思路</h2>
+<p>使用squid的<code>redirect_program</code> 指令 ,指定一个重定向器处理url跳转</p>
+<p>使用acl 匹配Iphone, Ipad, Android 平台 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/10/13/squid-url-tiao-zhuan/">read more</a></div>
     </div>	
 				
             <div class="pagination">

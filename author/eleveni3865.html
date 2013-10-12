@@ -58,6 +58,39 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/"><h2>sshpass 非交互ssh密码验证</h2></a>
+        <div class= "well small"> 日 09 九月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>转载linuxtoy文章</h2>
+<p>OpenSSH 自带的 ssh 客户端程序（也就是 ‘ssh’ 命令）默认不允许你以非交互的方式传递密码，如：</p>
+<div class="highlight"><pre><span class="n">ssh</span> <span class="n">www</span><span class="p">.</span><span class="n">iredmail</span><span class="p">.</span><span class="n">org</span> <span class="o">&lt;&lt;</span><span class="n">EOF</span> <span class="n">ssh_password</span> <span class="n">ls</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span> <span class="n">EOF</span>
+</pre></div>
+
+
+<p>Shell 里这样的输入重定向使用得非常普遍，而且通常都工作得很好。但是 ssh 不允许这
+样的方式来传递密码，所以需要远程连上服务器后进行的批处理就无法进行。</p>
+<p><code>sshpass</code> 的出现，解决了这一问题。它允许你用 <code>-p</code> 参数指定明文密码，
+然后直接登录远程服务器。例如：</p>
+<div class="highlight"><pre><span class="n">sshpass</span> <span class="o">-</span><span class="n">p</span> <span class="s">&#39;ssh_password&#39;</span> <span class="n">ssh</span> <span class="n">www</span><span class="p">.</span><span class="n">iredmail</span><span class="p">.</span><span class="n">org</span>
+</pre></div>
+
+
+<p>用 <code>-p</code> 指定了密码后，还需要在后面跟上标准的 ssh 连接命令。</p>
+<p>用法就是这么简单。</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2013/08/23/tmuxduo-paneltong-bu/"><h2>tmux多panel同步</h2></a>
         <div class= "well small"> 五 23 八月 2013
 
@@ -167,40 +200,6 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 由于我在code.google.com上也有一个svn帐号,因此我这里有两个文件,</p>
 <p><img alt="" src="/image/2012-11-28-104153-300x31.png" /></p>
 <p>由于不清楚这两个文件是啥, 于是<code>file</code>之 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/11/28/wang-ji-mi-ma-zhi-svn/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/04/25/wang-qia-zhong-duan-bang-ding/"><h2>网卡中断绑定</h2></a>
-        <div class= "well small"> 四 25 四月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><blockquote>
-<p>中断亲和力是指将一个或多个中断源绑定到特定的 CPU 上运行</p>
-</blockquote>
-<h2>操作</h2>
-<p><a href="http://liuxin1982.blog.51cto.com/4338970/1019825">参考</a></p>
-<p>今天我是来吐槽该文中的一个shell脚本</p>
-<div class="highlight"><pre><span class="c"># setting up irq affinity according to /proc/interrupts</span>
-<span class="c"># 2008-11-25 Robert Olsson</span>
-<span class="c"># 2009-02-19 updated by Jesse Brandeburg</span>
-<span class="c">#</span>
-<span class="c"># &gt; Dave Miller:</span>
-<span class="c"># (To get consistent naming in /proc/interrups)</span>
-<span class="c"># I would suggest that people use something like:</span>
-<span class="c"># char buf[IFNAMSIZ+6];</span>
-<span class="c">#</span>
-<span class="c"># sprintf(buf, &quot;%s-%s-%d&quot;,</span>
-<span class="c">#         netdev-&gt;name ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/04/25/wang-qia-zhong-duan-bang-ding/">read more</a></div>
     </div>	
 				
             <div class="pagination">
