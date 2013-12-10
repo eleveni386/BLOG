@@ -11,6 +11,14 @@
 &lt;p&gt;"兽兽君" 更是直接给我提供了一些示例代码.&lt;/p&gt;
 &lt;h1&gt;截图&lt;/h1&gt;
 &lt;p&gt;&lt;img alt="" src="/image/markdown.png" /&gt;&lt;/p&gt;
+&lt;h1&gt;依赖&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;pygtk&lt;/li&gt;
+&lt;li&gt;python-markdown&lt;/li&gt;
+&lt;li&gt;python-webkit&lt;/li&gt;
+&lt;li&gt;python-gtksourceview2&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;debian 可以使用apt-get 来安装&lt;/p&gt;
 &lt;h1&gt;功能&lt;/h1&gt;
 &lt;h2&gt;文件管理器&lt;/h2&gt;
 &lt;p&gt;只实现了简单的功能 &lt;/p&gt;
@@ -35,4 +43,5 @@
 &lt;/ol&gt;
 &lt;h2&gt;Webkit&lt;/h2&gt;
 &lt;p&gt;自定义主题. 默认使用github的css,可以自己修改编辑css, 或者从其他支持markdown
-语法的网站扒他们的css ^o ^&lt;/p&gt;</summary><category term="gtk"></category><category term="python"></category><category term="markdown"></category><category term="编辑器"></category></entry></feed>
+语法的网站扒他们的css ^o ^&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/eleveni386/MyEditor"&gt;传送门&lt;/a&gt;&lt;/p&gt;</summary><category term="gtk"></category><category term="python"></category><category term="markdown"></category><category term="编辑器"></category></entry></feed>
