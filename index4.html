@@ -58,6 +58,36 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/"><h2>记. 一次ddos攻击,导致服务器死机</h2></a>
+        <div class= "well small"> 五 29 三月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>背景</h2>
+<p>某年某月某天,eleven所属单位 被未知生物ddos攻击, 攻击时间 凌晨00:15 左右, 
+eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上面命令找出服务器弱点.
+同时还原攻击现场,</p>
+<h2>检查</h2>
+<p>通过<strong>Zenoss</strong>监控图, 看见在00:15左右, 突然进来了大量的数据包, 大概40w左右, 
+但是流量没有明显异常(即没有瞬间增高), 好吧, 看见这个现象就猜到了.. 小包<strong>DDos</strong>攻击.
+通过服务器的message日志里面看见了<em>syn flood on 80</em> 记录,结合监控图上的大量数据包,
+断定服务器被人采用<strong>syn半开攻击</strong>手法给攻击</p>
+<h2>服务器配置</h2>
+<p>观察了服务器的内核参数配置,因为我记得我们所有服务器都有对于<strong>syn flood</strong>的防御策略,
+在sysctl.conf里面<strong>syn_cookies</strong>已经开启, 而且也看见syn队列增加到了1w6, 
+按理来说单纯的半开攻击应该对于我们机器是无压力的说 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2013/03/11/ji-ci-an-zhuang-fcitxguo-cheng/"><h2>记一次安装fcitx过程</h2></a>
         <div class= "well small"> 一 11 三月 2013
 
@@ -187,34 +217,6 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <span class="n">Java</span> <span class="n">HotSpot</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> 64<span class="o">-</span><span class="n">Bit</span> <span class="n">Server ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/11/29/xiu-fu-zenoss321-graphs-range-bug/">read more</a></div>
     </div>	
 				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/11/28/wang-ji-mi-ma-zhi-svn/"><h2>忘记密码之 Svn</h2></a>
-        <div class= "well small"> 三 28 十一月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>今天,突发奇想在虚拟机中装一个<em>svn客户端</em>,这样就省的每次更改或者提交日志文档的时候,
-需要将文件从虚拟机中拖到本地,然后输入<code>svn ci</code> 命令了, 于是,遂安装之.. 在<code>checkout</code>的时候,
-突然想到自己不记得密码了,(一直以来所有密码都是直接保存的,自己记不住)</p>
-<p>于是找管理员要, 一看, .. 咱们svn管理员没在线, 看来还是要自己动手,</p>
-<p>工具准备: <strong>file</strong>一枚, <strong>cat</strong>一把</p>
-<p>由于我之前一直都是在linux下用命令提交更新, 在linux下已经<code>checkout</code>过一次了,
-同时我也选择了保存密码到本地, 因此 在我本地的某一个地方肯定会有svn的相关记录,
-于是google之.. 找到了 svn的密码文件是保存在<strong>$HOME/.subversion/auth/svn.simple</strong> 下,
-由于我在code.google.com上也有一个svn帐号,因此我这里有两个文件,</p>
-<p><img alt="" src="/image/2012-11-28-104153-300x31.png" /></p>
-<p>由于不清楚这两个文件是啥, 于是<code>file</code>之 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/11/28/wang-ji-mi-ma-zhi-svn/">read more</a></div>
-    </div>	
-				
             <div class="pagination">
 <ul>
     <li class="prev"><a href="http://eleveni386.7axu.com/index3.html">&larr; Previous</a></li>
@@ -225,6 +227,7 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
     <li class="active"><a href="http://eleveni386.7axu.com/index4.html">4</a></li>
     <li class=""><a href="http://eleveni386.7axu.com/index5.html">5</a></li>
     <li class=""><a href="http://eleveni386.7axu.com/index6.html">6</a></li>
+    <li class=""><a href="http://eleveni386.7axu.com/index7.html">7</a></li>
 
     <li class="next"><a href="http://eleveni386.7axu.com/index5.html">Next &rarr;</a></li>
 
@@ -256,6 +259,7 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
                 Categories
                 </li>
                 
+                                <li><a href="http://eleveni386.7axu.com/category/2013-12-10.html">2013-12-10</a></li>
                                 <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
                                 <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
                                 <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>

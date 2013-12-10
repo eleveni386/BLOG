@@ -58,6 +58,37 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/06/03/pythondai-cookiesfang-wen/"><h2>python带cookies访问</h2></a>
+        <div class= "well small"> 一 03 六月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>本人是运维一枚,使用次数最多的就是Vandyke的<a href="https://secure.vandyke.com/cgi-bin/download_form.php?pid=securecrt_ubuntu1264_deb_71&amp;st=4&amp;">SecureCRT</a>.
+在win系统下面有各种大牛
+破解的scrt版本,但是在咱debian下面 就只能使用官方正版的,但是因为scrt是收费的,
+而且还死贵死贵($99), 咱这种中下农,搞不起这货, 只能使用它的免费30天,时间一到,
+要么就是删除它的认证文件,要么就是卸载原有的,然后重新安装, 非常麻烦…</p>
+<p>于是就想着能不能通过cron自动下载安装, 于是就有了第一版本的<a href="(https://code.google.com/p/sharepythoncode/downloads/detail?name=Vandyke_update.py&amp;can=2&amp;q=)">Vandyke_update.py</a> 脚本,
+通过抓包分析到Vandyke 的post数据,通过urllib2提交,并下载, 跑了一年都挺好的, </p>
+<p>但是今天有同事(ubuntu)使用我的脚本自动更新的时候,发现无效了,返回信息提示”Bad product id”,
+然后通过chrome的开发者工具跟踪了一下,发现post数据的字段改变了. 不再提供”sid”这个字段
+(每次Vandyke用户登录之后都会在cookie中分配这个这个id,是不变的),只好重新分析它post内容,</p>
+<p>看见它post内容变的非常简单,只有两个字段:</p>
+<ol>
+<li>pid(product id)</li>
+<li>status ...</li></ol> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/06/03/pythondai-cookiesfang-wen/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/"><h2>加密你的HTTP请求(穿墙)</h2></a>
         <div class= "well small"> 五 17 五月 2013
 
@@ -192,36 +223,6 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <span class="c">#         netdev-&gt;name ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/04/25/wang-qia-zhong-duan-bang-ding/">read more</a></div>
     </div>	
 				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/"><h2>记. 一次ddos攻击,导致服务器死机</h2></a>
-        <div class= "well small"> 五 29 三月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><h2>背景</h2>
-<p>某年某月某天,eleven所属单位 被未知生物ddos攻击, 攻击时间 凌晨00:15 左右, 
-eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上面命令找出服务器弱点.
-同时还原攻击现场,</p>
-<h2>检查</h2>
-<p>通过<strong>Zenoss</strong>监控图, 看见在00:15左右, 突然进来了大量的数据包, 大概40w左右, 
-但是流量没有明显异常(即没有瞬间增高), 好吧, 看见这个现象就猜到了.. 小包<strong>DDos</strong>攻击.
-通过服务器的message日志里面看见了<em>syn flood on 80</em> 记录,结合监控图上的大量数据包,
-断定服务器被人采用<strong>syn半开攻击</strong>手法给攻击</p>
-<h2>服务器配置</h2>
-<p>观察了服务器的内核参数配置,因为我记得我们所有服务器都有对于<strong>syn flood</strong>的防御策略,
-在sysctl.conf里面<strong>syn_cookies</strong>已经开启, 而且也看见syn队列增加到了1w6, 
-按理来说单纯的半开攻击应该对于我们机器是无压力的说 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/">read more</a></div>
-    </div>	
-				
             <div class="pagination">
 <ul>
     <li class="prev"><a href="http://eleveni386.7axu.com/index2.html">&larr; Previous</a></li>
@@ -232,6 +233,7 @@ eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上
     <li class=""><a href="http://eleveni386.7axu.com/index4.html">4</a></li>
     <li class=""><a href="http://eleveni386.7axu.com/index5.html">5</a></li>
     <li class=""><a href="http://eleveni386.7axu.com/index6.html">6</a></li>
+    <li class=""><a href="http://eleveni386.7axu.com/index7.html">7</a></li>
 
     <li class="next"><a href="http://eleveni386.7axu.com/index4.html">Next &rarr;</a></li>
 
@@ -263,6 +265,7 @@ eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上
                 Categories
                 </li>
                 
+                                <li><a href="http://eleveni386.7axu.com/category/2013-12-10.html">2013-12-10</a></li>
                                 <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
                                 <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
                                 <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
