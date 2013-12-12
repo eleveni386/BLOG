@@ -1,5 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/linuxzhuo-mian.atom.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2013-09-22T00:00:00+08:00</updated><entry><title>记.遗忘RTX密码</title><link href="http://eleveni386.7axu.com/posts/2013/09/22/ji-yi-wang-rtxmi-ma/" rel="alternate"></link><updated>2013-09-22T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-09-22:posts/2013/09/22/ji-yi-wang-rtxmi-ma/</id><summary type="html">&lt;h2&gt;引子&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/linuxzhuo-mian.atom.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2013-12-11T00:00:00+08:00</updated><entry><title>markdown编辑器</title><link href="http://eleveni386.7axu.com/posts/2013/12/11/markdownbian-ji-qi/" rel="alternate"></link><updated>2013-12-11T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-12-11:posts/2013/12/11/markdownbian-ji-qi/</id><summary type="html">&lt;h1&gt;前言&lt;/h1&gt;
+&lt;p&gt;本人是今年开始使用&lt;code&gt;markdown&lt;/code&gt;的, 短时间内,就喜欢上这种编辑文档的方法.遂将自己的blog
+都替换为&lt;code&gt;pelican&lt;/code&gt;. 个人笔记也采用 &lt;code&gt;markdown&lt;/code&gt;语法来记录. 看着我的零散的markdown
+文件很是头疼. 就想着有一个markdown编辑器可以附带文件管理功能,但是找了好久都没找到&lt;/p&gt;
+&lt;p&gt;于是就想着自己开发一个. 于是就有了这货, 用时半年,一直断断续续开发,在快结束的时候
+突然发现了&lt;code&gt;gedit&lt;/code&gt;, 给它安装markdown插件之后 完全可以满足我的需求.. 突然发现我这半年
+都在浪费时间(虽然没认真花时间在这个上面).最终还是草草结束了这次的开发..&lt;/p&gt;
+&lt;p&gt;在写&lt;code&gt;MyEditor&lt;/code&gt;期间,多谢网友"老猫" 和 &lt;a href="http://neteue.com/"&gt;"小邪兽"&lt;/a&gt; 给予的帮助&lt;/p&gt;
+&lt;p&gt;"老猫" 告诉了我&lt;code&gt;gtksourceview2&lt;/code&gt;的存在. 同时解答了我许多疑问&lt;/p&gt;
+&lt;p&gt;"兽兽君" 更是直接给我提供了一些示例代码.&lt;/p&gt;
+&lt;h1&gt;截图&lt;/h1&gt;
+&lt;p&gt;&lt;img alt="" src="/image/markdown.png" /&gt;&lt;/p&gt;
+&lt;h1&gt;依赖&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;pygtk&lt;/li&gt;
+&lt;li&gt;python-markdown&lt;/li&gt;
+&lt;li&gt;python-webkit&lt;/li&gt;
+&lt;li&gt;python-gtksourceview2&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;debian 可以使用apt-get 来安装&lt;/p&gt;
+&lt;h1&gt;功能&lt;/h1&gt;
+&lt;h2&gt;文件管理器&lt;/h2&gt;
+&lt;p&gt;只实现了简单的功能 &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;建立文件&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;建立目录&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;删除,重命名&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;默认会在家目录下建立一个.mybase的隐藏目录. 每次程序启动的时候 自动加载这个目录.因此
+可以将本程序当成markdown笔记本来使用&lt;/p&gt;
+&lt;h2&gt;文本编辑&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;根据文件后缀名高亮方案&lt;/li&gt;
+&lt;li&gt;去掉了常用的功能图标(保存,撤销等); 
+    使用快捷键 Ctrl+s 保存, Ctrl+z 撤销&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Webkit&lt;/h2&gt;
+&lt;p&gt;自定义主题. 默认使用github的css,可以自己修改编辑css, 或者从其他支持markdown
+语法的网站扒他们的css ^o ^&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/eleveni386/MyEditor"&gt;传送门&lt;/a&gt;&lt;/p&gt;</summary><category term="gtk"></category><category term="python"></category><category term="markdown"></category><category term="编辑器"></category></entry><entry><title>记.遗忘RTX密码</title><link href="http://eleveni386.7axu.com/posts/2013/09/22/ji-yi-wang-rtxmi-ma/" rel="alternate"></link><updated>2013-09-22T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-09-22:posts/2013/09/22/ji-yi-wang-rtxmi-ma/</id><summary type="html">&lt;h2&gt;引子&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;在虚拟机中rtx密码是保存的,第一次拿到密码,没有做第三方的记录.
 中秋期间,wine了一个rtx. 结果发现自己忘记密码了&lt;/p&gt;

@@ -53,8 +53,8 @@
         <div class="span9">
             <div class='article'>
         <div class="content-title">
-            <h1>python带cookies访问</h1>
-            一 03 六月 2013
+            <h1>markdown编辑器</h1>
+            三 11 十二月 2013
 
 by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
  
@@ -62,51 +62,52 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 
         </div>
 	
-        <div><p>本人是运维一枚,使用次数最多的就是Vandyke的<a href="https://secure.vandyke.com/cgi-bin/download_form.php?pid=securecrt_ubuntu1264_deb_71&amp;st=4&amp;">SecureCRT</a>.
-在win系统下面有各种大牛
-破解的scrt版本,但是在咱debian下面 就只能使用官方正版的,但是因为scrt是收费的,
-而且还死贵死贵($99), 咱这种中下农,搞不起这货, 只能使用它的免费30天,时间一到,
-要么就是删除它的认证文件,要么就是卸载原有的,然后重新安装, 非常麻烦…</p>
-<p>于是就想着能不能通过cron自动下载安装, 于是就有了第一版本的<a href="(https://code.google.com/p/sharepythoncode/downloads/detail?name=Vandyke_update.py&amp;can=2&amp;q=)">Vandyke_update.py</a> 脚本,
-通过抓包分析到Vandyke 的post数据,通过urllib2提交,并下载, 跑了一年都挺好的, </p>
-<p>但是今天有同事(ubuntu)使用我的脚本自动更新的时候,发现无效了,返回信息提示”Bad product id”,
-然后通过chrome的开发者工具跟踪了一下,发现post数据的字段改变了. 不再提供”sid”这个字段
-(每次Vandyke用户登录之后都会在cookie中分配这个这个id,是不变的),只好重新分析它post内容,</p>
-<p>看见它post内容变的非常简单,只有两个字段:</p>
+        <div><h1>前言</h1>
+<p>本人是今年开始使用<code>markdown</code>的, 短时间内,就喜欢上这种编辑文档的方法.遂将自己的blog
+都替换为<code>pelican</code>. 个人笔记也采用 <code>markdown</code>语法来记录. 看着我的零散的markdown
+文件很是头疼. 就想着有一个markdown编辑器可以附带文件管理功能,但是找了好久都没找到</p>
+<p>于是就想着自己开发一个. 于是就有了这货, 用时半年,一直断断续续开发,在快结束的时候
+突然发现了<code>gedit</code>, 给它安装markdown插件之后 完全可以满足我的需求.. 突然发现我这半年
+都在浪费时间(虽然没认真花时间在这个上面).最终还是草草结束了这次的开发..</p>
+<p>在写<code>MyEditor</code>期间,多谢网友"老猫" 和 <a href="http://neteue.com/">"小邪兽"</a> 给予的帮助</p>
+<p>"老猫" 告诉了我<code>gtksourceview2</code>的存在. 同时解答了我许多疑问</p>
+<p>"兽兽君" 更是直接给我提供了一些示例代码.</p>
+<h1>截图</h1>
+<p><img alt="" src="/image/markdown.png" /></p>
+<h1>依赖</h1>
 <ol>
-<li>pid(product id)</li>
-<li>status</li>
+<li>pygtk</li>
+<li>python-markdown</li>
+<li>python-webkit</li>
+<li>python-gtksourceview2</li>
 </ol>
-<p>尝试了几次,发现它现在所有认证信息都是从cookies里面获取的, 咱就只能模拟登录,
-保留cookies,带着cookies访问它的下载页面</p>
-<p>模拟登录,及带着cookies访问其他页面代码如下</p>
-<div class="highlight"><pre><span class="n">import</span> <span class="n">urllib2</span><span class="p">,</span><span class="n">urllib</span>
-<span class="n">import</span> <span class="n">cookielib</span>
-
-<span class="n">cj</span> <span class="p">=</span> <span class="n">cookielib</span><span class="p">.</span><span class="n">CookieJar</span><span class="p">()</span>
-<span class="n">opener</span> <span class="p">=</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">urllib2</span><span class="p">.</span><span class="n">HTTPCookieProcessor</span><span class="p">(</span><span class="n">cj</span><span class="p">))</span>
-<span class="n">urllib2</span><span class="p">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
-
-<span class="n">post</span> <span class="p">=</span> <span class="n">urllib</span><span class="p">.</span><span class="n">urlencode</span><span class="p">({</span><span class="s">&#39;pid&#39;</span><span class="p">:</span><span class="s">&#39;securecrt_ubuntu1264_deb_71&#39;</span><span class="p">,</span><span class="o">\</span>
-                          <span class="s">&#39;username&#39;</span><span class="p">:</span><span class="s">&#39;eleven.i386@gmail.com&#39;</span><span class="p">,</span><span class="o">\</span>
-                          <span class="s">&#39;password&#39;</span><span class="p">:</span><span class="s">&#39;*******&#39;</span><span class="p">,</span><span class="o">\</span>
-                          <span class="s">&#39;status&#39;</span><span class="p">:</span><span class="s">&#39;4&#39;</span><span class="p">})</span>
-
-<span class="n">post2</span> <span class="p">=</span> <span class="n">urllib</span><span class="p">.</span><span class="n">urlencode</span><span class="p">({</span><span class="s">&#39;pid&#39;</span><span class="p">:</span><span class="s">&#39;securecrt_ubuntu1264_deb_71&#39;</span><span class="p">,</span><span class="o">\</span>
-                          <span class="s">&#39;status&#39;</span><span class="p">:</span><span class="s">&#39;self&#39;</span><span class="p">})</span>
-
-<span class="n">req</span> <span class="p">=</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;https://secure.vandyke.com/cgi-bin/account_verify.php&#39;</span><span class="p">,</span><span class="n">post</span><span class="p">)</span>
-
-<span class="n">req2</span> <span class="p">=</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;https://secure.vandyke.com/cgi-bin/download.php&#39;</span><span class="p">,</span><span class="n">post2</span><span class="p">)</span>
-</pre></div>
-
-
-<p>这是一段测试用的代码,请无视它那掉节操的变量名称,
-实在不想花费脑细胞在测试代码的变量名称上(虽然正式代码的变量名称一样无节操)</p>
-<h3>参数说明</h3>
-<p>第一个post, 用于做登录. 提交用户名和密码,</p>
-<p>第二个post,用于发送下载请求,提交请求资源的id,和status(这玩意一直不知道干嘛的),
-请求资源的文件名称,在第一个post的respose header的Content-Disposition字段里面,</p></div>
+<p>debian 可以使用apt-get 来安装</p>
+<h1>功能</h1>
+<h2>文件管理器</h2>
+<p>只实现了简单的功能 </p>
+<ol>
+<li>
+<p>建立文件</p>
+</li>
+<li>
+<p>建立目录</p>
+</li>
+<li>
+<p>删除,重命名</p>
+</li>
+</ol>
+<p>默认会在家目录下建立一个.mybase的隐藏目录. 每次程序启动的时候 自动加载这个目录.因此
+可以将本程序当成markdown笔记本来使用</p>
+<h2>文本编辑</h2>
+<ol>
+<li>根据文件后缀名高亮方案</li>
+<li>去掉了常用的功能图标(保存,撤销等); 
+    使用快捷键 Ctrl+s 保存, Ctrl+z 撤销</li>
+</ol>
+<h2>Webkit</h2>
+<p>自定义主题. 默认使用github的css,可以自己修改编辑css, 或者从其他支持markdown
+语法的网站扒他们的css ^o ^</p>
+<p><a href="https://github.com/eleveni386/MyEditor">传送门</a></p></div>
 	
         <hr>
     	   
@@ -114,7 +115,7 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 		<div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'eleveni386sblog'; 
-    var disqus_title = 'python带cookies访问';
+    var disqus_title = 'markdown编辑器';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
