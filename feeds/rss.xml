@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/rss.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2013-12-10T00:00:00+08:00</updated><entry><title>markdown编辑器</title><link href="http://eleveni386.7axu.com/posts/2013/12/10/markdownbian-ji-qi/" rel="alternate"></link><updated>2013-12-10T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-12-10:posts/2013/12/10/markdownbian-ji-qi/</id><summary type="html">&lt;h1&gt;前言&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/rss.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2014-01-01T00:00:00+08:00</updated><entry><title>Wiz for linux 2.1.0版本功能介绍</title><link href="http://eleveni386.7axu.com/posts/2014/01/01/wiz-for-linux-210ban-ben-gong-neng-jie-shao/" rel="alternate"></link><updated>2014-01-01T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-01-01:posts/2014/01/01/wiz-for-linux-210ban-ben-gong-neng-jie-shao/</id><summary type="html">&lt;h1&gt;截图&lt;/h1&gt;
+&lt;p&gt;&lt;img alt="" src="/image/wiz.png" /&gt;&lt;/p&gt;
+&lt;h1&gt;介绍&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;wiz笔记&lt;/code&gt; 一款知识管理软件, 界面效果如上图. &lt;/p&gt;
+&lt;p&gt;在 &lt;a href="https://github.com/WizTeam/WizQTClient"&gt;Wiz 2.1.0&lt;/a&gt; 版本中 
+首次对Linux支持&lt;code&gt;markdown语法&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;( &lt;strong&gt;Ubuntu用户按照官网上的方法安装,不是最新版本哦, 是不支持markdown语法的&lt;/strong&gt; )&lt;/p&gt;
+&lt;h1&gt;要求&lt;/h1&gt;
+&lt;p&gt;安装&lt;a href="https://github.com/WizTeam/WizQTClient"&gt;Wiz 2.1.0&lt;/a&gt; 版本&lt;/p&gt;
+&lt;p&gt;是需要QT4/5 的支持, 另外需要cmake工具&lt;/p&gt;
+&lt;h1&gt;插件&lt;/h1&gt;
+&lt;p&gt;安装好之后, 点击菜单栏上的 帮助-&amp;gt; 关于插件 &lt;/p&gt;
+&lt;p&gt;可以发现 &lt;code&gt;markdown语法&lt;/code&gt;的支持是由于插件的原因. 因此 其他人也是可以编写自己的插件实现
+不同的功能呢. 咱技术差了点. 又没有一个官方的API, 咱无法写出自己的插件. 不过有了
+markdown语法支持插件 咱就足矣 :)&lt;/p&gt;
+&lt;p&gt;另外一个插件 则是网页截取. 参考&lt;a href="http://blog.wiz.cn/wiz-manual-save-web-page.html"&gt;为知博客&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;得知chrome下有一款网页截取的插件. 遂安装之, 对于长篇大论的文档. 直接点击插件,就可以
+对整个页面文章区域截取,同步到你的笔记中&lt;/p&gt;</summary><category term="wiz"></category><category term="知识管理"></category><category term="Linux软件"></category></entry><entry><title>markdown编辑器</title><link href="http://eleveni386.7axu.com/posts/2013/12/10/markdownbian-ji-qi/" rel="alternate"></link><updated>2013-12-10T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-12-10:posts/2013/12/10/markdownbian-ji-qi/</id><summary type="html">&lt;h1&gt;前言&lt;/h1&gt;
 &lt;p&gt;本人是今年开始使用&lt;code&gt;markdown&lt;/code&gt;的, 短时间内,就喜欢上这种编辑文档的方法.遂将自己的blog
 都替换为&lt;code&gt;pelican&lt;/code&gt;. 个人笔记也采用 &lt;code&gt;markdown&lt;/code&gt;语法来记录. 看着我的零散的markdown
 文件很是头疼. 就想着有一个markdown编辑器可以附带文件管理功能,但是找了好久都没找到&lt;/p&gt;

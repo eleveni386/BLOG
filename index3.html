@@ -58,6 +58,43 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/07/05/2345zi-dong-qian-dao-qi-bian-xie-jing-guo/"><h2>2345自动签到器编写经过</h2></a>
+        <div class= "well small"> 五 05 七月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>2345这个流氓东西 虽然我很不齿, 但是我还是继续每天签到. 
+不为别的,只为了给女友兑换腾迅那个无聊的xx钻. 10Q币/月 这笔钱就靠2345给我省下了..</p>
+<p>由于这个玩意推广着实在太累了.差不多一年没有继续推广过了..
+(就算推广也就那么几个人点击我的链接 :D ) 昨天给女友兑换Q币的时候,
+突然想到它的签到有积分赠送的,反正我也推广不起来,不如拿它的免费积分算鸟. 
+但是要我每天都记得要签到,这是何等痛苦的事情… 自动签到 势在必行.. </p>
+<p>说到签到,无非就是自动登录加访问特定url</p>
+<p>首先分析2345的登录机制和签到url在哪里</p>
+<p>拿出<strong>mitmproxy</strong> 然后设置chromium为本地代理,</p>
+<p><img alt="" src="/image/DeepinScrot-1803.png" /></p>
+<p>很好,登录过程全部抓出来了, (这里要说一下,因为2345登录的时候会自动跳转,
+用chromium的开发者工具无法中止它的跳转,无法得到post的内容和post的url,
+所以这里我使用mitmproxy, 这家伙是<a href="http://lilydjwg.is-programmer.com/">百合仙子</a>
+推荐给我的. 很不错的东西,很好用, 
+现在我也推荐给你们… :P )</p>
+<p>然后我们看看post的内容, 按下回车之后</p>
+<p><img alt="" src="/image/DeepinScrot-2146.png" /></p>
+<p>这里需要主意的是密码是经过md5加密的, 所以在post密码的时候,需要事前将它加密</p>
+<p>如何自动登录实在是很简单的事情.. 不再浪费篇章. 
+上面主要是表现下<strong>mitmproxy</strong>工具的犀利 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/07/05/2345zi-dong-qian-dao-qi-bian-xie-jing-guo/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2013/06/03/pythondai-cookiesfang-wen/"><h2>python带cookies访问</h2></a>
         <div class= "well small"> 一 03 六月 2013
 
@@ -187,40 +224,6 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p>后续:</p>
 <p>增加进程流量限制
 增加网络进程list</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/04/25/wang-qia-zhong-duan-bang-ding/"><h2>网卡中断绑定</h2></a>
-        <div class= "well small"> 四 25 四月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><blockquote>
-<p>中断亲和力是指将一个或多个中断源绑定到特定的 CPU 上运行</p>
-</blockquote>
-<h2>操作</h2>
-<p><a href="http://liuxin1982.blog.51cto.com/4338970/1019825">参考</a></p>
-<p>今天我是来吐槽该文中的一个shell脚本</p>
-<div class="highlight"><pre><span class="c"># setting up irq affinity according to /proc/interrupts</span>
-<span class="c"># 2008-11-25 Robert Olsson</span>
-<span class="c"># 2009-02-19 updated by Jesse Brandeburg</span>
-<span class="c">#</span>
-<span class="c"># &gt; Dave Miller:</span>
-<span class="c"># (To get consistent naming in /proc/interrups)</span>
-<span class="c"># I would suggest that people use something like:</span>
-<span class="c"># char buf[IFNAMSIZ+6];</span>
-<span class="c">#</span>
-<span class="c"># sprintf(buf, &quot;%s-%s-%d&quot;,</span>
-<span class="c">#         netdev-&gt;name ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/04/25/wang-qia-zhong-duan-bang-ding/">read more</a></div>
     </div>	
 				
             <div class="pagination">
