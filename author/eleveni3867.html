@@ -58,6 +58,34 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/11/29/xiu-fu-zenoss321-graphs-range-bug/"><h2>修复zenoss3.2.1 graphs range bug</h2></a>
+        <div class= "well small"> 四 29 十一月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>前段时间将<strong>zenoss</strong>升级到3.2.1 (别问咱怎么使用这么老的版本,领导要求stable,
+目前zenoss只有3.2.1是最新的stable版本),然后昨天使用的时候发现了一个小小的bug,
+就是在device的graphs中, 选择range会出现性能图不更新的情况.</p>
+<p>要修复这个bug,确定<em>java</em>版本是否大于1.6</p>
+<p>我自己debian 由于没有安装java 因此我这里安装一下</p>
+<p><code>apt-get install sun-java6-jdk</code></p>
+<p>然后确认下java版本</p>
+<p><code>java -version</code></p>
+<div class="highlight"><pre><span class="n">java</span> <span class="n">version</span> “1<span class="p">.</span>6<span class="p">.</span>0<span class="n">_26</span>″
+<span class="n">Java</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> <span class="n">SE</span> <span class="n">Runtime</span> <span class="n">Environment</span> <span class="p">(</span><span class="n">build</span> 1<span class="p">.</span>6<span class="p">.</span>0<span class="n">_26</span><span class="o">-</span><span class="n">b03</span><span class="p">)</span>
+<span class="n">Java</span> <span class="n">HotSpot</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> 64<span class="o">-</span><span class="n">Bit</span> <span class="n">Server ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/11/29/xiu-fu-zenoss321-graphs-range-bug/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2012/08/24/zenossde-ssh-command/"><h2>zenoss的SSH command</h2></a>
         <div class= "well small"> 五 24 八月 2012
 

@@ -58,6 +58,39 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/08/11/tu-pian-hou-men-fen-xi/"><h2>图片后门分析</h2></a>
+        <div class= "well small"> 日 11 八月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>就在刚才, 我们服务器拦截一个用户上传的图片, 有php.hide类型的木马问题, 
+我将图片抓到本地pc上改名为xx, 然后上传到http://www.virscan.org/ 进行多病毒库扫描, 
+发现只有clamav报毒, (我本地pc用的也是它) 我先确定这家伙都是不是图片.</p>
+<div class="highlight"><pre>    <span class="n">file</span> <span class="n">xx</span><span class="p">.</span><span class="n">png</span>
+    <span class="n">xx</span><span class="p">.</span><span class="n">jpg</span><span class="p">:</span> <span class="n">JPEG</span> <span class="o">/</span><span class="n">image</span> <span class="n">data</span><span class="p">,</span> <span class="n">JFIF</span> <span class="n">standard</span> 1<span class="p">.</span>01
+</pre></div>
+
+
+<p>很好,这货还是一张图片, 再看看这个图片隐藏了啥木马,一般人都喜欢往图片的尾巴上插入内容,</p>
+<p><code>tail -n 10 xx.png</code></p>
+<p><img alt="" src="/image/DeepinScrot-2016-300x70.png" /></p>
+<p>好吧,这货看上去很无辜的样子, 但是咱很相信<strong>clamav</strong>的说 :-),  <strong>clamv</strong>既然说
+这货不干净,那么就肯定有什么奇怪的东西混进去了, 那就看看图片头部上有啥东西</p>
+<p><code>head -n 1 xx.png</code></p>
+<p><img alt="" src="/image/DeepinScrot-2239-300x19.png" /></p>
+<p>嘿嘿 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/08/11/tu-pian-hou-men-fen-xi/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2013/07/05/2345zi-dong-qian-dao-qi-bian-xie-jing-guo/"><h2>2345自动签到器编写经过</h2></a>
         <div class= "well small"> 五 05 七月 2013
 
@@ -187,43 +220,6 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p><code>apt-get install libpcre++-dev</code></p>
 <p>安装ssl库</p>
 <p><code>apt-get install libssl-dev ...</code></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/05/17/kangle-zuo-httpni-ming-dai-li/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/"><h2>Linux桌面流量监控工具</h2></a>
-        <div class= "well small"> 五 26 四月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><h2>大图show</h2>
-<p><img alt="" src="/image/1365580966.png" /></p>
-<p><a href="(https://github.com/eleveni386/netmonitor)"><strong>悬浮窗口-- 流量监视器</strong></a></p>
-<p>一个利用<strong>pcap</strong>写的流量监视工具</p>
-<h2>依赖</h2>
-<p><strong>python-pypcap</strong></p>
-<p><strong>python-dpkt</strong></p>
-<p>请自行下载安装两个包</p>
-<h2>启动</h2>
-<p>执行<code>./netmon</code> 第一次执行会要求输入密码, 之后不再需要 此次更新:</p>
-<h2>更新</h2>
-<p>2013-04-25</p>
-<p>修正UI被流量采集模块堵塞问题</p>
-<p>2013-04-10:</p>
-<p>降低cpu占用率, 由原来的12-20% 到现在的3%
-重写了流量采集代码, 结构更加合理,更易阅读
-使用圆角悬浮窗口,更加美观</p>
-<p>后续:</p>
-<p>增加进程流量限制
-增加网络进程list</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/">read more</a></div>
     </div>	
 				
             <div class="pagination">

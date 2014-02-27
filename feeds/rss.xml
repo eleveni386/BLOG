@@ -1,5 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/rss.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2014-01-01T00:00:00+08:00</updated><entry><title>Wiz for linux 2.1.0版本功能介绍</title><link href="http://eleveni386.7axu.com/posts/2014/01/01/wiz-for-linux-210ban-ben-gong-neng-jie-shao/" rel="alternate"></link><updated>2014-01-01T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-01-01:posts/2014/01/01/wiz-for-linux-210ban-ben-gong-neng-jie-shao/</id><summary type="html">&lt;h1&gt;截图&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/rss.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2014-02-27T00:00:00+08:00</updated><entry><title>记一次ssh密钥登录失败</title><link href="http://eleveni386.7axu.com/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/" rel="alternate"></link><updated>2014-02-27T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-02-27:posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/</id><summary type="html">&lt;h2&gt;环境&lt;/h2&gt;
+&lt;p&gt;我们的私钥是通过SecureCRT工具生成的. 在Debian5/6下面使用正常
+有问题的主机是Debian7 系统, 客户端是Debian6 系统
+Debian7 的ssh server版本是1.6 客户端的ssh client是1.5
+使用的ssh协议均是2&lt;/p&gt;
+&lt;h2&gt;现象&lt;/h2&gt;
+&lt;p&gt;昨天我们一台Debian7主机, 无法通过私钥登录. 每次登录提示需要输入密码. 这是我们第一次使用Debian7的系统, 以往的主机都是Debian5/6的系统&lt;/p&gt;
+&lt;p&gt;开启ssh的debug参数, 观看登录过程,发现如下&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;debug2&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;key_type_from_name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;unknown&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;-----BEGIN&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;debug2&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;key_type_from_name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;unknown&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;-----END&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;debug3&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;key_read&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;missing&lt;/span&gt; &lt;span class="n"&gt;whitespace&lt;/span&gt;
+&lt;span class="n"&gt;debug3&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;key_read&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;missing&lt;/span&gt; &lt;span class="n"&gt;whitespace&lt;/span&gt;
+&lt;span class="n"&gt;debug3&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;key_read&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;missing&lt;/span&gt; &lt;span class="n"&gt;whitespace&lt;/span&gt;
+&lt;span class="o"&gt;......&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;排查&lt;/h2&gt;
+&lt;p&gt;一开始看到这样的信息, 我以为是私钥格式不正确. 因为网络上一直流传着SecureCRT和Putty之类的工具,产生的密钥和ssh-keygen产生的 格式上有区别
+不过从我们以往的经验上来看(Debian5/6) , SecureCRT生成的可以正常使用, &lt;/p&gt;
+&lt;p&gt;虽然有这样的疑问 不过还是重新生成了一份密钥, 继续登录, 还是提示一样的问题, 我最后在Debian7 上 使用ssh-keygen生成一份密钥, 还是提示一样的问题
+我突然醒悟过来, ssh兼容ssh1的协议. 于是ssh在登录的时候 会协商使用什么样的协议, 上面的提示问题应该是密钥格式不符合ssh1, 所以本次问题应该不是出
+在私钥格式不对的问题, &lt;/p&gt;
+&lt;p&gt;于是我去对比 ssh-keygen 产生的密钥 和 SecureCRT产生的有啥不同. 结果我发现 私钥里面写着root
+我去.. 我的私钥是给cache用户用的, 私钥里面怎么会有root呢? &lt;/p&gt;
+&lt;p&gt;小心翼翼的瞄了一眼 我的shell 提示符, &lt;strong&gt;#&lt;/strong&gt; 果果的出现了.... &lt;/p&gt;
+&lt;p&gt;好吧, 为了排查方便我切换到了root下, 我却不记得了. &lt;/p&gt;
+&lt;p&gt;切换到cache用户下 再次执行ssh-keygen &lt;/p&gt;
+&lt;p&gt;在使用ssh-keygen的时候 有一个提示引起了我的注意 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;open&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cache&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;id_rsa&lt;/span&gt; &lt;span class="n"&gt;failed&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Permission&lt;/span&gt; &lt;span class="n"&gt;denied&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;为什么会Permission denied ? &lt;/p&gt;
+&lt;p&gt;果断查看家目录下的 .ssh 目录权限.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;drw&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt; 2 &lt;span class="n"&gt;cache&lt;/span&gt; &lt;span class="n"&gt;cache&lt;/span&gt; 4096 &lt;span class="n"&gt;Feb&lt;/span&gt; 27 11&lt;span class="p"&gt;:&lt;/span&gt;03 &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;我去, 说好的&lt;strong&gt;x&lt;/strong&gt;权限呢? &lt;/p&gt;
+&lt;p&gt;给.ssh加上&lt;strong&gt;x&lt;/strong&gt;权限之后, 再次登录. 果断成功了... &lt;/p&gt;
+&lt;h2&gt;结束&lt;/h2&gt;
+&lt;p&gt;事后想想, 应该是用户在登录的时候, ssh要对用户提交的私钥做验证, 但是却无法进入.ssh目录, 就当作用户的公钥不存在, 于是要求用户使用密码方式&lt;/p&gt;</summary><category term="ssh"></category><category term="运维"></category><category term="密钥"></category><category term="Linux"></category></entry><entry><title>Wiz for linux 2.1.0版本功能介绍</title><link href="http://eleveni386.7axu.com/posts/2014/01/01/wiz-for-linux-210ban-ben-gong-neng-jie-shao/" rel="alternate"></link><updated>2014-01-01T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-01-01:posts/2014/01/01/wiz-for-linux-210ban-ben-gong-neng-jie-shao/</id><summary type="html">&lt;h1&gt;截图&lt;/h1&gt;
 &lt;p&gt;&lt;img alt="" src="/image/wiz.png" /&gt;&lt;/p&gt;
 &lt;h1&gt;介绍&lt;/h1&gt;
 &lt;p&gt;&lt;code&gt;wiz笔记&lt;/code&gt; 一款知识管理软件, 界面效果如上图. &lt;/p&gt;

@@ -58,6 +58,43 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/"><h2>加密你的HTTP请求(穿墙)</h2></a>
+        <div class= "well small"> 五 17 五月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>之前用<strong>kangle</strong>在香港的vps上做了一个http代理
+  但是在使用的时候发现,访问国外的一些站点 还是无法正常访问,但是在vps上面访问正常,
+而且kangle日志里面看见国外那些站点返回的状态码也是200,说明vps请求那些站点是没问题的
+那么问题就是发生在客户端跟vps之间了,因为这一段的数据是明文的HTTP请求, 很容易被上层运营商过滤掉
+那么我们就将客户端跟vps之间这段http过程加密就好了,</p>
+<h2>Stunnel</h2>
+<blockquote>
+<p>Stunnel 是一种程序，使程序员和系统管理员可以很轻松地对任意 TCP 会话加密。
+您可以很轻松地在客户机和服务器上启用 SSL ― 而且这样做不会影响程序源代码。
+Stunnel 服务器主要执行两个功能：
+一，首先，接收未加密的数据流，进行 SSL 加密，然后将其通过网络发送；
+二，对已进行 SSL 加密的数据流进行解密，并将其通过网络发送给另一个程序
+（该程序通常驻留在同一机器上，以避免本地网络上的窥探攻击）。</p>
+</blockquote>
+<p><a href="https://www.stunnel.org/downloads.html">下载地址</a></p>
+<h2>安装注意</h2>
+<p>在make install 的时候会要求你输入一些信息,用来生成证书, 按照提示输入即可</p>
+<h2>配置</h2>
+<h3>这里仅作为proxy</h3>
+<div class="highlight"><pre><span class="n">syslog</span> <span class="p">=</span> <span class="n">yes</span>  #使用 ...</pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2012/12/14/jie-tu-zi-dong-fen-xiang-jiao-ben/"><h2>截图自动分享脚本</h2></a>
         <div class= "well small"> 五 14 十二月 2012
 
@@ -164,43 +201,6 @@ copy到本地, 就是天气查询, 和翻译</p>
 <p><code>tq 广州</code></p>
 <p>翻译 , 默认是英汉翻译,需要其它翻译,比如汉-&gt;英, 汉-&gt;日,日-&gt;汉,</p>
 <p><code>fanyi eleven ...</code></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/29/liang-ge-xiao-jiao-ben-tian-qi-cha-xun-he-zhong-ying-ri-fan-yi/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/"><h2>Linux桌面流量监控工具</h2></a>
-        <div class= "well small"> 五 26 四月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><h2>大图show</h2>
-<p><img alt="" src="/image/1365580966.png" /></p>
-<p><a href="(https://github.com/eleveni386/netmonitor)"><strong>悬浮窗口-- 流量监视器</strong></a></p>
-<p>一个利用<strong>pcap</strong>写的流量监视工具</p>
-<h2>依赖</h2>
-<p><strong>python-pypcap</strong></p>
-<p><strong>python-dpkt</strong></p>
-<p>请自行下载安装两个包</p>
-<h2>启动</h2>
-<p>执行<code>./netmon</code> 第一次执行会要求输入密码, 之后不再需要 此次更新:</p>
-<h2>更新</h2>
-<p>2013-04-25</p>
-<p>修正UI被流量采集模块堵塞问题</p>
-<p>2013-04-10:</p>
-<p>降低cpu占用率, 由原来的12-20% 到现在的3%
-重写了流量采集代码, 结构更加合理,更易阅读
-使用圆角悬浮窗口,更加美观</p>
-<p>后续:</p>
-<p>增加进程流量限制
-增加网络进程list</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/">read more</a></div>
     </div>	
 				
             <div class="pagination">

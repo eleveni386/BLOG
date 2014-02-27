@@ -58,6 +58,43 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/"><h2>Linux桌面流量监控工具</h2></a>
+        <div class= "well small"> 五 26 四月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>大图show</h2>
+<p><img alt="" src="/image/1365580966.png" /></p>
+<p><a href="(https://github.com/eleveni386/netmonitor)"><strong>悬浮窗口-- 流量监视器</strong></a></p>
+<p>一个利用<strong>pcap</strong>写的流量监视工具</p>
+<h2>依赖</h2>
+<p><strong>python-pypcap</strong></p>
+<p><strong>python-dpkt</strong></p>
+<p>请自行下载安装两个包</p>
+<h2>启动</h2>
+<p>执行<code>./netmon</code> 第一次执行会要求输入密码, 之后不再需要 此次更新:</p>
+<h2>更新</h2>
+<p>2013-04-25</p>
+<p>修正UI被流量采集模块堵塞问题</p>
+<p>2013-04-10:</p>
+<p>降低cpu占用率, 由原来的12-20% 到现在的3%
+重写了流量采集代码, 结构更加合理,更易阅读
+使用圆角悬浮窗口,更加美观</p>
+<p>后续:</p>
+<p>增加进程流量限制
+增加网络进程list</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2013/04/25/wang-qia-zhong-duan-bang-ding/"><h2>网卡中断绑定</h2></a>
         <div class= "well small"> 四 25 四月 2013
 
@@ -190,37 +227,6 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 好吧,貌似我们忘记了<em>文件关联</em>的事情了..</p>
 <p>下面让我们建立<em>doc</em>,<em>xls</em>文件关联到<strong>wps</strong>和<strong>et</strong>这两个wps程序上</p>
 <p><a href="(http://linux-wiki.cn/wiki/zh-hans/%E6%96%87%E4%BB%B6%E5%85%B3%E8%81%94)">文件关联 ...</a></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/02/28/wps-for-linux-bate1-shi-yong/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/12/14/jie-tu-zi-dong-fen-xiang-jiao-ben/"><h2>截图自动分享脚本</h2></a>
-        <div class= "well small"> 五 14 十二月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
-<span class="nb">time</span><span class="o">=</span><span class="sb">`</span>date +%H:%M:%S<span class="sb">`</span>
-<span class="nv">msg</span><span class="o">=</span><span class="sb">`</span>scrot -s <span class="s2">&quot;$time.png&quot;</span> -e <span class="s2">&quot;curl -sF &#39;name=@$time.png&#39; http://eleveni386.7axu.com/Image/&quot;</span><span class="sb">`</span>
-gxmessage -center -title <span class="s2">&quot;eleveni386.7axu.com&quot;</span> <span class="nv">$msg</span>
-rm -rf <span class="nv">$time</span>.png
-</pre></div>
-</td></tr></table>
-
-<p>将这个脚本绑定到任意快捷键，我将脚本保存为<em>scrot.sh</em> 并 绑定到了<code>A+s</code>快捷键上</p>
-<p>当我需要与朋友分享某图的时候， 直接按下 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/12/14/jie-tu-zi-dong-fen-xiang-jiao-ben/">read more</a></div>
     </div>	
 				
             <div class="pagination">

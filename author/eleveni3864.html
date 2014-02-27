@@ -58,6 +58,43 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/"><h2>Linux桌面流量监控工具</h2></a>
+        <div class= "well small"> 五 26 四月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>大图show</h2>
+<p><img alt="" src="/image/1365580966.png" /></p>
+<p><a href="(https://github.com/eleveni386/netmonitor)"><strong>悬浮窗口-- 流量监视器</strong></a></p>
+<p>一个利用<strong>pcap</strong>写的流量监视工具</p>
+<h2>依赖</h2>
+<p><strong>python-pypcap</strong></p>
+<p><strong>python-dpkt</strong></p>
+<p>请自行下载安装两个包</p>
+<h2>启动</h2>
+<p>执行<code>./netmon</code> 第一次执行会要求输入密码, 之后不再需要 此次更新:</p>
+<h2>更新</h2>
+<p>2013-04-25</p>
+<p>修正UI被流量采集模块堵塞问题</p>
+<p>2013-04-10:</p>
+<p>降低cpu占用率, 由原来的12-20% 到现在的3%
+重写了流量采集代码, 结构更加合理,更易阅读
+使用圆角悬浮窗口,更加美观</p>
+<p>后续:</p>
+<p>增加进程流量限制
+增加网络进程list</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2013/12/10/markdownbian-ji-qi/"><h2>markdown编辑器</h2></a>
         <div class= "well small"> 二 10 十二月 2013
 
@@ -168,37 +205,6 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p>我们可以利用<code>\r</code>, 转义符<code>\r</code>就可以把光标移动到行首而不换行，转义符<code>\n</code>就把光
 标移动到行首并且换行。 这里用一个例子来说明,这是我脚本中的一个函数,
 用于接收<code>paramiko.sftp_client.sftp</code> 中的put方法的callback数据 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/10/python-jin-du-tiao/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/06/03/pythondai-cookiesfang-wen/"><h2>python带cookies访问</h2></a>
-        <div class= "well small"> 一 03 六月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>本人是运维一枚,使用次数最多的就是Vandyke的<a href="https://secure.vandyke.com/cgi-bin/download_form.php?pid=securecrt_ubuntu1264_deb_71&amp;st=4&amp;">SecureCRT</a>.
-在win系统下面有各种大牛
-破解的scrt版本,但是在咱debian下面 就只能使用官方正版的,但是因为scrt是收费的,
-而且还死贵死贵($99), 咱这种中下农,搞不起这货, 只能使用它的免费30天,时间一到,
-要么就是删除它的认证文件,要么就是卸载原有的,然后重新安装, 非常麻烦…</p>
-<p>于是就想着能不能通过cron自动下载安装, 于是就有了第一版本的<a href="(https://code.google.com/p/sharepythoncode/downloads/detail?name=Vandyke_update.py&amp;can=2&amp;q=)">Vandyke_update.py</a> 脚本,
-通过抓包分析到Vandyke 的post数据,通过urllib2提交,并下载, 跑了一年都挺好的, </p>
-<p>但是今天有同事(ubuntu)使用我的脚本自动更新的时候,发现无效了,返回信息提示”Bad product id”,
-然后通过chrome的开发者工具跟踪了一下,发现post数据的字段改变了. 不再提供”sid”这个字段
-(每次Vandyke用户登录之后都会在cookie中分配这个这个id,是不变的),只好重新分析它post内容,</p>
-<p>看见它post内容变的非常简单,只有两个字段:</p>
-<ol>
-<li>pid(product id)</li>
-<li>status ...</li></ol> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/06/03/pythondai-cookiesfang-wen/">read more</a></div>
     </div>	
 				
             <div class="pagination">

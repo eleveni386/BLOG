@@ -58,6 +58,37 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/06/03/pythondai-cookiesfang-wen/"><h2>python带cookies访问</h2></a>
+        <div class= "well small"> 一 03 六月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>本人是运维一枚,使用次数最多的就是Vandyke的<a href="https://secure.vandyke.com/cgi-bin/download_form.php?pid=securecrt_ubuntu1264_deb_71&amp;st=4&amp;">SecureCRT</a>.
+在win系统下面有各种大牛
+破解的scrt版本,但是在咱debian下面 就只能使用官方正版的,但是因为scrt是收费的,
+而且还死贵死贵($99), 咱这种中下农,搞不起这货, 只能使用它的免费30天,时间一到,
+要么就是删除它的认证文件,要么就是卸载原有的,然后重新安装, 非常麻烦…</p>
+<p>于是就想着能不能通过cron自动下载安装, 于是就有了第一版本的<a href="(https://code.google.com/p/sharepythoncode/downloads/detail?name=Vandyke_update.py&amp;can=2&amp;q=)">Vandyke_update.py</a> 脚本,
+通过抓包分析到Vandyke 的post数据,通过urllib2提交,并下载, 跑了一年都挺好的, </p>
+<p>但是今天有同事(ubuntu)使用我的脚本自动更新的时候,发现无效了,返回信息提示”Bad product id”,
+然后通过chrome的开发者工具跟踪了一下,发现post数据的字段改变了. 不再提供”sid”这个字段
+(每次Vandyke用户登录之后都会在cookie中分配这个这个id,是不变的),只好重新分析它post内容,</p>
+<p>看见它post内容变的非常简单,只有两个字段:</p>
+<ol>
+<li>pid(product id)</li>
+<li>status ...</li></ol> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/06/03/pythondai-cookiesfang-wen/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2013/10/13/squid-url-tiao-zhuan/"><h2>Squid Url 跳转</h2></a>
         <div class= "well small"> 日 13 十月 2013
 
@@ -173,32 +204,6 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p><code>head -n 1 xx.png</code></p>
 <p><img alt="" src="/image/DeepinScrot-2239-300x19.png" /></p>
 <p>嘿嘿 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/08/11/tu-pian-hou-men-fen-xi/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/08/13/vimzhong-wen-luan-ma/"><h2>vim中文乱码</h2></a>
-        <div class= "well small"> 二 13 八月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>今天 用本地客户端登录服务器编辑文件时, 出现中文乱码 表现为 某些字符正常显示, 某些又显示乱码, 有图有真相</p>
-<p><img alt="" src="/image/DeepinScrot-3437-300x30.png" /></p>
-<p>如图所示, 部分能显示出来,部分无法显示出来</p>
-<p>用SecureCRT登录时,没有任何问题, 一开始以为是自己本地xfce-terminal字符编码问题,
-结果更换了几个终端都是同样的结果,gnome-terminal, xterm 都尝试过.. 看来问题还是服务器本身</p>
-<p>在服务器上输入<code>locale</code> </p>
-<div class="highlight"><pre><span class="n">locale</span><span class="o">:</span> <span class="n">Cannot</span> <span class="kd">set</span> <span class="n">LC_CTYPE</span> <span class="n">to</span> <span class="k">default</span> <span class="n">locale</span><span class="o">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
-<span class="n">locale</span><span class="o">:</span> <span class="n">Cannot</span> <span class="kd">set</span> <span class="n">LC_MESSAGES</span> <span class="n">to</span> <span class="k">default</span> <span class="n">locale</span><span class="o">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
-<span class="n">locale</span><span class="o">:</span> <span class="n">Cannot</span> <span class="kd">set</span> <span class="n">LC_ALL</span> <span class="n">to</span> <span class="k">default ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/08/13/vimzhong-wen-luan-ma/">read more</a></div>
     </div>	
 				
             <div class="pagination">

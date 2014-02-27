@@ -58,6 +58,37 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/12/14/jie-tu-zi-dong-fen-xiang-jiao-ben/"><h2>截图自动分享脚本</h2></a>
+        <div class= "well small"> 五 14 十二月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<span class="nb">time</span><span class="o">=</span><span class="sb">`</span>date +%H:%M:%S<span class="sb">`</span>
+<span class="nv">msg</span><span class="o">=</span><span class="sb">`</span>scrot -s <span class="s2">&quot;$time.png&quot;</span> -e <span class="s2">&quot;curl -sF &#39;name=@$time.png&#39; http://eleveni386.7axu.com/Image/&quot;</span><span class="sb">`</span>
+gxmessage -center -title <span class="s2">&quot;eleveni386.7axu.com&quot;</span> <span class="nv">$msg</span>
+rm -rf <span class="nv">$time</span>.png
+</pre></div>
+</td></tr></table>
+
+<p>将这个脚本绑定到任意快捷键，我将脚本保存为<em>scrot.sh</em> 并 绑定到了<code>A+s</code>快捷键上</p>
+<p>当我需要与朋友分享某图的时候， 直接按下 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/12/14/jie-tu-zi-dong-fen-xiang-jiao-ben/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2012/11/29/xiu-fu-zenoss321-graphs-range-bug/"><h2>修复zenoss3.2.1 graphs range bug</h2></a>
         <div class= "well small"> 四 29 十一月 2012
 
@@ -156,26 +187,6 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p>A nginx 跑在 eth0 192.168.2.12 上</p>
 <p>B nginx 跑在 eth0 192.168.2.11 上</p>
 <p>在A ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/10/18/nginx-shuang-ji-re-bei-shi-zhan/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/10/16/keepalivedyuan-li-yu-shi-zhan-jing-jiang/"><h2>Keepalived原理与实战精讲</h2></a>
-        <div class= "well small"> 二 16 十月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p><strong>此为转贴</strong>
-<a href="http://bbs.ywlm.net/thread-845-1-1.html">原文地址</a></p>
-<p><img alt="" src="/image/Keepalived.png" /></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/10/16/keepalivedyuan-li-yu-shi-zhan-jing-jiang/">read more</a></div>
     </div>	
 				
             <div class="pagination">
