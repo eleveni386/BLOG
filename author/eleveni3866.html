@@ -58,6 +58,39 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/08/11/tu-pian-hou-men-fen-xi/"><h2>图片后门分析</h2></a>
+        <div class= "well small"> 日 11 八月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>就在刚才, 我们服务器拦截一个用户上传的图片, 有php.hide类型的木马问题, 
+我将图片抓到本地pc上改名为xx, 然后上传到http://www.virscan.org/ 进行多病毒库扫描, 
+发现只有clamav报毒, (我本地pc用的也是它) 我先确定这家伙都是不是图片.</p>
+<div class="highlight"><pre>    <span class="n">file</span> <span class="n">xx</span><span class="p">.</span><span class="n">png</span>
+    <span class="n">xx</span><span class="p">.</span><span class="n">jpg</span><span class="p">:</span> <span class="n">JPEG</span> <span class="o">/</span><span class="n">image</span> <span class="n">data</span><span class="p">,</span> <span class="n">JFIF</span> <span class="n">standard</span> 1<span class="p">.</span>01
+</pre></div>
+
+
+<p>很好,这货还是一张图片, 再看看这个图片隐藏了啥木马,一般人都喜欢往图片的尾巴上插入内容,</p>
+<p><code>tail -n 10 xx.png</code></p>
+<p><img alt="" src="/image/DeepinScrot-2016-300x70.png" /></p>
+<p>好吧,这货看上去很无辜的样子, 但是咱很相信<strong>clamav</strong>的说 :-),  <strong>clamv</strong>既然说
+这货不干净,那么就肯定有什么奇怪的东西混进去了, 那就看看图片头部上有啥东西</p>
+<p><code>head -n 1 xx.png</code></p>
+<p><img alt="" src="/image/DeepinScrot-2239-300x19.png" /></p>
+<p>嘿嘿 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/08/11/tu-pian-hou-men-fen-xi/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2013/08/13/vimzhong-wen-luan-ma/"><h2>vim中文乱码</h2></a>
         <div class= "well small"> 二 13 八月 2013
 
@@ -171,48 +204,6 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 markdown语法支持插件 咱就足矣 :)</p>
 <p>另外一个插件 则是网页截取. 参考<a href="http://blog.wiz.cn/wiz-manual-save-web-page.html">为知博客</a></p>
 <p>得知chrome下有一款网页截取的插件. 遂安装之 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2014/01/01/wiz-for-linux-210ban-ben-gong-neng-jie-shao/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/02/28/wps-for-linux-bate1-shi-yong/"><h2>wps for linux Bate1 试用</h2></a>
-        <div class= "well small"> 四 28 二月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>虽然很早就知道了<strong>wps for linux</strong>的测试版本出来了,不过一直懒的去下载,直至今天
-公司要求所有的windows系统同事卸载有点软的office而安装<strong>wps</strong>,我才突然想到,
-我也该换换了,咱用的<strong>openoffice</strong>实在拿不出手了..</p>
-<p>于是到wps的官方下载了测试版本回来, 不需要安装, 解压即可以使用,里面有三个东西
-是需要用到的,</p>
-<ol>
-<li>
-<p>wps/wps word文档</p>
-</li>
-<li>
-<p>wps/et excel</p>
-</li>
-<li>
-<p>wps/wpp 幻灯片</p>
-</li>
-</ol>
-<p>好了,直接打开看看效果</p>
-<p><img alt="" src="/image/1362046109.png" /></p>
-<p>看上去好像不错,再来张excel的</p>
-<p><img alt="" src="/image/1362046180.png" /></p>
-<p>也有点样子,现在可以将它们投入到工作当中了..</p>
-<p>于是找了一个doc文档双击打开… 尼玛,怎么还是openoffice打开的哇.. 
-好吧,貌似我们忘记了<em>文件关联</em>的事情了..</p>
-<p>下面让我们建立<em>doc</em>,<em>xls</em>文件关联到<strong>wps</strong>和<strong>et</strong>这两个wps程序上</p>
-<p><a href="(http://linux-wiki.cn/wiki/zh-hans/%E6%96%87%E4%BB%B6%E5%85%B3%E8%81%94)">文件关联 ...</a></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/02/28/wps-for-linux-bate1-shi-yong/">read more</a></div>
     </div>	
 				
             <div class="pagination">

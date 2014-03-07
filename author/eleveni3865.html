@@ -116,6 +116,41 @@ http://www.xxx.com/mobile/xxx/mobile.html?ref=www.xxi.com/</p>
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2014/03/07/squidzheng-xiang-dai-li/"><h2>squid正向代理</h2></a>
+        <div class= "well small"> 五 07 三月 2014
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>匿名代理</h2>
+<p>squid 要做到匿名代理 只需要添加</p>
+<div class="highlight"><pre><span class="n">header_access</span> <span class="n">Via</span> <span class="n">deny</span> <span class="n">all</span> 
+<span class="n">header_access</span>  <span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span> <span class="n">deny</span> <span class="n">all</span>
+</pre></div>
+
+
+<p>即可</p>
+<h2>代理验证</h2>
+<p>谁都不想自己的代理服务器被他人随意拿来使用.. 于是 我们就需要给代理服务器加上密码</p>
+<div class="highlight"><pre><span class="n">auth_param</span> <span class="n">basic</span> <span class="n">program</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">squid2</span><span class="p">.</span>7<span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ncsa_auth</span>
+<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">children</span> 1
+<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">realm</span> &quot;<span class="n">Welcome</span> <span class="n">to</span> <span class="n">eleven</span><span class="o">&#39;</span><span class="n">s</span> <span class="n">proxy</span> <span class="n">server</span>&quot;
+<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">credentialsttl</span> 12 <span class="n">hours</span>
+</pre></div>
+
+
+<p>这里的<strong>ncsa_auth</strong> 是自己写的shell脚本 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2014/03/07/squidzheng-xiang-dai-li/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/"><h2>sshpass 非交互ssh密码验证</h2></a>
         <div class= "well small"> 日 09 九月 2012
 
@@ -171,39 +206,6 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p><code>:setw synchronize-panes</code></p>
 <p>这是一个开关,需要的时候键入, 不需要的时候键入同样的指令,即可关闭.</p>
 <p>友情提示 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/08/23/tmuxduo-paneltong-bu/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/08/11/tu-pian-hou-men-fen-xi/"><h2>图片后门分析</h2></a>
-        <div class= "well small"> 日 11 八月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>就在刚才, 我们服务器拦截一个用户上传的图片, 有php.hide类型的木马问题, 
-我将图片抓到本地pc上改名为xx, 然后上传到http://www.virscan.org/ 进行多病毒库扫描, 
-发现只有clamav报毒, (我本地pc用的也是它) 我先确定这家伙都是不是图片.</p>
-<div class="highlight"><pre>    <span class="n">file</span> <span class="n">xx</span><span class="p">.</span><span class="n">png</span>
-    <span class="n">xx</span><span class="p">.</span><span class="n">jpg</span><span class="p">:</span> <span class="n">JPEG</span> <span class="o">/</span><span class="n">image</span> <span class="n">data</span><span class="p">,</span> <span class="n">JFIF</span> <span class="n">standard</span> 1<span class="p">.</span>01
-</pre></div>
-
-
-<p>很好,这货还是一张图片, 再看看这个图片隐藏了啥木马,一般人都喜欢往图片的尾巴上插入内容,</p>
-<p><code>tail -n 10 xx.png</code></p>
-<p><img alt="" src="/image/DeepinScrot-2016-300x70.png" /></p>
-<p>好吧,这货看上去很无辜的样子, 但是咱很相信<strong>clamav</strong>的说 :-),  <strong>clamv</strong>既然说
-这货不干净,那么就肯定有什么奇怪的东西混进去了, 那就看看图片头部上有啥东西</p>
-<p><code>head -n 1 xx.png</code></p>
-<p><img alt="" src="/image/DeepinScrot-2239-300x19.png" /></p>
-<p>嘿嘿 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/08/11/tu-pian-hou-men-fen-xi/">read more</a></div>
     </div>	
 				
             <div class="pagination">

@@ -1,5 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/linuxyun-wei.atom.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2014-02-27T00:00:00+08:00</updated><entry><title>记一次ssh密钥登录失败</title><link href="http://eleveni386.7axu.com/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/" rel="alternate"></link><updated>2014-02-27T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-02-27:posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/</id><summary type="html">&lt;h2&gt;环境&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/linuxyun-wei.atom.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2014-03-07T00:00:00+08:00</updated><entry><title>squid正向代理</title><link href="http://eleveni386.7axu.com/posts/2014/03/07/squidzheng-xiang-dai-li/" rel="alternate"></link><updated>2014-03-07T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-03-07:posts/2014/03/07/squidzheng-xiang-dai-li/</id><summary type="html">&lt;h2&gt;匿名代理&lt;/h2&gt;
+&lt;p&gt;squid 要做到匿名代理 只需要添加&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;header_access&lt;/span&gt; &lt;span class="n"&gt;Via&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt; 
+&lt;span class="n"&gt;header_access&lt;/span&gt;  &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Forwarded&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;For&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;即可&lt;/p&gt;
+&lt;h2&gt;代理验证&lt;/h2&gt;
+&lt;p&gt;谁都不想自己的代理服务器被他人随意拿来使用.. 于是 我们就需要给代理服务器加上密码&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;auth_param&lt;/span&gt; &lt;span class="n"&gt;basic&lt;/span&gt; &lt;span class="n"&gt;program&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;eleven&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;squid2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ncsa_auth&lt;/span&gt;
+&lt;span class="n"&gt;auth_param&lt;/span&gt; &lt;span class="n"&gt;basic&lt;/span&gt; &lt;span class="n"&gt;children&lt;/span&gt; 1
+&lt;span class="n"&gt;auth_param&lt;/span&gt; &lt;span class="n"&gt;basic&lt;/span&gt; &lt;span class="n"&gt;realm&lt;/span&gt; &amp;quot;&lt;span class="n"&gt;Welcome&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;eleven&lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;proxy&lt;/span&gt; &lt;span class="n"&gt;server&lt;/span&gt;&amp;quot;
+&lt;span class="n"&gt;auth_param&lt;/span&gt; &lt;span class="n"&gt;basic&lt;/span&gt; &lt;span class="n"&gt;credentialsttl&lt;/span&gt; 12 &lt;span class="n"&gt;hours&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这里的&lt;strong&gt;ncsa_auth&lt;/strong&gt; 是自己写的shell脚本, 我的squid版本是2.7, 没有自带ncsa_auth程序&lt;/p&gt;
+&lt;h2&gt;一个简单的代理验证脚本&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;do&lt;/span&gt;
+    &lt;span class="n"&gt;read&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;
+    &lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;`&lt;span class="n"&gt;echo&lt;/span&gt; $&lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;awk&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;{print $1}&amp;#39;&lt;/span&gt;`&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;`&lt;span class="n"&gt;echo&lt;/span&gt; $&lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;awk&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;{print $2}&amp;#39;&lt;/span&gt;`&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &amp;quot;&lt;span class="n"&gt;x&lt;/span&gt;$&lt;span class="n"&gt;username&lt;/span&gt;&amp;quot; &lt;span class="o"&gt;==&lt;/span&gt; &amp;quot;&lt;span class="n"&gt;xeleven&lt;/span&gt;&amp;quot; &lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;then&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &amp;quot;&lt;span class="n"&gt;x&lt;/span&gt;$&lt;span class="n"&gt;password&lt;/span&gt;&amp;quot; &lt;span class="o"&gt;==&lt;/span&gt; &amp;quot;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;*****&lt;/span&gt;&amp;quot; &lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="n"&gt;then&lt;/span&gt;
+            &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;OK&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt;
+            &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;Err&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;fi&lt;/span&gt;  
+    &lt;span class="k"&gt;else&lt;/span&gt;
+        &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;Err&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;fi&lt;/span&gt;  
+&lt;span class="n"&gt;done&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这个脚本有点类似之前的&lt;strong&gt;squid url跳转&lt;/strong&gt;&lt;a href="http://eleveni386.7axu.com/posts/2013/10/13/squid-url-tiao-zhuan/"&gt;!&lt;/a&gt;
+使用的脚本. 都是脚本从squid处接收需要处理的信息, 脚本处理完毕之后返回给squid结果&lt;/p&gt;
+&lt;h2&gt;squid正向代理, 搭建 http 代理服务器&lt;/h2&gt;
+&lt;p&gt;以下是一份完整的squid正向代理的配置文件&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;auth_param&lt;/span&gt; &lt;span class="n"&gt;basic&lt;/span&gt; &lt;span class="n"&gt;program&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;eleven&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;squid2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ncsa_auth&lt;/span&gt;
+&lt;span class="n"&gt;auth_param&lt;/span&gt; &lt;span class="n"&gt;basic&lt;/span&gt; &lt;span class="n"&gt;children&lt;/span&gt; 1
+&lt;span class="n"&gt;auth_param&lt;/span&gt; &lt;span class="n"&gt;basic&lt;/span&gt; &lt;span class="n"&gt;realm&lt;/span&gt; &amp;quot;&lt;span class="n"&gt;Welcome&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;eleven&lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;proxy&lt;/span&gt; &lt;span class="n"&gt;server&lt;/span&gt;&amp;quot;
+&lt;span class="n"&gt;auth_param&lt;/span&gt; &lt;span class="n"&gt;basic&lt;/span&gt; &lt;span class="n"&gt;credentialsttl&lt;/span&gt; 12 &lt;span class="n"&gt;hours&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;-
+    acl all src all 
+    acl squid_user proxy_auth REQUIRED
+    acl manager proto cache_object
+    acl localhost src 127.0.0.1/32&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;SSL_ports&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; 443 
+&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;Safe_ports&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; 80      # &lt;span class="n"&gt;http&lt;/span&gt;
+&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;Safe_ports&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; 21      # &lt;span class="n"&gt;ftp&lt;/span&gt;
+&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;Safe_ports&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; 443     # &lt;span class="n"&gt;https&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;-
+    acl CONNECT method CONNECT
+-
+    http_access allow manager localhost
+    http_access deny manager
+    http_access deny !Safe_ports
+-
+    http_access deny CONNECT !SSL_ports
+    http_access allow localhost
+-
+    # 允许密码用户登录
+    http_access allow squid_user&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# 拒绝其他所有请求&lt;/span&gt;
+&lt;span class="n"&gt;http_access&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="nb"&gt;all&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;-&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Squid的监听端口&lt;/span&gt;
+&lt;span class="n"&gt;http_port&lt;/span&gt; &lt;span class="o"&gt;****&lt;/span&gt; &lt;span class="c"&gt;# 不准暴力猜解我的密码. 哼&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;-
+    # DNS 域名服务器配置
+    dns_nameservers 8.8.8.8
+-
+    # 启动squid2.7的用户
+    cache_effective_user eleven
+    cache_effective_group eleven&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# squid2.7访问日志; 调试时开启&lt;/span&gt;
+&lt;span class="c"&gt;#cache_access_log /var/log/squid/access.log&lt;/span&gt;
+&lt;span class="c"&gt;#cache_log /var/log/squid/cache.log&lt;/span&gt;
+
+&lt;span class="c"&gt;# squid2.7挂掉后，core文件位置&lt;/span&gt;
+&lt;span class="n"&gt;coredump_dir&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;eleven&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;squid2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="o"&gt;/&lt;/span&gt;
+
+&lt;span class="c"&gt;# 高匿&lt;/span&gt;
+&lt;span class="n"&gt;header_access&lt;/span&gt; &lt;span class="n"&gt;Via&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="nb"&gt;all&lt;/span&gt;
+&lt;span class="n"&gt;header_access&lt;/span&gt;  &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Forwarded&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;For&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="nb"&gt;all&lt;/span&gt;
+
+&lt;span class="c"&gt;# 出现cgi-bin或者？的URL不予缓存&lt;/span&gt;
+&lt;span class="n"&gt;hierarchy_stoplist&lt;/span&gt; &lt;span class="n"&gt;cgi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt; ? &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;
+&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;QUERY&lt;/span&gt; &lt;span class="n"&gt;urlpath_regex&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;cgi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;^&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;\&lt;/span&gt;? &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;asp&lt;/span&gt; &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt; &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jsp&lt;/span&gt; &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cgi&lt;/span&gt;
+&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;download&lt;/span&gt; &lt;span class="n"&gt;urlpath_regex&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;avi&lt;/span&gt;$ &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rmvb&lt;/span&gt;$ &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rm&lt;/span&gt;$ &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ra&lt;/span&gt;$ &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ram&lt;/span&gt;$ &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mpe&lt;/span&gt;$ &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;smi&lt;/span&gt;$
+&lt;span class="n"&gt;cache&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;QUERY&lt;/span&gt;
+&lt;span class="n"&gt;cache&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;download&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;-
+    # 磁盘缓存目录
+    cache_dir ufs /data/home/eleven/squid2.7/cdir 500 16 256
+-
+    # 内存缓冲大小
+    cache_mem 2M&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# 刷新缓存规则&lt;/span&gt;
+&lt;span class="n"&gt;refresh_pattern&lt;/span&gt; ^&lt;span class="nb"&gt;ftp&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;       1440    20&lt;span class="c"&gt;% 10080&lt;/span&gt;
+&lt;span class="n"&gt;refresh_pattern&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cgi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/|\&lt;/span&gt;?&lt;span class="p"&gt;)&lt;/span&gt; 0 0&lt;span class="c"&gt;%  0&lt;/span&gt;
+&lt;span class="n"&gt;refresh_pattern&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;       0   20&lt;span class="c"&gt;% 4320&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;加密本地至squid的请求&lt;/h2&gt;
+&lt;p&gt;前面的文章里面讲解过了使用&lt;strong&gt;Stunnel&lt;/strong&gt;做加密解密, 本地使用&lt;strong&gt;socat&lt;/strong&gt;做数据转发, 采用
+&lt;strong&gt;openssl&lt;/strong&gt; 加密本地http数据,&lt;/p&gt;
+&lt;p&gt;参考文章&lt;a href="http://eleveni386.7axu.com/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/"&gt;!&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;结束&lt;/h2&gt;
+&lt;p&gt;至此, 一个全新的支持https访问的 http代理就搭建成功了. 第一次访问会要求你输入帐号和密码
+相信看过本人此前的文章 都知道我曾经使用了一个叫做&lt;strong&gt;kangle&lt;/strong&gt;的工具 搭建了一个http代理.
+不知道从什么时候开始 &lt;strong&gt;kangle&lt;/strong&gt; 搭建的代理 无法访问https协议的 站点. 于是,才迫使我
+转而使用squid. &lt;/p&gt;</summary><category term="运维"></category><category term="Linux"></category><category term="squid"></category><category term="http代理"></category><category term="匿名代理"></category></entry><entry><title>记一次ssh密钥登录失败</title><link href="http://eleveni386.7axu.com/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/" rel="alternate"></link><updated>2014-02-27T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-02-27:posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/</id><summary type="html">&lt;h2&gt;环境&lt;/h2&gt;
 &lt;p&gt;我们的私钥是通过SecureCRT工具生成的. 在Debian5/6下面使用正常
 有问题的主机是Debian7 系统, 客户端是Debian6 系统
 Debian7 的ssh server版本是1.6 客户端的ssh client是1.5

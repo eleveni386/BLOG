@@ -58,6 +58,35 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/10/18/nginx-shuang-ji-re-bei-shi-zhan/"><h2>nginx 双机热备-实战</h2></a>
+        <div class= "well small"> 四 18 十月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>上次发布了<em>nginx</em>做负载均衡器使用, 这次在原有的基础上加上了 <strong>双机热备</strong>
+另外,此篇文章做为引子,为的是引导使用<strong>keepalived</strong>文中的配置,请酌情修改
+这只是一个简单的<strong>keepalived</strong>应用, 关于文中使用到的<strong>keepalived</strong>参数很少, 
+更多的内容看blog中的keepalived配置文件详解 那篇文章</p>
+<p>首先上一个 <strong>nginx高可用</strong> 架构图</p>
+<p><img alt="" src="/image/2012-10-18-163233-300x225.png" /></p>
+<h2>配置</h2>
+<p>总共两台机器 A , B</p>
+<p>在A,B机器上面 配置好 nginx调度器, 相同的配置.</p>
+<p>A nginx 跑在 eth0 192.168.2.12 上</p>
+<p>B nginx 跑在 eth0 192.168.2.11 上</p>
+<p>在A ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/10/18/nginx-shuang-ji-re-bei-shi-zhan/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2012/10/16/keepalivedyuan-li-yu-shi-zhan-jing-jiang/"><h2>Keepalived原理与实战精讲</h2></a>
         <div class= "well small"> 二 16 十月 2012
 
@@ -154,36 +183,6 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p>得到一个base64的密码,</p>
 <p><code>echo -n "password" | base64 -d</code></p>
 <p>解开就是明文密码</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/09/10/python-jin-du-tiao/"><h2>python 进度条</h2></a>
-        <div class= "well small"> 一 10 九月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>最近在写批量上传文件的脚本,用的库是<strong>paramiko</strong>,以后将写下paramiko的使用心得,
-这次记录下python有关进度条的东西,</p>
-<p>众所周知上传,下载,如果有一个进度显示的话, 对使用者也不是枯燥的等待, 起码.. 
-起码知道脚本在正常工作, 也知道下载/上传 的进度了.</p>
-<p>正好这次脚本也有上传的部分.就将这次的心得记录下</p>
-<p>首先,所谓的进度条和print没啥不不同,都是将结果输出而已, 但是如果用print就注定
-悲剧, 因为print的时候会带一个<code>\n</code>,可以想象如果我们的进度条还换行, 
-那还算条子嘛.. 恶汗..</p>
-<p>一个最简单的进度条 实现原理就是 再输出完毕后，把光标移动到行首，继续在那里输
-出更长的进度条即可实现，新的更长的进度条把旧的短覆盖，就形成了动画效果</p>
-<p>我们可以利用<code>\r</code>, 转义符<code>\r</code>就可以把光标移动到行首而不换行，转义符<code>\n</code>就把光
-标移动到行首并且换行。 这里用一个例子来说明,这是我脚本中的一个函数,
-用于接收<code>paramiko.sftp_client.sftp</code> 中的put方法的callback数据 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/10/python-jin-du-tiao/">read more</a></div>
     </div>	
 				
             <div class="pagination">

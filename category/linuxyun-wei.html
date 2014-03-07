@@ -58,8 +58,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="http://eleveni386.7axu.com/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/"><h1>记一次ssh密钥登录失败</h1></a>
-            四 27 二月 2014
+            <a href="http://eleveni386.7axu.com/posts/2014/03/07/squidzheng-xiang-dai-li/"><h1>squid正向代理</h1></a>
+            五 07 三月 2014
 
 by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
  
@@ -68,7 +68,160 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
  
         </div>
         
-        <div><h2>环境</h2>
+        <div><h2>匿名代理</h2>
+<p>squid 要做到匿名代理 只需要添加</p>
+<div class="highlight"><pre><span class="n">header_access</span> <span class="n">Via</span> <span class="n">deny</span> <span class="n">all</span> 
+<span class="n">header_access</span>  <span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span> <span class="n">deny</span> <span class="n">all</span>
+</pre></div>
+
+
+<p>即可</p>
+<h2>代理验证</h2>
+<p>谁都不想自己的代理服务器被他人随意拿来使用.. 于是 我们就需要给代理服务器加上密码</p>
+<div class="highlight"><pre><span class="n">auth_param</span> <span class="n">basic</span> <span class="n">program</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">squid2</span><span class="p">.</span>7<span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ncsa_auth</span>
+<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">children</span> 1
+<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">realm</span> &quot;<span class="n">Welcome</span> <span class="n">to</span> <span class="n">eleven</span><span class="o">&#39;</span><span class="n">s</span> <span class="n">proxy</span> <span class="n">server</span>&quot;
+<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">credentialsttl</span> 12 <span class="n">hours</span>
+</pre></div>
+
+
+<p>这里的<strong>ncsa_auth</strong> 是自己写的shell脚本, 我的squid版本是2.7, 没有自带ncsa_auth程序</p>
+<h2>一个简单的代理验证脚本</h2>
+<div class="highlight"><pre><span class="k">while</span> <span class="n">true</span><span class="p">;</span>
+<span class="n">do</span>
+    <span class="n">read</span> <span class="n">line</span>
+    <span class="n">username</span><span class="p">=</span>`<span class="n">echo</span> $<span class="n">line</span> <span class="o">|</span> <span class="n">awk</span> <span class="s">&#39;{print $1}&#39;</span>`<span class="p">;</span>
+    <span class="n">password</span><span class="p">=</span>`<span class="n">echo</span> $<span class="n">line</span> <span class="o">|</span> <span class="n">awk</span> <span class="s">&#39;{print $2}&#39;</span>`<span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">[</span> &quot;<span class="n">x</span>$<span class="n">username</span>&quot; <span class="o">==</span> &quot;<span class="n">xeleven</span>&quot; <span class="p">]</span>
+    <span class="n">then</span>
+        <span class="k">if</span> <span class="p">[</span> &quot;<span class="n">x</span>$<span class="n">password</span>&quot; <span class="o">==</span> &quot;<span class="n">x</span><span class="o">*****</span>&quot; <span class="p">]</span>
+        <span class="n">then</span>
+            <span class="n">echo</span> <span class="n">OK</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="n">echo</span> <span class="n">Err</span><span class="p">;</span>
+        <span class="n">fi</span>  
+    <span class="k">else</span>
+        <span class="n">echo</span> <span class="n">Err</span><span class="p">;</span>
+    <span class="n">fi</span>  
+<span class="n">done</span>
+</pre></div>
+
+
+<p>这个脚本有点类似之前的<strong>squid url跳转</strong><a href="http://eleveni386.7axu.com/posts/2013/10/13/squid-url-tiao-zhuan/">!</a>
+使用的脚本. 都是脚本从squid处接收需要处理的信息, 脚本处理完毕之后返回给squid结果</p>
+<h2>squid正向代理, 搭建 http 代理服务器</h2>
+<p>以下是一份完整的squid正向代理的配置文件</p>
+<div class="highlight"><pre><span class="n">auth_param</span> <span class="n">basic</span> <span class="n">program</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">squid2</span><span class="p">.</span>7<span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ncsa_auth</span>
+<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">children</span> 1
+<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">realm</span> &quot;<span class="n">Welcome</span> <span class="n">to</span> <span class="n">eleven</span><span class="o">&#39;</span><span class="n">s</span> <span class="n">proxy</span> <span class="n">server</span>&quot;
+<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">credentialsttl</span> 12 <span class="n">hours</span>
+</pre></div>
+
+
+<p>-
+    acl all src all 
+    acl squid_user proxy_auth REQUIRED
+    acl manager proto cache_object
+    acl localhost src 127.0.0.1/32</p>
+<div class="highlight"><pre><span class="n">acl</span> <span class="n">SSL_ports</span> <span class="n">port</span> 443 
+<span class="n">acl</span> <span class="n">Safe_ports</span> <span class="n">port</span> 80      # <span class="n">http</span>
+<span class="n">acl</span> <span class="n">Safe_ports</span> <span class="n">port</span> 21      # <span class="n">ftp</span>
+<span class="n">acl</span> <span class="n">Safe_ports</span> <span class="n">port</span> 443     # <span class="n">https</span>
+</pre></div>
+
+
+<p>-
+    acl CONNECT method CONNECT
+-
+    http_access allow manager localhost
+    http_access deny manager
+    http_access deny !Safe_ports
+-
+    http_access deny CONNECT !SSL_ports
+    http_access allow localhost
+-
+    # 允许密码用户登录
+    http_access allow squid_user</p>
+<div class="highlight"><pre><span class="c"># 拒绝其他所有请求</span>
+<span class="n">http_access</span> <span class="n">deny</span> <span class="nb">all</span>
+</pre></div>
+
+
+<h2>-</h2>
+<div class="highlight"><pre><span class="c"># Squid的监听端口</span>
+<span class="n">http_port</span> <span class="o">****</span> <span class="c"># 不准暴力猜解我的密码. 哼</span>
+</pre></div>
+
+
+<p>-
+    # DNS 域名服务器配置
+    dns_nameservers 8.8.8.8
+-
+    # 启动squid2.7的用户
+    cache_effective_user eleven
+    cache_effective_group eleven</p>
+<div class="highlight"><pre><span class="c"># squid2.7访问日志; 调试时开启</span>
+<span class="c">#cache_access_log /var/log/squid/access.log</span>
+<span class="c">#cache_log /var/log/squid/cache.log</span>
+
+<span class="c"># squid2.7挂掉后，core文件位置</span>
+<span class="n">coredump_dir</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="nb">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">squid2</span><span class="p">.</span>7<span class="o">/</span>
+
+<span class="c"># 高匿</span>
+<span class="n">header_access</span> <span class="n">Via</span> <span class="n">deny</span> <span class="nb">all</span>
+<span class="n">header_access</span>  <span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span> <span class="n">deny</span> <span class="nb">all</span>
+
+<span class="c"># 出现cgi-bin或者？的URL不予缓存</span>
+<span class="n">hierarchy_stoplist</span> <span class="n">cgi</span><span class="o">-</span><span class="n">bin</span> ? <span class="o">\</span><span class="p">.</span><span class="n">php</span>
+<span class="n">acl</span> <span class="n">QUERY</span> <span class="n">urlpath_regex</span> <span class="o">-</span><span class="n">i</span> <span class="n">cgi</span><span class="o">-</span><span class="n">bin</span> <span class="p">[</span>^<span class="n">html</span><span class="p">]</span><span class="o">\</span>? <span class="o">\</span><span class="p">.</span><span class="n">asp</span> <span class="o">\</span><span class="p">.</span><span class="n">php</span> <span class="o">\</span><span class="p">.</span><span class="n">jsp</span> <span class="o">\</span><span class="p">.</span><span class="n">cgi</span>
+<span class="n">acl</span> <span class="n">download</span> <span class="n">urlpath_regex</span> <span class="o">-</span><span class="n">i</span> <span class="o">\</span><span class="p">.</span><span class="n">avi</span>$ <span class="o">\</span><span class="p">.</span><span class="n">rmvb</span>$ <span class="o">\</span><span class="p">.</span><span class="n">rm</span>$ <span class="o">\</span><span class="p">.</span><span class="n">ra</span>$ <span class="o">\</span><span class="p">.</span><span class="n">ram</span>$ <span class="o">\</span><span class="p">.</span><span class="n">mpe</span>$ <span class="o">\</span><span class="p">.</span><span class="n">smi</span>$
+<span class="n">cache</span> <span class="n">deny</span> <span class="n">QUERY</span>
+<span class="n">cache</span> <span class="n">deny</span> <span class="n">download</span>
+</pre></div>
+
+
+<p>-
+    # 磁盘缓存目录
+    cache_dir ufs /data/home/eleven/squid2.7/cdir 500 16 256
+-
+    # 内存缓冲大小
+    cache_mem 2M</p>
+<div class="highlight"><pre><span class="c"># 刷新缓存规则</span>
+<span class="n">refresh_pattern</span> ^<span class="nb">ftp</span><span class="p">:</span>       1440    20<span class="c">% 10080</span>
+<span class="n">refresh_pattern</span> <span class="o">-</span><span class="n">i</span> <span class="p">(</span><span class="o">/</span><span class="n">cgi</span><span class="o">-</span><span class="n">bin</span><span class="o">/|\</span>?<span class="p">)</span> 0 0<span class="c">%  0</span>
+<span class="n">refresh_pattern</span> <span class="p">.</span>       0   20<span class="c">% 4320</span>
+</pre></div>
+
+
+<h2>加密本地至squid的请求</h2>
+<p>前面的文章里面讲解过了使用<strong>Stunnel</strong>做加密解密, 本地使用<strong>socat</strong>做数据转发, 采用
+<strong>openssl</strong> 加密本地http数据,</p>
+<p>参考文章<a href="http://eleveni386.7axu.com/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/">!</a></p>
+<h2>结束</h2>
+<p>至此, 一个全新的支持https访问的 http代理就搭建成功了. 第一次访问会要求你输入帐号和密码
+相信看过本人此前的文章 都知道我曾经使用了一个叫做<strong>kangle</strong>的工具 搭建了一个http代理.
+不知道从什么时候开始 <strong>kangle</strong> 搭建的代理 无法访问https协议的 站点. 于是,才迫使我
+转而使用squid. </p></div>
+        <hr />
+    </div>
+		
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/"><h2>记一次ssh密钥登录失败</h2></a>
+        <div class= "well small"> 四 27 二月 2014
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>环境</h2>
 <p>我们的私钥是通过SecureCRT工具生成的. 在Debian5/6下面使用正常
 有问题的主机是Debian7 系统, 客户端是Debian6 系统
 Debian7 的ssh server版本是1.6 客户端的ssh client是1.5
@@ -80,40 +233,9 @@ Debian7 的ssh server版本是1.6 客户端的ssh client是1.5
 <span class="n">debug2</span><span class="o">:</span> <span class="n">key_type_from_name</span><span class="o">:</span> <span class="n">unknown</span> <span class="n">key</span> <span class="n">type</span> <span class="s1">&#39;-----END&#39;</span>
 <span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
 <span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
-<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
-<span class="o">......</span>
-</pre></div>
-
-
-<h2>排查</h2>
-<p>一开始看到这样的信息, 我以为是私钥格式不正确. 因为网络上一直流传着SecureCRT和Putty之类的工具,产生的密钥和ssh-keygen产生的 格式上有区别
-不过从我们以往的经验上来看(Debian5/6) , SecureCRT生成的可以正常使用, </p>
-<p>虽然有这样的疑问 不过还是重新生成了一份密钥, 继续登录, 还是提示一样的问题, 我最后在Debian7 上 使用ssh-keygen生成一份密钥, 还是提示一样的问题
-我突然醒悟过来, ssh兼容ssh1的协议. 于是ssh在登录的时候 会协商使用什么样的协议, 上面的提示问题应该是密钥格式不符合ssh1, 所以本次问题应该不是出
-在私钥格式不对的问题, </p>
-<p>于是我去对比 ssh-keygen 产生的密钥 和 SecureCRT产生的有啥不同. 结果我发现 私钥里面写着root
-我去.. 我的私钥是给cache用户用的, 私钥里面怎么会有root呢? </p>
-<p>小心翼翼的瞄了一眼 我的shell 提示符, <strong>#</strong> 果果的出现了.... </p>
-<p>好吧, 为了排查方便我切换到了root下, 我却不记得了. </p>
-<p>切换到cache用户下 再次执行ssh-keygen </p>
-<p>在使用ssh-keygen的时候 有一个提示引起了我的注意 </p>
-<div class="highlight"><pre>    <span class="n">open</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">cache</span><span class="o">/</span><span class="p">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span> <span class="n">failed</span><span class="p">:</span> <span class="n">Permission</span> <span class="n">denied</span>
-</pre></div>
-
-
-<p>为什么会Permission denied ? </p>
-<p>果断查看家目录下的 .ssh 目录权限.</p>
-<div class="highlight"><pre>    <span class="n">drw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span> 2 <span class="n">cache</span> <span class="n">cache</span> 4096 <span class="n">Feb</span> 27 11<span class="p">:</span>03 <span class="p">.</span><span class="n">ssh</span><span class="o">/</span>
-</pre></div>
-
-
-<p>我去, 说好的<strong>x</strong>权限呢? </p>
-<p>给.ssh加上<strong>x</strong>权限之后, 再次登录. 果断成功了... </p>
-<h2>结束</h2>
-<p>事后想想, 应该是用户在登录的时候, ssh要对用户提交的私钥做验证, 但是却无法进入.ssh目录, 就当作用户的公钥不存在, 于是要求用户使用密码方式</p></div>
-        <hr />
-    </div>
-		
+<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/">read more</a></div>
+    </div>	
+				
     
  
         
@@ -209,40 +331,6 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p><code>apt-get install libpcre++-dev</code></p>
 <p>安装ssl库</p>
 <p><code>apt-get install libssl-dev ...</code></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/05/17/kangle-zuo-httpni-ming-dai-li/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/04/25/wang-qia-zhong-duan-bang-ding/"><h2>网卡中断绑定</h2></a>
-        <div class= "well small"> 四 25 四月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><blockquote>
-<p>中断亲和力是指将一个或多个中断源绑定到特定的 CPU 上运行</p>
-</blockquote>
-<h2>操作</h2>
-<p><a href="http://liuxin1982.blog.51cto.com/4338970/1019825">参考</a></p>
-<p>今天我是来吐槽该文中的一个shell脚本</p>
-<div class="highlight"><pre><span class="c"># setting up irq affinity according to /proc/interrupts</span>
-<span class="c"># 2008-11-25 Robert Olsson</span>
-<span class="c"># 2009-02-19 updated by Jesse Brandeburg</span>
-<span class="c">#</span>
-<span class="c"># &gt; Dave Miller:</span>
-<span class="c"># (To get consistent naming in /proc/interrups)</span>
-<span class="c"># I would suggest that people use something like:</span>
-<span class="c"># char buf[IFNAMSIZ+6];</span>
-<span class="c">#</span>
-<span class="c"># sprintf(buf, &quot;%s-%s-%d&quot;,</span>
-<span class="c">#         netdev-&gt;name ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/04/25/wang-qia-zhong-duan-bang-ding/">read more</a></div>
     </div>	
 				
             <div class="pagination">
