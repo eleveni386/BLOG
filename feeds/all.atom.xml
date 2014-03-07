@@ -47,80 +47,52 @@
 &lt;span class="n"&gt;auth_param&lt;/span&gt; &lt;span class="n"&gt;basic&lt;/span&gt; &lt;span class="n"&gt;children&lt;/span&gt; 1
 &lt;span class="n"&gt;auth_param&lt;/span&gt; &lt;span class="n"&gt;basic&lt;/span&gt; &lt;span class="n"&gt;realm&lt;/span&gt; &amp;quot;&lt;span class="n"&gt;Welcome&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;eleven&lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;proxy&lt;/span&gt; &lt;span class="n"&gt;server&lt;/span&gt;&amp;quot;
 &lt;span class="n"&gt;auth_param&lt;/span&gt; &lt;span class="n"&gt;basic&lt;/span&gt; &lt;span class="n"&gt;credentialsttl&lt;/span&gt; 12 &lt;span class="n"&gt;hours&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;-
-    acl all src all 
-    acl squid_user proxy_auth REQUIRED
-    acl manager proto cache_object
-    acl localhost src 127.0.0.1/32&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;SSL_ports&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; 443 
+&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt; 
+&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;squid_user&lt;/span&gt; &lt;span class="n"&gt;proxy_auth&lt;/span&gt; &lt;span class="n"&gt;REQUIRED&lt;/span&gt;
+&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;manager&lt;/span&gt; &lt;span class="n"&gt;proto&lt;/span&gt; &lt;span class="n"&gt;cache_object&lt;/span&gt;
+&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;localhost&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt; 127&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;.&lt;/span&gt;1&lt;span class="o"&gt;/&lt;/span&gt;32
+&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;SSL_ports&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; 443 
 &lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;Safe_ports&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; 80      # &lt;span class="n"&gt;http&lt;/span&gt;
 &lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;Safe_ports&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; 21      # &lt;span class="n"&gt;ftp&lt;/span&gt;
 &lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;Safe_ports&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; 443     # &lt;span class="n"&gt;https&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;-
-    acl CONNECT method CONNECT
--
-    http_access allow manager localhost
-    http_access deny manager
-    http_access deny !Safe_ports
--
-    http_access deny CONNECT !SSL_ports
-    http_access allow localhost
--
-    # 允许密码用户登录
-    http_access allow squid_user&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# 拒绝其他所有请求&lt;/span&gt;
-&lt;span class="n"&gt;http_access&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="nb"&gt;all&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h2&gt;-&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Squid的监听端口&lt;/span&gt;
-&lt;span class="n"&gt;http_port&lt;/span&gt; &lt;span class="o"&gt;****&lt;/span&gt; &lt;span class="c"&gt;# 不准暴力猜解我的密码. 哼&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;-
-    # DNS 域名服务器配置
-    dns_nameservers 8.8.8.8
--
-    # 启动squid2.7的用户
-    cache_effective_user eleven
-    cache_effective_group eleven&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# squid2.7访问日志; 调试时开启&lt;/span&gt;
-&lt;span class="c"&gt;#cache_access_log /var/log/squid/access.log&lt;/span&gt;
-&lt;span class="c"&gt;#cache_log /var/log/squid/cache.log&lt;/span&gt;
-
-&lt;span class="c"&gt;# squid2.7挂掉后，core文件位置&lt;/span&gt;
-&lt;span class="n"&gt;coredump_dir&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;eleven&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;squid2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="o"&gt;/&lt;/span&gt;
-
-&lt;span class="c"&gt;# 高匿&lt;/span&gt;
-&lt;span class="n"&gt;header_access&lt;/span&gt; &lt;span class="n"&gt;Via&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="nb"&gt;all&lt;/span&gt;
-&lt;span class="n"&gt;header_access&lt;/span&gt;  &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Forwarded&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;For&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="nb"&gt;all&lt;/span&gt;
-
-&lt;span class="c"&gt;# 出现cgi-bin或者？的URL不予缓存&lt;/span&gt;
+&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;CONNECT&lt;/span&gt; &lt;span class="n"&gt;method&lt;/span&gt; &lt;span class="n"&gt;CONNECT&lt;/span&gt;
+&lt;span class="n"&gt;http_access&lt;/span&gt; &lt;span class="n"&gt;allow&lt;/span&gt; &lt;span class="n"&gt;manager&lt;/span&gt; &lt;span class="n"&gt;localhost&lt;/span&gt;
+&lt;span class="n"&gt;http_access&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;manager&lt;/span&gt;
+&lt;span class="n"&gt;http_access&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; !&lt;span class="n"&gt;Safe_ports&lt;/span&gt;
+&lt;span class="n"&gt;http_access&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;CONNECT&lt;/span&gt; !&lt;span class="n"&gt;SSL_ports&lt;/span&gt;
+&lt;span class="n"&gt;http_access&lt;/span&gt; &lt;span class="n"&gt;allow&lt;/span&gt; &lt;span class="n"&gt;localhost&lt;/span&gt;
+# 允许密码用户登录
+&lt;span class="n"&gt;http_access&lt;/span&gt; &lt;span class="n"&gt;allow&lt;/span&gt; &lt;span class="n"&gt;squid_user&lt;/span&gt;
+# 拒绝其他所有请求
+&lt;span class="n"&gt;http_access&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt;
+# &lt;span class="n"&gt;Squid&lt;/span&gt;的监听端口
+&lt;span class="n"&gt;http_port&lt;/span&gt; &lt;span class="o"&gt;****&lt;/span&gt; # 不准暴力猜解我的密码&lt;span class="p"&gt;.&lt;/span&gt; 哼
+# &lt;span class="n"&gt;DNS&lt;/span&gt; 域名服务器配置
+&lt;span class="n"&gt;dns_nameservers&lt;/span&gt; 8&lt;span class="p"&gt;.&lt;/span&gt;8&lt;span class="p"&gt;.&lt;/span&gt;8&lt;span class="p"&gt;.&lt;/span&gt;8
+# 启动&lt;span class="n"&gt;squid2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;7的用户
+&lt;span class="n"&gt;cache_effective_user&lt;/span&gt; &lt;span class="n"&gt;eleven&lt;/span&gt;
+&lt;span class="n"&gt;cache_effective_group&lt;/span&gt; &lt;span class="n"&gt;eleven&lt;/span&gt;
+# &lt;span class="n"&gt;squid2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;7访问日志&lt;span class="p"&gt;;&lt;/span&gt; 调试时开启
+#&lt;span class="n"&gt;cache_access_log&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;log&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;squid&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;access&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;log&lt;/span&gt;
+#&lt;span class="n"&gt;cache_log&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;log&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;squid&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cache&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;log&lt;/span&gt;
+# &lt;span class="n"&gt;squid2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;7挂掉后，&lt;span class="n"&gt;core&lt;/span&gt;文件位置
+&lt;span class="n"&gt;coredump_dir&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;eleven&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;squid2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="o"&gt;/&lt;/span&gt;
+# 高匿
+&lt;span class="n"&gt;header_access&lt;/span&gt; &lt;span class="n"&gt;Via&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt;
+&lt;span class="n"&gt;header_access&lt;/span&gt;  &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Forwarded&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;For&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt;
+# 出现&lt;span class="n"&gt;cgi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;或者？的&lt;span class="n"&gt;URL&lt;/span&gt;不予缓存
 &lt;span class="n"&gt;hierarchy_stoplist&lt;/span&gt; &lt;span class="n"&gt;cgi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt; ? &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;
-&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;QUERY&lt;/span&gt; &lt;span class="n"&gt;urlpath_regex&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;cgi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;^&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;\&lt;/span&gt;? &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;asp&lt;/span&gt; &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt; &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jsp&lt;/span&gt; &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cgi&lt;/span&gt;
-&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;download&lt;/span&gt; &lt;span class="n"&gt;urlpath_regex&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;avi&lt;/span&gt;$ &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rmvb&lt;/span&gt;$ &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rm&lt;/span&gt;$ &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ra&lt;/span&gt;$ &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ram&lt;/span&gt;$ &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mpe&lt;/span&gt;$ &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;smi&lt;/span&gt;$
+&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;QUERY&lt;/span&gt; &lt;span class="n"&gt;urlpath_regex&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;i&lt;/span&gt; &lt;span class="n"&gt;cgi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;^&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;\&lt;/span&gt;? &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;asp&lt;/span&gt; &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt; &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jsp&lt;/span&gt; &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cgi&lt;/span&gt;
+&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;download&lt;/span&gt; &lt;span class="n"&gt;urlpath_regex&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;i&lt;/span&gt; &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;avi&lt;/span&gt;$ &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rmvb&lt;/span&gt;$ &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rm&lt;/span&gt;$ &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ra&lt;/span&gt;$ &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ram&lt;/span&gt;$ &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mpe&lt;/span&gt;$ &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;smi&lt;/span&gt;$
 &lt;span class="n"&gt;cache&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;QUERY&lt;/span&gt;
 &lt;span class="n"&gt;cache&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;download&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;-
-    # 磁盘缓存目录
-    cache_dir ufs /data/home/eleven/squid2.7/cdir 500 16 256
--
-    # 内存缓冲大小
-    cache_mem 2M&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# 刷新缓存规则&lt;/span&gt;
-&lt;span class="n"&gt;refresh_pattern&lt;/span&gt; ^&lt;span class="nb"&gt;ftp&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;       1440    20&lt;span class="c"&gt;% 10080&lt;/span&gt;
-&lt;span class="n"&gt;refresh_pattern&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cgi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/|\&lt;/span&gt;?&lt;span class="p"&gt;)&lt;/span&gt; 0 0&lt;span class="c"&gt;%  0&lt;/span&gt;
+# 磁盘缓存目录
+&lt;span class="n"&gt;cache_dir&lt;/span&gt; &lt;span class="n"&gt;ufs&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;eleven&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;squid2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cdir&lt;/span&gt; 500 16 256
+# 内存缓冲大小
+&lt;span class="n"&gt;cache_mem&lt;/span&gt; 2&lt;span class="n"&gt;M&lt;/span&gt;
+# 刷新缓存规则
+&lt;span class="n"&gt;refresh_pattern&lt;/span&gt; ^&lt;span class="n"&gt;ftp&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;       1440    20&lt;span class="c"&gt;% 10080&lt;/span&gt;
+&lt;span class="n"&gt;refresh_pattern&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;i&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cgi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/|\&lt;/span&gt;?&lt;span class="p"&gt;)&lt;/span&gt; 0 0&lt;span class="c"&gt;%  0&lt;/span&gt;
 &lt;span class="n"&gt;refresh_pattern&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;       0   20&lt;span class="c"&gt;% 4320&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
