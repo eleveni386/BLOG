@@ -39,7 +39,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;这个脚本有点类似之前的&lt;strong&gt;squid url跳转&lt;/strong&gt;&lt;a href="http://eleveni386.7axu.com/posts/2013/10/13/squid-url-tiao-zhuan/"&gt;!&lt;/a&gt;
+&lt;p&gt;这个脚本有点类似之前的&lt;a href="http://eleveni386.7axu.com/posts/2013/10/13/squid-url-tiao-zhuan/"&gt;&lt;strong&gt;squid url跳转&lt;/strong&gt;&lt;/a&gt;
 使用的脚本. 都是脚本从squid处接收需要处理的信息, 脚本处理完毕之后返回给squid结果&lt;/p&gt;
 &lt;h2&gt;squid正向代理, 搭建 http 代理服务器&lt;/h2&gt;
 &lt;p&gt;以下是一份完整的squid正向代理的配置文件&lt;/p&gt;
@@ -128,7 +128,7 @@
 &lt;h2&gt;加密本地至squid的请求&lt;/h2&gt;
 &lt;p&gt;前面的文章里面讲解过了使用&lt;strong&gt;Stunnel&lt;/strong&gt;做加密解密, 本地使用&lt;strong&gt;socat&lt;/strong&gt;做数据转发, 采用
 &lt;strong&gt;openssl&lt;/strong&gt; 加密本地http数据,&lt;/p&gt;
-&lt;p&gt;参考文章&lt;a href="http://eleveni386.7axu.com/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/"&gt;!&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://eleveni386.7axu.com/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/"&gt;参考文章&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;结束&lt;/h2&gt;
 &lt;p&gt;至此, 一个全新的支持https访问的 http代理就搭建成功了. 第一次访问会要求你输入帐号和密码
 相信看过本人此前的文章 都知道我曾经使用了一个叫做&lt;strong&gt;kangle&lt;/strong&gt;的工具 搭建了一个http代理.
