@@ -97,13 +97,13 @@ Debian7 的ssh server版本是1.6 客户端的ssh client是1.5
 <p>好吧, 为了排查方便我切换到了root下, 我却不记得了. </p>
 <p>切换到cache用户下 再次执行ssh-keygen </p>
 <p>在使用ssh-keygen的时候 有一个提示引起了我的注意 </p>
-<div class="highlight"><pre>    <span class="n">open</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">cache</span><span class="o">/</span><span class="p">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span> <span class="n">failed</span><span class="p">:</span> <span class="n">Permission</span> <span class="n">denied</span>
+<div class="highlight"><pre>    <span class="n">open</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">cache</span><span class="o">/</span><span class="p">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span> <span class="n">failed</span><span class="o">:</span> <span class="n">Permission</span> <span class="n">denied</span>
 </pre></div>
 
 
 <p>为什么会Permission denied ? </p>
 <p>果断查看家目录下的 .ssh 目录权限.</p>
-<div class="highlight"><pre>    <span class="n">drw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span> 2 <span class="n">cache</span> <span class="n">cache</span> 4096 <span class="n">Feb</span> 27 11<span class="p">:</span>03 <span class="p">.</span><span class="n">ssh</span><span class="o">/</span>
+<div class="highlight"><pre>    <span class="n">drw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span> <span class="mi">2</span> <span class="n">cache</span> <span class="n">cache</span> <span class="mi">4096</span> <span class="n">Feb</span> <span class="mi">27</span> <span class="mi">11</span><span class="o">:</span><span class="mo">03</span> <span class="p">.</span><span class="n">ssh</span><span class="o">/</span>
 </pre></div>
 
 
@@ -172,6 +172,7 @@ Debian7 的ssh server版本是1.6 客户端的ssh client是1.5
                             <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
                             <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
                             <li><a href="http://neteue.com/">小邪兽</a></li>
+                            <li><a href="http://supercat-lab.org/">老猫</a></li>
                             <li><a href="http://blog.woodelf.org/">woodelf</a></li>
                         </ul>
             </div>

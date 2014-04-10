@@ -77,8 +77,8 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 用于接收<code>paramiko.sftp_client.sftp</code> 中的put方法的callback数据,by the way, 
 利用paramiko的sftp的put方法,可以将本地文件上传至服务器,默认参数中有一个callback=None,
 别人可以利用callback来接收文件上传的进度, 每隔32768字节返回一次进度,我们可以构造一个callback来接收, </p>
-<div class="highlight"><pre><span class="n">def</span> <span class="n">_callback</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
-    <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;Data Transmission %10d [%3.2f%%]\r&#39;</span> <span class="c">%(a,a*100./int(b)))</span>
+<div class="highlight"><pre><span class="n">def</span> <span class="n">_callback</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Data</span> <span class="n">Transmission</span> <span class="o">%</span><span class="mi">10</span><span class="n">d</span> <span class="p">[</span><span class="o">%</span><span class="mf">3.2f</span><span class="o">%%</span><span class="p">]</span><span class="err">\</span><span class="n">r</span><span class="err">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="o">*</span><span class="mf">100.</span><span class="o">/</span><span class="kt">int</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
     <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">flush</span><span class="p">()</span>
 </pre></div>
 
@@ -86,7 +86,7 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p>这样在使用put方法的时候 就可以put(本地文件,远程路径,_callback)</p>
 <p>在默认情况下put方法是不需要后面的callback参数的, 只需要本地路径和远程路径, 
 因为我们需要知道上传进度. 因此加一个callback上去,在callback函数定一个 进度</p>
-<div class="highlight"><pre><span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;Data Transmission %10d [%3.2f%%]\r&#39;</span> <span class="c">%(a,a*100./int(b)))</span>
+<div class="highlight"><pre><span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Data</span> <span class="n">Transmission</span> <span class="o">%</span><span class="mi">10</span><span class="n">d</span> <span class="p">[</span><span class="o">%</span><span class="mf">3.2f</span><span class="o">%%</span><span class="p">]</span><span class="err">\</span><span class="n">r</span><span class="err">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="o">*</span><span class="mf">100.</span><span class="o">/</span><span class="kt">int</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
 </pre></div>
 
 
@@ -159,6 +159,7 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
                             <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
                             <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
                             <li><a href="http://neteue.com/">小邪兽</a></li>
+                            <li><a href="http://supercat-lab.org/">老猫</a></li>
                             <li><a href="http://blog.woodelf.org/">woodelf</a></li>
                         </ul>
             </div>

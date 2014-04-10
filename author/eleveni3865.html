@@ -58,6 +58,36 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/09/10/python-jin-du-tiao/"><h2>python 进度条</h2></a>
+        <div class= "well small"> 一 10 九月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>最近在写批量上传文件的脚本,用的库是<strong>paramiko</strong>,以后将写下paramiko的使用心得,
+这次记录下python有关进度条的东西,</p>
+<p>众所周知上传,下载,如果有一个进度显示的话, 对使用者也不是枯燥的等待, 起码.. 
+起码知道脚本在正常工作, 也知道下载/上传 的进度了.</p>
+<p>正好这次脚本也有上传的部分.就将这次的心得记录下</p>
+<p>首先,所谓的进度条和print没啥不不同,都是将结果输出而已, 但是如果用print就注定
+悲剧, 因为print的时候会带一个<code>\n</code>,可以想象如果我们的进度条还换行, 
+那还算条子嘛.. 恶汗..</p>
+<p>一个最简单的进度条 实现原理就是 再输出完毕后，把光标移动到行首，继续在那里输
+出更长的进度条即可实现，新的更长的进度条把旧的短覆盖，就形成了动画效果</p>
+<p>我们可以利用<code>\r</code>, 转义符<code>\r</code>就可以把光标移动到行首而不换行，转义符<code>\n</code>就把光
+标移动到行首并且换行。 这里用一个例子来说明,这是我脚本中的一个函数,
+用于接收<code>paramiko.sftp_client.sftp</code> 中的put方法的callback数据 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/10/python-jin-du-tiao/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2013/06/03/pythondai-cookiesfang-wen/"><h2>python带cookies访问</h2></a>
         <div class= "well small"> 一 03 六月 2013
 
@@ -134,10 +164,10 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p>即可</p>
 <h2>代理验证</h2>
 <p>谁都不想自己的代理服务器被他人随意拿来使用.. 于是 我们就需要给代理服务器加上密码</p>
-<div class="highlight"><pre><span class="n">auth_param</span> <span class="n">basic</span> <span class="n">program</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">squid2</span><span class="p">.</span>7<span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ncsa_auth</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">children</span> 1
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">realm</span> &quot;<span class="n">Welcome</span> <span class="n">to</span> <span class="n">eleven</span><span class="o">&#39;</span><span class="n">s</span> <span class="n">proxy</span> <span class="n">server</span>&quot;
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">credentialsttl</span> 12 <span class="n">hours</span>
+<div class="highlight"><pre><span class="n">auth_param</span> <span class="n">basic</span> <span class="n">program</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">squid2</span><span class="mf">.7</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ncsa_auth</span>
+<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">children</span> <span class="mi">1</span>
+<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">realm</span> <span class="s">&quot;Welcome to eleven&#39;s proxy server&quot;</span>
+<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">credentialsttl</span> <span class="mi">12</span> <span class="n">hours</span>
 </pre></div>
 
 
@@ -169,43 +199,12 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 样的方式来传递密码，所以需要远程连上服务器后进行的批处理就无法进行。</p>
 <p><code>sshpass</code> 的出现，解决了这一问题。它允许你用 <code>-p</code> 参数指定明文密码，
 然后直接登录远程服务器。例如：</p>
-<div class="highlight"><pre><span class="n">sshpass</span> <span class="o">-</span><span class="n">p</span> <span class="s">&#39;ssh_password&#39;</span> <span class="n">ssh</span> <span class="n">www</span><span class="p">.</span><span class="n">iredmail</span><span class="p">.</span><span class="n">org</span>
+<div class="highlight"><pre><span class="n">sshpass</span> <span class="o">-</span><span class="n">p</span> <span class="err">&#39;</span><span class="n">ssh_password</span><span class="err">&#39;</span> <span class="n">ssh</span> <span class="n">www</span><span class="p">.</span><span class="n">iredmail</span><span class="p">.</span><span class="n">org</span>
 </pre></div>
 
 
 <p>用 <code>-p</code> 指定了密码后，还需要在后面跟上标准的 ssh 连接命令。</p>
 <p>用法就是这么简单。</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/08/23/tmuxduo-paneltong-bu/"><h2>tmux多panel同步</h2></a>
-        <div class= "well small"> 五 23 八月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>上一篇说过 我已经使用<strong>tmux</strong> 代替<strong>SecureCRT</strong>进行运维工作 , 
-为此写了一个<a href="https://github.com/eleveni386/clipm">密码管理工具</a>,来配合<strong>tmux</strong>使用,
-经过两天的使用,感觉良好.<strong>KeepassX</strong> 已经直接被我卸载了,今天要说的是<strong>SecureCRT</strong>另外一个功能
-<strong>批量执行命令</strong></p>
-<p>用过<strong>SecureCRT</strong>的孩纸,都知道它有一个很方便的功能,开启多个终端的时候,可以同时在这些终端输入命令,
-极大的方便了我们的工作,我搬家到<strong>tmux</strong> 也一直纠结这个功能.经过多次google之后 终于被我找到了.原来<strong>tmux</strong>
-也是有批量执行命令的, <strong>tmux panel sync</strong>, <strong>panel同步</strong></p>
-<p>使用效果如下:</p>
-<p><img alt="" src="http://blog.sanctum.geek.nz/wp-content/uploads/2012/08/synchronize-panes.gif" /></p>
-<p>(PS:这里偷了别人的图,我懒得找gif制作工具)</p>
-<p>开启这个功能:  </p>
-<p><code>:setw synchronize-panes</code></p>
-<p>这是一个开关,需要的时候键入, 不需要的时候键入同样的指令,即可关闭.</p>
-<p>友情提示 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/08/23/tmuxduo-paneltong-bu/">read more</a></div>
     </div>	
 				
             <div class="pagination">
@@ -272,6 +271,7 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
                             <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
                             <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
                             <li><a href="http://neteue.com/">小邪兽</a></li>
+                            <li><a href="http://supercat-lab.org/">老猫</a></li>
                             <li><a href="http://blog.woodelf.org/">woodelf</a></li>
                         </ul>
             </div>

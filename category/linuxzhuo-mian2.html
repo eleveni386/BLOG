@@ -58,6 +58,37 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/12/14/jie-tu-zi-dong-fen-xiang-jiao-ben/"><h2>截图自动分享脚本</h2></a>
+        <div class= "well small"> 五 14 十二月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<span class="nb">time</span><span class="o">=</span><span class="sb">`</span>date +%H:%M:%S<span class="sb">`</span>
+<span class="nv">msg</span><span class="o">=</span><span class="sb">`</span>scrot -s <span class="s2">&quot;$time.png&quot;</span> -e <span class="s2">&quot;curl -sF &#39;name=@$time.png&#39; http://eleveni386.7axu.com/Image/&quot;</span><span class="sb">`</span>
+gxmessage -center -title <span class="s2">&quot;eleveni386.7axu.com&quot;</span> <span class="nv">$msg</span>
+rm -rf <span class="nv">$time</span>.png
+</pre></div>
+</td></tr></table>
+
+<p>将这个脚本绑定到任意快捷键，我将脚本保存为<em>scrot.sh</em> 并 绑定到了<code>A+s</code>快捷键上</p>
+<p>当我需要与朋友分享某图的时候， 直接按下 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/12/14/jie-tu-zi-dong-fen-xiang-jiao-ben/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2012/11/28/wang-ji-mi-ma-zhi-svn/"><h2>忘记密码之 Svn</h2></a>
         <div class= "well small"> 三 28 十一月 2012
 
@@ -160,6 +191,7 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
                             <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
                             <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
                             <li><a href="http://neteue.com/">小邪兽</a></li>
+                            <li><a href="http://supercat-lab.org/">老猫</a></li>
                             <li><a href="http://blog.woodelf.org/">woodelf</a></li>
                         </ul>
             </div>

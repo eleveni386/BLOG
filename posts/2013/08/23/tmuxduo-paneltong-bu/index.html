@@ -78,9 +78,9 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p>友情提示:将它绑定到某一个快捷键上效果更佳哦 :-)</p>
 <p>btw, 我的tmux配置, 许多是参考网络上现有的.没太多个性化的东西.不过胜在实用</p>
 <h2>Base</h2>
-<div class="highlight"><pre><span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">default</span><span class="o">-</span><span class="n">terminal</span> “<span class="n">screen</span><span class="o">-</span>256<span class="n">color</span>”
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">display</span><span class="o">-</span><span class="n">time</span> 3000
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">history</span><span class="o">-</span><span class="n">limit</span> 65535
+<div class="highlight"><pre><span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="k">default</span><span class="o">-</span><span class="n">terminal</span> <span class="err">“</span><span class="n">screen</span><span class="o">-</span><span class="mi">256</span><span class="n">color</span><span class="err">”</span>
+<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">display</span><span class="o">-</span><span class="n">time</span> <span class="mi">3000</span>
+<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">history</span><span class="o">-</span><span class="n">limit</span> <span class="mi">65535</span>
 <span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">mouse</span><span class="o">-</span><span class="n">select</span><span class="o">-</span><span class="n">pane</span> <span class="n">on</span>
 <span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">mode</span><span class="o">-</span><span class="n">mouse</span> <span class="n">on</span>
 <span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">mouse</span><span class="o">-</span><span class="n">resize</span><span class="o">-</span><span class="n">pane</span> <span class="n">on</span>
@@ -93,16 +93,16 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">prefix</span> <span class="n">C</span><span class="o">-</span><span class="n">l</span>
 <span class="n">bind</span> <span class="n">C</span><span class="o">-</span><span class="n">l</span> <span class="n">send</span><span class="o">-</span><span class="n">prefix</span>
 
-<span class="n">unbind</span> ‘”‘
-<span class="n">bind</span> – <span class="n">splitw</span> <span class="o">-</span><span class="n">v</span>
-<span class="n">unbind</span> <span class="c">%</span>
+<span class="n">unbind</span> <span class="err">‘”‘</span>
+<span class="n">bind</span> <span class="err">–</span> <span class="n">splitw</span> <span class="o">-</span><span class="n">v</span>
+<span class="n">unbind</span> <span class="o">%</span>
 <span class="n">bind</span> <span class="o">|</span> <span class="n">splitw</span> <span class="o">-</span><span class="n">h</span>
-<span class="n">bind</span> <span class="n">c</span> <span class="n">run</span> “<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">Yunio</span><span class="o">/</span><span class="n">SystemBackup</span><span class="o">/</span><span class="n">tmux</span><span class="o">-</span><span class="n">shell</span><span class="o">/</span><span class="n">tmux</span><span class="o">-</span><span class="n">cpy</span><span class="p">.</span><span class="n">py</span>”
-<span class="n">bind</span> <span class="n">r</span> <span class="n">source</span><span class="o">-</span><span class="n">file</span> <span class="o">~/</span><span class="p">.</span><span class="n">tmux</span><span class="p">.</span><span class="n">conf</span> <span class="o">\</span><span class="p">;</span> <span class="n">display</span> “<span class="n">Reloaded</span>!”
+<span class="n">bind</span> <span class="n">c</span> <span class="n">run</span> <span class="err">“</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">Yunio</span><span class="o">/</span><span class="n">SystemBackup</span><span class="o">/</span><span class="n">tmux</span><span class="o">-</span><span class="n">shell</span><span class="o">/</span><span class="n">tmux</span><span class="o">-</span><span class="n">cpy</span><span class="p">.</span><span class="n">py</span><span class="err">”</span>
+<span class="n">bind</span> <span class="n">r</span> <span class="n">source</span><span class="o">-</span><span class="n">file</span> <span class="o">~/</span><span class="p">.</span><span class="n">tmux</span><span class="p">.</span><span class="n">conf</span> <span class="err">\</span><span class="p">;</span> <span class="n">display</span> <span class="err">“</span><span class="n">Reloaded</span><span class="o">!</span><span class="err">”</span>
 <span class="n">bind</span> <span class="n">s</span> <span class="n">setw</span> <span class="n">synchronize</span><span class="o">-</span><span class="n">panes</span>
 
 <span class="n">bind</span> <span class="n">k</span> <span class="n">selectp</span> <span class="o">-</span><span class="n">U</span>
-<span class="n">bind</span> <span class="nb">j</span> <span class="n">selectp</span> <span class="o">-</span><span class="n">D</span>
+<span class="n">bind</span> <span class="n">j</span> <span class="n">selectp</span> <span class="o">-</span><span class="n">D</span>
 <span class="n">bind</span> <span class="n">h</span> <span class="n">selectp</span> <span class="o">-</span><span class="n">L</span>
 <span class="n">bind</span> <span class="n">l</span> <span class="n">selectp</span> <span class="o">-</span><span class="n">R</span>
 </pre></div>
@@ -111,12 +111,12 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <h2>status bar</h2>
 <div class="highlight"><pre><span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">keys</span> <span class="n">vi</span>
 <span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">utf8</span> <span class="n">on</span>
-<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">interval</span> 1
-<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">justify</span> “<span class="n">centre</span>”
-<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">left</span><span class="o">-</span><span class="nb">length</span> 60
-<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">right</span><span class="o">-</span><span class="nb">length</span> 90
-<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">left</span> “#<span class="p">(</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">soft</span><span class="o">/</span><span class="n">tmux</span><span class="o">-</span><span class="n">powerline</span><span class="o">/</span><span class="n">powerline</span><span class="p">.</span><span class="n">sh</span> <span class="n">left</span><span class="p">)</span>”
-<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">right</span> “#<span class="p">(</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">soft</span><span class="o">/</span><span class="n">tmux</span><span class="o">-</span><span class="n">powerline</span><span class="o">/</span><span class="n">powerline</span><span class="p">.</span><span class="n">sh</span> <span class="n">right</span><span class="p">)</span>”
+<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">interval</span> <span class="mi">1</span>
+<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">justify</span> <span class="err">“</span><span class="n">centre</span><span class="err">”</span>
+<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">left</span><span class="o">-</span><span class="n">length</span> <span class="mi">60</span>
+<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">right</span><span class="o">-</span><span class="n">length</span> <span class="mi">90</span>
+<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">left</span> <span class="err">“#</span><span class="p">(</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">soft</span><span class="o">/</span><span class="n">tmux</span><span class="o">-</span><span class="n">powerline</span><span class="o">/</span><span class="n">powerline</span><span class="p">.</span><span class="n">sh</span> <span class="n">left</span><span class="p">)</span><span class="err">”</span>
+<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">right</span> <span class="err">“#</span><span class="p">(</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">soft</span><span class="o">/</span><span class="n">tmux</span><span class="o">-</span><span class="n">powerline</span><span class="o">/</span><span class="n">powerline</span><span class="p">.</span><span class="n">sh</span> <span class="n">right</span><span class="p">)</span><span class="err">”</span>
 </pre></div>
 
 
@@ -187,6 +187,7 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
                             <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
                             <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
                             <li><a href="http://neteue.com/">小邪兽</a></li>
+                            <li><a href="http://supercat-lab.org/">老猫</a></li>
                             <li><a href="http://blog.woodelf.org/">woodelf</a></li>
                         </ul>
             </div>

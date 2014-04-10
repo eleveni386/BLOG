@@ -76,47 +76,47 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p><code>apt-get install sun-java6-jdk</code></p>
 <p>然后确认下java版本</p>
 <p><code>java -version</code></p>
-<div class="highlight"><pre><span class="n">java</span> <span class="n">version</span> “1<span class="p">.</span>6<span class="p">.</span>0<span class="n">_26</span>″
-<span class="n">Java</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> <span class="n">SE</span> <span class="n">Runtime</span> <span class="n">Environment</span> <span class="p">(</span><span class="n">build</span> 1<span class="p">.</span>6<span class="p">.</span>0<span class="n">_26</span><span class="o">-</span><span class="n">b03</span><span class="p">)</span>
-<span class="n">Java</span> <span class="n">HotSpot</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> 64<span class="o">-</span><span class="n">Bit</span> <span class="n">Server</span> <span class="n">VM</span> <span class="p">(</span><span class="n">build</span> 20<span class="p">.</span>1<span class="o">-</span><span class="n">b02</span><span class="p">,</span> <span class="n">mixed</span> <span class="n">mode</span><span class="p">)</span>
+<div class="highlight"><pre><span class="n">java</span> <span class="n">version</span> <span class="err">“</span><span class="mf">1.6.0</span><span class="n">_26</span><span class="err">″</span>
+<span class="n">Java</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> <span class="n">SE</span> <span class="n">Runtime</span> <span class="n">Environment</span> <span class="p">(</span><span class="n">build</span> <span class="mf">1.6.0</span><span class="n">_26</span><span class="o">-</span><span class="n">b03</span><span class="p">)</span>
+<span class="n">Java</span> <span class="n">HotSpot</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> <span class="mi">64</span><span class="o">-</span><span class="n">Bit</span> <span class="n">Server</span> <span class="n">VM</span> <span class="p">(</span><span class="n">build</span> <span class="mf">20.1</span><span class="o">-</span><span class="n">b02</span><span class="p">,</span> <span class="n">mixed</span> <span class="n">mode</span><span class="p">)</span>
 </pre></div>
 
 
 <p>然后切换到zenoss用户下执行以下操作 <code>su zenoss</code></p>
 <p>打上26403补丁</p>
 <p><code>/usr/local/zenoss/zenoss/bin/zenpatch 26403</code></p>
-<div class="highlight"><pre><span class="n">Getting</span> <span class="n">patch</span> <span class="n">from</span> <span class="n">Internet</span>…
+<div class="highlight"><pre><span class="n">Getting</span> <span class="n">patch</span> <span class="n">from</span> <span class="n">Internet</span><span class="err">…</span>
 
-<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dev</span><span class="p">.</span><span class="n">zenoss</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">trac</span><span class="o">/</span><span class="n">changeset</span><span class="o">/</span>26403?<span class="n">format</span><span class="p">=</span><span class="n">diff</span><span class="o">&amp;</span><span class="n">new</span><span class="p">=</span>26403
+<span class="nl">http:</span><span class="c1">//dev.zenoss.org/trac/changeset/26403?format=diff&amp;new=26403</span>
 
-<span class="c">% Total % Received % Xferd Average Speed Time Time Time Current</span>
+<span class="o">%</span> <span class="n">Total</span> <span class="o">%</span> <span class="n">Received</span> <span class="o">%</span> <span class="n">Xferd</span> <span class="n">Average</span> <span class="n">Speed</span> <span class="n">Time</span> <span class="n">Time</span> <span class="n">Time</span> <span class="n">Current</span>
 <span class="n">Dload</span> <span class="n">Upload</span> <span class="n">Total</span> <span class="n">Spent</span> <span class="n">Left</span> <span class="n">Speed</span>
-100 1899 0 1899 0 0 1845 0 –<span class="p">:</span>–<span class="p">:</span>– 0<span class="p">:</span>00<span class="p">:</span>01 –<span class="p">:</span>–<span class="p">:</span>– 2748
-<span class="n">determining</span> <span class="n">strip</span> <span class="nb">size</span> <span class="k">for</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">Products</span><span class="o">/</span><span class="n">r26403</span><span class="p">.</span><span class="n">patch</span>
+<span class="mi">100</span> <span class="mi">1899</span> <span class="mi">0</span> <span class="mi">1899</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1845</span> <span class="mi">0</span> <span class="err">–</span><span class="o">:</span><span class="err">–</span><span class="o">:</span><span class="err">–</span> <span class="mi">0</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mo">01</span> <span class="err">–</span><span class="o">:</span><span class="err">–</span><span class="o">:</span><span class="err">–</span> <span class="mi">2748</span>
+<span class="n">determining</span> <span class="n">strip</span> <span class="n">size</span> <span class="k">for</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">Products</span><span class="o">/</span><span class="n">r26403</span><span class="p">.</span><span class="n">patch</span>
 
-<span class="n">Applying</span> <span class="n">patch</span> <span class="n">with</span> <span class="n">strip</span><span class="p">=</span>3
-<span class="n">patch</span> <span class="o">-</span><span class="n">b</span> –<span class="n">strip</span><span class="p">=</span>3 <span class="o">&lt;</span> <span class="n">r26403</span><span class="p">.</span><span class="n">patch</span>
+<span class="n">Applying</span> <span class="n">patch</span> <span class="n">with</span> <span class="n">strip</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">patch</span> <span class="o">-</span><span class="n">b</span> <span class="err">–</span><span class="n">strip</span><span class="o">=</span><span class="mi">3</span> <span class="o">&lt;</span> <span class="n">r26403</span><span class="p">.</span><span class="n">patch</span>
 <span class="p">(</span><span class="n">Stripping</span> <span class="n">trailing</span> <span class="n">CRs</span> <span class="n">from</span> <span class="n">patch</span><span class="p">.)</span>
 <span class="n">patching</span> <span class="n">file</span> <span class="n">ZenUI3</span><span class="o">/</span><span class="n">browser</span><span class="o">/</span><span class="n">resources</span><span class="o">/</span><span class="n">js</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">ComponentPanel</span><span class="p">.</span><span class="n">js</span>
 <span class="p">(</span><span class="n">Stripping</span> <span class="n">trailing</span> <span class="n">CRs</span> <span class="n">from</span> <span class="n">patch</span><span class="p">.)</span>
 <span class="n">patching</span> <span class="n">file</span> <span class="n">ZenUI3</span><span class="o">/</span><span class="n">browser</span><span class="o">/</span><span class="n">resources</span><span class="o">/</span><span class="n">js</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">form</span><span class="o">/</span><span class="n">graphPanel</span><span class="p">.</span><span class="n">js</span>
-<span class="n">zenoss</span><span class="p">@</span><span class="n">bgp</span><span class="o">-</span><span class="n">guangzhou</span><span class="o">-</span>17<span class="p">:</span><span class="o">~</span>$ <span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dev</span><span class="p">.</span><span class="n">zenoss</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">trac</span><span class="o">/</span><span class="n">export</span><span class="o">/</span>26262<span class="o">/</span><span class="n">trunk</span><span class="o">/</span><span class="n">inst</span><span class="o">/</span><span class="n">buildjs</span><span class="p">.</span><span class="n">sh</span>
-–2012<span class="o">-</span>11<span class="o">-</span>29 13<span class="p">:</span>56<span class="p">:</span>21– <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dev</span><span class="p">.</span><span class="n">zenoss</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">trac</span><span class="o">/</span><span class="n">export</span><span class="o">/</span>26262<span class="o">/</span><span class="n">trunk</span><span class="o">/</span><span class="n">inst</span><span class="o">/</span><span class="n">buildjs</span><span class="p">.</span><span class="n">sh</span>
-<span class="n">Resolving</span> <span class="n">dev</span><span class="p">.</span><span class="n">zenoss</span><span class="p">.</span><span class="n">org</span>… 204<span class="p">.</span>12<span class="p">.</span>105<span class="p">.</span>194
-<span class="n">Connecting</span> <span class="n">to</span> <span class="n">dev</span><span class="p">.</span><span class="n">zenoss</span><span class="p">.</span><span class="n">org</span><span class="o">|</span>204<span class="p">.</span>12<span class="p">.</span>105<span class="p">.</span>194<span class="o">|</span><span class="p">:</span>80… <span class="n">connected</span><span class="p">.</span>
-<span class="n">HTTP</span> <span class="n">request</span> <span class="n">sent</span><span class="p">,</span> <span class="n">awaiting</span> <span class="n">response</span>… 200 <span class="n">OK</span>
-<span class="n">Length</span><span class="p">:</span> 1714 <span class="p">(</span>1<span class="p">.</span>7<span class="n">K</span><span class="p">)</span> <span class="p">[</span><span class="n">application</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">sh</span><span class="p">]</span>
-<span class="n">Saving</span> <span class="n">to</span><span class="p">:</span> “<span class="n">buildjs</span><span class="p">.</span><span class="n">sh</span><span class="p">.</span>1”
+<span class="n">zenoss</span><span class="err">@</span><span class="n">bgp</span><span class="o">-</span><span class="n">guangzhou</span><span class="o">-</span><span class="mi">17</span><span class="o">:~</span><span class="err">$</span> <span class="n">wget</span> <span class="n">http</span><span class="o">:</span><span class="c1">//dev.zenoss.org/trac/export/26262/trunk/inst/buildjs.sh</span>
+<span class="err">–</span><span class="mi">2012</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">29</span> <span class="mi">13</span><span class="o">:</span><span class="mi">56</span><span class="o">:</span><span class="mi">21</span><span class="err">–</span> <span class="n">http</span><span class="o">:</span><span class="c1">//dev.zenoss.org/trac/export/26262/trunk/inst/buildjs.sh</span>
+<span class="n">Resolving</span> <span class="n">dev</span><span class="p">.</span><span class="n">zenoss</span><span class="p">.</span><span class="n">org</span><span class="err">…</span> <span class="mf">204.12.105.194</span>
+<span class="n">Connecting</span> <span class="n">to</span> <span class="n">dev</span><span class="p">.</span><span class="n">zenoss</span><span class="p">.</span><span class="n">org</span><span class="o">|</span><span class="mf">204.12.105.194</span><span class="o">|:</span><span class="mi">80</span><span class="err">…</span> <span class="n">connected</span><span class="p">.</span>
+<span class="n">HTTP</span> <span class="n">request</span> <span class="n">sent</span><span class="p">,</span> <span class="n">awaiting</span> <span class="n">response</span><span class="err">…</span> <span class="mi">200</span> <span class="n">OK</span>
+<span class="nl">Length:</span> <span class="mi">1714</span> <span class="p">(</span><span class="mf">1.7</span><span class="n">K</span><span class="p">)</span> <span class="p">[</span><span class="n">application</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">sh</span><span class="p">]</span>
+<span class="n">Saving</span> <span class="n">to</span><span class="o">:</span> <span class="err">“</span><span class="n">buildjs</span><span class="p">.</span><span class="n">sh</span><span class="mf">.1</span><span class="err">”</span>
 
-100<span class="c">%[====================================</span>
+<span class="mi">100</span><span class="o">%</span><span class="p">[</span><span class="o">====================================</span>
 
-<span class="o">==================================</span><span class="p">=</span>
+<span class="o">===================================</span>
 
 <span class="o">======================================</span>
 
-<span class="o">================&gt;</span><span class="p">]</span> 1<span class="p">,</span>714 –<span class="p">.</span><span class="o">-</span><span class="n">K</span><span class="o">/</span><span class="n">s</span> <span class="n">in</span> 0<span class="n">s</span>
+<span class="o">================&gt;</span><span class="p">]</span> <span class="mi">1</span><span class="p">,</span><span class="mi">714</span> <span class="err">–</span><span class="p">.</span><span class="o">-</span><span class="n">K</span><span class="o">/</span><span class="n">s</span> <span class="n">in</span> <span class="mi">0</span><span class="n">s</span>
 
-2012<span class="o">-</span>11<span class="o">-</span>29 13<span class="p">:</span>56<span class="p">:</span>22 <span class="p">(</span>388 <span class="n">MB</span><span class="o">/</span><span class="n">s</span><span class="p">)</span> – “<span class="n">buildjs</span><span class="p">.</span><span class="n">sh</span><span class="p">.</span>1” <span class="n">saved</span> <span class="p">[</span>1714<span class="o">/</span>1714<span class="p">]</span>
+<span class="mi">2012</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">29</span> <span class="mi">13</span><span class="o">:</span><span class="mi">56</span><span class="o">:</span><span class="mi">22</span> <span class="p">(</span><span class="mi">388</span> <span class="n">MB</span><span class="o">/</span><span class="n">s</span><span class="p">)</span> <span class="err">–</span> <span class="err">“</span><span class="n">buildjs</span><span class="p">.</span><span class="n">sh</span><span class="mf">.1</span><span class="err">”</span> <span class="n">saved</span> <span class="p">[</span><span class="mi">1714</span><span class="o">/</span><span class="mi">1714</span><span class="p">]</span>
 </pre></div>
 
 
@@ -124,7 +124,7 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 并在选项中正确调用这一方法，使得性能图像中的时间范围与选项中的同步。</p>
 <p>具体说明见<a href="http://dev.zenoss.org/trac/changeset/26403">http://dev.zenoss.org/trac/changeset/26403</a></p>
 <p>下载JSBulid程序，运行使JS补丁生效</p>
-<div class="highlight"><pre><span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dev</span><span class="p">.</span><span class="n">zenoss</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">trac</span><span class="o">/</span><span class="n">export</span><span class="o">/</span>26262<span class="o">/</span><span class="n">trunk</span><span class="o">/</span><span class="n">inst</span><span class="o">/</span><span class="n">buildjs</span><span class="p">.</span><span class="n">sh</span>
+<div class="highlight"><pre><span class="n">wget</span> <span class="n">http</span><span class="o">:</span><span class="c1">//dev.zenoss.org/trac/export/26262/trunk/inst/buildjs.sh</span>
 <span class="n">sh</span> <span class="n">buildjs</span><span class="p">.</span><span class="n">sh</span>
 <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">zopectl</span> <span class="n">restart</span>
 </pre></div>
@@ -153,21 +153,21 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
  </div>
         <div class="summary"><h2>安装</h2>
 <p>安装easy_install</p>
-<div class="highlight"><pre><span class="n">wget</span> <span class="o">-</span><span class="n">q</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">peak</span><span class="p">.</span><span class="n">telecommunity</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">dist</span><span class="o">/</span><span class="n">ez_setup</span><span class="p">.</span><span class="n">py</span>
+<div class="highlight"><pre><span class="n">wget</span> <span class="o">-</span><span class="n">q</span> <span class="n">http</span><span class="o">:</span><span class="c1">//peak.telecommunity.com/dist/ez_setup.py</span>
 <span class="n">python</span> <span class="n">ez_setup</span><span class="p">.</span><span class="n">py</span>
 </pre></div>
 
 
 <p>安装zenplugins.py</p>
 <div class="highlight"><pre><span class="n">easy_install</span> <span class="n">Zenoss</span><span class="o">-</span><span class="n">Plugins</span>
-路径 <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">zenplugins</span><span class="p">.</span><span class="n">py</span>
+<span class="err">路径</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">zenplugins</span><span class="p">.</span><span class="n">py</span>
 </pre></div>
 
 
 <h2>测试</h2>
 <p><code>zenplugins.py mem</code> 获取内存信息,</p>
 <p>出现如下信息,为安装正确</p>
-<div class="highlight"><pre><span class="n">MEM</span> <span class="n">OK</span><span class="p">;</span><span class="o">|</span><span class="n">memAvailReal</span><span class="p">=</span>90583040 <span class="n">hrSwapSize</span><span class="p">=</span>10001932288 <span class="n">hrMemorySize</span><span class="p">=</span>16855810048 <span class="n">pageSize</span><span class="p">=</span>4096 <span class="n">memAvailSwap</span><span class="p">=</span>9998671872
+<div class="highlight"><pre><span class="n">MEM</span> <span class="n">OK</span><span class="p">;</span><span class="o">|</span><span class="n">memAvailReal</span><span class="o">=</span><span class="mi">90583040</span> <span class="n">hrSwapSize</span><span class="o">=</span><span class="mi">10001932288</span> <span class="n">hrMemorySize</span><span class="o">=</span><span class="mi">16855810048</span> <span class="n">pageSize</span><span class="o">=</span><span class="mi">4096</span> <span class="n">memAvailSwap</span><span class="o">=</span><span class="mi">9998671872</span>
 </pre></div>
 
 
@@ -234,6 +234,7 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
                             <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
                             <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
                             <li><a href="http://neteue.com/">小邪兽</a></li>
+                            <li><a href="http://supercat-lab.org/">老猫</a></li>
                             <li><a href="http://blog.woodelf.org/">woodelf</a></li>
                         </ul>
             </div>

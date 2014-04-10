@@ -58,6 +58,64 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/09/22/ji-yi-wang-rtxmi-ma/"><h2>记.遗忘RTX密码</h2></a>
+        <div class= "well small"> 日 22 九月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>引子</h2>
+<blockquote>
+<p>在虚拟机中rtx密码是保存的,第一次拿到密码,没有做第三方的记录.
+中秋期间,wine了一个rtx. 结果发现自己忘记密码了</p>
+</blockquote>
+<h2>过程</h2>
+<p>由于有了之前的遗忘密码事件 (<a href="/posts/2012/11/28/wang-ji-mi-ma-zhi-svn/">遗忘密码之svn</a>,<a href="/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/">记.一次邮箱密码丢失</a>)</p>
+<p>一开始的思路是在登录rtx的时候抓包分析,rtx的验证数据包, 不过还是习惯性的google了一下
+没想到真找到了更简单的方法.</p>
+<blockquote>
+<p>有资料显示rtx在内存中明文存储密码
+by the goole</p>
+</blockquote>
+<h3>WINHEX打开RTX的内存</h3>
+<ol>
+<li>
+<p>winhex打开rtx的内存
+    <img alt="" src="/image/step.png" /></p>
+<ol>
+<li>点击图片中1的位置.<strong>open Ram</strong></li>
+<li>在窗口中找到rtx.</li>
+<li>选择<strong>主要内存</strong>.<em>Primary Memory</em></li>
+</ol>
+</li>
+<li>
+<p>查找16进制字符串<strong>40000000500061007300730077006F0072006400</strong>
+    <img alt="" src="/image/step1.png" /></p>
+<ol>
+<li>点击图片中1的位置.<strong>Find Hex values</strong></li>
+<li>在文本框内输入要搜索的16进制字符串<strong>40000000500061007300730077006F0072006400</strong></li>
+</ol>
+</li>
+<li>
+<p>password下面的位置就是明文密码
+    <img alt="" src="/image/step2.png" /></p>
+</li>
+</ol>
+<h2>结果</h2>
+<p>好了,明文密码得到了.只是这样的rtx是否安全呢...</p>
+<p><strong>wine rtx</strong> 真的很简单</p>
+<p><a href="http://www.2cto.com/Article/201308/236529.html">参考地址</a></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/09/22/ji-yi-wang-rtxmi-ma/">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/"><h2>加密你的HTTP请求(穿墙)</h2></a>
         <div class= "well small"> 五 17 五月 2013
 
@@ -85,7 +143,7 @@ Stunnel 服务器主要执行两个功能：
 <p>在make install 的时候会要求你输入一些信息,用来生成证书, 按照提示输入即可</p>
 <h2>配置</h2>
 <h3>这里仅作为proxy</h3>
-<div class="highlight"><pre><span class="n">syslog</span> <span class="p">=</span> <span class="n">yes</span>  #使用 ...</pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/">read more</a></div>
+<div class="highlight"><pre><span class="n">syslog</span> <span class="o">=</span> <span class="n">yes</span>  <span class="err">#使用 ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/">read more</a></div>
     </div>	
 				
     
@@ -172,37 +230,6 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p><img alt="" src="/image/Keepalived.png" /></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/10/16/keepalivedyuan-li-yu-shi-zhan-jing-jiang/">read more</a></div>
     </div>	
 				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/09/29/liang-ge-xiao-jiao-ben-tian-qi-cha-xun-he-zhong-ying-ri-fan-yi/"><h2>两个小脚本- 天气查询和中英日翻译</h2></a>
-        <div class= "well small"> 六 29 九月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>最近在和朋友弄gtalk群聊, 框架已经写好, 并且可以正常使用, 有兴趣的朋友欢迎加入, 
-我们gtalk群<strong>pythonerclub@gmail.com</strong> (开发者<a href="(http://www.linuxzen.com/)">Cold</a>)加它为好友就可以进入我们
-群组, 群聊 功能指令输入 <code>$help</code>.</p>
-<p>在写功能机器人的时候, 顺便给自己方便方便, 就从机器人那边的部分功能代码 ,
-copy到本地, 就是天气查询, 和翻译</p>
-<p>脚本效果截图:</p>
-<p><img alt="" src="/image/2012-09-29-121615.png" /></p>
-<p>翻译 是用的google翻译, 天气查询用的中央气象局天气预报, 显示当天天气</p>
-<p><a href="(http://code.google.com/p/sharepythoncode/downloads/detail?name=Complex.tar.gz&amp;can=2&amp;q=#makechanges)">源码</a></p>
-<p>安装使用很简单, 解压之后 将Complex/* 丢到/usr/sbin/下,</p>
-<p>天气查询, 就要求一个参数, 就是市级地名</p>
-<p><code>tq 广州</code></p>
-<p>翻译 , 默认是英汉翻译,需要其它翻译,比如汉-&gt;英, 汉-&gt;日,日-&gt;汉,</p>
-<p><code>fanyi eleven ...</code></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/29/liang-ge-xiao-jiao-ben-tian-qi-cha-xun-he-zhong-ying-ri-fan-yi/">read more</a></div>
-    </div>	
-				
             <div class="pagination">
 <ul>
     <li class="prev"><a href="http://eleveni386.7axu.com/author/eleveni3862.html">&larr; Previous</a></li>
@@ -267,6 +294,7 @@ copy到本地, 就是天气查询, 和翻译</p>
                             <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
                             <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
                             <li><a href="http://neteue.com/">小邪兽</a></li>
+                            <li><a href="http://supercat-lab.org/">老猫</a></li>
                             <li><a href="http://blog.woodelf.org/">woodelf</a></li>
                         </ul>
             </div>

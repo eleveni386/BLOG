@@ -89,21 +89,21 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <div class="highlight"><pre><span class="n">import</span> <span class="n">urllib2</span><span class="p">,</span><span class="n">urllib</span>
 <span class="n">import</span> <span class="n">cookielib</span>
 
-<span class="n">cj</span> <span class="p">=</span> <span class="n">cookielib</span><span class="p">.</span><span class="n">CookieJar</span><span class="p">()</span>
-<span class="n">opener</span> <span class="p">=</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">urllib2</span><span class="p">.</span><span class="n">HTTPCookieProcessor</span><span class="p">(</span><span class="n">cj</span><span class="p">))</span>
+<span class="n">cj</span> <span class="o">=</span> <span class="n">cookielib</span><span class="p">.</span><span class="n">CookieJar</span><span class="p">()</span>
+<span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">urllib2</span><span class="p">.</span><span class="n">HTTPCookieProcessor</span><span class="p">(</span><span class="n">cj</span><span class="p">))</span>
 <span class="n">urllib2</span><span class="p">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
 
-<span class="n">post</span> <span class="p">=</span> <span class="n">urllib</span><span class="p">.</span><span class="n">urlencode</span><span class="p">({</span><span class="s">&#39;pid&#39;</span><span class="p">:</span><span class="s">&#39;securecrt_ubuntu1264_deb_71&#39;</span><span class="p">,</span><span class="o">\</span>
-                          <span class="s">&#39;username&#39;</span><span class="p">:</span><span class="s">&#39;eleven.i386@gmail.com&#39;</span><span class="p">,</span><span class="o">\</span>
-                          <span class="s">&#39;password&#39;</span><span class="p">:</span><span class="s">&#39;*******&#39;</span><span class="p">,</span><span class="o">\</span>
-                          <span class="s">&#39;status&#39;</span><span class="p">:</span><span class="s">&#39;4&#39;</span><span class="p">})</span>
+<span class="n">post</span> <span class="o">=</span> <span class="n">urllib</span><span class="p">.</span><span class="n">urlencode</span><span class="p">({</span><span class="err">&#39;</span><span class="n">pid</span><span class="sc">&#39;:&#39;</span><span class="n">securecrt_ubuntu1264_deb_71</span><span class="err">&#39;</span><span class="p">,</span>\
+                          <span class="err">&#39;</span><span class="n">username</span><span class="sc">&#39;:&#39;</span><span class="n">eleven</span><span class="p">.</span><span class="n">i386</span><span class="err">@</span><span class="n">gmail</span><span class="p">.</span><span class="n">com</span><span class="err">&#39;</span><span class="p">,</span>\
+                          <span class="err">&#39;</span><span class="n">password</span><span class="sc">&#39;:&#39;</span><span class="o">*******</span><span class="err">&#39;</span><span class="p">,</span>\
+                          <span class="err">&#39;</span><span class="n">status</span><span class="sc">&#39;:&#39;</span><span class="mi">4</span><span class="err">&#39;</span><span class="p">})</span>
 
-<span class="n">post2</span> <span class="p">=</span> <span class="n">urllib</span><span class="p">.</span><span class="n">urlencode</span><span class="p">({</span><span class="s">&#39;pid&#39;</span><span class="p">:</span><span class="s">&#39;securecrt_ubuntu1264_deb_71&#39;</span><span class="p">,</span><span class="o">\</span>
-                          <span class="s">&#39;status&#39;</span><span class="p">:</span><span class="s">&#39;self&#39;</span><span class="p">})</span>
+<span class="n">post2</span> <span class="o">=</span> <span class="n">urllib</span><span class="p">.</span><span class="n">urlencode</span><span class="p">({</span><span class="err">&#39;</span><span class="n">pid</span><span class="sc">&#39;:&#39;</span><span class="n">securecrt_ubuntu1264_deb_71</span><span class="err">&#39;</span><span class="p">,</span>\
+                          <span class="err">&#39;</span><span class="n">status</span><span class="sc">&#39;:&#39;</span><span class="n">self</span><span class="err">&#39;</span><span class="p">})</span>
 
-<span class="n">req</span> <span class="p">=</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;https://secure.vandyke.com/cgi-bin/account_verify.php&#39;</span><span class="p">,</span><span class="n">post</span><span class="p">)</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">urlopen</span><span class="p">(</span><span class="err">&#39;</span><span class="n">https</span><span class="o">:</span><span class="c1">//secure.vandyke.com/cgi-bin/account_verify.php&#39;,post)</span>
 
-<span class="n">req2</span> <span class="p">=</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;https://secure.vandyke.com/cgi-bin/download.php&#39;</span><span class="p">,</span><span class="n">post2</span><span class="p">)</span>
+<span class="n">req2</span> <span class="o">=</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">urlopen</span><span class="p">(</span><span class="err">&#39;</span><span class="n">https</span><span class="o">:</span><span class="c1">//secure.vandyke.com/cgi-bin/download.php&#39;,post2)</span>
 </pre></div>
 
 
@@ -134,16 +134,16 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
         <div class="summary"><p>今天实在无法忍受<em>ibus</em>的启动速度和词汇准确性了. 将ibus更换成<strong>fcitx</strong>, </p>
 <div class="highlight"><pre><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">fcitx</span>
 <span class="n">im</span><span class="o">-</span><span class="k">switch</span> <span class="o">-</span><span class="n">s</span> <span class="n">fcitx</span>
-<span class="n">im</span><span class="o">-</span><span class="k">switch</span> <span class="o">-</span><span class="n">s</span> <span class="n">fcitx</span> <span class="o">-</span><span class="n">z</span> <span class="n">default</span>
+<span class="n">im</span><span class="o">-</span><span class="k">switch</span> <span class="o">-</span><span class="n">s</span> <span class="n">fcitx</span> <span class="o">-</span><span class="n">z</span> <span class="k">default</span>
 </pre></div>
 
 
 <p>然后在<em>autostart</em>中加入fcitx的自启动.. 注销X界面之后, 发现fcitx是启动起来了, 
 只是应用程序的默认输入法还是<em>Ibus</em>, 于是google之 ,找到了fcitx环境变量设置, 
 在<strong>~/.xprofile</strong> 中加入fcitx的环境变量:</p>
-<div class="highlight"><pre><span class="n">export</span> <span class="n">GTK_IM_MODULE</span><span class="p">=</span><span class="n">fcitx</span>
-<span class="n">export</span> <span class="n">XMODIFIERS</span><span class="p">=@</span><span class="n">im</span><span class="p">=</span><span class="n">fcitx</span>
-<span class="n">export</span> <span class="n">QT_IM_MODULE</span><span class="p">=</span><span class="n">fcitx</span>
+<div class="highlight"><pre><span class="n">export</span> <span class="n">GTK_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
+<span class="n">export</span> <span class="n">XMODIFIERS</span><span class="o">=</span><span class="err">@</span><span class="n">im</span><span class="o">=</span><span class="n">fcitx</span>
+<span class="n">export</span> <span class="n">QT_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
 </pre></div>
 
 
@@ -301,6 +301,7 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
                             <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
                             <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
                             <li><a href="http://neteue.com/">小邪兽</a></li>
+                            <li><a href="http://supercat-lab.org/">老猫</a></li>
                             <li><a href="http://blog.woodelf.org/">woodelf</a></li>
                         </ul>
             </div>

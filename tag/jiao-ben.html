@@ -74,37 +74,37 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <h2>操作</h2>
 <p><a href="http://liuxin1982.blog.51cto.com/4338970/1019825">参考</a></p>
 <p>今天我是来吐槽该文中的一个shell脚本</p>
-<div class="highlight"><pre><span class="c"># setting up irq affinity according to /proc/interrupts</span>
-<span class="c"># 2008-11-25 Robert Olsson</span>
-<span class="c"># 2009-02-19 updated by Jesse Brandeburg</span>
-<span class="c">#</span>
-<span class="c"># &gt; Dave Miller:</span>
-<span class="c"># (To get consistent naming in /proc/interrups)</span>
-<span class="c"># I would suggest that people use something like:</span>
-<span class="c"># char buf[IFNAMSIZ+6];</span>
-<span class="c">#</span>
-<span class="c"># sprintf(buf, &quot;%s-%s-%d&quot;,</span>
-<span class="c">#         netdev-&gt;name,</span>
-<span class="c">#  (RX_INTERRUPT ? &quot;rx&quot; : &quot;tx&quot;),</span>
-<span class="c">#  queue-&gt;index);</span>
-<span class="c">#</span>
-<span class="c">#  Assuming a device with two RX and TX queues.</span>
-<span class="c">#  This script will assign: </span>
-<span class="c">#</span>
-<span class="c"># eth0-rx-0  CPU0</span>
-<span class="c"># eth0-rx-1  CPU1</span>
-<span class="c"># eth0-tx-0  CPU0</span>
-<span class="c"># eth0-tx-1  CPU1</span>
-<span class="c">#</span>
+<div class="highlight"><pre><span class="cp"># setting up irq affinity according to /proc/interrupts</span>
+<span class="cp"># 2008-11-25 Robert Olsson</span>
+<span class="cp"># 2009-02-19 updated by Jesse Brandeburg</span>
+<span class="cp">#</span>
+<span class="cp"># &gt; Dave Miller:</span>
+<span class="cp"># (To get consistent naming in /proc/interrups)</span>
+<span class="cp"># I would suggest that people use something like:</span>
+<span class="cp"># char buf[IFNAMSIZ+6];</span>
+<span class="cp">#</span>
+<span class="cp"># sprintf(buf, &quot;%s-%s-%d&quot;,</span>
+<span class="cp">#         netdev-&gt;name,</span>
+<span class="cp">#  (RX_INTERRUPT ? &quot;rx&quot; : &quot;tx&quot;),</span>
+<span class="cp">#  queue-&gt;index);</span>
+<span class="cp">#</span>
+<span class="cp">#  Assuming a device with two RX and TX queues.</span>
+<span class="cp">#  This script will assign: </span>
+<span class="cp">#</span>
+<span class="cp"># eth0-rx-0  CPU0</span>
+<span class="cp"># eth0-rx-1  CPU1</span>
+<span class="cp"># eth0-tx-0  CPU0</span>
+<span class="cp"># eth0-tx-1  CPU1</span>
+<span class="cp">#</span>
 <span class="n">set_affinity</span><span class="p">()</span>
 <span class="p">{</span>
-    <span class="n">MASK</span><span class="p">=</span>$<span class="p">((</span>1<span class="o">&lt;&lt;</span>$<span class="n">VEC</span><span class="p">))</span>
-    <span class="nb">printf</span> <span class="s">&quot;%s mask=%X for /proc/irq/%d/smp_affinity\n&quot;</span> $<span class="n">DEV</span> $<span class="n">MASK</span> $<span class="n">IRQ</span>
-    <span class="nb">printf</span> <span class="s">&quot;%X&quot;</span> $<span class="n">MASK</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">irq</span><span class="o">/</span>$<span class="n">IRQ</span><span class="o">/</span><span class="n">smp_affinity</span>
-    <span class="c">#echo $DEV mask=$MASK for /proc/irq/$IRQ/smp_affinity</span>
-    <span class="c">#echo $MASK &gt; /proc/irq/$IRQ/smp_affinity</span>
+    <span class="n">MASK</span><span class="o">=</span><span class="err">$</span><span class="p">((</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="err">$</span><span class="n">VEC</span><span class="p">))</span>
+    <span class="n">printf</span> <span class="s">&quot;%s mask=%X for /proc/irq/%d/smp_affinity</span><span class="se">\n</span><span class="s">&quot;</span> <span class="err">$</span><span class="n">DEV</span> <span class="err">$</span><span class="n">MASK</span> <span class="err">$</span><span class="n">IRQ</span>
+    <span class="n">printf</span> <span class="s">&quot;%X&quot;</span> <span class="err">$</span><span class="n">MASK</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">irq</span><span class="o">/</span><span class="err">$</span><span class="n">IRQ</span><span class="o">/</span><span class="n">smp_affinity</span>
+    <span class="err">#</span><span class="n">echo</span> <span class="err">$</span><span class="n">DEV</span> <span class="n">mask</span><span class="o">=</span><span class="err">$</span><span class="n">MASK</span> <span class="k">for</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">irq</span><span class="o">/</span><span class="err">$</span><span class="n">IRQ</span><span class="o">/</span><span class="n">smp_affinity</span>
+    <span class="err">#</span><span class="n">echo</span> <span class="err">$</span><span class="n">MASK</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">irq</span><span class="o">/</span><span class="err">$</span><span class="n">IRQ</span><span class="o">/</span><span class="n">smp_affinity</span>
 <span class="p">}</span>
-<span class="k">if</span> <span class="p">[</span> <span class="s">&quot;$1&quot;</span> <span class="p">=</span> <span class="s">&quot;&quot;</span> <span class="p">]</span> <span class="p">;</span> <span class="n">then</span>
+<span class="k">if</span> <span class="p">[</span> <span class="s">&quot;$1&quot;</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> <span class="p">]</span> <span class="p">;</span> <span class="n">then</span>
 <span class="n">echo</span> <span class="s">&quot;Description:&quot;</span>
 <span class="n">echo</span> <span class="s">&quot;    This script attempts to bind each queue of a multi-queue NIC&quot;</span>
 <span class="n">echo</span> <span class="s">&quot;    to the same numbered core, ie tx0¦rx0 --&gt; cpu0, tx1¦rx1 --&gt; cpu1&quot;</span>
@@ -112,37 +112,37 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <span class="n">echo</span> <span class="s">&quot;    $0 eth0 [eth1 eth2 eth3]&quot;</span>
 <span class="n">fi</span>
 
-<span class="c"># check for irqbalance running</span>
-<span class="n">IRQBALANCE_ON</span><span class="p">=</span>`<span class="n">ps</span> <span class="n">ax</span> ¦ <span class="n">grep</span> <span class="o">-</span><span class="n">v</span> <span class="n">grep</span> ¦ <span class="n">grep</span> <span class="o">-</span><span class="n">q</span> <span class="n">irqbalance</span><span class="p">;</span> <span class="n">echo</span> $?`
+<span class="cp"># check for irqbalance running</span>
+<span class="n">IRQBALANCE_ON</span><span class="o">=</span><span class="err">`</span><span class="n">ps</span> <span class="n">ax</span> <span class="err">¦</span> <span class="n">grep</span> <span class="o">-</span><span class="n">v</span> <span class="n">grep</span> <span class="err">¦</span> <span class="n">grep</span> <span class="o">-</span><span class="n">q</span> <span class="n">irqbalance</span><span class="p">;</span> <span class="n">echo</span> <span class="err">$</span><span class="o">?</span><span class="err">`</span>
 <span class="k">if</span> <span class="p">[</span> <span class="s">&quot;$IRQBALANCE_ON&quot;</span> <span class="o">==</span> <span class="s">&quot;0&quot;</span> <span class="p">]</span> <span class="p">;</span> <span class="n">then</span>
 <span class="n">echo</span> <span class="s">&quot; WARNING: irqbalance is running and will&quot;</span>
 <span class="n">echo</span> <span class="s">&quot;          likely override this script&#39;s affinitization.&quot;</span>
 <span class="n">echo</span> <span class="s">&quot;          Please stop the irqbalance service and/or execute&quot;</span>
 <span class="n">echo</span> <span class="s">&quot;          &#39;killall irqbalance&#39;&quot;</span>
 <span class="n">fi</span>
-<span class="c">#</span>
-<span class="c"># Set up the desired devices.</span>
-<span class="c">#</span>
-<span class="k">for</span> <span class="n">DEV</span> <span class="n">in</span> $<span class="o">*</span>
+<span class="cp">#</span>
+<span class="cp"># Set up the desired devices.</span>
+<span class="cp">#</span>
+<span class="k">for</span> <span class="n">DEV</span> <span class="n">in</span> <span class="err">$</span><span class="o">*</span>
 <span class="k">do</span>
-<span class="k">for</span> <span class="n">DIR</span> <span class="n">in</span> <span class="n">rx</span> <span class="n">tx</span> <span class="n">TxRx</span>
+<span class="k">for</span> <span class="kt">DIR</span> <span class="n">in</span> <span class="n">rx</span> <span class="n">tx</span> <span class="n">TxRx</span>
 <span class="k">do</span>
-    <span class="n">MAX</span><span class="p">=</span>`<span class="n">grep</span> $<span class="n">DEV</span><span class="o">-</span>$<span class="n">DIR</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">interrupts</span> ¦ <span class="n">wc</span> <span class="o">-</span><span class="n">l</span>`
+    <span class="n">MAX</span><span class="o">=</span><span class="err">`</span><span class="n">grep</span> <span class="err">$</span><span class="n">DEV</span><span class="o">-</span><span class="err">$</span><span class="kt">DIR</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">interrupts</span> <span class="err">¦</span> <span class="n">wc</span> <span class="o">-</span><span class="n">l</span><span class="err">`</span>
     <span class="k">if</span> <span class="p">[</span> <span class="s">&quot;$MAX&quot;</span> <span class="o">==</span> <span class="s">&quot;0&quot;</span> <span class="p">]</span> <span class="p">;</span> <span class="n">then</span>
-    <span class="n">MAX</span><span class="p">=</span>`<span class="n">egrep</span> <span class="o">-</span><span class="n">i</span> <span class="s">&quot;$DEV:.*$DIR&quot;</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">interrupts</span> ¦ <span class="n">wc</span> <span class="o">-</span><span class="n">l</span>`
+    <span class="n">MAX</span><span class="o">=</span><span class="err">`</span><span class="n">egrep</span> <span class="o">-</span><span class="n">i</span> <span class="s">&quot;$DEV:.*$DIR&quot;</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">interrupts</span> <span class="err">¦</span> <span class="n">wc</span> <span class="o">-</span><span class="n">l</span><span class="err">`</span>
     <span class="n">fi</span>
     <span class="k">if</span> <span class="p">[</span> <span class="s">&quot;$MAX&quot;</span> <span class="o">==</span> <span class="s">&quot;0&quot;</span> <span class="p">]</span> <span class="p">;</span> <span class="n">then</span>
-    <span class="n">echo</span> <span class="n">no</span> $<span class="n">DIR</span> <span class="n">vectors</span> <span class="n">found</span> <span class="n">on</span> $<span class="n">DEV</span>
+    <span class="n">echo</span> <span class="n">no</span> <span class="err">$</span><span class="kt">DIR</span> <span class="n">vectors</span> <span class="n">found</span> <span class="n">on</span> <span class="err">$</span><span class="n">DEV</span>
     <span class="k">continue</span>
-    <span class="c">#exit 1</span>
+    <span class="err">#</span><span class="n">exit</span> <span class="mi">1</span>
     <span class="n">fi</span>
-    <span class="k">for</span> <span class="n">VEC</span> <span class="n">in</span> `<span class="n">seq</span> 0 1 $<span class="n">MAX</span>`
+    <span class="k">for</span> <span class="n">VEC</span> <span class="n">in</span> <span class="err">`</span><span class="n">seq</span> <span class="mi">0</span> <span class="mi">1</span> <span class="err">$</span><span class="n">MAX</span><span class="err">`</span>
      <span class="k">do</span>
-        <span class="n">IRQ</span><span class="p">=</span>`<span class="nb">cat</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">interrupts</span> ¦ <span class="n">grep</span> <span class="o">-</span><span class="n">i</span> $<span class="n">DEV</span><span class="o">-</span>$<span class="n">DIR</span><span class="o">-</span>$<span class="n">VEC</span><span class="s">&quot;$&quot;</span>  ¦ <span class="nb">cut</span>  <span class="o">-</span><span class="n">d</span><span class="p">:</span>  <span class="o">-</span><span class="n">f1</span> ¦ <span class="n">sed</span> <span class="s">&quot;s/ //g&quot;</span>`
+        <span class="n">IRQ</span><span class="o">=</span><span class="err">`</span><span class="n">cat</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">interrupts</span> <span class="err">¦</span> <span class="n">grep</span> <span class="o">-</span><span class="n">i</span> <span class="err">$</span><span class="n">DEV</span><span class="o">-</span><span class="err">$</span><span class="kt">DIR</span><span class="o">-</span><span class="err">$</span><span class="n">VEC</span><span class="s">&quot;$&quot;</span>  <span class="err">¦</span> <span class="n">cut</span>  <span class="o">-</span><span class="n">d</span><span class="o">:</span>  <span class="o">-</span><span class="n">f1</span> <span class="err">¦</span> <span class="n">sed</span> <span class="s">&quot;s/ //g&quot;</span><span class="err">`</span>
         <span class="k">if</span> <span class="p">[</span> <span class="o">-</span><span class="n">n</span>  <span class="s">&quot;$IRQ&quot;</span> <span class="p">];</span> <span class="n">then</span>
         <span class="n">set_affinity</span>
         <span class="k">else</span>
-        <span class="n">IRQ</span><span class="p">=</span>`<span class="nb">cat</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">interrupts</span> ¦ <span class="n">egrep</span> <span class="o">-</span><span class="n">i</span> $<span class="n">DEV</span><span class="p">:</span><span class="n">v</span>$<span class="n">VEC</span><span class="o">-</span>$<span class="n">DIR</span><span class="s">&quot;$&quot;</span>  ¦ <span class="nb">cut</span>  <span class="o">-</span><span class="n">d</span><span class="p">:</span>  <span class="o">-</span><span class="n">f1</span> ¦ <span class="n">sed</span> <span class="s">&quot;s/ //g&quot;</span>`
+        <span class="n">IRQ</span><span class="o">=</span><span class="err">`</span><span class="n">cat</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">interrupts</span> <span class="err">¦</span> <span class="n">egrep</span> <span class="o">-</span><span class="n">i</span> <span class="err">$</span><span class="n">DEV</span><span class="o">:</span><span class="n">v</span><span class="err">$</span><span class="n">VEC</span><span class="o">-</span><span class="err">$</span><span class="kt">DIR</span><span class="s">&quot;$&quot;</span>  <span class="err">¦</span> <span class="n">cut</span>  <span class="o">-</span><span class="n">d</span><span class="o">:</span>  <span class="o">-</span><span class="n">f1</span> <span class="err">¦</span> <span class="n">sed</span> <span class="s">&quot;s/ //g&quot;</span><span class="err">`</span>
         <span class="k">if</span> <span class="p">[</span> <span class="o">-</span><span class="n">n</span>  <span class="s">&quot;$IRQ&quot;</span> <span class="p">];</span> <span class="n">then</span>
             <span class="n">set_affinity</span>
         <span class="n">fi</span>
@@ -317,6 +317,7 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
                             <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
                             <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
                             <li><a href="http://neteue.com/">小邪兽</a></li>
+                            <li><a href="http://supercat-lab.org/">老猫</a></li>
                             <li><a href="http://blog.woodelf.org/">woodelf</a></li>
                         </ul>
             </div>
