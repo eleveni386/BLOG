@@ -24,7 +24,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;将原来的 &lt;strong&gt;&lt;accelerator key="W" modifiers="GDK_CONTROL_MASK"/&gt;&lt;/strong&gt; 改为 &lt;strong&gt;&lt;accelerator key="Escape"/&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;用 "&lt;!-- --&gt;" 注释掉 59行的内容,增加60行的内容进去&lt;/p&gt;
 &lt;p&gt;保存,退出 ,重启Empathy&lt;/p&gt;
 &lt;h2&gt;Hotkeys&lt;/h2&gt;
 &lt;p&gt;使用Pidgin的大多数都知道这么一个插件, 能为Pidgin提供快捷键方式呼出聊天窗口, 类似企鹅的&lt;/p&gt;
