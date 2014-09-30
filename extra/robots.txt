@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: eleveni386.7axu.com/sitemap.xml

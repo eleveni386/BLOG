@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/all.atom.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2014-04-10T00:00:00+08:00</updated><entry><title>Empathy快速关闭聊天窗口</title><link href="http://eleveni386.7axu.com/posts/2014/04/10/empathykuai-su-guan-bi-liao-tian-chuang-kou/" rel="alternate"></link><updated>2014-04-10T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-04-10:posts/2014/04/10/empathykuai-su-guan-bi-liao-tian-chuang-kou/</id><summary type="html">&lt;blockquote&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/all.atom.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2014-09-29T00:00:00+08:00</updated><entry><title>深度截图工具</title><link href="http://eleveni386.7axu.com/posts/2014/09/29/shen-du-jie-tu-gong-ju/" rel="alternate"></link><updated>2014-09-29T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-09-29:posts/2014/09/29/shen-du-jie-tu-gong-ju/</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;竟然找不到 小邪兽 版的 DeepinScrot 的github地址了,   ╮(╯▽╰)╭&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;截图工具的截图&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="" src="/image/deepin-scrot.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;说明&lt;/h2&gt;
+&lt;p&gt;深度公司的原员工  &lt;strong&gt;小邪兽&lt;/strong&gt;  的作品. &lt;/p&gt;
+&lt;p&gt;感叹于QQ的截图工具的便利性, 苦于Linux desktop下没有一款能与之匹敌工具.&lt;/p&gt;
+&lt;p&gt;该工具做到了与QQ截图工具一样的便利性.&lt;/p&gt;
+&lt;h2&gt;特性&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;区域截图, &lt;/li&gt;
+&lt;li&gt;截图修改, &lt;/li&gt;
+&lt;li&gt;本地保存, 以及 保存到 黏贴板 &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;以上为 原版 功能, 本人新增了一项功能 图床分享&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;图床分享, 默认为 本人的图床   &lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;安装要求&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&gt;= python2.6&lt;/li&gt;
+&lt;li&gt;python-xlib&lt;/li&gt;
+&lt;li&gt;python-requests&lt;/li&gt;
+&lt;li&gt;xsel&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;更改图床&lt;/h2&gt;
+&lt;p&gt;用你喜欢的 编辑器 编辑 &lt;code&gt;src/sharepic.py&lt;/code&gt; 文件&lt;/p&gt;
+&lt;p&gt;修改 &lt;code&gt;pic_bed = 'http://eleveni386.7axu.com/Image/'&lt;/code&gt; &lt;/p&gt;
+&lt;p&gt;为你自己的图床地址&lt;/p&gt;
+&lt;h2&gt;扯会小蛋&lt;/h2&gt;
+&lt;p&gt;发现 自己距离上一篇文章 隔了 5个月.  这5个月 对于咱个人而言 变化 不可谓不多啊.&lt;/p&gt;
+&lt;p&gt;因为朋友相邀, 离开了原公司, 去了 朋友所在的公司 结果 掉坑....&lt;/p&gt;
+&lt;p&gt;因为新公司业务 需求 我一个SA 变身 成为了 程序猿 , 学会 了 jquery , html, 和 少量 bootstrap
+做起了 网站的勾当 &lt;/p&gt;
+&lt;p&gt;前后端 都是我一个人. 不过 最后 还是让我扯了一个 SA妹子 来做前端 释放了我少量的 脑子&lt;/p&gt;
+&lt;p&gt;而后 发现自己 喜当爹 .... 2333&lt;/p&gt;
+&lt;p&gt;再然后 祖国 麻麻 生日了. &lt;/p&gt;</summary><category term="桌面工具"></category><category term="截图"></category><category term="图床"></category></entry><entry><title>Empathy快速关闭聊天窗口</title><link href="http://eleveni386.7axu.com/posts/2014/04/10/empathykuai-su-guan-bi-liao-tian-chuang-kou/" rel="alternate"></link><updated>2014-04-10T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-04-10:posts/2014/04/10/empathykuai-su-guan-bi-liao-tian-chuang-kou/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;只所以使用Empathy,而不是Pidgin, 是因为厌倦了单调的聊天窗口主题, 在Pidgin安装了新主题,每次
 关闭聊天窗口,再次打开窗口时, 主题不存在了.但是Pidgin的插件真的很多, 用着很顺手,比如Esc快速
 关闭聊天窗口.&lt;/p&gt;

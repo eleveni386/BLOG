@@ -13,7 +13,6 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="http://eleveni386.7axu.com/feeds/rss.xml" type="application/atom+xml" rel="alternate" title="ElevenI386'blog Atom Feed" />
     <link href="http://eleveni386.7axu.com/theme/bootstrap.min.css" rel="stylesheet">
     <link href="http://eleveni386.7axu.com/theme/bootstrap.min.responsive.css" rel="stylesheet">
     <link href="http://eleveni386.7axu.com/theme/local.css" rel="stylesheet">
@@ -37,9 +36,8 @@
 
         <div class="nav-collapse">
         <ul class="nav">
-                    
-                            <li><a href="http://eleveni386.7axu.com/pages/guan-yu-bo-zhu.html">关于博主</a></li>
-                        </ul>
+            
+        </ul>
         </div>
         
     </div>
@@ -51,165 +49,181 @@
     <div class="row">
 
         <div class="span9">
-                
+        
 
         
 
  
 
     <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2014/04/10/empathykuai-su-guan-bi-liao-tian-chuang-kou/"><h2>Empathy快速关闭聊天窗口</h2></a>
-        <div class= "well small"> 四 10 四月 2014
+        <a href="http://eleveni386.7axu.com/posts/2013/12/10/markdownbian-ji-qi/"><h2>markdown编辑器</h2></a>
+        <div class= "well small"> 二 10 十二月 2013
 
 by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
  
 
 
  </div>
-        <div class="summary"><blockquote>
-<p>只所以使用Empathy,而不是Pidgin, 是因为厌倦了单调的聊天窗口主题, 在Pidgin安装了新主题,每次
-关闭聊天窗口,再次打开窗口时, 主题不存在了.但是Pidgin的插件真的很多, 用着很顺手,比如Esc快速
-关闭聊天窗口.</p>
+        <div class="summary"><h1>前言</h1>
+<p>本人是今年开始使用<code>markdown</code>的, 短时间内,就喜欢上这种编辑文档的方法.遂将自己的blog
+都替换为<code>pelican</code>. 个人笔记也采用 <code>markdown</code>语法来记录. 看着我的零散的markdown
+文件很是头疼. 就想着有一个markdown编辑器可以附带文件管理功能,但是找了好久都没找到</p>
+<p>于是就想着自己开发一个. 于是就有了这货, 用时半年,一直断断续续开发,在快结束的时候
+突然发现了<code>gedit</code>, 给它安装markdown插件之后 完全可以满足我的需求.. 突然发现我这半年
+都在浪费时间(虽然没认真花时间在这个上面).最终还是草草结束了这次的开发..</p>
+<p>在写<code>MyEditor</code>期间,多谢网友"老猫" 和 <a href="http://neteue.com/">"小邪兽"</a> 给予的帮助</p>
+<p>"老猫" 告诉了我<code>gtksourceview2</code>的存在. 同时解答了我许多疑问</p>
+<p>"兽兽君" 更是直接给我提供了一些示例代码.</p>
+<h1>截图</h1>
+<p><img alt="" src="/image/markdown.png" /></p>
+<h1>依赖</h1>
+<ol>
+<li>pygtk</li>
+<li>python-markdown</li>
+<li>python-webkit</li>
+<li>python-gtksourceview2 ...</li></ol> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/12/10/markdownbian-ji-qi/">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/10/13/squid-url-tiao-zhuan/"><h2>Squid Url 跳转</h2></a>
+        <div class= "well small"> 日 13 十月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>需求</h2>
+<p>当Iphone/Ipad/Android 等访问 http://www.xxx.com 时跳转到 
+http://www.xxx.com/mobile/xxx/mobile.html?ref=www.xxi.com/</p>
+<h2>分析</h2>
+<p>squid不自带 url重写/跳转 功能, 要实现这些功能需要借助 <strong>重定向器</strong> 来解决</p>
+<p>通过<code>redirect_program</code> 指定一个重定向器 来处理url的重写/跳转</p>
+<p><code>redirect_program</code> 可以用perl/php/python 甚至shell来编写</p>
+<h2>思路</h2>
+<p>使用squid的<code>redirect_program</code> 指令 ,指定一个重定向器处理url跳转</p>
+<p>使用acl 匹配Iphone, Ipad, Android 平台 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/10/13/squid-url-tiao-zhuan/">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/09/22/ji-yi-wang-rtxmi-ma/"><h2>记.遗忘RTX密码</h2></a>
+        <div class= "well small"> 日 22 九月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>引子</h2>
+<blockquote>
+<p>在虚拟机中rtx密码是保存的,第一次拿到密码,没有做第三方的记录.
+中秋期间,wine了一个rtx. 结果发现自己忘记密码了</p>
 </blockquote>
-<h2>关闭会话窗口</h2>
-<p>Empathy 在默认情况下, 要关闭一个聊天会话 可以使用<code>Ctrl+W</code>, 也可以使用鼠标点击<code>x</code>, 但是这些</p>
-<p>操作方式都很变扭, 用习惯了Pidgin的<code>Esc</code>,很难适应<code>Ctrl+W</code>方式.</p>
-<h2>修改</h2>
-<p><strong>被修改的文件</strong></p>
-<div class="highlight"><pre><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">empathy</span><span class="o">/</span><span class="n">empathy</span><span class="o">-</span><span class="n">chat</span><span class="o">-</span><span class="n">window</span><span class="p">.</span><span class="n">ui</span>
-</pre></div>
-
-
-<p>通过搜索 <strong>gtk-close</strong> 找到一下内容</p>
-<div class="highlight"><pre><span class="mi">55</span>           <span class="o">&lt;</span><span class="nb">object</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;GtkAction&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s2">&quot;menu_conv_close&quot;</span><span class="o">&gt;</span>                        
-<span class="mi">56</span>             <span class="o">&lt;</span><span class="nx">property</span> <span class="n">name ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2014/04/10/empathykuai-su-guan-bi-liao-tian-chuang-kou/">read more</a></div>
+<h2>过程</h2>
+<p>由于有了之前的遗忘密码事件 (<a href="/posts/2012/11/28/wang-ji-mi-ma-zhi-svn/">遗忘密码之svn</a>,<a href="/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/">记.一次邮箱密码丢失</a>)</p>
+<p>一开始的思路是在登录rtx的时候抓包分析,rtx的验证数据包, 不过还是习惯性的google了一下
+没想到真找到了更简单的方法.</p>
+<blockquote>
+<p>有资料显示rtx在内存中明文存储密码
+by the goole</p>
+</blockquote>
+<h3>WINHEX打开RTX的内存</h3>
+<ol>
+<li>
+<p>winhex打开rtx的内存
+    <img alt="" src="/image/step.png" /></p>
+<ol>
+<li>点击图片中1的位置.<strong>open Ram</strong></li>
+<li>在窗口中找到rtx.</li>
+<li>选择<strong>主要内存</strong>.<em>Primary Memory</em></li>
+</ol>
+</li>
+<li>
+<p>查找16进制字符串<strong>40000000500061007300730077006F0072006400</strong>
+    <img alt="" src="/image/step1.png" /></p>
+<ol>
+<li>点击图片中1的位置.<strong>Find Hex values</strong></li>
+<li>在文本框内输入要搜索的16进制字符串<strong>40000000500061007300730077006F0072006400</strong></li>
+</ol>
+</li>
+<li>
+<p>password下面的位置就是明文密码
+    <img alt="" src="/image/step2.png" /></p>
+</li>
+</ol>
+<h2>结果</h2>
+<p>好了,明文密码得到了.只是这样的rtx是否安全呢...</p>
+<p><strong>wine rtx</strong> 真的很简单</p>
+<p><a href="http://www.2cto.com/Article/201308/236529.html">参考地址</a></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/09/22/ji-yi-wang-rtxmi-ma/">read more</a></div>
     </div>	
 				
-    
+
  
         
 
  
 
     <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/03/11/ji-ci-an-zhuang-fcitxguo-cheng/"><h2>记一次安装fcitx过程</h2></a>
-        <div class= "well small"> 一 11 三月 2013
+        <a href="http://eleveni386.7axu.com/posts/2013/09/01/cai-yong-pelicanjing-tai-blog/"><h2>采用pelican静态blog</h2></a>
+        <div class= "well small"> 日 01 九月 2013
 
 by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
  
 
 
  </div>
-        <div class="summary"><p>今天实在无法忍受<em>ibus</em>的启动速度和词汇准确性了. 将ibus更换成<strong>fcitx</strong>, </p>
-<div class="highlight"><pre><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">fcitx</span>
-<span class="n">im</span><span class="o">-</span><span class="k">switch</span> <span class="o">-</span><span class="n">s</span> <span class="n">fcitx</span>
-<span class="n">im</span><span class="o">-</span><span class="k">switch</span> <span class="o">-</span><span class="n">s</span> <span class="n">fcitx</span> <span class="o">-</span><span class="n">z</span> <span class="k">default</span>
-</pre></div>
-
-
-<p>然后在<em>autostart</em>中加入fcitx的自启动.. 注销X界面之后, 发现fcitx是启动起来了, 
-只是应用程序的默认输入法还是<em>Ibus</em>, 于是google之 ,找到了fcitx环境变量设置, 
-在<strong>~/.xprofile</strong> 中加入fcitx的环境变量:</p>
-<div class="highlight"><pre><span class="n">export</span> <span class="n">GTK_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
-<span class="n">export</span> <span class="n">XMODIFIERS</span><span class="o">=</span><span class="err">@</span><span class="n">im</span><span class="o">=</span><span class="n">fcitx</span>
-<span class="n">export</span> <span class="n">QT_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
-</pre></div>
-
-
-<p>注销X界面 再次进入系统,<code>echo $GTK_IM_MODULE</code> 发现这个变量已经是fcitx, 但是应用
-程序默认输入法还是<strong>Ibus</strong> , 来来回回折腾了几次 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/03/11/ji-ci-an-zhuang-fcitxguo-cheng/">read more</a></div>
+        <div class="summary"><h2>引子</h2>
+<blockquote>
+<p>因为我们的gtalk群组机器人需要更改Mysql为Mongo, 正好我也有想法使用静态博客程序</p>
+</blockquote>
+<p>在研究了几天<code>pelican</code>之后, 今天就开始动手搬家了.. 唉,只是可惜了我哪些google收录的说 :-(</p>
+<p>最终效果如您所见.. 如何您是我和<a href="(http://www.linuxzen.com/)">cold</a>的熟人,那么别惊讶为何我的blog和他的那么相似.</p>
+<p>介个要归结于,<code>pelican</code>有限的主题,和自己不擅长css的原因, 在众多主题中来回选择,
+不断尝试,最终介个入围了...</p>
+<p>使用中的主题<a href="(https://github.com/getpelican/pelican-themes/tree/master/tuxlite_tbs)">tuxlite_tbs</a></p>
+<p>目前已经可以正常访问, 不过还有一个问题存在, 本地与vps之间同步的问题, 本来在vps
+上建立了一个git的仓库, 但是由于git极度不熟练的缘故,导致我push的文件,始终无法在
+vps找到,更不要说设置nginx的root路径了, 于是,目前使用scp方式更新文件.... 表喷我傻... :-(</p>
+<p>经过这么几分钟的观察,感觉还算是满意的..</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/09/01/cai-yong-pelicanjing-tai-blog/">read more</a></div>
     </div>	
 				
-    
+
  
         
 
  
 
     <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/"><h2>记. 一次ddos攻击,导致服务器死机</h2></a>
-        <div class= "well small"> 五 29 三月 2013
+        <a href="http://eleveni386.7axu.com/posts/2013/08/30/clijian-yi-mi-ma-guan-li-gong-ju/"><h2>CLI简易密码管理工具</h2></a>
+        <div class= "well small"> 五 30 八月 2013
 
 by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
  
 
 
  </div>
-        <div class="summary"><h2>背景</h2>
-<p>某年某月某天,eleven所属单位 被未知生物ddos攻击, 攻击时间 凌晨00:15 左右, 
-eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上面命令找出服务器弱点.
-同时还原攻击现场,</p>
-<h2>检查</h2>
-<p>通过<strong>Zenoss</strong>监控图, 看见在00:15左右, 突然进来了大量的数据包, 大概40w左右, 
-但是流量没有明显异常(即没有瞬间增高), 好吧, 看见这个现象就猜到了.. 小包<strong>DDos</strong>攻击.
-通过服务器的message日志里面看见了<em>syn flood on 80</em> 记录,结合监控图上的大量数据包,
-断定服务器被人采用<strong>syn半开攻击</strong>手法给攻击</p>
-<h2>服务器配置</h2>
-<p>观察了服务器的内核参数配置,因为我记得我们所有服务器都有对于<strong>syn flood</strong>的防御策略,
-在sysctl.conf里面<strong>syn_cookies</strong>已经开启, 而且也看见syn队列增加到了1w6, 
-按理来说单纯的半开攻击应该对于我们机器是无压力的说 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/">read more</a></div>
+        <div class="summary"><p>最近用上了<strong>tmux</strong>, 抛弃了<strong>SecureCRT</strong>,  但是没有便利的密码输入功能. 每次登录上服务器之后我都要将鼠标移动到状态栏 点击<strong>KeepassX</strong>,然后在<strong>Keepassx</strong>里面找到我需要的密码,然后在贴在<strong>tmux</strong>上..完成一次密码输入过程.  </p>
+<p>这种过程与使用<strong>tmux</strong>给我带来的便利(快捷键的存在,让我可以完全抛弃鼠标,事实用了<strong>tmux</strong>我就没有使用鼠标了.) 格格不入.. 感觉就像开着一辆跑车.结果却时不时的要停下来加油.. 这种感觉十分难受..(不打点会死星人)  </p>
+<p>于是就想到一个办法, 利用<strong>tmux</strong>的缓冲区, 来完成挑选密码的过程.  </p>
+<p>首先:  </p>
+<p><strong>tmux</strong>拥有自己的黏贴板,在<strong>tmux</strong>中复制的时候,可以通过<code>tmux show-buffer</code>找到复制的内容;</p>
+<p>然后:  </p>
+<p>使用一个工具,截获<strong>tmux</strong>的缓冲,得到里面的ip, 根据ip地址去数据内寻找相应的密码 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/08/30/clijian-yi-mi-ma-guan-li-gong-ju/">read more</a></div>
     </div>	
 				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/"><h2>记一次ssh密钥登录失败</h2></a>
-        <div class= "well small"> 四 27 二月 2014
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><h2>环境</h2>
-<p>我们的私钥是通过SecureCRT工具生成的. 在Debian5/6下面使用正常
-有问题的主机是Debian7 系统, 客户端是Debian6 系统
-Debian7 的ssh server版本是1.6 客户端的ssh client是1.5
-使用的ssh协议均是2</p>
-<h2>现象</h2>
-<p>昨天我们一台Debian7主机, 无法通过私钥登录. 每次登录提示需要输入密码. 这是我们第一次使用Debian7的系统, 以往的主机都是Debian5/6的系统</p>
-<p>开启ssh的debug参数, 观看登录过程,发现如下</p>
-<div class="highlight"><pre><span class="n">debug2</span><span class="o">:</span> <span class="n">key_type_from_name</span><span class="o">:</span> <span class="n">unknown</span> <span class="n">key</span> <span class="n">type</span> <span class="s1">&#39;-----BEGIN&#39;</span>
-<span class="n">debug2</span><span class="o">:</span> <span class="n">key_type_from_name</span><span class="o">:</span> <span class="n">unknown</span> <span class="n">key</span> <span class="n">type</span> <span class="s1">&#39;-----END&#39;</span>
-<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
-<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
-<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/"><h2>记. 一次邮箱密码丢失</h2></a>
-        <div class= "well small"> 一 17 九月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>话说某年某月某天, 某人丢失公司分配的邮箱密码,</p>
-<p>在虚拟机中的windows,用foxmail客户端, 因为某些原因密码丢失,而公司邮件又需要用
-该客户端发送,于是就有了下面的过程,</p>
-<p>在物理机中的雷鸟客户端保存了密码, 首先需要客户端上的密码加密,主要是smtp密码传输加密</p>
-<p>好了,然后就用<strong>tcpdump</strong> 就可以了,</p>
-<p><code>tcpdump -X -i eth0 port 587 -vv</code></p>
-<p>TLS/STARTTLS 端口是587 ,雷鸟和foxmail都自动认出来端口是587,所以我也捕抓发往587端口的数据</p>
-<p>从结果中分析,下图是客户端跟服务端验证过程</p>
-<p><img alt="" src="/image/2012-09-17-163233_1365x306_scrot1.png" /></p>
-<p>得到一个base64的密码,</p>
-<p><code>echo -n "password" | base64 -d</code></p>
-<p>解开就是明文密码</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/">read more</a></div>
-    </div>	
-				
-            <div class="pagination">
+<div class="pagination">
 <ul>
     <li class="prev"><a href="http://eleveni386.7axu.com/author/eleveni386.html">&larr; Previous</a></li>
 
@@ -220,11 +234,12 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
     <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3865.html">5</a></li>
     <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3866.html">6</a></li>
     <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3867.html">7</a></li>
+    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3868.html">8</a></li>
 
     <li class="next"><a href="http://eleveni386.7axu.com/author/eleveni3863.html">Next &rarr;</a></li>
 
 </ul>
-</div>    
+</div>
  
   
         </div>
@@ -237,61 +252,60 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
                 Site
                 </li>
             
-                <!--  <li><a href="http://eleveni386.7axu.com/">Archives</a> -->
-                <li><a href="http://eleveni386.7axu.com/archives.html">Archives</a>
+                <li><a href="http://eleveni386.7axu.com/">Archives</a>
                 <li><a href="http://eleveni386.7axu.com/tags.html">Tags</a>
                 <li><a href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate">Atom feed</a></li>
-                            </ul>
+            </ul>
             </div>
 
 
-                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="nav nav-list">
                 <li class="nav-header"> 
                 Categories
                 </li>
                 
-                                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-                                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
-                                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
-                                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
-                                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
-                                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
-                                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-                                   
+                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+                   
             </ul>
             </div>
-            
 
-                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="nav nav-list">
                 <li class="nav-header"> 
                 Links
                 </li>
             
-                            <li><a href="http://www.linuxzen.com/">cold</a></li>
-                            <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
-                            <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
-                            <li><a href="http://neteue.com/">小邪兽</a></li>
-                            <li><a href="http://supercat-lab.org/">老猫</a></li>
-                            <li><a href="http://blog.woodelf.org/">woodelf</a></li>
-                        </ul>
+                <li><a href="http://www.linuxzen.com/">cold</a></li>
+                <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
+                <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
+                <li><a href="http://neteue.com/">小邪兽</a></li>
+                <li><a href="http://supercat-lab.org/">老猫</a></li>
+                <li><a href="http://blog.woodelf.org/">woodelf</a></li>
+            </ul>
             </div>
-            
 
-                        <div class="social">
+
+            <div class="social">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="nav nav-list">
                 <li class="nav-header"> 
                 Social
                 </li>
            
-                                <li><a href="https://github.com/eleveni386">GitHub</a></li>
-                                <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
-                            </ul>
+                <li><a href="https://github.com/eleveni386">GitHub</a></li>
+                <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
+            </ul>
             </div>
             </div>
-            
+
         </div>  
     </div>     </div> 
 <footer>

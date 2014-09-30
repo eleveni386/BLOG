@@ -13,7 +13,6 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="http://eleveni386.7axu.com/feeds/rss.xml" type="application/atom+xml" rel="alternate" title="ElevenI386'blog Atom Feed" />
     <link href="http://eleveni386.7axu.com/theme/bootstrap.min.css" rel="stylesheet">
     <link href="http://eleveni386.7axu.com/theme/bootstrap.min.responsive.css" rel="stylesheet">
     <link href="http://eleveni386.7axu.com/theme/local.css" rel="stylesheet">
@@ -37,9 +36,8 @@
 
         <div class="nav-collapse">
         <ul class="nav">
-                    
-                            <li><a href="http://eleveni386.7axu.com/pages/guan-yu-bo-zhu.html">关于博主</a></li>
-                        </ul>
+            
+        </ul>
         </div>
         
     </div>
@@ -51,163 +49,173 @@
     <div class="row">
 
         <div class="span9">
-                
+        
 
         
 
  
 
     <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/09/10/python-jin-du-tiao/"><h2>python 进度条</h2></a>
-        <div class= "well small"> 一 10 九月 2012
+        <a href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/"><h2>记. 一次ddos攻击,导致服务器死机</h2></a>
+        <div class= "well small"> 五 29 三月 2013
 
 by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
  
 
 
  </div>
-        <div class="summary"><p>最近在写批量上传文件的脚本,用的库是<strong>paramiko</strong>,以后将写下paramiko的使用心得,
-这次记录下python有关进度条的东西,</p>
-<p>众所周知上传,下载,如果有一个进度显示的话, 对使用者也不是枯燥的等待, 起码.. 
-起码知道脚本在正常工作, 也知道下载/上传 的进度了.</p>
-<p>正好这次脚本也有上传的部分.就将这次的心得记录下</p>
-<p>首先,所谓的进度条和print没啥不不同,都是将结果输出而已, 但是如果用print就注定
-悲剧, 因为print的时候会带一个<code>\n</code>,可以想象如果我们的进度条还换行, 
-那还算条子嘛.. 恶汗..</p>
-<p>一个最简单的进度条 实现原理就是 再输出完毕后，把光标移动到行首，继续在那里输
-出更长的进度条即可实现，新的更长的进度条把旧的短覆盖，就形成了动画效果</p>
-<p>我们可以利用<code>\r</code>, 转义符<code>\r</code>就可以把光标移动到行首而不换行，转义符<code>\n</code>就把光
-标移动到行首并且换行。 这里用一个例子来说明,这是我脚本中的一个函数,
-用于接收<code>paramiko.sftp_client.sftp</code> 中的put方法的callback数据 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/10/python-jin-du-tiao/">read more</a></div>
+        <div class="summary"><h2>背景</h2>
+<p>某年某月某天,eleven所属单位 被未知生物ddos攻击, 攻击时间 凌晨00:15 左右, 
+eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上面命令找出服务器弱点.
+同时还原攻击现场,</p>
+<h2>检查</h2>
+<p>通过<strong>Zenoss</strong>监控图, 看见在00:15左右, 突然进来了大量的数据包, 大概40w左右, 
+但是流量没有明显异常(即没有瞬间增高), 好吧, 看见这个现象就猜到了.. 小包<strong>DDos</strong>攻击.
+通过服务器的message日志里面看见了<em>syn flood on 80</em> 记录,结合监控图上的大量数据包,
+断定服务器被人采用<strong>syn半开攻击</strong>手法给攻击</p>
+<h2>服务器配置</h2>
+<p>观察了服务器的内核参数配置,因为我记得我们所有服务器都有对于<strong>syn flood</strong>的防御策略,
+在sysctl.conf里面<strong>syn_cookies</strong>已经开启, 而且也看见syn队列增加到了1w6, 
+按理来说单纯的半开攻击应该对于我们机器是无压力的说 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/">read more</a></div>
     </div>	
 				
-    
+
  
         
 
  
 
     <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/06/03/pythondai-cookiesfang-wen/"><h2>python带cookies访问</h2></a>
-        <div class= "well small"> 一 03 六月 2013
+        <a href="http://eleveni386.7axu.com/posts/2013/03/11/ji-ci-an-zhuang-fcitxguo-cheng/"><h2>记一次安装fcitx过程</h2></a>
+        <div class= "well small"> 一 11 三月 2013
 
 by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
  
 
 
  </div>
-        <div class="summary"><p>本人是运维一枚,使用次数最多的就是Vandyke的<a href="https://secure.vandyke.com/cgi-bin/download_form.php?pid=securecrt_ubuntu1264_deb_71&amp;st=4&amp;">SecureCRT</a>.
-在win系统下面有各种大牛
-破解的scrt版本,但是在咱debian下面 就只能使用官方正版的,但是因为scrt是收费的,
-而且还死贵死贵($99), 咱这种中下农,搞不起这货, 只能使用它的免费30天,时间一到,
-要么就是删除它的认证文件,要么就是卸载原有的,然后重新安装, 非常麻烦…</p>
-<p>于是就想着能不能通过cron自动下载安装, 于是就有了第一版本的<a href="(https://code.google.com/p/sharepythoncode/downloads/detail?name=Vandyke_update.py&amp;can=2&amp;q=)">Vandyke_update.py</a> 脚本,
-通过抓包分析到Vandyke 的post数据,通过urllib2提交,并下载, 跑了一年都挺好的, </p>
-<p>但是今天有同事(ubuntu)使用我的脚本自动更新的时候,发现无效了,返回信息提示”Bad product id”,
-然后通过chrome的开发者工具跟踪了一下,发现post数据的字段改变了. 不再提供”sid”这个字段
-(每次Vandyke用户登录之后都会在cookie中分配这个这个id,是不变的),只好重新分析它post内容,</p>
-<p>看见它post内容变的非常简单,只有两个字段:</p>
+        <div class="summary"><p>今天实在无法忍受<em>ibus</em>的启动速度和词汇准确性了. 将ibus更换成<strong>fcitx</strong>, </p>
+<div class="highlight"><pre><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">fcitx</span>
+<span class="n">im</span><span class="o">-</span><span class="k">switch</span> <span class="o">-</span><span class="n">s</span> <span class="n">fcitx</span>
+<span class="n">im</span><span class="o">-</span><span class="k">switch</span> <span class="o">-</span><span class="n">s</span> <span class="n">fcitx</span> <span class="o">-</span><span class="n">z</span> <span class="k">default</span>
+</pre></div>
+
+
+<p>然后在<em>autostart</em>中加入fcitx的自启动.. 注销X界面之后, 发现fcitx是启动起来了, 
+只是应用程序的默认输入法还是<em>Ibus</em>, 于是google之 ,找到了fcitx环境变量设置, 
+在<strong>~/.xprofile</strong> 中加入fcitx的环境变量:</p>
+<div class="highlight"><pre><span class="n">export</span> <span class="n">GTK_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
+<span class="n">export</span> <span class="n">XMODIFIERS</span><span class="o">=</span><span class="err">@</span><span class="n">im</span><span class="o">=</span><span class="n">fcitx</span>
+<span class="n">export</span> <span class="n">QT_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
+</pre></div>
+
+
+<p>注销X界面 再次进入系统,<code>echo $GTK_IM_MODULE</code> 发现这个变量已经是fcitx, 但是应用
+程序默认输入法还是<strong>Ibus</strong> , 来来回回折腾了几次 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/03/11/ji-ci-an-zhuang-fcitxguo-cheng/">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/02/28/wps-for-linux-bate1-shi-yong/"><h2>wps for linux Bate1 试用</h2></a>
+        <div class= "well small"> 四 28 二月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>虽然很早就知道了<strong>wps for linux</strong>的测试版本出来了,不过一直懒的去下载,直至今天
+公司要求所有的windows系统同事卸载有点软的office而安装<strong>wps</strong>,我才突然想到,
+我也该换换了,咱用的<strong>openoffice</strong>实在拿不出手了..</p>
+<p>于是到wps的官方下载了测试版本回来, 不需要安装, 解压即可以使用,里面有三个东西
+是需要用到的,</p>
 <ol>
-<li>pid(product id)</li>
-<li>status ...</li></ol> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/06/03/pythondai-cookiesfang-wen/">read more</a></div>
+<li>
+<p>wps/wps word文档</p>
+</li>
+<li>
+<p>wps/et excel</p>
+</li>
+<li>
+<p>wps/wpp 幻灯片</p>
+</li>
+</ol>
+<p>好了,直接打开看看效果</p>
+<p><img alt="" src="/image/1362046109.png" /></p>
+<p>看上去好像不错,再来张excel的</p>
+<p><img alt="" src="/image/1362046180.png" /></p>
+<p>也有点样子,现在可以将它们投入到工作当中了..</p>
+<p>于是找了一个doc文档双击打开… 尼玛,怎么还是openoffice打开的哇.. 
+好吧,貌似我们忘记了<em>文件关联</em>的事情了..</p>
+<p>下面让我们建立<em>doc</em>,<em>xls</em>文件关联到<strong>wps</strong>和<strong>et</strong>这两个wps程序上</p>
+<p><a href="(http://linux-wiki.cn/wiki/zh-hans/%E6%96%87%E4%BB%B6%E5%85%B3%E8%81%94)">文件关联 ...</a></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/02/28/wps-for-linux-bate1-shi-yong/">read more</a></div>
     </div>	
 				
-    
+
  
         
 
  
 
     <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/10/13/squid-url-tiao-zhuan/"><h2>Squid Url 跳转</h2></a>
-        <div class= "well small"> 日 13 十月 2013
+        <a href="http://eleveni386.7axu.com/posts/2012/12/14/jie-tu-zi-dong-fen-xiang-jiao-ben/"><h2>截图自动分享脚本</h2></a>
+        <div class= "well small"> 五 14 十二月 2012
 
 by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
  
 
 
  </div>
-        <div class="summary"><h2>需求</h2>
-<p>当Iphone/Ipad/Android 等访问 http://www.xxx.com 时跳转到 
-http://www.xxx.com/mobile/xxx/mobile.html?ref=www.xxi.com/</p>
-<h2>分析</h2>
-<p>squid不自带 url重写/跳转 功能, 要实现这些功能需要借助 <strong>重定向器</strong> 来解决</p>
-<p>通过<code>redirect_program</code> 指定一个重定向器 来处理url的重写/跳转</p>
-<p><code>redirect_program</code> 可以用perl/php/python 甚至shell来编写</p>
-<h2>思路</h2>
-<p>使用squid的<code>redirect_program</code> 指令 ,指定一个重定向器处理url跳转</p>
-<p>使用acl 匹配Iphone, Ipad, Android 平台 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/10/13/squid-url-tiao-zhuan/">read more</a></div>
+        <div class="summary"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<span class="nb">time</span><span class="o">=</span><span class="sb">`</span>date +%H:%M:%S<span class="sb">`</span>
+<span class="nv">msg</span><span class="o">=</span><span class="sb">`</span>scrot -s <span class="s2">&quot;$time.png&quot;</span> -e <span class="s2">&quot;curl -sF &#39;name=@$time.png&#39; http://eleveni386.7axu.com/Image/&quot;</span><span class="sb">`</span>
+gxmessage -center -title <span class="s2">&quot;eleveni386.7axu.com&quot;</span> <span class="nv">$msg</span>
+rm -rf <span class="nv">$time</span>.png
+</pre></div>
+</td></tr></table>
+
+<p>将这个脚本绑定到任意快捷键，我将脚本保存为<em>scrot.sh</em> 并 绑定到了<code>A+s</code>快捷键上</p>
+<p>当我需要与朋友分享某图的时候， 直接按下 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/12/14/jie-tu-zi-dong-fen-xiang-jiao-ben/">read more</a></div>
     </div>	
 				
-    
+
  
         
 
  
 
     <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2014/03/07/squidzheng-xiang-dai-li/"><h2>squid正向代理</h2></a>
-        <div class= "well small"> 五 07 三月 2014
+        <a href="http://eleveni386.7axu.com/posts/2012/11/29/xiu-fu-zenoss321-graphs-range-bug/"><h2>修复zenoss3.2.1 graphs range bug</h2></a>
+        <div class= "well small"> 四 29 十一月 2012
 
 by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
  
 
 
  </div>
-        <div class="summary"><h2>匿名代理</h2>
-<p>squid 要做到匿名代理 只需要添加</p>
-<div class="highlight"><pre><span class="n">header_access</span> <span class="n">Via</span> <span class="n">deny</span> <span class="n">all</span> 
-<span class="n">header_access</span>  <span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span> <span class="n">deny</span> <span class="n">all</span>
-</pre></div>
-
-
-<p>即可</p>
-<h2>代理验证</h2>
-<p>谁都不想自己的代理服务器被他人随意拿来使用.. 于是 我们就需要给代理服务器加上密码</p>
-<div class="highlight"><pre><span class="n">auth_param</span> <span class="n">basic</span> <span class="n">program</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">squid2</span><span class="mf">.7</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ncsa_auth</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">children</span> <span class="mi">1</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">realm</span> <span class="s">&quot;Welcome to eleven&#39;s proxy server&quot;</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">credentialsttl</span> <span class="mi">12</span> <span class="n">hours</span>
-</pre></div>
-
-
-<p>这里的<strong>ncsa_auth</strong> 是自己写的shell脚本 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2014/03/07/squidzheng-xiang-dai-li/">read more</a></div>
+        <div class="summary"><p>前段时间将<strong>zenoss</strong>升级到3.2.1 (别问咱怎么使用这么老的版本,领导要求stable,
+目前zenoss只有3.2.1是最新的stable版本),然后昨天使用的时候发现了一个小小的bug,
+就是在device的graphs中, 选择range会出现性能图不更新的情况.</p>
+<p>要修复这个bug,确定<em>java</em>版本是否大于1.6</p>
+<p>我自己debian 由于没有安装java 因此我这里安装一下</p>
+<p><code>apt-get install sun-java6-jdk</code></p>
+<p>然后确认下java版本</p>
+<p><code>java -version</code></p>
+<div class="highlight"><pre><span class="n">java</span> <span class="n">version</span> <span class="err">“</span><span class="mf">1.6.0</span><span class="n">_26</span><span class="err">″</span>
+<span class="n">Java</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> <span class="n">SE</span> <span class="n">Runtime</span> <span class="n">Environment</span> <span class="p">(</span><span class="n">build</span> <span class="mf">1.6.0</span><span class="n">_26</span><span class="o">-</span><span class="n">b03</span><span class="p">)</span>
+<span class="n">Java</span> <span class="n">HotSpot</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> <span class="mi">64</span><span class="o">-</span><span class="n">Bit</span> <span class="n">Server ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/11/29/xiu-fu-zenoss321-graphs-range-bug/">read more</a></div>
     </div>	
 				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/"><h2>sshpass 非交互ssh密码验证</h2></a>
-        <div class= "well small"> 日 09 九月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><h2>转载linuxtoy文章</h2>
-<p>OpenSSH 自带的 ssh 客户端程序（也就是 ‘ssh’ 命令）默认不允许你以非交互的方式传递密码，如：</p>
-<div class="highlight"><pre><span class="n">ssh</span> <span class="n">www</span><span class="p">.</span><span class="n">iredmail</span><span class="p">.</span><span class="n">org</span> <span class="o">&lt;&lt;</span><span class="n">EOF</span> <span class="n">ssh_password</span> <span class="n">ls</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span> <span class="n">EOF</span>
-</pre></div>
-
-
-<p>Shell 里这样的输入重定向使用得非常普遍，而且通常都工作得很好。但是 ssh 不允许这
-样的方式来传递密码，所以需要远程连上服务器后进行的批处理就无法进行。</p>
-<p><code>sshpass</code> 的出现，解决了这一问题。它允许你用 <code>-p</code> 参数指定明文密码，
-然后直接登录远程服务器。例如：</p>
-<div class="highlight"><pre><span class="n">sshpass</span> <span class="o">-</span><span class="n">p</span> <span class="err">&#39;</span><span class="n">ssh_password</span><span class="err">&#39;</span> <span class="n">ssh</span> <span class="n">www</span><span class="p">.</span><span class="n">iredmail</span><span class="p">.</span><span class="n">org</span>
-</pre></div>
-
-
-<p>用 <code>-p</code> 指定了密码后，还需要在后面跟上标准的 ssh 连接命令。</p>
-<p>用法就是这么简单。</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/">read more</a></div>
-    </div>	
-				
-            <div class="pagination">
+<div class="pagination">
 <ul>
     <li class="prev"><a href="http://eleveni386.7axu.com/author/eleveni3864.html">&larr; Previous</a></li>
 
@@ -218,11 +226,12 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
     <li class="active"><a href="http://eleveni386.7axu.com/author/eleveni3865.html">5</a></li>
     <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3866.html">6</a></li>
     <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3867.html">7</a></li>
+    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3868.html">8</a></li>
 
     <li class="next"><a href="http://eleveni386.7axu.com/author/eleveni3866.html">Next &rarr;</a></li>
 
 </ul>
-</div>    
+</div>
  
   
         </div>
@@ -235,61 +244,60 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
                 Site
                 </li>
             
-                <!--  <li><a href="http://eleveni386.7axu.com/">Archives</a> -->
-                <li><a href="http://eleveni386.7axu.com/archives.html">Archives</a>
+                <li><a href="http://eleveni386.7axu.com/">Archives</a>
                 <li><a href="http://eleveni386.7axu.com/tags.html">Tags</a>
                 <li><a href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate">Atom feed</a></li>
-                            </ul>
+            </ul>
             </div>
 
 
-                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="nav nav-list">
                 <li class="nav-header"> 
                 Categories
                 </li>
                 
-                                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-                                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
-                                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
-                                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
-                                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
-                                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
-                                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-                                   
+                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+                   
             </ul>
             </div>
-            
 
-                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="nav nav-list">
                 <li class="nav-header"> 
                 Links
                 </li>
             
-                            <li><a href="http://www.linuxzen.com/">cold</a></li>
-                            <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
-                            <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
-                            <li><a href="http://neteue.com/">小邪兽</a></li>
-                            <li><a href="http://supercat-lab.org/">老猫</a></li>
-                            <li><a href="http://blog.woodelf.org/">woodelf</a></li>
-                        </ul>
+                <li><a href="http://www.linuxzen.com/">cold</a></li>
+                <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
+                <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
+                <li><a href="http://neteue.com/">小邪兽</a></li>
+                <li><a href="http://supercat-lab.org/">老猫</a></li>
+                <li><a href="http://blog.woodelf.org/">woodelf</a></li>
+            </ul>
             </div>
-            
 
-                        <div class="social">
+
+            <div class="social">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="nav nav-list">
                 <li class="nav-header"> 
                 Social
                 </li>
            
-                                <li><a href="https://github.com/eleveni386">GitHub</a></li>
-                                <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
-                            </ul>
+                <li><a href="https://github.com/eleveni386">GitHub</a></li>
+                <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
+            </ul>
             </div>
             </div>
-            
+
         </div>  
     </div>     </div> 
 <footer>
