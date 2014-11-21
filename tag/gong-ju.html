@@ -56,8 +56,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="http://eleveni386.7axu.com/posts/2012/09/20/nethogs-jian-kong-mei-ge-jin-cheng-ju-ti-shi-yong-de-liu-liang/"><h1>nethogs, 监控每一个进程具体使用的流量</h1></a>
-四 20 九月 2012
+            <a href="http://eleveni386.7axu.com/posts/2014/11/21/pythonban-rmming-ling/"><h1>python版rm命令</h1></a>
+五 21 十一月 2014
 
 by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
  
@@ -66,17 +66,88 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
  
         </div>
         
-        <div><p>最近无聊 想找一个具有悬浮窗口的流量监视工具, 可以实时向我汇报, 使用流量最大的
+        <div><h1>安全的linux rm 命令</h1>
+<blockquote>
+<p>-- python版rm命令</p>
+</blockquote>
+<p>众所周知 linux 下 大杀器之一 rm 是多么恐怖的东西存在</p>
+<p>众多系统管理员 对此命令是又爱 又恨,  基于本人也是一枚系统管理员, 写下这个小 工具
+方便自己 随心所欲的使用大杀器</p>
+<p>麻麻再也不用担心 我使用rm了</p>
+<h2>特性</h2>
+<div class="highlight"><pre><span class="mf">1.</span>  <span class="err">删除日志记录</span>
+<span class="mf">2.</span> <span class="err">安全目录</span>
+<span class="mf">3.</span> <span class="err">垃圾箱机制</span>
+</pre></div>
+
+
+<h2>参数</h2>
+<div class="highlight"><pre><span class="n">usage</span><span class="o">:</span> <span class="n">rm</span> <span class="o">[-</span><span class="n">h</span><span class="o">]</span> <span class="o">[-</span><span class="n">r</span><span class="o">]</span> <span class="o">[-</span><span class="n">f</span><span class="o">]</span> <span class="o">[--</span><span class="n">log</span><span class="o">]</span> <span class="o">[-</span><span class="n">a</span> <span class="n">SAFE_DIR</span><span class="o">]</span> <span class="o">[</span><span class="n">file</span> <span class="o">[</span><span class="n">file</span> <span class="o">...]]</span>
+
+<span class="err">用于替换系统的</span><span class="n">rm</span><span class="err">命令</span>
+<span class="err">自带回收站</span>
+<span class="n">exp</span><span class="o">:</span>
+    <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/$&#39;</span> <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/home/?$&#39;</span> <span class="err">#</span> <span class="err">增加</span><span class="sr">/ 和 /</span><span class="n">home</span> <span class="err">目录不可删除</span>
+    <span class="o">--</span><span class="n">log</span> <span class="err">#</span> <span class="err">显示删除日志</span>
+
+
+<span class="n">positional</span> <span class="k">arguments</span><span class="o">:</span>
+    <span class="n">file</span>                  <span class="n">file</span><span class="o">...</span>
+
+<span class="n">optional</span> <span class="k">arguments</span><span class="o">:</span>
+     <span class="o">-</span><span class="n">h</span><span class="o">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="k">this</span> <span class="n">help</span> <span class="n">message</span> <span class="n">and</span> <span class="n">exit</span>
+    <span class="n">r</span><span class="o">,</span> <span class="o">--</span><span class="n">recursive</span>       <span class="n">remove</span> <span class="n">directories</span> <span class="n">and</span> <span class="n">their</span> <span class="n">contents</span> <span class="n">recursively</span>
+    <span class="o">-</span><span class="n">f</span><span class="o">,</span> <span class="o">--</span><span class="n">force</span>           <span class="n">ignore</span> <span class="n">nonexistent</span> <span class="n">files</span> <span class="n">and</span> <span class="k">arguments</span><span class="o">,</span> <span class="n">never</span> <span class="n">prompt</span>
+     <span class="o">--</span><span class="n">log</span>                 <span class="n">show</span> <span class="n">delete</span> <span class="n">log</span>
+    <span class="o">-</span><span class="n">a</span> <span class="n">SAFE_DIR</span><span class="o">,</span> <span class="o">--</span><span class="n">add_safe_dirs</span> <span class="n">SAFE_DIR</span>
+                         <span class="n">add</span> <span class="n">safe</span> <span class="n">dirs</span> <span class="n">regex</span>
+</pre></div>
+
+
+<h2>默认安全目录</h2>
+<p>[Safe_dirs]</p>
+<p>safe_dirs = ['^/$', '^/home/?$', '^/usr/?$', '^/var/?$']</p>
+<p>可通过 <code>-a</code>参数 添加 新的 安全目录 (<strong>每次添加一个目录</strong>)</p>
+<p>或 直接 在 <code>~/.Recycle/.Recycle.conf</code>中添加</p>
+<h2>垃圾箱位置</h2>
+<p><code>~/.Recycle/</code></p>
+<p>该目录下 存在两个隐藏文件</p>
+<p><code>.delete</code>, <code>.Recycle.conf</code></p>
+<p>delete 是删除日志
+Recycle.conf 是安全目录配置文件</p>
+<h2>获取</h2>
+<blockquote>
+<p>轻轻戳一下右上角的 Fork me on GitHub 哦
+https://github.com/eleveni386/remove</p>
+</blockquote></div>
+        <hr />
+    </div>
+		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/09/20/nethogs-jian-kong-mei-ge-jin-cheng-ju-ti-shi-yong-de-liu-liang/"><h2>nethogs, 监控每一个进程具体使用的流量</h2></a>
+        <div class= "well small"> 四 20 九月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>最近无聊 想找一个具有悬浮窗口的流量监视工具, 可以实时向我汇报, 使用流量最大的
 进程 是哪一个, 然后还可以告诉我 目的地是什么地方就好了,</p>
 <p>各种google之后,找到了,<strong>nethogs</strong>. 这个玩意,</p>
 <p>额, 它可以实时显示使用了网络的进程的流量,以及发送的包数,</p>
 <p><img alt="" src="/image/2012-09-20-101834.png" /></p>
 <h2>安装</h2>
 <p><code>apt-get install nethogs</code></p>
-<p>tips: 该工具需要root用户才能运行.</p></div>
-        <hr />
-    </div>
-		
+<p>tips: 该工具需要root用户才能运行.</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/20/nethogs-jian-kong-mei-ge-jin-cheng-ju-ti-shi-yong-de-liu-liang/">read more</a></div>
+    </div>	
+				
 
  
         

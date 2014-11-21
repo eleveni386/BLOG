@@ -49,23 +49,17 @@
     <div class="row">
 
         <div class="span9">
-        
-
-        
-
-
     <div class='article'>
         <div class="content-title">
-            <a href="http://eleveni386.7axu.com/posts/2014/11/21/pythonban-rmming-ling/"><h1>python版rm命令</h1></a>
+            <h1>python版rm命令</h1>
 五 21 十一月 2014
 
 by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
  
 
 
- 
         </div>
-        
+	
         <div><h1>安全的linux rm 命令</h1>
 <blockquote>
 <p>-- python版rm命令</p>
@@ -120,173 +114,23 @@ Recycle.conf 是安全目录配置文件</p>
 <p>轻轻戳一下右上角的 Fork me on GitHub 哦
 https://github.com/eleveni386/remove</p>
 </blockquote></div>
-        <hr />
+	
+        <hr>
+    	   
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'eleveni386sblog'; 
+    var disqus_title = 'python版rm命令';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-		
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2014/09/29/shen-du-jie-tu-gong-ju/"><h2>深度截图工具</h2></a>
-        <div class= "well small"> 一 29 九月 2014
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><blockquote>
-<p>竟然找不到 小邪兽 版的 DeepinScrot 的github地址了,   ╮(╯▽╰)╭</p>
-</blockquote>
-<h2>截图工具的截图</h2>
-<p><img alt="" src="/image/deepin-scrot.png" /></p>
-<h2>说明</h2>
-<p>深度公司的原员工  <strong>小邪兽</strong>  的作品. </p>
-<p>感叹于QQ的截图工具的便利性, 苦于Linux desktop下没有一款能与之匹敌工具.</p>
-<p>该工具做到了与QQ截图工具一样的便利性.</p>
-<h2>特性</h2>
-<ol>
-<li>区域截图, </li>
-<li>截图修改, </li>
-<li>本地保存, 以及 保存到 黏贴板 </li>
-</ol>
-<p>以上为 原版 功能, 本人新增了一项功能 图床分享</p>
-<ol>
-<li>图床分享, 默认为 本人的图床   </li>
-</ol>
-<h2>安装要求</h2>
-<ol>
-<li>>= python2.6</li>
-<li>python-xlib</li>
-<li>python-requests</li>
-<li>xsel</li>
-</ol>
-<h2>更改图床</h2>
-<p>用你喜欢的 编辑器 编辑 <code>src/sharepic.py</code> 文件</p>
-<p>修改 <code>pic_bed = 'http://eleveni386.7axu.com/Image ...</code></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2014/09/29/shen-du-jie-tu-gong-ju/">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2014/04/10/empathykuai-su-guan-bi-liao-tian-chuang-kou/"><h2>Empathy快速关闭聊天窗口</h2></a>
-        <div class= "well small"> 四 10 四月 2014
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><blockquote>
-<p>只所以使用Empathy,而不是Pidgin, 是因为厌倦了单调的聊天窗口主题, 在Pidgin安装了新主题,每次
-关闭聊天窗口,再次打开窗口时, 主题不存在了.但是Pidgin的插件真的很多, 用着很顺手,比如Esc快速
-关闭聊天窗口.</p>
-</blockquote>
-<h2>关闭会话窗口</h2>
-<p>Empathy 在默认情况下, 要关闭一个聊天会话 可以使用<code>Ctrl+W</code>, 也可以使用鼠标点击<code>x</code>, 但是这些</p>
-<p>操作方式都很变扭, 用习惯了Pidgin的<code>Esc</code>,很难适应<code>Ctrl+W</code>方式.</p>
-<h2>修改</h2>
-<p><strong>被修改的文件</strong></p>
-<div class="highlight"><pre><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">empathy</span><span class="o">/</span><span class="n">empathy</span><span class="o">-</span><span class="n">chat</span><span class="o">-</span><span class="n">window</span><span class="p">.</span><span class="n">ui</span>
-</pre></div>
-
-
-<p>通过搜索 <strong>gtk-close</strong> 找到一下内容</p>
-<div class="highlight"><pre><span class="mi">55</span>           <span class="o">&lt;</span><span class="nb">object</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;GtkAction&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s2">&quot;menu_conv_close&quot;</span><span class="o">&gt;</span>                        
-<span class="mi">56</span>             <span class="o">&lt;</span><span class="nx">property</span> <span class="n">name ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2014/04/10/empathykuai-su-guan-bi-liao-tian-chuang-kou/">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2014/03/07/squidzheng-xiang-dai-li/"><h2>squid正向代理</h2></a>
-        <div class= "well small"> 五 07 三月 2014
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><h2>匿名代理</h2>
-<p>squid 要做到匿名代理 只需要添加</p>
-<div class="highlight"><pre><span class="n">header_access</span> <span class="n">Via</span> <span class="n">deny</span> <span class="n">all</span> 
-<span class="n">header_access</span>  <span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span> <span class="n">deny</span> <span class="n">all</span>
-</pre></div>
-
-
-<p>即可</p>
-<h2>代理验证</h2>
-<p>谁都不想自己的代理服务器被他人随意拿来使用.. 于是 我们就需要给代理服务器加上密码</p>
-<div class="highlight"><pre><span class="n">auth_param</span> <span class="n">basic</span> <span class="n">program</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">squid2</span><span class="mf">.7</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ncsa_auth</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">children</span> <span class="mi">1</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">realm</span> <span class="s">&quot;Welcome to eleven&#39;s proxy server&quot;</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">credentialsttl</span> <span class="mi">12</span> <span class="n">hours</span>
-</pre></div>
-
-
-<p>这里的<strong>ncsa_auth</strong> 是自己写的shell脚本 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2014/03/07/squidzheng-xiang-dai-li/">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/"><h2>记一次ssh密钥登录失败</h2></a>
-        <div class= "well small"> 四 27 二月 2014
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><h2>环境</h2>
-<p>我们的私钥是通过SecureCRT工具生成的. 在Debian5/6下面使用正常
-有问题的主机是Debian7 系统, 客户端是Debian6 系统
-Debian7 的ssh server版本是1.6 客户端的ssh client是1.5
-使用的ssh协议均是2</p>
-<h2>现象</h2>
-<p>昨天我们一台Debian7主机, 无法通过私钥登录. 每次登录提示需要输入密码. 这是我们第一次使用Debian7的系统, 以往的主机都是Debian5/6的系统</p>
-<p>开启ssh的debug参数, 观看登录过程,发现如下</p>
-<div class="highlight"><pre><span class="n">debug2</span><span class="o">:</span> <span class="n">key_type_from_name</span><span class="o">:</span> <span class="n">unknown</span> <span class="n">key</span> <span class="n">type</span> <span class="s1">&#39;-----BEGIN&#39;</span>
-<span class="n">debug2</span><span class="o">:</span> <span class="n">key_type_from_name</span><span class="o">:</span> <span class="n">unknown</span> <span class="n">key</span> <span class="n">type</span> <span class="s1">&#39;-----END&#39;</span>
-<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
-<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
-<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/">read more</a></div>
-    </div>	
-				
-<div class="pagination">
-<ul>
-    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-
-    <li class="active"><a href="http://eleveni386.7axu.com/index.html">1</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/index2.html">2</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/index3.html">3</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/index4.html">4</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/index5.html">5</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/index6.html">6</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/index7.html">7</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/index8.html">8</a></li>
-
-    <li class="next"><a href="http://eleveni386.7axu.com/index2.html">Next &rarr;</a></li>
-
-</ul>
-</div>
- 
-  
         </div>
         
         <div class="span3">

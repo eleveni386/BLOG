@@ -56,6 +56,30 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2013/08/30/clijian-yi-mi-ma-guan-li-gong-ju/"><h2>CLI简易密码管理工具</h2></a>
+        <div class= "well small"> 五 30 八月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>最近用上了<strong>tmux</strong>, 抛弃了<strong>SecureCRT</strong>,  但是没有便利的密码输入功能. 每次登录上服务器之后我都要将鼠标移动到状态栏 点击<strong>KeepassX</strong>,然后在<strong>Keepassx</strong>里面找到我需要的密码,然后在贴在<strong>tmux</strong>上..完成一次密码输入过程.  </p>
+<p>这种过程与使用<strong>tmux</strong>给我带来的便利(快捷键的存在,让我可以完全抛弃鼠标,事实用了<strong>tmux</strong>我就没有使用鼠标了.) 格格不入.. 感觉就像开着一辆跑车.结果却时不时的要停下来加油.. 这种感觉十分难受..(不打点会死星人)  </p>
+<p>于是就想到一个办法, 利用<strong>tmux</strong>的缓冲区, 来完成挑选密码的过程.  </p>
+<p>首先:  </p>
+<p><strong>tmux</strong>拥有自己的黏贴板,在<strong>tmux</strong>中复制的时候,可以通过<code>tmux show-buffer</code>找到复制的内容;</p>
+<p>然后:  </p>
+<p>使用一个工具,截获<strong>tmux</strong>的缓冲,得到里面的ip, 根据ip地址去数据内寻找相应的密码 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/08/30/clijian-yi-mi-ma-guan-li-gong-ju/">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2013/08/23/tmuxduo-paneltong-bu/"><h2>tmux多panel同步</h2></a>
         <div class= "well small"> 五 23 八月 2013
 
@@ -170,43 +194,6 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p><code>head -n 1 xx.png</code></p>
 <p><img alt="" src="/image/DeepinScrot-2239-300x19.png" /></p>
 <p>嘿嘿 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/08/11/tu-pian-hou-men-fen-xi/">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/07/05/2345zi-dong-qian-dao-qi-bian-xie-jing-guo/"><h2>2345自动签到器编写经过</h2></a>
-        <div class= "well small"> 五 05 七月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>2345这个流氓东西 虽然我很不齿, 但是我还是继续每天签到. 
-不为别的,只为了给女友兑换腾迅那个无聊的xx钻. 10Q币/月 这笔钱就靠2345给我省下了..</p>
-<p>由于这个玩意推广着实在太累了.差不多一年没有继续推广过了..
-(就算推广也就那么几个人点击我的链接 :D ) 昨天给女友兑换Q币的时候,
-突然想到它的签到有积分赠送的,反正我也推广不起来,不如拿它的免费积分算鸟. 
-但是要我每天都记得要签到,这是何等痛苦的事情… 自动签到 势在必行.. </p>
-<p>说到签到,无非就是自动登录加访问特定url</p>
-<p>首先分析2345的登录机制和签到url在哪里</p>
-<p>拿出<strong>mitmproxy</strong> 然后设置chromium为本地代理,</p>
-<p><img alt="" src="/image/DeepinScrot-1803.png" /></p>
-<p>很好,登录过程全部抓出来了, (这里要说一下,因为2345登录的时候会自动跳转,
-用chromium的开发者工具无法中止它的跳转,无法得到post的内容和post的url,
-所以这里我使用mitmproxy, 这家伙是<a href="http://lilydjwg.is-programmer.com/">百合仙子</a>
-推荐给我的. 很不错的东西,很好用, 
-现在我也推荐给你们… :P )</p>
-<p>然后我们看看post的内容, 按下回车之后</p>
-<p><img alt="" src="/image/DeepinScrot-2146.png" /></p>
-<p>这里需要主意的是密码是经过md5加密的, 所以在post密码的时候,需要事前将它加密</p>
-<p>如何自动登录实在是很简单的事情.. 不再浪费篇章. 
-上面主要是表现下<strong>mitmproxy</strong>工具的犀利 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/07/05/2345zi-dong-qian-dao-qi-bian-xie-jing-guo/">read more</a></div>
     </div>	
 				
 <div class="pagination">

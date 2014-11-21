@@ -1,5 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/linuxyun-wei.atom.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2014-03-07T00:00:00+08:00</updated><entry><title>squid正向代理</title><link href="http://eleveni386.7axu.com/posts/2014/03/07/squidzheng-xiang-dai-li/" rel="alternate"></link><updated>2014-03-07T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-03-07:posts/2014/03/07/squidzheng-xiang-dai-li/</id><summary type="html">&lt;h2&gt;匿名代理&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/linuxyun-wei.atom.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2014-11-21T00:00:00+08:00</updated><entry><title>python版rm命令</title><link href="http://eleveni386.7axu.com/posts/2014/11/21/pythonban-rmming-ling/" rel="alternate"></link><updated>2014-11-21T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-11-21:posts/2014/11/21/pythonban-rmming-ling/</id><summary type="html">&lt;h1&gt;安全的linux rm 命令&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;-- python版rm命令&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;众所周知 linux 下 大杀器之一 rm 是多么恐怖的东西存在&lt;/p&gt;
+&lt;p&gt;众多系统管理员 对此命令是又爱 又恨,  基于本人也是一枚系统管理员, 写下这个小 工具
+方便自己 随心所欲的使用大杀器&lt;/p&gt;
+&lt;p&gt;麻麻再也不用担心 我使用rm了&lt;/p&gt;
+&lt;h2&gt;特性&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mf"&gt;1.&lt;/span&gt;  &lt;span class="err"&gt;删除日志记录&lt;/span&gt;
+&lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="err"&gt;安全目录&lt;/span&gt;
+&lt;span class="mf"&gt;3.&lt;/span&gt; &lt;span class="err"&gt;垃圾箱机制&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;参数&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;usage&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;rm&lt;/span&gt; &lt;span class="o"&gt;[-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[--&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[-&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;SAFE_DIR&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="o"&gt;...]]&lt;/span&gt;
+
+&lt;span class="err"&gt;用于替换系统的&lt;/span&gt;&lt;span class="n"&gt;rm&lt;/span&gt;&lt;span class="err"&gt;命令&lt;/span&gt;
+&lt;span class="err"&gt;自带回收站&lt;/span&gt;
+&lt;span class="n"&gt;exp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;^/$&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;^/home/?$&amp;#39;&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="err"&gt;增加&lt;/span&gt;&lt;span class="sr"&gt;/ 和 /&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt; &lt;span class="err"&gt;目录不可删除&lt;/span&gt;
+    &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="err"&gt;显示删除日志&lt;/span&gt;
+
+
+&lt;span class="n"&gt;positional&lt;/span&gt; &lt;span class="k"&gt;arguments&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;file&lt;/span&gt;                  &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="n"&gt;optional&lt;/span&gt; &lt;span class="k"&gt;arguments&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+     &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;help&lt;/span&gt;            &lt;span class="n"&gt;show&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;exit&lt;/span&gt;
+    &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;recursive&lt;/span&gt;       &lt;span class="n"&gt;remove&lt;/span&gt; &lt;span class="n"&gt;directories&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;their&lt;/span&gt; &lt;span class="n"&gt;contents&lt;/span&gt; &lt;span class="n"&gt;recursively&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;force&lt;/span&gt;           &lt;span class="n"&gt;ignore&lt;/span&gt; &lt;span class="n"&gt;nonexistent&lt;/span&gt; &lt;span class="n"&gt;files&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="k"&gt;arguments&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;never&lt;/span&gt; &lt;span class="n"&gt;prompt&lt;/span&gt;
+     &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;                 &lt;span class="n"&gt;show&lt;/span&gt; &lt;span class="n"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;log&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;SAFE_DIR&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;add_safe_dirs&lt;/span&gt; &lt;span class="n"&gt;SAFE_DIR&lt;/span&gt;
+                         &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="n"&gt;safe&lt;/span&gt; &lt;span class="n"&gt;dirs&lt;/span&gt; &lt;span class="n"&gt;regex&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;默认安全目录&lt;/h2&gt;
+&lt;p&gt;[Safe_dirs]&lt;/p&gt;
+&lt;p&gt;safe_dirs = ['^/$', '^/home/?$', '^/usr/?$', '^/var/?$']&lt;/p&gt;
+&lt;p&gt;可通过 &lt;code&gt;-a&lt;/code&gt;参数 添加 新的 安全目录 (&lt;strong&gt;每次添加一个目录&lt;/strong&gt;)&lt;/p&gt;
+&lt;p&gt;或 直接 在 &lt;code&gt;~/.Recycle/.Recycle.conf&lt;/code&gt;中添加&lt;/p&gt;
+&lt;h2&gt;垃圾箱位置&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;~/.Recycle/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;该目录下 存在两个隐藏文件&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;.delete&lt;/code&gt;, &lt;code&gt;.Recycle.conf&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;delete 是删除日志
+Recycle.conf 是安全目录配置文件&lt;/p&gt;
+&lt;h2&gt;获取&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;轻轻戳一下右上角的 Fork me on GitHub 哦
+https://github.com/eleveni386/remove&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="python"></category><category term="Linux"></category><category term="命令"></category><category term="工具"></category></entry><entry><title>squid正向代理</title><link href="http://eleveni386.7axu.com/posts/2014/03/07/squidzheng-xiang-dai-li/" rel="alternate"></link><updated>2014-03-07T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-03-07:posts/2014/03/07/squidzheng-xiang-dai-li/</id><summary type="html">&lt;h2&gt;匿名代理&lt;/h2&gt;
 &lt;p&gt;squid 要做到匿名代理 只需要添加&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;header_access&lt;/span&gt; &lt;span class="n"&gt;Via&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt; 
 &lt;span class="n"&gt;header_access&lt;/span&gt;  &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Forwarded&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;For&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt;

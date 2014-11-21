@@ -49,71 +49,49 @@
     <div class="row">
 
         <div class="span9">
+        
+
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/"><h2>记. 一次邮箱密码丢失</h2></a>
+        <div class= "well small"> 一 17 九月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>话说某年某月某天, 某人丢失公司分配的邮箱密码,</p>
+<p>在虚拟机中的windows,用foxmail客户端, 因为某些原因密码丢失,而公司邮件又需要用
+该客户端发送,于是就有了下面的过程,</p>
+<p>在物理机中的雷鸟客户端保存了密码, 首先需要客户端上的密码加密,主要是smtp密码传输加密</p>
+<p>好了,然后就用<strong>tcpdump</strong> 就可以了,</p>
+<p><code>tcpdump -X -i eth0 port 587 -vv</code></p>
+<p>TLS/STARTTLS 端口是587 ,雷鸟和foxmail都自动认出来端口是587,所以我也捕抓发往587端口的数据</p>
+<p>从结果中分析,下图是客户端跟服务端验证过程</p>
+<p><img alt="" src="/image/2012-09-17-163233_1365x306_scrot1.png" /></p>
+<p>得到一个base64的密码,</p>
+<p><code>echo -n "password" | base64 -d</code></p>
+<p>解开就是明文密码</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/">read more</a></div>
+    </div>	
+				
+<div class="pagination">
 <ul>
-    <li><a href="http://eleveni386.7axu.com/tag/pelican.html">pelican</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/tint2.html">tint2</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/markdown.html">markdown</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/bing-du.html">病毒</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/httpdai-li.html">http代理</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/keepalived.html">keepalived</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/nethogs.html">nethogs</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/tmux.html">tmux</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/fan-qiang.html">翻墙</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/ddos.html">ddos</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/shu-ru-fa.html">输入法</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/fan-yi.html">翻译</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/linux.html">Linux</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/dai-li.html">代理</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/chromium.html">chromium</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/rtx.html">rtx</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/paramiko.html">paramiko</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/gtalk.html">gtalk</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/you-xiang.html">邮箱</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/jian-kong-gong-ju.html">监控工具</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/gtk.html">gtk</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/mi-ma.html">密码</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/bo-fang-qi.html">播放器</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/tu-cao.html">吐槽</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/ni-ming-dai-li.html">匿名代理</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/linuxruan-jian.html">Linux软件</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/zhong-wen-bian-ma.html">中文编码</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/wiz.html">wiz</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/zhi-shi-guan-li.html">知识管理</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/yu-le.html">娱乐</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/squid.html">squid</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/zhuo-mian-gong-ju.html">桌面工具</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/shell.html">shell</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/http.html">http</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/tu-chuang.html">图床</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/python.html">python</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/jie-tu.html">截图</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/zhuo-mian.html">桌面</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/wps.html">wps</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/vim.html">vim</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/nginx.html">nginx</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/ssh.html">ssh</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/po-jie.html">破解</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/ming-ling.html">命令</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/liao-tian.html">聊天</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/svn.html">Svn</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/empathy.html">Empathy</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/mi-yao.html">密钥</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/xuan-fu-chuang.html">悬浮窗</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/zenoss.html">zenoss</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/linuxzhuo-mian-gong-ju.html">linux桌面工具</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/bi-zhi.html">壁纸</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/mitmproxy.html">mitmproxy</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/bian-ji-qi.html">编辑器</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/an-quan.html">安全</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/fcitx.html">fcitx</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/gong-ju.html">工具</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/yun-wei.html">运维</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/ban-gong-ruan-jian.html">办公软件</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/jian-kong.html">监控</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/requests.html">requests</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/mu-ma.html">木马</a></li>
-    <li><a href="http://eleveni386.7axu.com/tag/jiao-ben.html">脚本</a></li>
+    <li class="prev"><a href="http://eleveni386.7axu.com/category/linuxyun-wei2.html">&larr; Previous</a></li>
+
+    <li class=""><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">1</a></li>
+    <li class=""><a href="http://eleveni386.7axu.com/category/linuxyun-wei2.html">2</a></li>
+    <li class="active"><a href="http://eleveni386.7axu.com/category/linuxyun-wei3.html">3</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
 </ul>
+</div>
+ 
+  
         </div>
         
         <div class="span3">

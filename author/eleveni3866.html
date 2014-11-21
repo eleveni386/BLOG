@@ -56,6 +56,34 @@
  
 
     <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/11/29/xiu-fu-zenoss321-graphs-range-bug/"><h2>修复zenoss3.2.1 graphs range bug</h2></a>
+        <div class= "well small"> 四 29 十一月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>前段时间将<strong>zenoss</strong>升级到3.2.1 (别问咱怎么使用这么老的版本,领导要求stable,
+目前zenoss只有3.2.1是最新的stable版本),然后昨天使用的时候发现了一个小小的bug,
+就是在device的graphs中, 选择range会出现性能图不更新的情况.</p>
+<p>要修复这个bug,确定<em>java</em>版本是否大于1.6</p>
+<p>我自己debian 由于没有安装java 因此我这里安装一下</p>
+<p><code>apt-get install sun-java6-jdk</code></p>
+<p>然后确认下java版本</p>
+<p><code>java -version</code></p>
+<div class="highlight"><pre><span class="n">java</span> <span class="n">version</span> <span class="err">“</span><span class="mf">1.6.0</span><span class="n">_26</span><span class="err">″</span>
+<span class="n">Java</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> <span class="n">SE</span> <span class="n">Runtime</span> <span class="n">Environment</span> <span class="p">(</span><span class="n">build</span> <span class="mf">1.6.0</span><span class="n">_26</span><span class="o">-</span><span class="n">b03</span><span class="p">)</span>
+<span class="n">Java</span> <span class="n">HotSpot</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> <span class="mi">64</span><span class="o">-</span><span class="n">Bit</span> <span class="n">Server ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/11/29/xiu-fu-zenoss321-graphs-range-bug/">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="http://eleveni386.7axu.com/posts/2012/11/28/wang-ji-mi-ma-zhi-svn/"><h2>忘记密码之 Svn</h2></a>
         <div class= "well small"> 三 28 十一月 2012
 
@@ -146,37 +174,6 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
         <div class="summary"><p><strong>此为转贴</strong>
 <a href="http://bbs.ywlm.net/thread-845-1-1.html">原文地址</a></p>
 <p><img alt="" src="/image/Keepalived.png" /></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/10/16/keepalivedyuan-li-yu-shi-zhan-jing-jiang/">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/09/29/liang-ge-xiao-jiao-ben-tian-qi-cha-xun-he-zhong-ying-ri-fan-yi/"><h2>两个小脚本- 天气查询和中英日翻译</h2></a>
-        <div class= "well small"> 六 29 九月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>最近在和朋友弄gtalk群聊, 框架已经写好, 并且可以正常使用, 有兴趣的朋友欢迎加入, 
-我们gtalk群<strong>pythonerclub@gmail.com</strong> (开发者<a href="(http://www.linuxzen.com/)">Cold</a>)加它为好友就可以进入我们
-群组, 群聊 功能指令输入 <code>$help</code>.</p>
-<p>在写功能机器人的时候, 顺便给自己方便方便, 就从机器人那边的部分功能代码 ,
-copy到本地, 就是天气查询, 和翻译</p>
-<p>脚本效果截图:</p>
-<p><img alt="" src="/image/2012-09-29-121615.png" /></p>
-<p>翻译 是用的google翻译, 天气查询用的中央气象局天气预报, 显示当天天气</p>
-<p><a href="(http://code.google.com/p/sharepythoncode/downloads/detail?name=Complex.tar.gz&amp;can=2&amp;q=#makechanges)">源码</a></p>
-<p>安装使用很简单, 解压之后 将Complex/* 丢到/usr/sbin/下,</p>
-<p>天气查询, 就要求一个参数, 就是市级地名</p>
-<p><code>tq 广州</code></p>
-<p>翻译 , 默认是英汉翻译,需要其它翻译,比如汉-&gt;英, 汉-&gt;日,日-&gt;汉,</p>
-<p><code>fanyi eleven ...</code></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/29/liang-ge-xiao-jiao-ben-tian-qi-cha-xun-he-zhong-ying-ri-fan-yi/">read more</a></div>
     </div>	
 				
 <div class="pagination">

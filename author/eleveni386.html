@@ -56,8 +56,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="http://eleveni386.7axu.com/posts/2014/09/29/shen-du-jie-tu-gong-ju/"><h1>深度截图工具</h1></a>
-一 29 九月 2014
+            <a href="http://eleveni386.7axu.com/posts/2014/11/21/pythonban-rmming-ling/"><h1>python版rm命令</h1></a>
+五 21 十一月 2014
 
 by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
  
@@ -66,7 +66,79 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
  
         </div>
         
-        <div><blockquote>
+        <div><h1>安全的linux rm 命令</h1>
+<blockquote>
+<p>-- python版rm命令</p>
+</blockquote>
+<p>众所周知 linux 下 大杀器之一 rm 是多么恐怖的东西存在</p>
+<p>众多系统管理员 对此命令是又爱 又恨,  基于本人也是一枚系统管理员, 写下这个小 工具
+方便自己 随心所欲的使用大杀器</p>
+<p>麻麻再也不用担心 我使用rm了</p>
+<h2>特性</h2>
+<div class="highlight"><pre><span class="mf">1.</span>  <span class="err">删除日志记录</span>
+<span class="mf">2.</span> <span class="err">安全目录</span>
+<span class="mf">3.</span> <span class="err">垃圾箱机制</span>
+</pre></div>
+
+
+<h2>参数</h2>
+<div class="highlight"><pre><span class="n">usage</span><span class="o">:</span> <span class="n">rm</span> <span class="o">[-</span><span class="n">h</span><span class="o">]</span> <span class="o">[-</span><span class="n">r</span><span class="o">]</span> <span class="o">[-</span><span class="n">f</span><span class="o">]</span> <span class="o">[--</span><span class="n">log</span><span class="o">]</span> <span class="o">[-</span><span class="n">a</span> <span class="n">SAFE_DIR</span><span class="o">]</span> <span class="o">[</span><span class="n">file</span> <span class="o">[</span><span class="n">file</span> <span class="o">...]]</span>
+
+<span class="err">用于替换系统的</span><span class="n">rm</span><span class="err">命令</span>
+<span class="err">自带回收站</span>
+<span class="n">exp</span><span class="o">:</span>
+    <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/$&#39;</span> <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/home/?$&#39;</span> <span class="err">#</span> <span class="err">增加</span><span class="sr">/ 和 /</span><span class="n">home</span> <span class="err">目录不可删除</span>
+    <span class="o">--</span><span class="n">log</span> <span class="err">#</span> <span class="err">显示删除日志</span>
+
+
+<span class="n">positional</span> <span class="k">arguments</span><span class="o">:</span>
+    <span class="n">file</span>                  <span class="n">file</span><span class="o">...</span>
+
+<span class="n">optional</span> <span class="k">arguments</span><span class="o">:</span>
+     <span class="o">-</span><span class="n">h</span><span class="o">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="k">this</span> <span class="n">help</span> <span class="n">message</span> <span class="n">and</span> <span class="n">exit</span>
+    <span class="n">r</span><span class="o">,</span> <span class="o">--</span><span class="n">recursive</span>       <span class="n">remove</span> <span class="n">directories</span> <span class="n">and</span> <span class="n">their</span> <span class="n">contents</span> <span class="n">recursively</span>
+    <span class="o">-</span><span class="n">f</span><span class="o">,</span> <span class="o">--</span><span class="n">force</span>           <span class="n">ignore</span> <span class="n">nonexistent</span> <span class="n">files</span> <span class="n">and</span> <span class="k">arguments</span><span class="o">,</span> <span class="n">never</span> <span class="n">prompt</span>
+     <span class="o">--</span><span class="n">log</span>                 <span class="n">show</span> <span class="n">delete</span> <span class="n">log</span>
+    <span class="o">-</span><span class="n">a</span> <span class="n">SAFE_DIR</span><span class="o">,</span> <span class="o">--</span><span class="n">add_safe_dirs</span> <span class="n">SAFE_DIR</span>
+                         <span class="n">add</span> <span class="n">safe</span> <span class="n">dirs</span> <span class="n">regex</span>
+</pre></div>
+
+
+<h2>默认安全目录</h2>
+<p>[Safe_dirs]</p>
+<p>safe_dirs = ['^/$', '^/home/?$', '^/usr/?$', '^/var/?$']</p>
+<p>可通过 <code>-a</code>参数 添加 新的 安全目录 (<strong>每次添加一个目录</strong>)</p>
+<p>或 直接 在 <code>~/.Recycle/.Recycle.conf</code>中添加</p>
+<h2>垃圾箱位置</h2>
+<p><code>~/.Recycle/</code></p>
+<p>该目录下 存在两个隐藏文件</p>
+<p><code>.delete</code>, <code>.Recycle.conf</code></p>
+<p>delete 是删除日志
+Recycle.conf 是安全目录配置文件</p>
+<h2>获取</h2>
+<blockquote>
+<p>轻轻戳一下右上角的 Fork me on GitHub 哦
+https://github.com/eleveni386/remove</p>
+</blockquote></div>
+        <hr />
+    </div>
+		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2014/09/29/shen-du-jie-tu-gong-ju/"><h2>深度截图工具</h2></a>
+        <div class= "well small"> 一 29 九月 2014
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><blockquote>
 <p>竟然找不到 小邪兽 版的 DeepinScrot 的github地址了,   ╮(╯▽╰)╭</p>
 </blockquote>
 <h2>截图工具的截图</h2>
@@ -94,19 +166,9 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 </ol>
 <h2>更改图床</h2>
 <p>用你喜欢的 编辑器 编辑 <code>src/sharepic.py</code> 文件</p>
-<p>修改 <code>pic_bed = 'http://eleveni386.7axu.com/Image/'</code> </p>
-<p>为你自己的图床地址</p>
-<h2>扯会小蛋</h2>
-<p>发现 自己距离上一篇文章 隔了 5个月.  这5个月 对于咱个人而言 变化 不可谓不多啊.</p>
-<p>因为朋友相邀, 离开了原公司, 去了 朋友所在的公司 结果 掉坑....</p>
-<p>因为新公司业务 需求 我一个SA 变身 成为了 程序猿 , 学会 了 jquery , html, 和 少量 bootstrap
-做起了 网站的勾当 </p>
-<p>前后端 都是我一个人. 不过 最后 还是让我扯了一个 SA妹子 来做前端 释放了我少量的 脑子</p>
-<p>而后 发现自己 喜当爹 .... 2333</p>
-<p>再然后 祖国 麻麻 生日了. </p></div>
-        <hr />
-    </div>
-		
+<p>修改 <code>pic_bed = 'http://eleveni386.7axu.com/Image ...</code></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2014/09/29/shen-du-jie-tu-gong-ju/">read more</a></div>
+    </div>	
+				
 
  
         
@@ -204,40 +266,6 @@ Debian7 的ssh server版本是1.6 客户端的ssh client是1.5
 <span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
 <span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
 <span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2014/01/01/wiz-for-linux-210ban-ben-gong-neng-jie-shao/"><h2>Wiz for linux 2.1.0版本功能介绍</h2></a>
-        <div class= "well small"> 三 01 一月 2014
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><h1>截图</h1>
-<p><img alt="" src="/image/wiz.png" /></p>
-<h1>介绍</h1>
-<p><code>wiz笔记</code> 一款知识管理软件, 界面效果如上图. </p>
-<p>在 <a href="https://github.com/WizTeam/WizQTClient">Wiz 2.1.0</a> 版本中 
-首次对Linux支持<code>markdown语法</code>.</p>
-<p>( <strong>Ubuntu用户按照官网上的方法安装,不是最新版本哦, 是不支持markdown语法的</strong> )</p>
-<h1>要求</h1>
-<p>安装<a href="https://github.com/WizTeam/WizQTClient">Wiz 2.1.0</a> 版本</p>
-<p>是需要QT4/5 的支持, 另外需要cmake工具</p>
-<h1>插件</h1>
-<p>安装好之后, 点击菜单栏上的 帮助-&gt; 关于插件 </p>
-<p>可以发现 <code>markdown语法</code>的支持是由于插件的原因. 因此 其他人也是可以编写自己的插件实现
-不同的功能呢. 咱技术差了点. 又没有一个官方的API, 咱无法写出自己的插件. 不过有了
-markdown语法支持插件 咱就足矣 :)</p>
-<p>另外一个插件 则是网页截取. 参考<a href="http://blog.wiz.cn/wiz-manual-save-web-page.html">为知博客</a></p>
-<p>得知chrome下有一款网页截取的插件. 遂安装之 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2014/01/01/wiz-for-linux-210ban-ben-gong-neng-jie-shao/">read more</a></div>
     </div>	
 				
 <div class="pagination">
