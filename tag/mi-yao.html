@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Eleven.I386's Blog</title>
+    <meta name="description" content="">
+    <meta name="author" content="eleven.i386">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://eleveni386.7axu.com/theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/local.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+        
+
+        
+
+
+    <div class='article'>
+        <div class="content-title">
+            <a href="http://eleveni386.7axu.com/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/"><h1>记一次ssh密钥登录失败</h1></a>
+四 27 二月 2014
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ 
+        </div>
+        
+        <div><h2>环境</h2>
+<p>我们的私钥是通过SecureCRT工具生成的. 在Debian5/6下面使用正常
+有问题的主机是Debian7 系统, 客户端是Debian6 系统
+Debian7 的ssh server版本是1.6 客户端的ssh client是1.5
+使用的ssh协议均是2</p>
+<h2>现象</h2>
+<p>昨天我们一台Debian7主机, 无法通过私钥登录. 每次登录提示需要输入密码. 这是我们第一次使用Debian7的系统, 以往的主机都是Debian5/6的系统</p>
+<p>开启ssh的debug参数, 观看登录过程,发现如下</p>
+<div class="highlight"><pre><span class="n">debug2</span><span class="o">:</span> <span class="n">key_type_from_name</span><span class="o">:</span> <span class="n">unknown</span> <span class="n">key</span> <span class="n">type</span> <span class="s1">&#39;-----BEGIN&#39;</span>
+<span class="n">debug2</span><span class="o">:</span> <span class="n">key_type_from_name</span><span class="o">:</span> <span class="n">unknown</span> <span class="n">key</span> <span class="n">type</span> <span class="s1">&#39;-----END&#39;</span>
+<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
+<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
+<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
+<span class="o">......</span>
+</pre></div>
+
+
+<h2>排查</h2>
+<p>一开始看到这样的信息, 我以为是私钥格式不正确. 因为网络上一直流传着SecureCRT和Putty之类的工具,产生的密钥和ssh-keygen产生的 格式上有区别
+不过从我们以往的经验上来看(Debian5/6) , SecureCRT生成的可以正常使用, </p>
+<p>虽然有这样的疑问 不过还是重新生成了一份密钥, 继续登录, 还是提示一样的问题, 我最后在Debian7 上 使用ssh-keygen生成一份密钥, 还是提示一样的问题
+我突然醒悟过来, ssh兼容ssh1的协议. 于是ssh在登录的时候 会协商使用什么样的协议, 上面的提示问题应该是密钥格式不符合ssh1, 所以本次问题应该不是出
+在私钥格式不对的问题, </p>
+<p>于是我去对比 ssh-keygen 产生的密钥 和 SecureCRT产生的有啥不同. 结果我发现 私钥里面写着root
+我去.. 我的私钥是给cache用户用的, 私钥里面怎么会有root呢? </p>
+<p>小心翼翼的瞄了一眼 我的shell 提示符, <strong>#</strong> 果果的出现了.... </p>
+<p>好吧, 为了排查方便我切换到了root下, 我却不记得了. </p>
+<p>切换到cache用户下 再次执行ssh-keygen </p>
+<p>在使用ssh-keygen的时候 有一个提示引起了我的注意 </p>
+<div class="highlight"><pre>    <span class="n">open</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">cache</span><span class="o">/</span><span class="p">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span> <span class="n">failed</span><span class="o">:</span> <span class="n">Permission</span> <span class="n">denied</span>
+</pre></div>
+
+
+<p>为什么会Permission denied ? </p>
+<p>果断查看家目录下的 .ssh 目录权限.</p>
+<div class="highlight"><pre>    <span class="n">drw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span> <span class="mi">2</span> <span class="n">cache</span> <span class="n">cache</span> <span class="mi">4096</span> <span class="n">Feb</span> <span class="mi">27</span> <span class="mi">11</span><span class="o">:</span><span class="mo">03</span> <span class="p">.</span><span class="n">ssh</span><span class="o">/</span>
+</pre></div>
+
+
+<p>我去, 说好的<strong>x</strong>权限呢? </p>
+<p>给.ssh加上<strong>x</strong>权限之后, 再次登录. 果断成功了... </p>
+<h2>结束</h2>
+<p>事后想想, 应该是用户在登录的时候, ssh要对用户提交的私钥做验证, 但是却无法进入.ssh目录, 就当作用户的公钥不存在, 于是要求用户使用密码方式</p></div>
+        <hr />
+    </div>
+		
+<div class="pagination">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="http://eleveni386.7axu.com/tag/mi-yao.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
+</ul>
+</div>
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="http://eleveni386.7axu.com/">Archives</a>
+                <li><a href="http://eleveni386.7axu.com/tags.html">Tags</a>
+                <li><a href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate">Atom feed</a></li>
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://www.linuxzen.com/">cold</a></li>
+                <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
+                <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
+                <li><a href="http://neteue.com/">小邪兽</a></li>
+                <li><a href="http://supercat-lab.org/">老猫</a></li>
+                <li><a href="http://evilbinary.org/">ee</a></li>
+                <li><a href="http://www.awaysoft.com/taor/">ACTom</a></li>
+                <li><a href="http://blog.woodelf.org/">woodelf</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/eleveni386">GitHub</a></li>
+                <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a> &copy; eleven.i386 2012</p>
+<script src="http://v1.cnzz.com/stat.php?id=4484286&web_id=4484286" language="JavaScript"></script>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<a href="https://github.com/eleveni386"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
+</html>

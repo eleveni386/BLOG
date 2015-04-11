@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Eleven.I386's Blog</title>
+    <meta name="description" content="">
+    <meta name="author" content="eleven.i386">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://eleveni386.7axu.com/theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/local.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+        
+
+        
+
+
+    <div class='article'>
+        <div class="content-title">
+            <a href="http://eleveni386.7axu.com/posts/2013/02/28/wps-for-linux-bate1-shi-yong/"><h1>wps for linux Bate1 试用</h1></a>
+四 28 二月 2013
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ 
+        </div>
+        
+        <div><p>虽然很早就知道了<strong>wps for linux</strong>的测试版本出来了,不过一直懒的去下载,直至今天
+公司要求所有的windows系统同事卸载有点软的office而安装<strong>wps</strong>,我才突然想到,
+我也该换换了,咱用的<strong>openoffice</strong>实在拿不出手了..</p>
+<p>于是到wps的官方下载了测试版本回来, 不需要安装, 解压即可以使用,里面有三个东西
+是需要用到的,</p>
+<ol>
+<li>
+<p>wps/wps word文档</p>
+</li>
+<li>
+<p>wps/et excel</p>
+</li>
+<li>
+<p>wps/wpp 幻灯片</p>
+</li>
+</ol>
+<p>好了,直接打开看看效果</p>
+<p><img alt="" src="/image/1362046109.png" /></p>
+<p>看上去好像不错,再来张excel的</p>
+<p><img alt="" src="/image/1362046180.png" /></p>
+<p>也有点样子,现在可以将它们投入到工作当中了..</p>
+<p>于是找了一个doc文档双击打开… 尼玛,怎么还是openoffice打开的哇.. 
+好吧,貌似我们忘记了<em>文件关联</em>的事情了..</p>
+<p>下面让我们建立<em>doc</em>,<em>xls</em>文件关联到<strong>wps</strong>和<strong>et</strong>这两个wps程序上</p>
+<p><a href="(http://linux-wiki.cn/wiki/zh-hans/%E6%96%87%E4%BB%B6%E5%85%B3%E8%81%94)">文件关联</a></p>
+<p>根据资料显示我们到<em>/usr/share/applications/</em>目录去</p>
+<p>找到openoffice的<em>.desktop</em>文件,我们实行拿来主义, 直接复制一份</p>
+<p><code>cp libreoffice-calc.desktop wps-calc.desktop</code></p>
+<p>然后打开<strong>wps-calc.desktop</strong>修改一点点东西,起码要告诉系统,该用什么程序去打开
+你双击的文件对吧 用你喜欢的编辑器编辑它</p>
+<div class="highlight"><pre><span class="k">[Desktop Entry]</span>
+<span class="na">Version</span><span class="o">=</span><span class="s">1.0</span>
+<span class="na">Terminal</span><span class="o">=</span><span class="s">false</span>
+<span class="na">Icon</span><span class="o">=</span><span class="s">/opt/wps/office6/cfgs/tastelink/et.ico</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Application</span>
+<span class="na">Categories</span><span class="o">=</span><span class="s">Office;</span>
+<span class="na">Exec</span><span class="o">=</span><span class="s">/opt/wps/et %f</span>
+</pre></div>
+
+
+<p>这里我们修改Exec 对应的部分,和Icon部分,另外原来的openoiffce打开文件变量是%U
+wps用%f 不然会提示你文件路径不存在</p>
+<p>另外一个wrod也类似修改,之后保存</p>
+<p>然后我们随便找一个doc文件,右键该文件,选择打开方式,在已安装应用程序中找到文档,
+在文档中选择你<em>wps Calc</em> (这个名字是我起的,具体名字根据你自己的设置),
+别忘记下面的小方框勾选上.</p>
+<p><img alt="" src="/image/1362046657.png" /></p>
+<p>之后确定, 以后系统上的excel文件都将利用wps的et来打开了. 
+这就替换了原来的office程序,骚年可以试试你的双击功能了,</p>
+<p>good luckly! :-)</p></div>
+        <hr />
+    </div>
+		
+<div class="pagination">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="http://eleveni386.7axu.com/tag/wps.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
+</ul>
+</div>
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="http://eleveni386.7axu.com/">Archives</a>
+                <li><a href="http://eleveni386.7axu.com/tags.html">Tags</a>
+                <li><a href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate">Atom feed</a></li>
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://www.linuxzen.com/">cold</a></li>
+                <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
+                <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
+                <li><a href="http://neteue.com/">小邪兽</a></li>
+                <li><a href="http://supercat-lab.org/">老猫</a></li>
+                <li><a href="http://evilbinary.org/">ee</a></li>
+                <li><a href="http://www.awaysoft.com/taor/">ACTom</a></li>
+                <li><a href="http://blog.woodelf.org/">woodelf</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/eleveni386">GitHub</a></li>
+                <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a> &copy; eleven.i386 2012</p>
+<script src="http://v1.cnzz.com/stat.php?id=4484286&web_id=4484286" language="JavaScript"></script>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<a href="https://github.com/eleveni386"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
+</html>

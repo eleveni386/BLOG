@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Eleven.I386's Blog</title>
+    <meta name="description" content="">
+    <meta name="author" content="eleven.i386">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://eleveni386.7axu.com/theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/local.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+        
+
+        
+
+
+    <div class='article'>
+        <div class="content-title">
+            <a href="http://eleveni386.7axu.com/posts/2014/09/29/shen-du-jie-tu-gong-ju/"><h1>深度截图工具</h1></a>
+一 29 九月 2014
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ 
+        </div>
+        
+        <div><blockquote>
+<p>竟然找不到 小邪兽 版的 DeepinScrot 的github地址了,   ╮(╯▽╰)╭</p>
+</blockquote>
+<h2>截图工具的截图</h2>
+<p><img alt="" src="/image/deepin-scrot.png" /></p>
+<h2>说明</h2>
+<p>深度公司的原员工  <strong>小邪兽</strong>  的作品. </p>
+<p>感叹于QQ的截图工具的便利性, 苦于Linux desktop下没有一款能与之匹敌工具.</p>
+<p>该工具做到了与QQ截图工具一样的便利性.</p>
+<h2>特性</h2>
+<ol>
+<li>区域截图, </li>
+<li>截图修改, </li>
+<li>本地保存, 以及 保存到 黏贴板 </li>
+</ol>
+<p>以上为 原版 功能, 本人新增了一项功能 图床分享</p>
+<ol>
+<li>图床分享, 默认为 本人的图床   </li>
+</ol>
+<h2>安装要求</h2>
+<ol>
+<li>>= python2.6</li>
+<li>python-xlib</li>
+<li>python-requests</li>
+<li>xsel</li>
+</ol>
+<h2>更改图床</h2>
+<p>用你喜欢的 编辑器 编辑 <code>src/sharepic.py</code> 文件</p>
+<p>修改 <code>pic_bed = 'http://eleveni386.7axu.com/Image/'</code> </p>
+<p>为你自己的图床地址</p>
+<h2>扯会小蛋</h2>
+<p>发现 自己距离上一篇文章 隔了 5个月.  这5个月 对于咱个人而言 变化 不可谓不多啊.</p>
+<p>因为朋友相邀, 离开了原公司, 去了 朋友所在的公司 结果 掉坑....</p>
+<p>因为新公司业务 需求 我一个SA 变身 成为了 程序猿 , 学会 了 jquery , html, 和 少量 bootstrap
+做起了 网站的勾当 </p>
+<p>前后端 都是我一个人. 不过 最后 还是让我扯了一个 SA妹子 来做前端 释放了我少量的 脑子</p>
+<p>而后 发现自己 喜当爹 .... 2333</p>
+<p>再然后 祖国 麻麻 生日了. </p></div>
+        <hr />
+    </div>
+		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="http://eleveni386.7axu.com/posts/2012/12/14/jie-tu-zi-dong-fen-xiang-jiao-ben/"><h2>截图自动分享脚本</h2></a>
+        <div class= "well small"> 五 14 十二月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ </div>
+        <div class="summary"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<span class="nb">time</span><span class="o">=</span><span class="sb">`</span>date +%H:%M:%S<span class="sb">`</span>
+<span class="nv">msg</span><span class="o">=</span><span class="sb">`</span>scrot -s <span class="s2">&quot;$time.png&quot;</span> -e <span class="s2">&quot;curl -sF &#39;name=@$time.png&#39; http://eleveni386.7axu.com/Image/&quot;</span><span class="sb">`</span>
+gxmessage -center -title <span class="s2">&quot;eleveni386.7axu.com&quot;</span> <span class="nv">$msg</span>
+rm -rf <span class="nv">$time</span>.png
+</pre></div>
+</td></tr></table>
+
+<p>将这个脚本绑定到任意快捷键，我将脚本保存为<em>scrot.sh</em> 并 绑定到了<code>A+s</code>快捷键上</p>
+<p>当我需要与朋友分享某图的时候， 直接按下 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/12/14/jie-tu-zi-dong-fen-xiang-jiao-ben/">read more</a></div>
+    </div>	
+				
+<div class="pagination">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="http://eleveni386.7axu.com/tag/tu-chuang.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
+</ul>
+</div>
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="http://eleveni386.7axu.com/">Archives</a>
+                <li><a href="http://eleveni386.7axu.com/tags.html">Tags</a>
+                <li><a href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate">Atom feed</a></li>
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://www.linuxzen.com/">cold</a></li>
+                <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
+                <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
+                <li><a href="http://neteue.com/">小邪兽</a></li>
+                <li><a href="http://supercat-lab.org/">老猫</a></li>
+                <li><a href="http://evilbinary.org/">ee</a></li>
+                <li><a href="http://www.awaysoft.com/taor/">ACTom</a></li>
+                <li><a href="http://blog.woodelf.org/">woodelf</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/eleveni386">GitHub</a></li>
+                <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a> &copy; eleven.i386 2012</p>
+<script src="http://v1.cnzz.com/stat.php?id=4484286&web_id=4484286" language="JavaScript"></script>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<a href="https://github.com/eleveni386"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
+</html>

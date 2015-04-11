@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Eleven.I386's Blog</title>
+    <meta name="description" content="">
+    <meta name="author" content="eleven.i386">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://eleveni386.7axu.com/theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/local.css" rel="stylesheet">
+    <link href="http://eleveni386.7axu.com/theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+        
+
+        
+
+
+    <div class='article'>
+        <div class="content-title">
+            <a href="http://eleveni386.7axu.com/posts/2012/11/28/wang-ji-mi-ma-zhi-svn/"><h1>忘记密码之 Svn</h1></a>
+三 28 十一月 2012
+
+by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+ 
+
+
+ 
+        </div>
+        
+        <div><p>今天,突发奇想在虚拟机中装一个<em>svn客户端</em>,这样就省的每次更改或者提交日志文档的时候,
+需要将文件从虚拟机中拖到本地,然后输入<code>svn ci</code> 命令了, 于是,遂安装之.. 在<code>checkout</code>的时候,
+突然想到自己不记得密码了,(一直以来所有密码都是直接保存的,自己记不住)</p>
+<p>于是找管理员要, 一看, .. 咱们svn管理员没在线, 看来还是要自己动手,</p>
+<p>工具准备: <strong>file</strong>一枚, <strong>cat</strong>一把</p>
+<p>由于我之前一直都是在linux下用命令提交更新, 在linux下已经<code>checkout</code>过一次了,
+同时我也选择了保存密码到本地, 因此 在我本地的某一个地方肯定会有svn的相关记录,
+于是google之.. 找到了 svn的密码文件是保存在<strong>$HOME/.subversion/auth/svn.simple</strong> 下,
+由于我在code.google.com上也有一个svn帐号,因此我这里有两个文件,</p>
+<p><img alt="" src="/image/2012-11-28-104153-300x31.png" /></p>
+<p>由于不清楚这两个文件是啥, 于是<code>file</code>之, 得到两只<strong>ASCII text</strong></p>
+<p>看见是<em>ASCII text</em>之后,果断<code>cat</code> 之 得到</p>
+<p><img alt="" src="/image/2012-11-28-105014-300x149.png" /></p>
+<p>被我抹掉的部分就是svn的密码了,取出来,到虚拟机里填上, ok ,成功<code>checkout</code>了,</p></div>
+        <hr />
+    </div>
+		
+<div class="pagination">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="http://eleveni386.7axu.com/tag/svn.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
+</ul>
+</div>
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="http://eleveni386.7axu.com/">Archives</a>
+                <li><a href="http://eleveni386.7axu.com/tags.html">Tags</a>
+                <li><a href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate">Atom feed</a></li>
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://www.linuxzen.com/">cold</a></li>
+                <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
+                <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
+                <li><a href="http://neteue.com/">小邪兽</a></li>
+                <li><a href="http://supercat-lab.org/">老猫</a></li>
+                <li><a href="http://evilbinary.org/">ee</a></li>
+                <li><a href="http://www.awaysoft.com/taor/">ACTom</a></li>
+                <li><a href="http://blog.woodelf.org/">woodelf</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/eleveni386">GitHub</a></li>
+                <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a> &copy; eleven.i386 2012</p>
+<script src="http://v1.cnzz.com/stat.php?id=4484286&web_id=4484286" language="JavaScript"></script>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<a href="https://github.com/eleveni386"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
+</html>
