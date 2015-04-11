@@ -1,66 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh_cn">
 <head>
-    <meta charset="utf-8">
-    <title>Eleven.I386's Blog</title>
-    <meta name="description" content="">
-    <meta name="author" content="eleven.i386">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-    <script src="http://eleveni386.7axu.com/theme/html5.js"></script>
-    <![endif]-->
 
-    <!-- Le styles -->
-    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/local.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/pygments.css" rel="stylesheet">
+    <meta name="tags" contents="监控" />
+    <meta name="tags" contents="zenoss" />
 
 </head>
 
-<body>
-
-<div class="navbar">
-    <div class="navbar-inner">
-    <div class="container">
-
-         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-         </a>
-
-        <a class="brand" href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
-
-        <div class="nav-collapse">
-        <ul class="nav">
-            
-        </ul>
-        </div>
-        
-    </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="content">
-    <div class="row">
-
-        <div class="span9">
-    <div class='article'>
-        <div class="content-title">
-            <h1>zenoss的SSH command</h1>
-五 24 八月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://eleveni386.7axu.com">Eleven.I386's Blog <strong></strong></a></h1>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+        </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://eleveni386.7axu.com/posts/2012/08/24/zenossde-ssh-command/" rel="bookmark"
+         title="Permalink to zenoss的SSH command">zenoss的SSH command</a></h2>
  
-
-
-        </div>
-	
-        <div><h2>安装</h2>
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2012-08-24T00:00:00">
+      五 24 八月 2012
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <h2>安装</h2>
 <p>安装easy_install</p>
 <div class="highlight"><pre><span class="n">wget</span> <span class="o">-</span><span class="n">q</span> <span class="n">http</span><span class="o">:</span><span class="c1">//peak.telecommunity.com/dist/ez_setup.py</span>
 <span class="n">python</span> <span class="n">ez_setup</span><span class="p">.</span><span class="n">py</span>
@@ -119,102 +89,14 @@ snmp会尝试获取这个列表的内容,但是eth0_0 是没有正确OID的,于�
 eth0_0 本是一张网卡仅有一个OID,</p>
 <h2>检查</h2>
 <p>以上步骤做完之后. 等待个10分钟. 看看流量图是否正常. 磁盘分区监控是否正常有图
-有数据.. 看看其他的图形是否有受到影响(一般不会)</p></div>
-	
-        <hr>
-    	   
-        <h2>Comments</h2>
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'eleveni386sblog'; 
-    var disqus_title = 'zenoss的SSH command';
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-        </div>
-        
-        <div class="span3">
-
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Site
-                </li>
-            
-                <li><a href="http://eleveni386.7axu.com/">Archives</a>
-                <li><a href="http://eleveni386.7axu.com/tags.html">Tags</a>
-                <li><a href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate">Atom feed</a></li>
-            </ul>
-            </div>
-
-
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Categories
-                </li>
-                
-                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
-                   
-            </ul>
-            </div>
-
-
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Links
-                </li>
-            
-                <li><a href="http://www.linuxzen.com/">cold</a></li>
-                <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
-                <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
-                <li><a href="http://neteue.com/">小邪兽</a></li>
-                <li><a href="http://supercat-lab.org/">老猫</a></li>
-                <li><a href="http://evilbinary.org/">ee</a></li>
-                <li><a href="http://www.awaysoft.com/taor/">ACTom</a></li>
-                <li><a href="http://blog.woodelf.org/">woodelf</a></li>
-            </ul>
-            </div>
-
-
-            <div class="social">
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Social
-                </li>
-           
-                <li><a href="https://github.com/eleveni386">GitHub</a></li>
-                <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
-            </ul>
-            </div>
-            </div>
-
-        </div>  
-    </div>     </div> 
-<footer>
-<br />
-<p><a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a> &copy; eleven.i386 2012</p>
-<script src="http://v1.cnzz.com/stat.php?id=4484286&web_id=4484286" language="JavaScript"></script>
-</footer>
-
-</div> <!-- /container -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
-<a href="https://github.com/eleveni386"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
- 
+有数据.. 看看其他的图形是否有受到影响(一般不会)</p>
+  </div><!-- /.entry-content -->
+</section>
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
 </body>
 </html>

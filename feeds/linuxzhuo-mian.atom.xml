@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/linuxzhuo-mian.atom.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2014-09-29T00:00:00+08:00</updated><entry><title>深度截图工具</title><link href="http://eleveni386.7axu.com/posts/2014/09/29/shen-du-jie-tu-gong-ju/" rel="alternate"></link><updated>2014-09-29T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-09-29:posts/2014/09/29/shen-du-jie-tu-gong-ju/</id><summary type="html">&lt;blockquote&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Eleven.I386's Blog</title><link href="http://eleveni386.7axu.com/" rel="alternate"></link><link href="http://eleveni386.7axu.com/feeds/linuxzhuo-mian.atom.xml" rel="self"></link><id>http://eleveni386.7axu.com/</id><updated>2015-04-11T00:00:00+08:00</updated><entry><title>有道翻译 --划词翻译</title><link href="http://eleveni386.7axu.com/posts/2015/04/11/you-dao-fan-yi-hua-ci-fan-yi/" rel="alternate"></link><updated>2015-04-11T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2015-04-11:posts/2015/04/11/you-dao-fan-yi-hua-ci-fan-yi/</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;google的翻译实在太机械了, 大赞有道. 如果官方能出Linux版的有道实在太好了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;划词翻译&lt;/h1&gt;
+&lt;p&gt;&lt;img alt="" src="/image/youdao.png" /&gt;&lt;/p&gt;
+&lt;h1&gt;特性&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;鼠标选词. 在鼠标所在位置出现翻译框&lt;/li&gt;
+&lt;li&gt;托盘图标. 右键托盘图标, 设置开启划词或者关闭划词&lt;/li&gt;
+&lt;li&gt;全局热键. &lt;code&gt;Ctrl+F8&lt;/code&gt; 开启或者关闭划词&lt;/li&gt;
+&lt;li&gt;支持pdf, 网页&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1&gt;依赖&lt;/h1&gt;
+&lt;p&gt;python-Xlib
+requests
+python-webkit
+python-gtk&lt;/p&gt;
+&lt;h1&gt;安装&lt;/h1&gt;
+&lt;p&gt;修改openyoudao.desktop中的相关路径&lt;/p&gt;
+&lt;p&gt;修改项包括但不仅限于:
+&lt;code&gt;Exec=&lt;/code&gt;
+&lt;code&gt;Icon=&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;以你本地实际路径为准. 将修改好的openyoudao.desktop 放置 &lt;code&gt;/usr/share/applications/&lt;/code&gt; 下即可&lt;/p&gt;</summary><category term="翻译"></category><category term="有道翻译"></category><category term="划词翻译"></category></entry><entry><title>深度截图工具</title><link href="http://eleveni386.7axu.com/posts/2014/09/29/shen-du-jie-tu-gong-ju/" rel="alternate"></link><updated>2014-09-29T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-09-29:posts/2014/09/29/shen-du-jie-tu-gong-ju/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;竟然找不到 小邪兽 版的 DeepinScrot 的github地址了,   ╮(╯▽╰)╭&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;截图工具的截图&lt;/h2&gt;

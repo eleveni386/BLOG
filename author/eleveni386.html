@@ -1,72 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh_cn">
 <head>
-    <meta charset="utf-8">
-    <title>Eleven.I386's Blog</title>
-    <meta name="description" content="">
-    <meta name="author" content="eleven.i386">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-    <script src="http://eleveni386.7axu.com/theme/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le styles -->
-    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/local.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/pygments.css" rel="stylesheet">
-
+        <title>Eleven.I386's Blog - Articles by eleven.i386</title>
+        <meta charset="utf-8" />
+        <link href="http://eleveni386.7axu.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Eleven.I386's Blog Full Atom Feed" />
+        <link href="http://eleveni386.7axu.com/feeds/rss.xml" type="application/atom+xml" rel="alternate" title="Eleven.I386's Blog Atom Feed" />
 </head>
 
-<body>
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://eleveni386.7axu.com">Eleven.I386's Blog <strong></strong></a></h1>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+        </ul></nav><!-- /#menu -->
+<section id="content">
+<h2>Articles by eleven.i386</h2>
 
-<div class="navbar">
-    <div class="navbar-inner">
-    <div class="container">
-
-         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-         </a>
-
-        <a class="brand" href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
-
-        <div class="nav-collapse">
-        <ul class="nav">
-            
-        </ul>
-        </div>
-        
-    </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="content">
-    <div class="row">
-
-        <div class="span9">
-        
-
-        
-
-
-    <div class='article'>
-        <div class="content-title">
-            <a href="http://eleveni386.7axu.com/posts/2014/11/21/pythonban-rmming-ling/"><h1>python版rm命令</h1></a>
-五 21 十一月 2014
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- 
-        </div>
-        
-        <div><h1>安全的linux rm 命令</h1>
+<ol id="post-list">
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="http://eleveni386.7axu.com/posts/2015/04/11/you-dao-fan-yi-hua-ci-fan-yi/" rel="bookmark" title="Permalink to 有道翻译 --划词翻译">有道翻译 --划词翻译</a></h2> </header>
+                <footer class="post-info">
+                    <abbr class="published" title="2015-04-11T00:00:00"> 六 11 四月 2015 </abbr>
+<address class="vcard author">By <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a></address>                </footer><!-- /.post-info -->
+                <div class="entry-content"> <blockquote>
+<p>google的翻译实在太机械了, 大赞有道. 如果官方能出Linux版的有道实在太好了</p>
+</blockquote>
+<h1>划词翻译</h1>
+<p><img alt="" src="/image/youdao.png" /></p>
+<h1>特性</h1>
+<ol>
+<li>鼠标选词. 在鼠标所在位置出现翻译框</li>
+<li>托盘图标. 右键托盘图标, 设置开启划词或者关闭划词</li>
+<li>全局热键. <code>Ctrl+F8</code> 开启或者关闭划词</li>
+<li>支持pdf, 网页</li>
+</ol>
+<h1>依赖</h1>
+<p>python-Xlib
+requests
+python-webkit
+python-gtk</p>
+<h1>安装</h1>
+<p>修改openyoudao.desktop中的相关路径</p>
+<p>修改项包括但不仅限于:
+<code>Exec=</code>
+<code>Icon=</code></p>
+<p>以你本地实际路径为准. 将修改好的openyoudao.desktop 放置 <code>/usr/share/applications/</code> 下即可</p> </div><!-- /.entry-content -->
+        </article></li>
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="http://eleveni386.7axu.com/posts/2014/11/21/pythonban-rmming-ling/" rel="bookmark" title="Permalink to python版rm命令">python版rm命令</a></h2> </header>
+                <footer class="post-info">
+                    <abbr class="published" title="2014-11-21T00:00:00"> 五 21 十一月 2014 </abbr>
+<address class="vcard author">By <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a></address>                </footer><!-- /.post-info -->
+                <div class="entry-content"> <h1>安全的linux rm 命令</h1>
 <blockquote>
 <p>-- python版rm命令</p>
 </blockquote>
@@ -87,58 +72,14 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <span class="err">用于替换系统的</span><span class="n">rm</span><span class="err">命令</span>
 <span class="err">自带回收站</span>
 <span class="n">exp</span><span class="o">:</span>
-    <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/$&#39;</span> <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/home/?$&#39;</span> <span class="err">#</span> <span class="err">增加</span><span class="sr">/ 和 /</span><span class="n">home</span> <span class="err">目录不可删除</span>
-    <span class="o">--</span><span class="n">log</span> <span class="err">#</span> <span class="err">显示删除日志</span>
-
-
-<span class="n">positional</span> <span class="k">arguments</span><span class="o">:</span>
-    <span class="n">file</span>                  <span class="n">file</span><span class="o">...</span>
-
-<span class="n">optional</span> <span class="k">arguments</span><span class="o">:</span>
-     <span class="o">-</span><span class="n">h</span><span class="o">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="k">this</span> <span class="n">help</span> <span class="n">message</span> <span class="n">and</span> <span class="n">exit</span>
-    <span class="n">r</span><span class="o">,</span> <span class="o">--</span><span class="n">recursive</span>       <span class="n">remove</span> <span class="n">directories</span> <span class="n">and</span> <span class="n">their</span> <span class="n">contents</span> <span class="n">recursively</span>
-    <span class="o">-</span><span class="n">f</span><span class="o">,</span> <span class="o">--</span><span class="n">force</span>           <span class="n">ignore</span> <span class="n">nonexistent</span> <span class="n">files</span> <span class="n">and</span> <span class="k">arguments</span><span class="o">,</span> <span class="n">never</span> <span class="n">prompt</span>
-     <span class="o">--</span><span class="n">log</span>                 <span class="n">show</span> <span class="n">delete</span> <span class="n">log</span>
-    <span class="o">-</span><span class="n">a</span> <span class="n">SAFE_DIR</span><span class="o">,</span> <span class="o">--</span><span class="n">add_safe_dirs</span> <span class="n">SAFE_DIR</span>
-                         <span class="n">add</span> <span class="n">safe</span> <span class="n">dirs</span> <span class="n">regex</span>
-</pre></div>
-
-
-<h2>默认安全目录</h2>
-<p>[Safe_dirs]</p>
-<p>safe_dirs = ['^/$', '^/home/?$', '^/usr/?$', '^/var/?$']</p>
-<p>可通过 <code>-a</code>参数 添加 新的 安全目录 (<strong>每次添加一个目录</strong>)</p>
-<p>或 直接 在 <code>~/.Recycle/.Recycle.conf</code>中添加</p>
-<h2>垃圾箱位置</h2>
-<p><code>~/.Recycle/</code></p>
-<p>该目录下 存在两个隐藏文件</p>
-<p><code>.delete</code>, <code>.Recycle.conf</code></p>
-<p>delete 是删除日志
-Recycle.conf 是安全目录配置文件</p>
-<h2>获取</h2>
-<blockquote>
-<p>轻轻戳一下右上角的 Fork me on GitHub 哦
-https://github.com/eleveni386/remove</p>
-</blockquote></div>
-        <hr />
-    </div>
-		
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2014/09/29/shen-du-jie-tu-gong-ju/"><h2>深度截图工具</h2></a>
-        <div class= "well small"> 一 29 九月 2014
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><blockquote>
+    <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/$&#39;</span> <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/home/?$&#39;</span> <span class="err">#</span> <span class="err">增加</span><span class="sr">/ 和 /</span><span class="n">home</span> <span class="err">目录不可删除 ...</span></pre></div> </div><!-- /.entry-content -->
+        </article></li>
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="http://eleveni386.7axu.com/posts/2014/09/29/shen-du-jie-tu-gong-ju/" rel="bookmark" title="Permalink to 深度截图工具">深度截图工具</a></h2> </header>
+                <footer class="post-info">
+                    <abbr class="published" title="2014-09-29T00:00:00"> 一 29 九月 2014 </abbr>
+<address class="vcard author">By <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a></address>                </footer><!-- /.post-info -->
+                <div class="entry-content"> <blockquote>
 <p>竟然找不到 小邪兽 版的 DeepinScrot 的github地址了,   ╮(╯▽╰)╭</p>
 </blockquote>
 <h2>截图工具的截图</h2>
@@ -166,25 +107,14 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 </ol>
 <h2>更改图床</h2>
 <p>用你喜欢的 编辑器 编辑 <code>src/sharepic.py</code> 文件</p>
-<p>修改 <code>pic_bed = 'http://eleveni386.7axu.com/Image ...</code></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2014/09/29/shen-du-jie-tu-gong-ju/">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2014/04/10/empathykuai-su-guan-bi-liao-tian-chuang-kou/"><h2>Empathy快速关闭聊天窗口</h2></a>
-        <div class= "well small"> 四 10 四月 2014
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><blockquote>
+<p>修改 <code>pic_bed = 'http://eleveni386.7axu.com/Image ...</code></p> </div><!-- /.entry-content -->
+        </article></li>
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="http://eleveni386.7axu.com/posts/2014/04/10/empathykuai-su-guan-bi-liao-tian-chuang-kou/" rel="bookmark" title="Permalink to Empathy快速关闭聊天窗口">Empathy快速关闭聊天窗口</a></h2> </header>
+                <footer class="post-info">
+                    <abbr class="published" title="2014-04-10T00:00:00"> 四 10 四月 2014 </abbr>
+<address class="vcard author">By <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a></address>                </footer><!-- /.post-info -->
+                <div class="entry-content"> <blockquote>
 <p>只所以使用Empathy,而不是Pidgin, 是因为厌倦了单调的聊天窗口主题, 在Pidgin安装了新主题,每次
 关闭聊天窗口,再次打开窗口时, 主题不存在了.但是Pidgin的插件真的很多, 用着很顺手,比如Esc快速
 关闭聊天窗口.</p>
@@ -200,25 +130,14 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 
 <p>通过搜索 <strong>gtk-close</strong> 找到一下内容</p>
 <div class="highlight"><pre><span class="mi">55</span>           <span class="o">&lt;</span><span class="nb">object</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;GtkAction&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s2">&quot;menu_conv_close&quot;</span><span class="o">&gt;</span>                        
-<span class="mi">56</span>             <span class="o">&lt;</span><span class="nx">property</span> <span class="n">name ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2014/04/10/empathykuai-su-guan-bi-liao-tian-chuang-kou/">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2014/03/07/squidzheng-xiang-dai-li/"><h2>squid正向代理</h2></a>
-        <div class= "well small"> 五 07 三月 2014
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><h2>匿名代理</h2>
+<span class="mi">56</span>             <span class="o">&lt;</span><span class="nx">property</span> <span class="n">name ...</span></pre></div> </div><!-- /.entry-content -->
+        </article></li>
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="http://eleveni386.7axu.com/posts/2014/03/07/squidzheng-xiang-dai-li/" rel="bookmark" title="Permalink to squid正向代理">squid正向代理</a></h2> </header>
+                <footer class="post-info">
+                    <abbr class="published" title="2014-03-07T00:00:00"> 五 07 三月 2014 </abbr>
+<address class="vcard author">By <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a></address>                </footer><!-- /.post-info -->
+                <div class="entry-content"> <h2>匿名代理</h2>
 <p>squid 要做到匿名代理 只需要添加</p>
 <div class="highlight"><pre><span class="n">header_access</span> <span class="n">Via</span> <span class="n">deny</span> <span class="n">all</span> 
 <span class="n">header_access</span>  <span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span> <span class="n">deny</span> <span class="n">all</span>
@@ -235,136 +154,19 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 </pre></div>
 
 
-<p>这里的<strong>ncsa_auth</strong> 是自己写的shell脚本 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2014/03/07/squidzheng-xiang-dai-li/">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/"><h2>记一次ssh密钥登录失败</h2></a>
-        <div class= "well small"> 四 27 二月 2014
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><h2>环境</h2>
-<p>我们的私钥是通过SecureCRT工具生成的. 在Debian5/6下面使用正常
-有问题的主机是Debian7 系统, 客户端是Debian6 系统
-Debian7 的ssh server版本是1.6 客户端的ssh client是1.5
-使用的ssh协议均是2</p>
-<h2>现象</h2>
-<p>昨天我们一台Debian7主机, 无法通过私钥登录. 每次登录提示需要输入密码. 这是我们第一次使用Debian7的系统, 以往的主机都是Debian5/6的系统</p>
-<p>开启ssh的debug参数, 观看登录过程,发现如下</p>
-<div class="highlight"><pre><span class="n">debug2</span><span class="o">:</span> <span class="n">key_type_from_name</span><span class="o">:</span> <span class="n">unknown</span> <span class="n">key</span> <span class="n">type</span> <span class="s1">&#39;-----BEGIN&#39;</span>
-<span class="n">debug2</span><span class="o">:</span> <span class="n">key_type_from_name</span><span class="o">:</span> <span class="n">unknown</span> <span class="n">key</span> <span class="n">type</span> <span class="s1">&#39;-----END&#39;</span>
-<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
-<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
-<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/">read more</a></div>
-    </div>	
-				
-<div class="pagination">
-<ul>
-    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-
-    <li class="active"><a href="http://eleveni386.7axu.com/author/eleveni386.html">1</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3862.html">2</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3863.html">3</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3864.html">4</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3865.html">5</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3866.html">6</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3867.html">7</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3868.html">8</a></li>
-
-    <li class="next"><a href="http://eleveni386.7axu.com/author/eleveni3862.html">Next &rarr;</a></li>
-
-</ul>
-</div>
- 
-  
-        </div>
-        
-        <div class="span3">
-
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Site
-                </li>
-            
-                <li><a href="http://eleveni386.7axu.com/">Archives</a>
-                <li><a href="http://eleveni386.7axu.com/tags.html">Tags</a>
-                <li><a href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate">Atom feed</a></li>
-            </ul>
-            </div>
-
-
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Categories
-                </li>
-                
-                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
-                   
-            </ul>
-            </div>
-
-
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Links
-                </li>
-            
-                <li><a href="http://www.linuxzen.com/">cold</a></li>
-                <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
-                <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
-                <li><a href="http://neteue.com/">小邪兽</a></li>
-                <li><a href="http://supercat-lab.org/">老猫</a></li>
-                <li><a href="http://evilbinary.org/">ee</a></li>
-                <li><a href="http://www.awaysoft.com/taor/">ACTom</a></li>
-                <li><a href="http://blog.woodelf.org/">woodelf</a></li>
-            </ul>
-            </div>
-
-
-            <div class="social">
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Social
-                </li>
-           
-                <li><a href="https://github.com/eleveni386">GitHub</a></li>
-                <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
-            </ul>
-            </div>
-            </div>
-
-        </div>  
-    </div>     </div> 
-<footer>
-<br />
-<p><a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a> &copy; eleven.i386 2012</p>
-<script src="http://v1.cnzz.com/stat.php?id=4484286&web_id=4484286" language="JavaScript"></script>
-</footer>
-
-</div> <!-- /container -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
-<a href="https://github.com/eleveni386"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
- 
+<p>这里的<strong>ncsa_auth</strong> 是自己写的shell脚本 ...</p> </div><!-- /.entry-content -->
+        </article></li>
+</ol><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 8
+        <a href="http://eleveni386.7axu.com/author/eleveni3862.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
 </body>
 </html>
