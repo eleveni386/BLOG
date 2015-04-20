@@ -21,7 +21,9 @@ python-gtk&lt;/p&gt;
 &lt;p&gt;修改项包括但不仅限于:
 &lt;code&gt;Exec=&lt;/code&gt;
 &lt;code&gt;Icon=&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;以你本地实际路径为准. 将修改好的openyoudao.desktop 放置 &lt;code&gt;/usr/share/applications/&lt;/code&gt; 下即可&lt;/p&gt;</summary><category term="翻译"></category><category term="有道翻译"></category><category term="划词翻译"></category></entry><entry><title>python版rm命令</title><link href="http://eleveni386.7axu.com/posts/2014/11/21/pythonban-rmming-ling/" rel="alternate"></link><updated>2014-11-21T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-11-21:posts/2014/11/21/pythonban-rmming-ling/</id><summary type="html">&lt;h1&gt;安全的linux rm 命令&lt;/h1&gt;
+&lt;p&gt;以你本地实际路径为准. 将修改好的openyoudao.desktop 放置 &lt;code&gt;/usr/share/applications/&lt;/code&gt; 下即可&lt;/p&gt;
+&lt;h1&gt;下载&lt;/h1&gt;
+&lt;p&gt;&lt;img alt="戳我吧" src="https://github.com/eleveni386/youdaodict" /&gt;&lt;/p&gt;</summary><category term="翻译"></category><category term="有道翻译"></category><category term="划词翻译"></category></entry><entry><title>python版rm命令</title><link href="http://eleveni386.7axu.com/posts/2014/11/21/pythonban-rmming-ling/" rel="alternate"></link><updated>2014-11-21T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-11-21:posts/2014/11/21/pythonban-rmming-ling/</id><summary type="html">&lt;h1&gt;安全的linux rm 命令&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;-- python版rm命令&lt;/p&gt;
 &lt;/blockquote&gt;
