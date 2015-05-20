@@ -1,76 +1,28 @@
 <!DOCTYPE html>
 <html lang="zh_cn">
 <head>
-    <meta charset="utf-8">
-    <title>Eleven.I386's Blog</title>
-    <meta name="description" content="">
+	<title>Eleven.I386's Blog - 翻墙</title>
+	<meta charset="utf-8" />
     <meta name="author" content="eleven.i386">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-    <script src="http://eleveni386.7axu.com/theme/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le styles -->
-    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/local.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/pygments.css" rel="stylesheet">
-
-    <!-- So Firefox can bookmark->"abo this site" -->
-        <link href="http://eleveni386.7axu.com/feeds/all.atom.xml" rel="alternate" title="Eleven.I386's Blog" type="application/atom+xml">
-        <link href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate" title="Eleven.I386's Blog" type="application/atom+xml">
-
+	<link rel="stylesheet" href="http://eleveni386.7axu.com/theme/css/franticworld.css" type="text/css" />
+	<link href="http://eleveni386.7axu.com/theme/css/pygments.css" rel="stylesheet">
 </head>
+<body background="http://eleveni386.7axu.com/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+		</div>
+		
+		<div class="content">
 
-<body>
-
-<div class="navbar">
-    <div class="navbar-inner">
-    <div class="container">
-
-         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-         </a>
-
-        <a class="brand" href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
-
-        <div class="nav-collapse">
-        <ul class="nav">
-            
-        </ul>
-        </div>
-        
-    </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="content">
-    <div class="row">
-
-        <div class="span9">
-        
-
-        
-
-
-    <div class='article'>
-        <div class="content-title">
-            <a href="http://eleveni386.7axu.com/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/"><h1>加密你的HTTP请求(穿墙)</h1></a>
-五 17 五月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- 
-        </div>
-        
-        <div><p>之前用<strong>kangle</strong>在香港的vps上做了一个http代理
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">137</p>
+		<p class="metayear">2013</p>
+		<p class="metacategory">Linux运维</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/ " >加密你的HTTP请求(穿墙)</a>
+		<p>之前用<strong>kangle</strong>在香港的vps上做了一个http代理
   但是在使用的时候发现,访问国外的一些站点 还是无法正常访问,但是在vps上面访问正常,
 而且kangle日志里面看见国外那些站点返回的状态码也是200,说明vps请求那些站点是没问题的
 那么问题就是发生在客户端跟vps之间了,因为这一段的数据是明文的HTTP请求, 很容易被上层运营商过滤掉
@@ -89,65 +41,19 @@ Stunnel 服务器主要执行两个功能：
 <p>在make install 的时候会要求你输入一些信息,用来生成证书, 按照提示输入即可</p>
 <h2>配置</h2>
 <h3>这里仅作为proxy</h3>
-<div class="highlight"><pre><span class="n">syslog</span> <span class="o">=</span> <span class="n">yes</span>  <span class="err">#使用</span><span class="n">syslog</span><span class="err">日志</span>
-<span class="n">fips</span> <span class="o">=</span> <span class="n">no</span>  <span class="err">#关闭</span><span class="n">fips</span> <span class="p">,</span> <span class="err">如果你支持</span><span class="n">fips</span> <span class="err">默认就好了</span><span class="p">,</span> <span class="err">默认配置文件里面是没有这个的</span><span class="p">,</span> <span class="err">如果在启动</span><span class="n">stunnel</span><span class="err">服务的时候</span> <span class="err">提示</span><span class="n">fips</span> <span class="err">不支持那么就关闭它</span>
-<span class="n">cert</span> <span class="o">=</span> <span class="o">/</span><span class="n">youtpath</span><span class="o">/</span><span class="n">stunnel</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">stunnel</span><span class="o">/</span><span class="n">stunnel</span><span class="p">.</span><span class="n">pem</span>
-<span class="err">然后将</span>
-
-<span class="p">;[</span><span class="n">pop3s</span><span class="p">]</span>
-<span class="p">;</span><span class="n">accept</span> <span class="o">=</span> <span class="mi">995</span>
-<span class="p">;</span><span class="n">connect</span> <span class="o">=</span> <span class="mi">110</span>
-
-<span class="p">;[</span><span class="n">imaps</span><span class="p">]</span>
-<span class="p">;</span><span class="n">accept</span> <span class="o">=</span> <span class="mi">993</span>
-<span class="p">;</span><span class="n">connect</span> <span class="o">=</span> <span class="mi">143</span>
-
-<span class="p">;[</span><span class="n">ssmtp</span><span class="p">]</span>
-<span class="p">;</span><span class="n">accept</span> <span class="o">=</span> <span class="mi">465</span>
-<span class="p">;</span><span class="n">connect</span> <span class="o">=</span> <span class="mi">25</span>
-<span class="err">注释掉</span><span class="p">,</span> <span class="err">注释符号</span> <span class="p">;</span>
-
-<span class="err">新增加</span>
-<span class="p">[</span><span class="n">proxy</span><span class="p">]</span>
-<span class="n">accept</span> <span class="o">=</span> <span class="mi">8081</span>
-<span class="n">connect</span> <span class="o">=</span> <span class="mi">8082</span>
-</pre></div>
-
-
-<p>现在<strong>Stunnel</strong>已经配置好了, 监听8081端口, 转发到8082(kangle)</p>
-<p>服务端已经配置好, 接下来该客户端了</p>
-<p>在客户端上, 使用<strong>socat</strong>工具, 也可以使用stunnel, 
-不过proxy那里的connect就要写上远程主机的地址和端口, 为了简便,懒得去编译,就用socat</p>
-<p>如果的debian/ubuntu 用户直接apt-get 就可以安装
-  <code>apt-get install socat</code></p>
-<p><code>socat tcp-listen:8082,fork openssl:tunnel-server:8081,verify=0</code></p>
-<p>此处偷了<a href="http://lilydjwg.is-programmer.com/2012/10/25/secure-your-http-proxy-with-tls-ssl.36107.html">依云</a>
-的例子 :-)</p>
-<h2>结语</h2>
-<p>socat 将监听本地8082,然后加密tcp数据转发至tunnel主机的8081端口,
-这样本地的http请求就被加密了, 上层运营商无法过滤你http请求了.可以畅快的访问各个站点</p>
-<p>我自己为了方便, 将上面的命令写到开机启动里面, 
-这样每次开机就自动监听了本地的8082端口,我需要使用代理的时候 只要在浏览器上面切换就好了,</p>
-<p>我的浏览器是google-chrome 用的代理工具是SwitchySharp</p></div>
-        <hr />
-    </div>
-		
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/05/17/kangle-zuo-httpni-ming-dai-li/"><h2>Kangle 做HTTP匿名代理</h2></a>
-        <div class= "well small"> 五 17 五月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><blockquote>
+<div class="highlight"><pre><span class="n">syslog</span> <span class="o">=</span> <span class="n">yes</span>  <span class="err">#使用 ...</span></pre></div>
+		<a class="btnmore" href="/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">137</p>
+		<p class="metayear">2013</p>
+		<p class="metacategory">Linux运维</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2013/05/17/kangle-zuo-httpni-ming-dai-li/ " >Kangle 做HTTP匿名代理</a>
+		<blockquote>
 <p>kangle web服务器（简称：kangle）是一款跨平台、功能强大、安全稳定、
 易操作的高性能web服务器和反向代理服务器软件。除此：kangle也是一款专为做虚拟主机
 研发的web服务器。实现虚拟主机独立进程、独立身份运行。用户之间安全隔离，一个用户
@@ -162,103 +68,55 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p>安装pcre库</p>
 <p><code>apt-get install libpcre++-dev</code></p>
 <p>安装ssl库</p>
-<p><code>apt-get install libssl-dev ...</code></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/05/17/kangle-zuo-httpni-ming-dai-li/">read more</a></div>
-    </div>	
-				
-<div class="pagination">
-<ul>
-    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-
-    <li class="active"><a href="http://eleveni386.7axu.com/tag/fan-qiang.html">1</a></li>
-
-    <li class="next disabled"><a href="#">&rarr; Next</a></li>
-
-</ul>
+<p><code>apt-get install libssl-dev ...</code></p>
+		<a class="btnmore" href="/posts/2013/05/17/kangle-zuo-httpni-ming-dai-li/">more ...</a>
+	</div>
 </div>
- 
-  
-        </div>
-        
-        <div class="span3">
 
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Site
-                </li>
-            
-                <li><a href="http://eleveni386.7axu.com/archives.html">Archives</a>
-                <li><a href="http://eleveni386.7axu.com/tags.html">Tags</a>
+<p class="paginator">
+    Page 1 / 1
+</p>
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+</div>
 
+<div class="sidebarpages">
+</div>
 
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://www.linuxzen.com/" target="_blank">cold</a></li>
+    <li><a href="http://lilydjwg.is-programmer.com/" target="_blank">依云</a></li>
+    <li><a href="https://www.7axu.com/" target="_blank">小柒'网络志</a></li>
+    <li><a href="http://neteue.com/" target="_blank">小邪兽</a></li>
+    <li><a href="http://supercat-lab.org/" target="_blank">老猫</a></li>
+    <li><a href="http://evilbinary.org/" target="_blank">ee</a></li>
+    <li><a href="http://www.awaysoft.com/taor/" target="_blank">ACTom</a></li>
+    <li><a href="http://blog.woodelf.org/" target="_blank">woodelf</a></li>
+</div>
 
-                <li><a href="http://eleveni386.7axu.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
-                <li><a href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate">Atom feed</a></li>
-
-            </ul>
-            </div>
-
-
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Categories
-                </li>
-                
-                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
-                   
-            </ul>
-            </div>
-
-
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Links
-                </li>
-            
-                <li><a href="http://www.linuxzen.com/">cold</a></li>
-                <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
-                <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
-                <li><a href="http://neteue.com/">小邪兽</a></li>
-                <li><a href="http://supercat-lab.org/">老猫</a></li>
-                <li><a href="http://evilbinary.org/">ee</a></li>
-                <li><a href="http://www.awaysoft.com/taor/">ACTom</a></li>
-                <li><a href="http://blog.woodelf.org/">woodelf</a></li>
-            </ul>
-            </div>
-
-
-            <div class="social">
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Social
-                </li>
-           
-                <li><a href="https://github.com/eleveni386">GitHub</a></li>
-                <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
-            </ul>
-            </div>
-            </div>
-
-        </div>  
-    </div>     </div> 
-<footer>
-<br />
-<p><a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a> &copy; eleven.i386 2013</p>
-</footer>
-
-</div> <!-- /container -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://eleveni386.7axu.com/theme/bootstrap-collapse.js"></script>
-<a href="https://github.com/eleveni386"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
- 
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="https://github.com/eleveni386">GitHub</a></li>
+    <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
 </body>
 </html>

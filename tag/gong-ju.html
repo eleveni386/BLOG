@@ -1,76 +1,28 @@
 <!DOCTYPE html>
 <html lang="zh_cn">
 <head>
-    <meta charset="utf-8">
-    <title>Eleven.I386's Blog</title>
-    <meta name="description" content="">
+	<title>Eleven.I386's Blog - 工具</title>
+	<meta charset="utf-8" />
     <meta name="author" content="eleven.i386">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-    <script src="http://eleveni386.7axu.com/theme/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le styles -->
-    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/local.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/pygments.css" rel="stylesheet">
-
-    <!-- So Firefox can bookmark->"abo this site" -->
-        <link href="http://eleveni386.7axu.com/feeds/all.atom.xml" rel="alternate" title="Eleven.I386's Blog" type="application/atom+xml">
-        <link href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate" title="Eleven.I386's Blog" type="application/atom+xml">
-
+	<link rel="stylesheet" href="http://eleveni386.7axu.com/theme/css/franticworld.css" type="text/css" />
+	<link href="http://eleveni386.7axu.com/theme/css/pygments.css" rel="stylesheet">
 </head>
+<body background="http://eleveni386.7axu.com/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+		</div>
+		
+		<div class="content">
 
-<body>
-
-<div class="navbar">
-    <div class="navbar-inner">
-    <div class="container">
-
-         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-         </a>
-
-        <a class="brand" href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
-
-        <div class="nav-collapse">
-        <ul class="nav">
-            
-        </ul>
-        </div>
-        
-    </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="content">
-    <div class="row">
-
-        <div class="span9">
-        
-
-        
-
-
-    <div class='article'>
-        <div class="content-title">
-            <a href="http://eleveni386.7axu.com/posts/2014/11/21/pythonban-rmming-ling/"><h1>python版rm命令</h1></a>
-五 21 十一月 2014
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- 
-        </div>
-        
-        <div><h1>安全的linux rm 命令</h1>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">325</p>
+		<p class="metayear">2014</p>
+		<p class="metacategory">Linux运维</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2014/11/21/pythonban-rmming-ling/ " >python版rm命令</a>
+		<h1>安全的linux rm 命令</h1>
 <blockquote>
 <p>-- python版rm命令</p>
 </blockquote>
@@ -91,83 +43,38 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <span class="err">用于替换系统的</span><span class="n">rm</span><span class="err">命令</span>
 <span class="err">自带回收站</span>
 <span class="n">exp</span><span class="o">:</span>
-    <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/$&#39;</span> <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/home/?$&#39;</span> <span class="err">#</span> <span class="err">增加</span><span class="sr">/ 和 /</span><span class="n">home</span> <span class="err">目录不可删除</span>
-    <span class="o">--</span><span class="n">log</span> <span class="err">#</span> <span class="err">显示删除日志</span>
-
-
-<span class="n">positional</span> <span class="k">arguments</span><span class="o">:</span>
-    <span class="n">file</span>                  <span class="n">file</span><span class="o">...</span>
-
-<span class="n">optional</span> <span class="k">arguments</span><span class="o">:</span>
-     <span class="o">-</span><span class="n">h</span><span class="o">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="k">this</span> <span class="n">help</span> <span class="n">message</span> <span class="n">and</span> <span class="n">exit</span>
-    <span class="n">r</span><span class="o">,</span> <span class="o">--</span><span class="n">recursive</span>       <span class="n">remove</span> <span class="n">directories</span> <span class="n">and</span> <span class="n">their</span> <span class="n">contents</span> <span class="n">recursively</span>
-    <span class="o">-</span><span class="n">f</span><span class="o">,</span> <span class="o">--</span><span class="n">force</span>           <span class="n">ignore</span> <span class="n">nonexistent</span> <span class="n">files</span> <span class="n">and</span> <span class="k">arguments</span><span class="o">,</span> <span class="n">never</span> <span class="n">prompt</span>
-     <span class="o">--</span><span class="n">log</span>                 <span class="n">show</span> <span class="n">delete</span> <span class="n">log</span>
-    <span class="o">-</span><span class="n">a</span> <span class="n">SAFE_DIR</span><span class="o">,</span> <span class="o">--</span><span class="n">add_safe_dirs</span> <span class="n">SAFE_DIR</span>
-                         <span class="n">add</span> <span class="n">safe</span> <span class="n">dirs</span> <span class="n">regex</span>
-</pre></div>
-
-
-<h2>默认安全目录</h2>
-<p>[Safe_dirs]</p>
-<p>safe_dirs = ['^/$', '^/home/?$', '^/usr/?$', '^/var/?$']</p>
-<p>可通过 <code>-a</code>参数 添加 新的 安全目录 (<strong>每次添加一个目录</strong>)</p>
-<p>或 直接 在 <code>~/.Recycle/.Recycle.conf</code>中添加</p>
-<h2>垃圾箱位置</h2>
-<p><code>~/.Recycle/</code></p>
-<p>该目录下 存在两个隐藏文件</p>
-<p><code>.delete</code>, <code>.Recycle.conf</code></p>
-<p>delete 是删除日志
-Recycle.conf 是安全目录配置文件</p>
-<h2>获取</h2>
-<blockquote>
-<p>轻轻戳一下右上角的 Fork me on GitHub 哦
-https://github.com/eleveni386/remove</p>
-</blockquote></div>
-        <hr />
-    </div>
-		
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/09/20/nethogs-jian-kong-mei-ge-jin-cheng-ju-ti-shi-yong-de-liu-liang/"><h2>nethogs, 监控每一个进程具体使用的流量</h2></a>
-        <div class= "well small"> 四 20 九月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>最近无聊 想找一个具有悬浮窗口的流量监视工具, 可以实时向我汇报, 使用流量最大的
+    <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/$&#39;</span> <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/home/?$&#39;</span> <span class="err">#</span> <span class="err">增加</span><span class="sr">/ 和 /</span><span class="n">home</span> <span class="err">目录不可删除 ...</span></pre></div>
+		<a class="btnmore" href="/posts/2014/11/21/pythonban-rmming-ling/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">264</p>
+		<p class="metayear">2012</p>
+		<p class="metacategory">软件推荐</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2012/09/20/nethogs-jian-kong-mei-ge-jin-cheng-ju-ti-shi-yong-de-liu-liang/ " >nethogs, 监控每一个进程具体使用的流量</a>
+		<p>最近无聊 想找一个具有悬浮窗口的流量监视工具, 可以实时向我汇报, 使用流量最大的
 进程 是哪一个, 然后还可以告诉我 目的地是什么地方就好了,</p>
 <p>各种google之后,找到了,<strong>nethogs</strong>. 这个玩意,</p>
 <p>额, 它可以实时显示使用了网络的进程的流量,以及发送的包数,</p>
 <p><img alt="" src="/image/2012-09-20-101834.png" /></p>
 <h2>安装</h2>
 <p><code>apt-get install nethogs</code></p>
-<p>tips: 该工具需要root用户才能运行.</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/20/nethogs-jian-kong-mei-ge-jin-cheng-ju-ti-shi-yong-de-liu-liang/">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/"><h2>sshpass 非交互ssh密码验证</h2></a>
-        <div class= "well small"> 日 09 九月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><h2>转载linuxtoy文章</h2>
+<p>tips: 该工具需要root用户才能运行.</p>
+		<a class="btnmore" href="/posts/2012/09/20/nethogs-jian-kong-mei-ge-jin-cheng-ju-ti-shi-yong-de-liu-liang/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">253</p>
+		<p class="metayear">2012</p>
+		<p class="metacategory">软件推荐</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/ " >sshpass 非交互ssh密码验证</a>
+		<h2>转载linuxtoy文章</h2>
 <p>OpenSSH 自带的 ssh 客户端程序（也就是 ‘ssh’ 命令）默认不允许你以非交互的方式传递密码，如：</p>
 <div class="highlight"><pre><span class="n">ssh</span> <span class="n">www</span><span class="p">.</span><span class="n">iredmail</span><span class="p">.</span><span class="n">org</span> <span class="o">&lt;&lt;</span><span class="n">EOF</span> <span class="n">ssh_password</span> <span class="n">ls</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span> <span class="n">EOF</span>
 </pre></div>
@@ -182,103 +89,55 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 
 
 <p>用 <code>-p</code> 指定了密码后，还需要在后面跟上标准的 ssh 连接命令。</p>
-<p>用法就是这么简单。</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/">read more</a></div>
-    </div>	
-				
-<div class="pagination">
-<ul>
-    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-
-    <li class="active"><a href="http://eleveni386.7axu.com/tag/gong-ju.html">1</a></li>
-
-    <li class="next disabled"><a href="#">&rarr; Next</a></li>
-
-</ul>
+<p>用法就是这么简单。</p>
+		<a class="btnmore" href="/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/">more ...</a>
+	</div>
 </div>
- 
-  
-        </div>
-        
-        <div class="span3">
 
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Site
-                </li>
-            
-                <li><a href="http://eleveni386.7axu.com/archives.html">Archives</a>
-                <li><a href="http://eleveni386.7axu.com/tags.html">Tags</a>
+<p class="paginator">
+    Page 1 / 1
+</p>
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+</div>
 
+<div class="sidebarpages">
+</div>
 
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://www.linuxzen.com/" target="_blank">cold</a></li>
+    <li><a href="http://lilydjwg.is-programmer.com/" target="_blank">依云</a></li>
+    <li><a href="https://www.7axu.com/" target="_blank">小柒'网络志</a></li>
+    <li><a href="http://neteue.com/" target="_blank">小邪兽</a></li>
+    <li><a href="http://supercat-lab.org/" target="_blank">老猫</a></li>
+    <li><a href="http://evilbinary.org/" target="_blank">ee</a></li>
+    <li><a href="http://www.awaysoft.com/taor/" target="_blank">ACTom</a></li>
+    <li><a href="http://blog.woodelf.org/" target="_blank">woodelf</a></li>
+</div>
 
-                <li><a href="http://eleveni386.7axu.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
-                <li><a href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate">Atom feed</a></li>
-
-            </ul>
-            </div>
-
-
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Categories
-                </li>
-                
-                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
-                   
-            </ul>
-            </div>
-
-
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Links
-                </li>
-            
-                <li><a href="http://www.linuxzen.com/">cold</a></li>
-                <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
-                <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
-                <li><a href="http://neteue.com/">小邪兽</a></li>
-                <li><a href="http://supercat-lab.org/">老猫</a></li>
-                <li><a href="http://evilbinary.org/">ee</a></li>
-                <li><a href="http://www.awaysoft.com/taor/">ACTom</a></li>
-                <li><a href="http://blog.woodelf.org/">woodelf</a></li>
-            </ul>
-            </div>
-
-
-            <div class="social">
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Social
-                </li>
-           
-                <li><a href="https://github.com/eleveni386">GitHub</a></li>
-                <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
-            </ul>
-            </div>
-            </div>
-
-        </div>  
-    </div>     </div> 
-<footer>
-<br />
-<p><a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a> &copy; eleven.i386 2014</p>
-</footer>
-
-</div> <!-- /container -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://eleveni386.7axu.com/theme/bootstrap-collapse.js"></script>
-<a href="https://github.com/eleveni386"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
- 
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="https://github.com/eleveni386">GitHub</a></li>
+    <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
 </body>
 </html>

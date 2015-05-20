@@ -1,330 +1,60 @@
 <!DOCTYPE html>
 <html lang="zh_cn">
 <head>
-    <meta charset="utf-8">
-    <title>Eleven.I386's Blog</title>
-    <meta name="description" content="">
+	<title>Eleven.I386's Blog - eleven.i386</title>
+	<meta charset="utf-8" />
     <meta name="author" content="eleven.i386">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-    <script src="http://eleveni386.7axu.com/theme/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le styles -->
-    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/local.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/pygments.css" rel="stylesheet">
-
-    <!-- So Firefox can bookmark->"abo this site" -->
-        <link href="http://eleveni386.7axu.com/feeds/all.atom.xml" rel="alternate" title="Eleven.I386's Blog" type="application/atom+xml">
-        <link href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate" title="Eleven.I386's Blog" type="application/atom+xml">
-
+	<link rel="stylesheet" href="http://eleveni386.7axu.com/theme/css/franticworld.css" type="text/css" />
+	<link href="http://eleveni386.7axu.com/theme/css/pygments.css" rel="stylesheet">
 </head>
-
-<body>
-
-<div class="navbar">
-    <div class="navbar-inner">
-    <div class="container">
-
-         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-         </a>
-
-        <a class="brand" href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
-
-        <div class="nav-collapse">
-        <ul class="nav">
-            
-        </ul>
-        </div>
-        
-    </div>
-    </div>
+<body background="http://eleveni386.7axu.com/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+		</div>
+		
+		<div class="content">
+<h2>Articles by eleven.i386</h2>
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
 </div>
 
-<div class="container">
-    <div class="content">
-    <div class="row">
-
-        <div class="span9">
-        
-
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/08/11/tu-pian-hou-men-fen-xi/"><h2>图片后门分析</h2></a>
-        <div class= "well small"> 日 11 八月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>就在刚才, 我们服务器拦截一个用户上传的图片, 有php.hide类型的木马问题, 
-我将图片抓到本地pc上改名为xx, 然后上传到http://www.virscan.org/ 进行多病毒库扫描, 
-发现只有clamav报毒, (我本地pc用的也是它) 我先确定这家伙都是不是图片.</p>
-<div class="highlight"><pre>    <span class="n">file</span> <span class="n">xx</span><span class="p">.</span><span class="n">png</span>
-    <span class="n">xx</span><span class="p">.</span><span class="n">jpg</span><span class="o">:</span> <span class="n">JPEG</span> <span class="o">/</span><span class="n">image</span> <span class="n">data</span><span class="p">,</span> <span class="n">JFIF</span> <span class="n">standard</span> <span class="mf">1.01</span>
-</pre></div>
-
-
-<p>很好,这货还是一张图片, 再看看这个图片隐藏了啥木马,一般人都喜欢往图片的尾巴上插入内容,</p>
-<p><code>tail -n 10 xx.png</code></p>
-<p><img alt="" src="/image/DeepinScrot-2016-300x70.png" /></p>
-<p>好吧,这货看上去很无辜的样子, 但是咱很相信<strong>clamav</strong>的说 :-),  <strong>clamv</strong>既然说
-这货不干净,那么就肯定有什么奇怪的东西混进去了, 那就看看图片头部上有啥东西</p>
-<p><code>head -n 1 xx.png</code></p>
-<p><img alt="" src="/image/DeepinScrot-2239-300x19.png" /></p>
-<p>嘿嘿 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/08/11/tu-pian-hou-men-fen-xi/">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/07/05/2345zi-dong-qian-dao-qi-bian-xie-jing-guo/"><h2>2345自动签到器编写经过</h2></a>
-        <div class= "well small"> 五 05 七月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>2345这个流氓东西 虽然我很不齿, 但是我还是继续每天签到. 
-不为别的,只为了给女友兑换腾迅那个无聊的xx钻. 10Q币/月 这笔钱就靠2345给我省下了..</p>
-<p>由于这个玩意推广着实在太累了.差不多一年没有继续推广过了..
-(就算推广也就那么几个人点击我的链接 :D ) 昨天给女友兑换Q币的时候,
-突然想到它的签到有积分赠送的,反正我也推广不起来,不如拿它的免费积分算鸟. 
-但是要我每天都记得要签到,这是何等痛苦的事情… 自动签到 势在必行.. </p>
-<p>说到签到,无非就是自动登录加访问特定url</p>
-<p>首先分析2345的登录机制和签到url在哪里</p>
-<p>拿出<strong>mitmproxy</strong> 然后设置chromium为本地代理,</p>
-<p><img alt="" src="/image/DeepinScrot-1803.png" /></p>
-<p>很好,登录过程全部抓出来了, (这里要说一下,因为2345登录的时候会自动跳转,
-用chromium的开发者工具无法中止它的跳转,无法得到post的内容和post的url,
-所以这里我使用mitmproxy, 这家伙是<a href="http://lilydjwg.is-programmer.com/">百合仙子</a>
-推荐给我的. 很不错的东西,很好用, 
-现在我也推荐给你们… :P )</p>
-<p>然后我们看看post的内容, 按下回车之后</p>
-<p><img alt="" src="/image/DeepinScrot-2146.png" /></p>
-<p>这里需要主意的是密码是经过md5加密的, 所以在post密码的时候,需要事前将它加密</p>
-<p>如何自动登录实在是很简单的事情.. 不再浪费篇章. 
-上面主要是表现下<strong>mitmproxy</strong>工具的犀利 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/07/05/2345zi-dong-qian-dao-qi-bian-xie-jing-guo/">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/06/03/pythondai-cookiesfang-wen/"><h2>python带cookies访问</h2></a>
-        <div class= "well small"> 一 03 六月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>本人是运维一枚,使用次数最多的就是Vandyke的<a href="https://secure.vandyke.com/cgi-bin/download_form.php?pid=securecrt_ubuntu1264_deb_71&amp;st=4&amp;">SecureCRT</a>.
-在win系统下面有各种大牛
-破解的scrt版本,但是在咱debian下面 就只能使用官方正版的,但是因为scrt是收费的,
-而且还死贵死贵($99), 咱这种中下农,搞不起这货, 只能使用它的免费30天,时间一到,
-要么就是删除它的认证文件,要么就是卸载原有的,然后重新安装, 非常麻烦…</p>
-<p>于是就想着能不能通过cron自动下载安装, 于是就有了第一版本的<a href="(https://code.google.com/p/sharepythoncode/downloads/detail?name=Vandyke_update.py&amp;can=2&amp;q=)">Vandyke_update.py</a> 脚本,
-通过抓包分析到Vandyke 的post数据,通过urllib2提交,并下载, 跑了一年都挺好的, </p>
-<p>但是今天有同事(ubuntu)使用我的脚本自动更新的时候,发现无效了,返回信息提示”Bad product id”,
-然后通过chrome的开发者工具跟踪了一下,发现post数据的字段改变了. 不再提供”sid”这个字段
-(每次Vandyke用户登录之后都会在cookie中分配这个这个id,是不变的),只好重新分析它post内容,</p>
-<p>看见它post内容变的非常简单,只有两个字段:</p>
-<ol>
-<li>pid(product id)</li>
-<li>status ...</li></ol> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/06/03/pythondai-cookiesfang-wen/">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/"><h2>加密你的HTTP请求(穿墙)</h2></a>
-        <div class= "well small"> 五 17 五月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>之前用<strong>kangle</strong>在香港的vps上做了一个http代理
-  但是在使用的时候发现,访问国外的一些站点 还是无法正常访问,但是在vps上面访问正常,
-而且kangle日志里面看见国外那些站点返回的状态码也是200,说明vps请求那些站点是没问题的
-那么问题就是发生在客户端跟vps之间了,因为这一段的数据是明文的HTTP请求, 很容易被上层运营商过滤掉
-那么我们就将客户端跟vps之间这段http过程加密就好了,</p>
-<h2>Stunnel</h2>
-<blockquote>
-<p>Stunnel 是一种程序，使程序员和系统管理员可以很轻松地对任意 TCP 会话加密。
-您可以很轻松地在客户机和服务器上启用 SSL ― 而且这样做不会影响程序源代码。
-Stunnel 服务器主要执行两个功能：
-一，首先，接收未加密的数据流，进行 SSL 加密，然后将其通过网络发送；
-二，对已进行 SSL 加密的数据流进行解密，并将其通过网络发送给另一个程序
-（该程序通常驻留在同一机器上，以避免本地网络上的窥探攻击）。</p>
-</blockquote>
-<p><a href="https://www.stunnel.org/downloads.html">下载地址</a></p>
-<h2>安装注意</h2>
-<p>在make install 的时候会要求你输入一些信息,用来生成证书, 按照提示输入即可</p>
-<h2>配置</h2>
-<h3>这里仅作为proxy</h3>
-<div class="highlight"><pre><span class="n">syslog</span> <span class="o">=</span> <span class="n">yes</span>  <span class="err">#使用 ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/05/17/kangle-zuo-httpni-ming-dai-li/"><h2>Kangle 做HTTP匿名代理</h2></a>
-        <div class= "well small"> 五 17 五月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><blockquote>
-<p>kangle web服务器（简称：kangle）是一款跨平台、功能强大、安全稳定、
-易操作的高性能web服务器和反向代理服务器软件。除此：kangle也是一款专为做虚拟主机
-研发的web服务器。实现虚拟主机独立进程、独立身份运行。用户之间安全隔离，一个用户
-出问题不影响其他用户。安全支持php、asp、asp·net、java、ruby等多种动态开发语言。
-                                                        百度百科</p>
-</blockquote>
-<h2>安装</h2>
-<p>下载源码
-  <code>wget http://www.kanglesoft.com/download/src/kangle-3.2.3.tar.gz</code></p>
-<p>编译环境</p>
-<p><code>apt-get install build-essential</code></p>
-<p>安装pcre库</p>
-<p><code>apt-get install libpcre++-dev</code></p>
-<p>安装ssl库</p>
-<p><code>apt-get install libssl-dev ...</code></p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/05/17/kangle-zuo-httpni-ming-dai-li/">read more</a></div>
-    </div>	
-				
-<div class="pagination">
-<ul>
-    <li class="prev"><a href="http://eleveni386.7axu.com/author/eleveni3863.html">&larr; Previous</a></li>
-
-    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni386.html">1</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3862.html">2</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3863.html">3</a></li>
-    <li class="active"><a href="http://eleveni386.7axu.com/author/eleveni3864.html">4</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3865.html">5</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3866.html">6</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3867.html">7</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/author/eleveni3868.html">8</a></li>
-
-    <li class="next"><a href="http://eleveni386.7axu.com/author/eleveni3865.html">Next &rarr;</a></li>
-
-</ul>
+<div class="sidebarpages">
 </div>
- 
-  
-        </div>
-        
-        <div class="span3">
 
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Site
-                </li>
-            
-                <li><a href="http://eleveni386.7axu.com/archives.html">Archives</a>
-                <li><a href="http://eleveni386.7axu.com/tags.html">Tags</a>
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://www.linuxzen.com/" target="_blank">cold</a></li>
+    <li><a href="http://lilydjwg.is-programmer.com/" target="_blank">依云</a></li>
+    <li><a href="https://www.7axu.com/" target="_blank">小柒'网络志</a></li>
+    <li><a href="http://neteue.com/" target="_blank">小邪兽</a></li>
+    <li><a href="http://supercat-lab.org/" target="_blank">老猫</a></li>
+    <li><a href="http://evilbinary.org/" target="_blank">ee</a></li>
+    <li><a href="http://www.awaysoft.com/taor/" target="_blank">ACTom</a></li>
+    <li><a href="http://blog.woodelf.org/" target="_blank">woodelf</a></li>
+</div>
 
-
-
-                <li><a href="http://eleveni386.7axu.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
-                <li><a href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate">Atom feed</a></li>
-
-            </ul>
-            </div>
-
-
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Categories
-                </li>
-                
-                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
-                   
-            </ul>
-            </div>
-
-
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Links
-                </li>
-            
-                <li><a href="http://www.linuxzen.com/">cold</a></li>
-                <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
-                <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
-                <li><a href="http://neteue.com/">小邪兽</a></li>
-                <li><a href="http://supercat-lab.org/">老猫</a></li>
-                <li><a href="http://evilbinary.org/">ee</a></li>
-                <li><a href="http://www.awaysoft.com/taor/">ACTom</a></li>
-                <li><a href="http://blog.woodelf.org/">woodelf</a></li>
-            </ul>
-            </div>
-
-
-            <div class="social">
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Social
-                </li>
-           
-                <li><a href="https://github.com/eleveni386">GitHub</a></li>
-                <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
-            </ul>
-            </div>
-            </div>
-
-        </div>  
-    </div>     </div> 
-<footer>
-<br />
-<p><a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a> &copy; eleven.i386 2015</p>
-</footer>
-
-</div> <!-- /container -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://eleveni386.7axu.com/theme/bootstrap-collapse.js"></script>
-<a href="https://github.com/eleveni386"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
- 
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="https://github.com/eleveni386">GitHub</a></li>
+    <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
 </body>
 </html>

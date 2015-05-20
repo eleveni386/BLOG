@@ -1,76 +1,28 @@
 <!DOCTYPE html>
 <html lang="zh_cn">
 <head>
-    <meta charset="utf-8">
-    <title>Eleven.I386's Blog</title>
-    <meta name="description" content="">
+	<title>Eleven.I386's Blog - 运维</title>
+	<meta charset="utf-8" />
     <meta name="author" content="eleven.i386">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-    <script src="http://eleveni386.7axu.com/theme/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le styles -->
-    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/local.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/pygments.css" rel="stylesheet">
-
-    <!-- So Firefox can bookmark->"abo this site" -->
-        <link href="http://eleveni386.7axu.com/feeds/all.atom.xml" rel="alternate" title="Eleven.I386's Blog" type="application/atom+xml">
-        <link href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate" title="Eleven.I386's Blog" type="application/atom+xml">
-
+	<link rel="stylesheet" href="http://eleveni386.7axu.com/theme/css/franticworld.css" type="text/css" />
+	<link href="http://eleveni386.7axu.com/theme/css/pygments.css" rel="stylesheet">
 </head>
+<body background="http://eleveni386.7axu.com/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+		</div>
+		
+		<div class="content">
 
-<body>
-
-<div class="navbar">
-    <div class="navbar-inner">
-    <div class="container">
-
-         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-         </a>
-
-        <a class="brand" href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
-
-        <div class="nav-collapse">
-        <ul class="nav">
-            
-        </ul>
-        </div>
-        
-    </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="content">
-    <div class="row">
-
-        <div class="span9">
-        
-
-        
-
-
-    <div class='article'>
-        <div class="content-title">
-            <a href="http://eleveni386.7axu.com/posts/2014/03/07/squidzheng-xiang-dai-li/"><h1>squid正向代理</h1></a>
-五 07 三月 2014
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- 
-        </div>
-        
-        <div><h2>匿名代理</h2>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">066</p>
+		<p class="metayear">2014</p>
+		<p class="metacategory">Linux运维</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2014/03/07/squidzheng-xiang-dai-li/ " >squid正向代理</a>
+		<h2>匿名代理</h2>
 <p>squid 要做到匿名代理 只需要添加</p>
 <div class="highlight"><pre><span class="n">header_access</span> <span class="n">Via</span> <span class="n">deny</span> <span class="n">all</span> 
 <span class="n">header_access</span>  <span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span> <span class="n">deny</span> <span class="n">all</span>
@@ -87,115 +39,19 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 </pre></div>
 
 
-<p>这里的<strong>ncsa_auth</strong> 是自己写的shell脚本, 我的squid版本是2.7, 没有自带ncsa_auth程序</p>
-<h2>一个简单的代理验证脚本</h2>
-<div class="highlight"><pre><span class="k">while</span> <span class="nb">true</span><span class="p">;</span>
-<span class="k">do</span>
-    <span class="n">read</span> <span class="n">line</span>
-    <span class="n">username</span><span class="o">=</span><span class="err">`</span><span class="n">echo</span> <span class="err">$</span><span class="n">line</span> <span class="o">|</span> <span class="n">awk</span> <span class="err">&#39;</span><span class="p">{</span><span class="n">print</span> <span class="err">$</span><span class="mi">1</span><span class="p">}</span><span class="err">&#39;`</span><span class="p">;</span>
-    <span class="n">password</span><span class="o">=</span><span class="err">`</span><span class="n">echo</span> <span class="err">$</span><span class="n">line</span> <span class="o">|</span> <span class="n">awk</span> <span class="err">&#39;</span><span class="p">{</span><span class="n">print</span> <span class="err">$</span><span class="mi">2</span><span class="p">}</span><span class="err">&#39;`</span><span class="p">;</span>
-
-    <span class="k">if</span> <span class="p">[</span> <span class="s">&quot;x$username&quot;</span> <span class="o">==</span> <span class="s">&quot;xeleven&quot;</span> <span class="p">]</span>
-    <span class="n">then</span>
-        <span class="k">if</span> <span class="p">[</span> <span class="s">&quot;x$password&quot;</span> <span class="o">==</span> <span class="s">&quot;x*****&quot;</span> <span class="p">]</span>
-        <span class="n">then</span>
-            <span class="n">echo</span> <span class="n">OK</span><span class="p">;</span>
-        <span class="k">else</span>
-            <span class="n">echo</span> <span class="n">Err</span><span class="p">;</span>
-        <span class="n">fi</span>  
-    <span class="k">else</span>
-        <span class="n">echo</span> <span class="n">Err</span><span class="p">;</span>
-    <span class="n">fi</span>  
-<span class="n">done</span>
-</pre></div>
-
-
-<p>这个脚本有点类似之前的<a href="http://eleveni386.7axu.com/posts/2013/10/13/squid-url-tiao-zhuan/"><strong>squid url跳转</strong></a>
-使用的脚本. 都是脚本从squid处接收需要处理的信息, 脚本处理完毕之后返回给squid结果</p>
-<h2>squid正向代理, 搭建 http 代理服务器</h2>
-<p>以下是一份完整的squid正向代理的配置文件</p>
-<div class="highlight"><pre><span class="n">auth_param</span> <span class="n">basic</span> <span class="n">program</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">squid2</span><span class="mf">.7</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ncsa_auth</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">children</span> <span class="mi">1</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">realm</span> <span class="s">&quot;Welcome to eleven&#39;s proxy server&quot;</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">credentialsttl</span> <span class="mi">12</span> <span class="n">hours</span>
-<span class="n">acl</span> <span class="n">all</span> <span class="n">src</span> <span class="n">all</span> 
-<span class="n">acl</span> <span class="n">squid_user</span> <span class="n">proxy_auth</span> <span class="n">REQUIRED</span>
-<span class="n">acl</span> <span class="n">manager</span> <span class="n">proto</span> <span class="n">cache_object</span>
-<span class="n">acl</span> <span class="n">localhost</span> <span class="n">src</span> <span class="mf">127.0.0.1</span><span class="o">/</span><span class="mi">32</span>
-<span class="n">acl</span> <span class="n">SSL_ports</span> <span class="n">port</span> <span class="mi">443</span> 
-<span class="n">acl</span> <span class="n">Safe_ports</span> <span class="n">port</span> <span class="mi">80</span>      <span class="err">#</span> <span class="n">http</span>
-<span class="n">acl</span> <span class="n">Safe_ports</span> <span class="n">port</span> <span class="mi">21</span>      <span class="err">#</span> <span class="n">ftp</span>
-<span class="n">acl</span> <span class="n">Safe_ports</span> <span class="n">port</span> <span class="mi">443</span>     <span class="err">#</span> <span class="n">https</span>
-<span class="n">acl</span> <span class="n">CONNECT</span> <span class="n">method</span> <span class="n">CONNECT</span>
-<span class="n">http_access</span> <span class="n">allow</span> <span class="n">manager</span> <span class="n">localhost</span>
-<span class="n">http_access</span> <span class="n">deny</span> <span class="n">manager</span>
-<span class="n">http_access</span> <span class="n">deny</span> <span class="o">!</span><span class="n">Safe_ports</span>
-<span class="n">http_access</span> <span class="n">deny</span> <span class="n">CONNECT</span> <span class="o">!</span><span class="n">SSL_ports</span>
-<span class="n">http_access</span> <span class="n">allow</span> <span class="n">localhost</span>
-<span class="cp"># 允许密码用户登录</span>
-<span class="n">http_access</span> <span class="n">allow</span> <span class="n">squid_user</span>
-<span class="cp"># 拒绝其他所有请求</span>
-<span class="n">http_access</span> <span class="n">deny</span> <span class="n">all</span>
-<span class="cp"># Squid的监听端口</span>
-<span class="n">http_port</span> <span class="o">****</span> <span class="err">#</span> <span class="err">不准暴力猜解我的密码</span><span class="p">.</span> <span class="err">哼</span>
-<span class="cp"># DNS 域名服务器配置</span>
-<span class="n">dns_nameservers</span> <span class="mf">8.8.8.8</span>
-<span class="cp"># 启动squid2.7的用户</span>
-<span class="n">cache_effective_user</span> <span class="n">eleven</span>
-<span class="n">cache_effective_group</span> <span class="n">eleven</span>
-<span class="cp"># squid2.7访问日志; 调试时开启</span>
-<span class="cp">#cache_access_log /var/log/squid/access.log</span>
-<span class="cp">#cache_log /var/log/squid/cache.log</span>
-<span class="cp"># squid2.7挂掉后，core文件位置</span>
-<span class="n">coredump_dir</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">squid2</span><span class="mf">.7</span><span class="o">/</span>
-<span class="cp"># 高匿</span>
-<span class="n">header_access</span> <span class="n">Via</span> <span class="n">deny</span> <span class="n">all</span>
-<span class="n">header_access</span>  <span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span> <span class="n">deny</span> <span class="n">all</span>
-<span class="cp"># 出现cgi-bin或者？的URL不予缓存</span>
-<span class="n">hierarchy_stoplist</span> <span class="n">cgi</span><span class="o">-</span><span class="n">bin</span> <span class="o">?</span> <span class="err">\</span><span class="p">.</span><span class="n">php</span>
-<span class="n">acl</span> <span class="n">QUERY</span> <span class="n">urlpath_regex</span> <span class="o">-</span><span class="n">i</span> <span class="n">cgi</span><span class="o">-</span><span class="n">bin</span> <span class="p">[</span><span class="o">^</span><span class="n">html</span><span class="p">]</span><span class="err">\</span><span class="o">?</span> <span class="err">\</span><span class="p">.</span><span class="n">asp</span> <span class="err">\</span><span class="p">.</span><span class="n">php</span> <span class="err">\</span><span class="p">.</span><span class="n">jsp</span> <span class="err">\</span><span class="p">.</span><span class="n">cgi</span>
-<span class="n">acl</span> <span class="n">download</span> <span class="n">urlpath_regex</span> <span class="o">-</span><span class="n">i</span> <span class="err">\</span><span class="p">.</span><span class="n">avi</span><span class="err">$</span> <span class="err">\</span><span class="p">.</span><span class="n">rmvb</span><span class="err">$</span> <span class="err">\</span><span class="p">.</span><span class="n">rm</span><span class="err">$</span> <span class="err">\</span><span class="p">.</span><span class="n">ra</span><span class="err">$</span> <span class="err">\</span><span class="p">.</span><span class="n">ram</span><span class="err">$</span> <span class="err">\</span><span class="p">.</span><span class="n">mpe</span><span class="err">$</span> <span class="err">\</span><span class="p">.</span><span class="n">smi</span><span class="err">$</span>
-<span class="n">cache</span> <span class="n">deny</span> <span class="n">QUERY</span>
-<span class="n">cache</span> <span class="n">deny</span> <span class="n">download</span>
-<span class="cp"># 磁盘缓存目录</span>
-<span class="n">cache_dir</span> <span class="n">ufs</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">squid2</span><span class="mf">.7</span><span class="o">/</span><span class="n">cdir</span> <span class="mi">500</span> <span class="mi">16</span> <span class="mi">256</span>
-<span class="cp"># 内存缓冲大小</span>
-<span class="n">cache_mem</span> <span class="mi">2</span><span class="n">M</span>
-<span class="cp"># 刷新缓存规则</span>
-<span class="n">refresh_pattern</span> <span class="o">^</span><span class="n">ftp</span><span class="o">:</span>       <span class="mi">1440</span>    <span class="mi">20</span><span class="o">%</span> <span class="mi">10080</span>
-<span class="n">refresh_pattern</span> <span class="o">-</span><span class="n">i</span> <span class="p">(</span><span class="o">/</span><span class="n">cgi</span><span class="o">-</span><span class="n">bin</span><span class="o">/|</span><span class="err">\</span><span class="o">?</span><span class="p">)</span> <span class="mi">0</span> <span class="mi">0</span><span class="o">%</span>  <span class="mi">0</span>
-<span class="n">refresh_pattern</span> <span class="p">.</span>       <span class="mi">0</span>   <span class="mi">20</span><span class="o">%</span> <span class="mi">4320</span>
-</pre></div>
-
-
-<h2>加密本地至squid的请求</h2>
-<p>前面的文章里面讲解过了使用<strong>Stunnel</strong>做加密解密, 本地使用<strong>socat</strong>做数据转发, 采用
-<strong>openssl</strong> 加密本地http数据,</p>
-<p><a href="http://eleveni386.7axu.com/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/">参考文章</a></p>
-<h2>结束</h2>
-<p>至此, 一个全新的支持https访问的 http代理就搭建成功了. 第一次访问会要求你输入帐号和密码
-相信看过本人此前的文章 都知道我曾经使用了一个叫做<strong>kangle</strong>的工具 搭建了一个http代理.
-不知道从什么时候开始 <strong>kangle</strong> 搭建的代理 无法访问https协议的 站点. 于是,才迫使我
-转而使用squid. </p></div>
-        <hr />
-    </div>
-		
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/"><h2>记一次ssh密钥登录失败</h2></a>
-        <div class= "well small"> 四 27 二月 2014
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><h2>环境</h2>
+<p>这里的<strong>ncsa_auth</strong> 是自己写的shell脚本 ...</p>
+		<a class="btnmore" href="/posts/2014/03/07/squidzheng-xiang-dai-li/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">058</p>
+		<p class="metayear">2014</p>
+		<p class="metacategory">Linux运维</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/ " >记一次ssh密钥登录失败</a>
+		<h2>环境</h2>
 <p>我们的私钥是通过SecureCRT工具生成的. 在Debian5/6下面使用正常
 有问题的主机是Debian7 系统, 客户端是Debian6 系统
 Debian7 的ssh server版本是1.6 客户端的ssh client是1.5
@@ -207,25 +63,19 @@ Debian7 的ssh server版本是1.6 客户端的ssh client是1.5
 <span class="n">debug2</span><span class="o">:</span> <span class="n">key_type_from_name</span><span class="o">:</span> <span class="n">unknown</span> <span class="n">key</span> <span class="n">type</span> <span class="s1">&#39;-----END&#39;</span>
 <span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
 <span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
-<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace ...</span></pre></div> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/10/13/squid-url-tiao-zhuan/"><h2>Squid Url 跳转</h2></a>
-        <div class= "well small"> 日 13 十月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><h2>需求</h2>
+<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace ...</span></pre></div>
+		<a class="btnmore" href="/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">286</p>
+		<p class="metayear">2013</p>
+		<p class="metacategory">Linux运维</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2013/10/13/squid-url-tiao-zhuan/ " >Squid Url 跳转</a>
+		<h2>需求</h2>
 <p>当Iphone/Ipad/Android 等访问 http://www.xxx.com 时跳转到 
 http://www.xxx.com/mobile/xxx/mobile.html?ref=www.xxi.com/</p>
 <h2>分析</h2>
@@ -234,49 +84,37 @@ http://www.xxx.com/mobile/xxx/mobile.html?ref=www.xxi.com/</p>
 <p><code>redirect_program</code> 可以用perl/php/python 甚至shell来编写</p>
 <h2>思路</h2>
 <p>使用squid的<code>redirect_program</code> 指令 ,指定一个重定向器处理url跳转</p>
-<p>使用acl 匹配Iphone, Ipad, Android 平台 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/10/13/squid-url-tiao-zhuan/">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/08/30/clijian-yi-mi-ma-guan-li-gong-ju/"><h2>CLI简易密码管理工具</h2></a>
-        <div class= "well small"> 五 30 八月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>最近用上了<strong>tmux</strong>, 抛弃了<strong>SecureCRT</strong>,  但是没有便利的密码输入功能. 每次登录上服务器之后我都要将鼠标移动到状态栏 点击<strong>KeepassX</strong>,然后在<strong>Keepassx</strong>里面找到我需要的密码,然后在贴在<strong>tmux</strong>上..完成一次密码输入过程.  </p>
+<p>使用acl 匹配Iphone, Ipad, Android 平台 ...</p>
+		<a class="btnmore" href="/posts/2013/10/13/squid-url-tiao-zhuan/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">242</p>
+		<p class="metayear">2013</p>
+		<p class="metacategory">python</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2013/08/30/clijian-yi-mi-ma-guan-li-gong-ju/ " >CLI简易密码管理工具</a>
+		<p>最近用上了<strong>tmux</strong>, 抛弃了<strong>SecureCRT</strong>,  但是没有便利的密码输入功能. 每次登录上服务器之后我都要将鼠标移动到状态栏 点击<strong>KeepassX</strong>,然后在<strong>Keepassx</strong>里面找到我需要的密码,然后在贴在<strong>tmux</strong>上..完成一次密码输入过程.  </p>
 <p>这种过程与使用<strong>tmux</strong>给我带来的便利(快捷键的存在,让我可以完全抛弃鼠标,事实用了<strong>tmux</strong>我就没有使用鼠标了.) 格格不入.. 感觉就像开着一辆跑车.结果却时不时的要停下来加油.. 这种感觉十分难受..(不打点会死星人)  </p>
 <p>于是就想到一个办法, 利用<strong>tmux</strong>的缓冲区, 来完成挑选密码的过程.  </p>
 <p>首先:  </p>
 <p><strong>tmux</strong>拥有自己的黏贴板,在<strong>tmux</strong>中复制的时候,可以通过<code>tmux show-buffer</code>找到复制的内容;</p>
 <p>然后:  </p>
-<p>使用一个工具,截获<strong>tmux</strong>的缓冲,得到里面的ip, 根据ip地址去数据内寻找相应的密码 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/08/30/clijian-yi-mi-ma-guan-li-gong-ju/">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="http://eleveni386.7axu.com/posts/2013/08/23/tmuxduo-paneltong-bu/"><h2>tmux多panel同步</h2></a>
-        <div class= "well small"> 五 23 八月 2013
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- </div>
-        <div class="summary"><p>上一篇说过 我已经使用<strong>tmux</strong> 代替<strong>SecureCRT</strong>进行运维工作 , 
+<p>使用一个工具,截获<strong>tmux</strong>的缓冲,得到里面的ip, 根据ip地址去数据内寻找相应的密码 ...</p>
+		<a class="btnmore" href="/posts/2013/08/30/clijian-yi-mi-ma-guan-li-gong-ju/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">235</p>
+		<p class="metayear">2013</p>
+		<p class="metacategory">Linux桌面</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2013/08/23/tmuxduo-paneltong-bu/ " >tmux多panel同步</a>
+		<p>上一篇说过 我已经使用<strong>tmux</strong> 代替<strong>SecureCRT</strong>进行运维工作 , 
 为此写了一个<a href="https://github.com/eleveni386/clipm">密码管理工具</a>,来配合<strong>tmux</strong>使用,
 经过两天的使用,感觉良好.<strong>KeepassX</strong> 已经直接被我卸载了,今天要说的是<strong>SecureCRT</strong>另外一个功能
 <strong>批量执行命令</strong></p>
@@ -289,105 +127,56 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p>开启这个功能:  </p>
 <p><code>:setw synchronize-panes</code></p>
 <p>这是一个开关,需要的时候键入, 不需要的时候键入同样的指令,即可关闭.</p>
-<p>友情提示 ...</p> <a class="btn btn-info xsmall" href="http://eleveni386.7axu.com/posts/2013/08/23/tmuxduo-paneltong-bu/">read more</a></div>
-    </div>	
-				
-<div class="pagination">
-<ul>
-    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-
-    <li class="active"><a href="http://eleveni386.7axu.com/tag/yun-wei.html">1</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/tag/yun-wei2.html">2</a></li>
-    <li class=""><a href="http://eleveni386.7axu.com/tag/yun-wei3.html">3</a></li>
-
-    <li class="next"><a href="http://eleveni386.7axu.com/tag/yun-wei2.html">Next &rarr;</a></li>
-
-</ul>
+<p>友情提示 ...</p>
+		<a class="btnmore" href="/posts/2013/08/23/tmuxduo-paneltong-bu/">more ...</a>
+	</div>
 </div>
- 
-  
-        </div>
-        
-        <div class="span3">
 
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Site
-                </li>
-            
-                <li><a href="http://eleveni386.7axu.com/archives.html">Archives</a>
-                <li><a href="http://eleveni386.7axu.com/tags.html">Tags</a>
+<p class="paginator">
+    Page 1 / 3
+        <a href="http://eleveni386.7axu.com/tag/yun-wei2.html">next&raquo;</a>
+</p>
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+</div>
 
+<div class="sidebarpages">
+</div>
 
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://www.linuxzen.com/" target="_blank">cold</a></li>
+    <li><a href="http://lilydjwg.is-programmer.com/" target="_blank">依云</a></li>
+    <li><a href="https://www.7axu.com/" target="_blank">小柒'网络志</a></li>
+    <li><a href="http://neteue.com/" target="_blank">小邪兽</a></li>
+    <li><a href="http://supercat-lab.org/" target="_blank">老猫</a></li>
+    <li><a href="http://evilbinary.org/" target="_blank">ee</a></li>
+    <li><a href="http://www.awaysoft.com/taor/" target="_blank">ACTom</a></li>
+    <li><a href="http://blog.woodelf.org/" target="_blank">woodelf</a></li>
+</div>
 
-                <li><a href="http://eleveni386.7axu.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
-                <li><a href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate">Atom feed</a></li>
-
-            </ul>
-            </div>
-
-
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Categories
-                </li>
-                
-                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
-                   
-            </ul>
-            </div>
-
-
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Links
-                </li>
-            
-                <li><a href="http://www.linuxzen.com/">cold</a></li>
-                <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
-                <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
-                <li><a href="http://neteue.com/">小邪兽</a></li>
-                <li><a href="http://supercat-lab.org/">老猫</a></li>
-                <li><a href="http://evilbinary.org/">ee</a></li>
-                <li><a href="http://www.awaysoft.com/taor/">ACTom</a></li>
-                <li><a href="http://blog.woodelf.org/">woodelf</a></li>
-            </ul>
-            </div>
-
-
-            <div class="social">
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Social
-                </li>
-           
-                <li><a href="https://github.com/eleveni386">GitHub</a></li>
-                <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
-            </ul>
-            </div>
-            </div>
-
-        </div>  
-    </div>     </div> 
-<footer>
-<br />
-<p><a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a> &copy; eleven.i386 2014</p>
-</footer>
-
-</div> <!-- /container -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://eleveni386.7axu.com/theme/bootstrap-collapse.js"></script>
-<a href="https://github.com/eleveni386"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
- 
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="https://github.com/eleveni386">GitHub</a></li>
+    <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
 </body>
 </html>

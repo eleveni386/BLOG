@@ -1,76 +1,28 @@
 <!DOCTYPE html>
 <html lang="zh_cn">
 <head>
-    <meta charset="utf-8">
-    <title>Eleven.I386's Blog</title>
-    <meta name="description" content="">
+	<title>Eleven.I386's Blog - nginx</title>
+	<meta charset="utf-8" />
     <meta name="author" content="eleven.i386">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-    <script src="http://eleveni386.7axu.com/theme/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le styles -->
-    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/local.css" rel="stylesheet">
-    <link href="http://eleveni386.7axu.com/theme/pygments.css" rel="stylesheet">
-
-    <!-- So Firefox can bookmark->"abo this site" -->
-        <link href="http://eleveni386.7axu.com/feeds/all.atom.xml" rel="alternate" title="Eleven.I386's Blog" type="application/atom+xml">
-        <link href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate" title="Eleven.I386's Blog" type="application/atom+xml">
-
+	<link rel="stylesheet" href="http://eleveni386.7axu.com/theme/css/franticworld.css" type="text/css" />
+	<link href="http://eleveni386.7axu.com/theme/css/pygments.css" rel="stylesheet">
 </head>
+<body background="http://eleveni386.7axu.com/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+		</div>
+		
+		<div class="content">
 
-<body>
-
-<div class="navbar">
-    <div class="navbar-inner">
-    <div class="container">
-
-         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-         </a>
-
-        <a class="brand" href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
-
-        <div class="nav-collapse">
-        <ul class="nav">
-            
-        </ul>
-        </div>
-        
-    </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="content">
-    <div class="row">
-
-        <div class="span9">
-        
-
-        
-
-
-    <div class='article'>
-        <div class="content-title">
-            <a href="http://eleveni386.7axu.com/posts/2012/10/18/nginx-shuang-ji-re-bei-shi-zhan/"><h1>nginx 双机热备-实战</h1></a>
-四 18 十月 2012
-
-by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a>
- 
-
-
- 
-        </div>
-        
-        <div><p>上次发布了<em>nginx</em>做负载均衡器使用, 这次在原有的基础上加上了 <strong>双机热备</strong>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">292</p>
+		<p class="metayear">2012</p>
+		<p class="metacategory">Linux运维</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2012/10/18/nginx-shuang-ji-re-bei-shi-zhan/ " >nginx 双机热备-实战</a>
+		<p>上次发布了<em>nginx</em>做负载均衡器使用, 这次在原有的基础上加上了 <strong>双机热备</strong>
 另外,此篇文章做为引子,为的是引导使用<strong>keepalived</strong>文中的配置,请酌情修改
 这只是一个简单的<strong>keepalived</strong>应用, 关于文中使用到的<strong>keepalived</strong>参数很少, 
 更多的内容看blog中的keepalived配置文件详解 那篇文章</p>
@@ -81,238 +33,55 @@ by <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">el
 <p>在A,B机器上面 配置好 nginx调度器, 相同的配置.</p>
 <p>A nginx 跑在 eth0 192.168.2.12 上</p>
 <p>B nginx 跑在 eth0 192.168.2.11 上</p>
-<p>在A,B机器上面 配置好 varnish, 相同配置.</p>
-<p>A varnish 跑在eth1 192.168.1.12 的8080端口上</p>
-<p>B varnish 跑在eth1 192.168.1.11 的8080端口上</p>
-<p>nginx的配置.</p>
-<div class="highlight"><pre><span class="n">upstream</span> <span class="n">backend</span> <span class="p">{</span>
-<span class="n">server</span> <span class="mf">192.168.1.12</span><span class="o">:</span><span class="mi">8080</span> <span class="n">weight</span><span class="o">=</span><span class="mi">50</span> <span class="n">fail_timeout</span><span class="o">=</span><span class="mi">30</span><span class="n">s</span><span class="p">;</span>
-<span class="n">server</span> <span class="mf">192.168.1.11</span><span class="o">:</span><span class="mi">8080</span> <span class="n">weight</span><span class="o">=</span><span class="mi">50</span> <span class="n">fail_timeout</span><span class="o">=</span><span class="mi">30</span><span class="n">s</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>两边nginx一样配置. 平衡权重,实现负载均衡</p>
-<p>安装<strong>keepalived</strong></p>
-<p>安装过程很简单, 经典的编译 三部曲</p>
-<p>如此安装是通用的.. 如果你不需要lvs功能, 你可以将lvs去掉</p>
-<p><code>./configure –prefix=/opt/keepalived –disable-lvs-syncd –disable-lvs</code></p>
-<p><code>cp 编译目录/keepalived/etc/rc.d/init.d/keepalived /etc/init.d/</code></p>
-<p>接下来是重点部分, 就是配置..</p>
-<div class="highlight"><pre><span class="o">!</span> <span class="n">Configuration</span> <span class="n">File</span> <span class="k">for</span> <span class="n">keepalived</span>
-
-<span class="n">global_defs</span> <span class="p">{</span> <span class="err">#全局配置</span>
-<span class="n">router_id</span> <span class="n">nginx_ha</span> <span class="err">#唯一名称</span>
-<span class="p">}</span>
-
-<span class="n">vrrp_script</span> <span class="n">check</span> <span class="n">httpcheck</span><span class="p">{</span> <span class="err">#实例脚本</span>
-<span class="n">script</span> <span class="err">“</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">keepalived</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">keepalived</span><span class="o">/</span><span class="n">script</span><span class="o">/</span><span class="n">check_http</span><span class="p">.</span><span class="n">sh</span><span class="err">”</span> <span class="err">#脚本路径</span>
-<span class="n">interval</span> <span class="mi">60</span> <span class="err">#间隔</span>
-<span class="n">weight</span> <span class="o">-</span><span class="mi">100</span> <span class="err">#权重</span>
-<span class="p">}</span>
-
-<span class="n">vrrp_instance</span> <span class="n">VI_2</span> <span class="p">{</span> <span class="err">#</span><span class="n">VRRP</span><span class="err">实例</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
-<span class="n">state</span> <span class="n">BACKUP</span> <span class="err">#初始状态</span>
-<span class="n">interface</span> <span class="n">eth0</span> <span class="err">#网络接口</span>
-<span class="n">virtual_router_id</span> <span class="mi">60</span> <span class="err">#</span><span class="n">VRID</span><span class="err">，这里非常重要，相同的</span><span class="n">VRID</span><span class="err">为一个组，他将决定多播的</span><span class="n">MAC</span><span class="err">地址</span>
-<span class="cp">#nopreempt #设置不抢占，这里只能设置在state为backup的节点上，而且这个节点的优先级必须别另外的高</span>
-<span class="n">priority</span> <span class="mi">150</span> <span class="err">#</span> <span class="err">优先级</span>
-<span class="n">advert_int</span> <span class="mi">1</span> <span class="err">检查间隔，默认为</span><span class="mi">1</span><span class="err">秒</span>
-<span class="n">notify_master</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">keepalived</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">keepalived</span><span class="o">/</span><span class="n">script</span><span class="o">/</span><span class="n">master</span><span class="p">.</span><span class="n">sh</span> <span class="err">#当它是</span><span class="n">master</span><span class="err">时</span> <span class="err">运行的脚本</span>
-<span class="n">notify_backup</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">keepalived</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">keepalived</span><span class="o">/</span><span class="n">script</span><span class="o">/</span><span class="n">backup</span><span class="p">.</span><span class="n">sh</span> <span class="err">#当它是</span><span class="n">backup</span><span class="err">时</span> <span class="err">运行的脚本</span>
-<span class="n">virtual_ipaddress</span> <span class="p">{</span> <span class="err">#</span><span class="n">VIP</span>
-<span class="mf">192.168.4.3</span><span class="o">/</span><span class="mi">24</span> <span class="n">dev</span> <span class="n">eth0</span> <span class="n">scope</span> <span class="n">global</span> <span class="n">label</span> <span class="n">eth0</span><span class="o">:</span><span class="mi">1</span>
-<span class="p">}</span>
-
-<span class="n">authentication</span> <span class="p">{</span> <span class="err">#设置认证</span>
-<span class="n">auth_type</span> <span class="n">PASS</span> <span class="err">#认证类型</span><span class="p">,</span><span class="err">可以是</span><span class="n">PASS</span><span class="err">或</span><span class="n">AH</span><span class="err">两种认证方式</span>
-<span class="n">auth_pass</span> <span class="o">***</span> <span class="err">#认证密码</span>
-<span class="p">}</span>
-<span class="n">track_script</span> <span class="p">{</span> <span class="err">#</span> <span class="err">在实例</span><span class="p">(</span><span class="n">vrrp_instance</span><span class="p">)</span><span class="err">里面引用，有点类似脚本里面的函数引用一样：先定义，后引用函数名</span>
-<span class="n">httpcheck</span>
-<span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>同样的配置在B机器也配置一份,</p>
-<p>最后在A机器上启动 <code>/etc/init.d/keepalived</code></p>
-<h3>观察日志</h3>
-<div class="highlight"><pre><span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived</span><span class="o">:</span> <span class="n">Starting</span> <span class="n">Keepalived</span> <span class="n">v1</span><span class="mf">.2.2</span> <span class="p">(</span><span class="mi">10</span><span class="o">/</span><span class="mi">18</span><span class="p">,</span><span class="mi">2012</span><span class="p">)</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived</span><span class="o">:</span> <span class="n">Starting</span> <span class="n">Healthcheck</span> <span class="n">child</span> <span class="n">process</span><span class="p">,</span> <span class="n">pid</span><span class="o">=</span><span class="mi">5837</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_vrrp</span><span class="o">:</span> <span class="n">Registering</span> <span class="n">Kernel</span> <span class="n">netlink</span> <span class="n">reflector</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_vrrp</span><span class="o">:</span> <span class="n">Registering</span> <span class="n">Kernel</span> <span class="n">netlink</span> <span class="n">command</span> <span class="n">channel</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_vrrp</span><span class="o">:</span> <span class="n">Registering</span> <span class="n">gratutious</span> <span class="n">ARP</span> <span class="n">shared</span> <span class="n">channel</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived</span><span class="o">:</span> <span class="n">Starting</span> <span class="n">VRRP</span> <span class="n">child</span> <span class="n">process</span><span class="p">,</span> <span class="n">pid</span><span class="o">=</span><span class="mi">5839</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">kernel</span><span class="o">:</span> <span class="n">IPVS</span><span class="o">:</span> <span class="n">Registered</span> <span class="n">protocols</span> <span class="p">(</span><span class="n">TCP</span><span class="p">,</span> <span class="n">UDP</span><span class="p">,</span> <span class="n">AH</span><span class="p">,</span> <span class="n">ESP</span><span class="p">)</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">kernel</span><span class="o">:</span> <span class="n">IPVS</span><span class="o">:</span> <span class="n">Connection</span> <span class="n">hash</span> <span class="n">table</span> <span class="n">configured</span> <span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">4096</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="mi">32</span><span class="n">Kbytes</span><span class="p">)</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">kernel</span><span class="o">:</span> <span class="n">IPVS</span><span class="o">:</span> <span class="n">ipvs</span> <span class="n">loaded</span><span class="p">.</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_healthcheckers</span><span class="o">:</span> <span class="n">Registering</span> <span class="n">Kernel</span> <span class="n">netlink</span> <span class="n">reflector</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_healthcheckers</span><span class="o">:</span> <span class="n">Registering</span> <span class="n">Kernel</span> <span class="n">netlink</span> <span class="n">command</span> <span class="n">channel</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_healthcheckers</span><span class="o">:</span> <span class="n">Opening</span> <span class="n">file</span> <span class="err">‘</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">keepalived</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">keepalived</span><span class="o">/</span><span class="n">keepalived</span><span class="p">.</span><span class="n">conf</span><span class="err">’</span><span class="p">.</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_vrrp</span><span class="o">:</span> <span class="n">Opening</span> <span class="n">file</span> <span class="err">‘</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">keepalived</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">keepalived</span><span class="o">/</span><span class="n">keepalived</span><span class="p">.</span><span class="n">conf</span><span class="err">’</span><span class="p">.</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_vrrp</span><span class="o">:</span> <span class="n">Configuration</span> <span class="n">is</span> <span class="n">using</span> <span class="o">:</span> <span class="mi">36252</span> <span class="n">Bytes</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_vrrp</span><span class="o">:</span> <span class="n">Using</span> <span class="n">LinkWatch</span> <span class="n">kernel</span> <span class="n">netlink</span> <span class="n">reflector</span><span class="err">…</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_healthcheckers</span><span class="o">:</span> <span class="n">Configuration</span> <span class="n">is</span> <span class="n">using</span> <span class="o">:</span> <span class="mi">6271</span> <span class="n">Bytes</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_healthcheckers</span><span class="o">:</span> <span class="n">Using</span> <span class="n">LinkWatch</span> <span class="n">kernel</span> <span class="n">netlink</span> <span class="n">reflector</span><span class="err">…</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_vrrp</span><span class="o">:</span> <span class="n">VRRP_Instance</span><span class="p">(</span><span class="n">VI_2</span><span class="p">)</span> <span class="n">Entering</span> <span class="n">BACKUP</span> <span class="n">STATE</span>
-</pre></div>
-
-
-<p>同样的在B机器启动 keepalived</p>
-<h3>观察日志</h3>
-<div class="highlight"><pre><span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived</span><span class="o">:</span> <span class="n">Starting</span> <span class="n">Keepalived</span> <span class="n">v1</span><span class="mf">.2.2</span> <span class="p">(</span><span class="mi">10</span><span class="o">/</span><span class="mi">18</span><span class="p">,</span><span class="mi">2012</span><span class="p">)</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived</span><span class="o">:</span> <span class="n">Starting</span> <span class="n">Healthcheck</span> <span class="n">child</span> <span class="n">process</span><span class="p">,</span> <span class="n">pid</span><span class="o">=</span><span class="mi">5837</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_vrrp</span><span class="o">:</span> <span class="n">Registering</span> <span class="n">Kernel</span> <span class="n">netlink</span> <span class="n">reflector</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_vrrp</span><span class="o">:</span> <span class="n">Registering</span> <span class="n">Kernel</span> <span class="n">netlink</span> <span class="n">command</span> <span class="n">channel</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_vrrp</span><span class="o">:</span> <span class="n">Registering</span> <span class="n">gratutious</span> <span class="n">ARP</span> <span class="n">shared</span> <span class="n">channel</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived</span><span class="o">:</span> <span class="n">Starting</span> <span class="n">VRRP</span> <span class="n">child</span> <span class="n">process</span><span class="p">,</span> <span class="n">pid</span><span class="o">=</span><span class="mi">5839</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">kernel</span><span class="o">:</span> <span class="n">IPVS</span><span class="o">:</span> <span class="n">Registered</span> <span class="n">protocols</span> <span class="p">(</span><span class="n">TCP</span><span class="p">,</span> <span class="n">UDP</span><span class="p">,</span> <span class="n">AH</span><span class="p">,</span> <span class="n">ESP</span><span class="p">)</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">kernel</span><span class="o">:</span> <span class="n">IPVS</span><span class="o">:</span> <span class="n">Connection</span> <span class="n">hash</span> <span class="n">table</span> <span class="n">configured</span> <span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">4096</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="mi">32</span><span class="n">Kbytes</span><span class="p">)</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">kernel</span><span class="o">:</span> <span class="n">IPVS</span><span class="o">:</span> <span class="n">ipvs</span> <span class="n">loaded</span><span class="p">.</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_healthcheckers</span><span class="o">:</span> <span class="n">Registering</span> <span class="n">Kernel</span> <span class="n">netlink</span> <span class="n">reflector</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_healthcheckers</span><span class="o">:</span> <span class="n">Registering</span> <span class="n">Kernel</span> <span class="n">netlink</span> <span class="n">command</span> <span class="n">channel</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_healthcheckers</span><span class="o">:</span> <span class="n">Opening</span> <span class="n">file</span> <span class="err">‘</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">keepalived</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">keepalived</span><span class="o">/</span><span class="n">keepalived</span><span class="p">.</span><span class="n">conf</span><span class="err">’</span><span class="p">.</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_vrrp</span><span class="o">:</span> <span class="n">Opening</span> <span class="n">file</span> <span class="err">‘</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">keepalived</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">keepalived</span><span class="o">/</span><span class="n">keepalived</span><span class="p">.</span><span class="n">conf</span><span class="err">’</span><span class="p">.</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_vrrp</span><span class="o">:</span> <span class="n">Configuration</span> <span class="n">is</span> <span class="n">using</span> <span class="o">:</span> <span class="mi">36252</span> <span class="n">Bytes</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_vrrp</span><span class="o">:</span> <span class="n">Using</span> <span class="n">LinkWatch</span> <span class="n">kernel</span> <span class="n">netlink</span> <span class="n">reflector</span><span class="err">…</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_healthcheckers</span><span class="o">:</span> <span class="n">Configuration</span> <span class="n">is</span> <span class="n">using</span> <span class="o">:</span> <span class="mi">6271</span> <span class="n">Bytes</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_healthcheckers</span><span class="o">:</span> <span class="n">Using</span> <span class="n">LinkWatch</span> <span class="n">kernel</span> <span class="n">netlink</span> <span class="n">reflector</span><span class="err">…</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mo">02</span> <span class="n">centosb</span> <span class="n">Keepalived_vrrp</span><span class="o">:</span> <span class="n">VRRP_Instance</span><span class="p">(</span><span class="n">VI_2</span><span class="p">)</span> <span class="n">Entering</span> <span class="n">BACKUP</span> <span class="n">STATE</span>
-</pre></div>
-
-
-<p>从日志可以看出，启动都没有问题，并且安装我给的优先级完成了竞选，各自成就了各自的状态 </p>
-<p>关闭节点A的网卡测试切换是否正常</p>
-<p><code>ifdown eth0</code></p>
-<p>观察节点B的日志：</p>
-<div class="highlight"><pre><span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">55</span> <span class="n">centosb</span> <span class="n">Keepalived_vrrp</span><span class="o">:</span> <span class="n">VRRP_Instance</span><span class="p">(</span><span class="n">VI_2</span><span class="p">)</span> <span class="n">Transition</span> <span class="n">to</span> <span class="n">MASTER</span> <span class="n">STATE</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mo">00</span> <span class="n">centosb</span> <span class="n">Keepalived_vrrp</span><span class="o">:</span> <span class="n">VRRP_Instance</span><span class="p">(</span><span class="n">VI_2</span><span class="p">)</span> <span class="n">Entering</span> <span class="n">MASTER</span> <span class="n">STATE</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mo">00</span> <span class="n">centosb</span> <span class="n">avahi</span><span class="o">-</span><span class="n">daemon</span><span class="p">[</span><span class="mi">2531</span><span class="p">]</span><span class="o">:</span> <span class="n">Registering</span> <span class="n">new</span> <span class="n">address</span> <span class="n">record</span> <span class="k">for</span> <span class="mf">192.168.4.3</span> <span class="n">on</span> <span class="n">eth0</span><span class="p">.</span>
-</pre></div>
-
-
-<p>启动节点A的网卡测试切换是否正常</p>
-<p><code>ifup eth0</code></p>
-<p>观察节点B的日志：</p>
-<div class="highlight"><pre><span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">31</span> <span class="n">centosb</span> <span class="n">Keepalived_vrrp</span><span class="o">:</span> <span class="n">VRRP_Instance</span><span class="p">(</span><span class="n">VI_2</span><span class="p">)</span> <span class="n">Received</span> <span class="n">higher</span> <span class="n">prio</span> <span class="n">advert</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">31</span> <span class="n">centosb</span> <span class="n">Keepalived_vrrp</span><span class="o">:</span> <span class="n">VRRP_Instance</span><span class="p">(</span><span class="n">VI_2</span><span class="p">)</span> <span class="n">Entering</span> <span class="n">BACKUP</span> <span class="n">STATE</span>
-<span class="n">Sep</span> <span class="mi">8</span> <span class="mi">18</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">31</span> <span class="n">centosb</span> <span class="n">avahi</span><span class="o">-</span><span class="n">daemon</span><span class="p">[</span><span class="mi">2531</span><span class="p">]</span><span class="o">:</span> <span class="n">Withdrawing</span> <span class="n">address</span> <span class="n">record</span> <span class="k">for</span> <span class="mf">192.168.4.3</span> <span class="n">on</span> <span class="n">eth0</span><span class="p">.</span>
-</pre></div>
-
-
-<p><strong>Received higher prio advert</strong> 表示接收到更高优先级的公告(advert公告的意思)</p>
-<p><strong>Withdrawing</strong> 撤回的意思，可以看出切换过程一目了然</p>
-<p>现在我们监控了网络故障和keepalived本身进程，在网络或者keepalived进程出现问题的时候会切换,
-但是我的目的是要实现nginx的高可用, 一旦A,B任何一台nginx挂了, 我要无缝切换.. 这里就需要用到脚本</p>
-<p><strong>/opt/keepalived/etc/keepalived/script/check_http.sh</strong></p>
-<p>这个脚本 就是用来监控nginx的.</p>
-<p>大概内容就是, 先检查本机的nginx进程是否存在</p>
-<p><code>if [ 'ps -ef |grep nginx|wc -l' -ne 0 ]</code></p>
-<p>然后检查nginx的端口是否开放</p>
-<p><code>nc -z -vv 192.168.2.12 80 &gt; /dev/null &amp;&amp; status=$? &amp;&amp; if [ $status -ne 0 ] ;then /etc/init.d/keepalived stop ;fi</code></p>
-<p>一旦,进程或者端口不存在,或者没开放, 我们就认为nginx服务不可用了, 于是在脚本里面就执行 </p>
-<p><code>/etc/init.d/keepalived stop</code></p>
-<p>将keepalived停掉. 然后另外一台keepalived就会将VIP给抢过去.继续服务..</p>
-<p>从上面的架构图可以看得出来.. 我们dns是解析在VIP上的, 所以, 只要两台机器任意一
-台机器存活, 我们<em>VIP</em>都不会断网, 我们的nginx的服务 就可以一直提供..</p></div>
-        <hr />
-    </div>
-		
-<div class="pagination">
-<ul>
-    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-
-    <li class="active"><a href="http://eleveni386.7axu.com/tag/nginx.html">1</a></li>
-
-    <li class="next disabled"><a href="#">&rarr; Next</a></li>
-
-</ul>
+<p>在A ...</p>
+		<a class="btnmore" href="/posts/2012/10/18/nginx-shuang-ji-re-bei-shi-zhan/">more ...</a>
+	</div>
 </div>
- 
-  
-        </div>
-        
-        <div class="span3">
 
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Site
-                </li>
-            
-                <li><a href="http://eleveni386.7axu.com/archives.html">Archives</a>
-                <li><a href="http://eleveni386.7axu.com/tags.html">Tags</a>
+<p class="paginator">
+    Page 1 / 1
+</p>
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+</div>
 
+<div class="sidebarpages">
+</div>
 
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://www.linuxzen.com/" target="_blank">cold</a></li>
+    <li><a href="http://lilydjwg.is-programmer.com/" target="_blank">依云</a></li>
+    <li><a href="https://www.7axu.com/" target="_blank">小柒'网络志</a></li>
+    <li><a href="http://neteue.com/" target="_blank">小邪兽</a></li>
+    <li><a href="http://supercat-lab.org/" target="_blank">老猫</a></li>
+    <li><a href="http://evilbinary.org/" target="_blank">ee</a></li>
+    <li><a href="http://www.awaysoft.com/taor/" target="_blank">ACTom</a></li>
+    <li><a href="http://blog.woodelf.org/" target="_blank">woodelf</a></li>
+</div>
 
-                <li><a href="http://eleveni386.7axu.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
-                <li><a href="http://eleveni386.7axu.com/feeds/rss.xml" rel="alternate">Atom feed</a></li>
-
-            </ul>
-            </div>
-
-
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Categories
-                </li>
-                
-                <li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-                <li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
-                   
-            </ul>
-            </div>
-
-
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Links
-                </li>
-            
-                <li><a href="http://www.linuxzen.com/">cold</a></li>
-                <li><a href="http://lilydjwg.is-programmer.com/">依云</a></li>
-                <li><a href="https://www.7axu.com/">小柒'网络志</a></li>
-                <li><a href="http://neteue.com/">小邪兽</a></li>
-                <li><a href="http://supercat-lab.org/">老猫</a></li>
-                <li><a href="http://evilbinary.org/">ee</a></li>
-                <li><a href="http://www.awaysoft.com/taor/">ACTom</a></li>
-                <li><a href="http://blog.woodelf.org/">woodelf</a></li>
-            </ul>
-            </div>
-
-
-            <div class="social">
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Social
-                </li>
-           
-                <li><a href="https://github.com/eleveni386">GitHub</a></li>
-                <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
-            </ul>
-            </div>
-            </div>
-
-        </div>  
-    </div>     </div> 
-<footer>
-<br />
-<p><a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a> &copy; eleven.i386 2012</p>
-</footer>
-
-</div> <!-- /container -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://eleveni386.7axu.com/theme/bootstrap-collapse.js"></script>
-<a href="https://github.com/eleveni386"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
- 
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="https://github.com/eleveni386">GitHub</a></li>
+    <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
 </body>
 </html>
