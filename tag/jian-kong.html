@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+	<title>Eleven.I386's Blog - 监控</title>
+	<meta charset="utf-8" />
+    <meta name="author" content="eleven.i386">
+	<link rel="stylesheet" href="http://eleveni386.7axu.com/theme/css/franticworld.css" type="text/css" />
+	<link href="http://eleveni386.7axu.com/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body background="http://eleveni386.7axu.com/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+		</div>
+		
+		<div class="content">
+
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">264</p>
+		<p class="metayear">2012</p>
+		<p class="metacategory">软件推荐</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2012/09/20/nethogs-jian-kong-mei-ge-jin-cheng-ju-ti-shi-yong-de-liu-liang/ " >nethogs, 监控每一个进程具体使用的流量</a>
+		<p>最近无聊 想找一个具有悬浮窗口的流量监视工具, 可以实时向我汇报, 使用流量最大的
+进程 是哪一个, 然后还可以告诉我 目的地是什么地方就好了,</p>
+<p>各种google之后,找到了,<strong>nethogs</strong>. 这个玩意,</p>
+<p>额, 它可以实时显示使用了网络的进程的流量,以及发送的包数,</p>
+<p><img alt="" src="/image/2012-09-20-101834.png" /></p>
+<h2>安装</h2>
+<p><code>apt-get install nethogs</code></p>
+<p>tips: 该工具需要root用户才能运行.</p>
+		<a class="btnmore" href="/posts/2012/09/20/nethogs-jian-kong-mei-ge-jin-cheng-ju-ti-shi-yong-de-liu-liang/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">237</p>
+		<p class="metayear">2012</p>
+		<p class="metacategory">监控系统</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2012/08/24/zenossde-ssh-command/ " >zenoss的SSH command</a>
+		<h2>安装</h2>
+<p>安装easy_install</p>
+<div class="highlight"><pre><span class="n">wget</span> <span class="o">-</span><span class="n">q</span> <span class="n">http</span><span class="o">:</span><span class="c1">//peak.telecommunity.com/dist/ez_setup.py</span>
+<span class="n">python</span> <span class="n">ez_setup</span><span class="p">.</span><span class="n">py</span>
+</pre></div>
+
+
+<p>安装zenplugins.py</p>
+<div class="highlight"><pre><span class="n">easy_install</span> <span class="n">Zenoss</span><span class="o">-</span><span class="n">Plugins</span>
+<span class="err">路径</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">zenplugins</span><span class="p">.</span><span class="n">py</span>
+</pre></div>
+
+
+<h2>测试</h2>
+<p><code>zenplugins.py mem</code> 获取内存信息,</p>
+<p>出现如下信息,为安装正确</p>
+<div class="highlight"><pre><span class="n">MEM</span> <span class="n">OK</span><span class="p">;</span><span class="o">|</span><span class="n">memAvailReal</span><span class="o">=</span><span class="mi">90583040</span> <span class="n">hrSwapSize</span><span class="o">=</span><span class="mi">10001932288</span> <span class="n">hrMemorySize</span><span class="o">=</span><span class="mi">16855810048</span> <span class="n">pageSize</span><span class="o">=</span><span class="mi">4096</span> <span class="n">memAvailSwap</span><span class="o">=</span><span class="mi">9998671872</span>
+</pre></div>
+
+
+<h2>使用</h2>
+<p>将主机添加到  <strong>/devices/cmd</strong>
+  修改<strong>/devices/cmd ...</strong></p>
+		<a class="btnmore" href="/posts/2012/08/24/zenossde-ssh-command/">more ...</a>
+	</div>
+</div>
+
+<p class="paginator">
+    Page 1 / 1
+</p>
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+</div>
+
+<div class="sidebarpages">
+</div>
+
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://www.linuxzen.com/" target="_blank">cold</a></li>
+    <li><a href="http://lilydjwg.is-programmer.com/" target="_blank">依云</a></li>
+    <li><a href="https://www.7axu.com/" target="_blank">小柒'网络志</a></li>
+    <li><a href="http://neteue.com/" target="_blank">小邪兽</a></li>
+    <li><a href="http://supercat-lab.org/" target="_blank">老猫</a></li>
+    <li><a href="http://evilbinary.org/" target="_blank">ee</a></li>
+    <li><a href="http://www.awaysoft.com/taor/" target="_blank">ACTom</a></li>
+    <li><a href="http://blog.woodelf.org/" target="_blank">woodelf</a></li>
+</div>
+
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="https://github.com/eleveni386">GitHub</a></li>
+    <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

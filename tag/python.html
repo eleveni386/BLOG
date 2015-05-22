@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+	<title>Eleven.I386's Blog - python</title>
+	<meta charset="utf-8" />
+    <meta name="author" content="eleven.i386">
+	<link rel="stylesheet" href="http://eleveni386.7axu.com/theme/css/franticworld.css" type="text/css" />
+	<link href="http://eleveni386.7axu.com/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body background="http://eleveni386.7axu.com/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+		</div>
+		
+		<div class="content">
+
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">325</p>
+		<p class="metayear">2014</p>
+		<p class="metacategory">Linux运维</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2014/11/21/pythonban-rmming-ling/ " >python版rm命令</a>
+		<h1>安全的linux rm 命令</h1>
+<blockquote>
+<p>-- python版rm命令</p>
+</blockquote>
+<p>众所周知 linux 下 大杀器之一 rm 是多么恐怖的东西存在</p>
+<p>众多系统管理员 对此命令是又爱 又恨,  基于本人也是一枚系统管理员, 写下这个小 工具
+方便自己 随心所欲的使用大杀器</p>
+<p>麻麻再也不用担心 我使用rm了</p>
+<h2>特性</h2>
+<div class="highlight"><pre><span class="mf">1.</span>  <span class="err">删除日志记录</span>
+<span class="mf">2.</span> <span class="err">安全目录</span>
+<span class="mf">3.</span> <span class="err">垃圾箱机制</span>
+</pre></div>
+
+
+<h2>参数</h2>
+<div class="highlight"><pre><span class="n">usage</span><span class="o">:</span> <span class="n">rm</span> <span class="o">[-</span><span class="n">h</span><span class="o">]</span> <span class="o">[-</span><span class="n">r</span><span class="o">]</span> <span class="o">[-</span><span class="n">f</span><span class="o">]</span> <span class="o">[--</span><span class="n">log</span><span class="o">]</span> <span class="o">[-</span><span class="n">a</span> <span class="n">SAFE_DIR</span><span class="o">]</span> <span class="o">[</span><span class="n">file</span> <span class="o">[</span><span class="n">file</span> <span class="o">...]]</span>
+
+<span class="err">用于替换系统的</span><span class="n">rm</span><span class="err">命令</span>
+<span class="err">自带回收站</span>
+<span class="n">exp</span><span class="o">:</span>
+    <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/$&#39;</span> <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/home/?$&#39;</span> <span class="err">#</span> <span class="err">增加</span><span class="sr">/ 和 /</span><span class="n">home</span> <span class="err">目录不可删除 ...</span></pre></div>
+		<a class="btnmore" href="/posts/2014/11/21/pythonban-rmming-ling/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">344</p>
+		<p class="metayear">2013</p>
+		<p class="metacategory">Linux桌面</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2013/12/10/markdownbian-ji-qi/ " >markdown编辑器</a>
+		<h1>前言</h1>
+<p>本人是今年开始使用<code>markdown</code>的, 短时间内,就喜欢上这种编辑文档的方法.遂将自己的blog
+都替换为<code>pelican</code>. 个人笔记也采用 <code>markdown</code>语法来记录. 看着我的零散的markdown
+文件很是头疼. 就想着有一个markdown编辑器可以附带文件管理功能,但是找了好久都没找到</p>
+<p>于是就想着自己开发一个. 于是就有了这货, 用时半年,一直断断续续开发,在快结束的时候
+突然发现了<code>gedit</code>, 给它安装markdown插件之后 完全可以满足我的需求.. 突然发现我这半年
+都在浪费时间(虽然没认真花时间在这个上面).最终还是草草结束了这次的开发..</p>
+<p>在写<code>MyEditor</code>期间,多谢网友"老猫" 和 <a href="http://neteue.com/">"小邪兽"</a> 给予的帮助</p>
+<p>"老猫" 告诉了我<code>gtksourceview2</code>的存在. 同时解答了我许多疑问</p>
+<p>"兽兽君" 更是直接给我提供了一些示例代码.</p>
+<h1>截图</h1>
+<p><img alt="" src="/image/markdown.png" /></p>
+<h1>依赖</h1>
+<ol>
+<li>pygtk</li>
+<li>python-markdown</li>
+<li>python-webkit</li>
+<li>python-gtksourceview2 ...</li></ol>
+		<a class="btnmore" href="/posts/2013/12/10/markdownbian-ji-qi/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">244</p>
+		<p class="metayear">2013</p>
+		<p class="metacategory">python</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2013/09/01/cai-yong-pelicanjing-tai-blog/ " >采用pelican静态blog</a>
+		<h2>引子</h2>
+<blockquote>
+<p>因为我们的gtalk群组机器人需要更改Mysql为Mongo, 正好我也有想法使用静态博客程序</p>
+</blockquote>
+<p>在研究了几天<code>pelican</code>之后, 今天就开始动手搬家了.. 唉,只是可惜了我哪些google收录的说 :-(</p>
+<p>最终效果如您所见.. 如何您是我和<a href="(http://www.linuxzen.com/)">cold</a>的熟人,那么别惊讶为何我的blog和他的那么相似.</p>
+<p>介个要归结于,<code>pelican</code>有限的主题,和自己不擅长css的原因, 在众多主题中来回选择,
+不断尝试,最终介个入围了...</p>
+<p>使用中的主题<a href="(https://github.com/getpelican/pelican-themes/tree/master/tuxlite_tbs)">tuxlite_tbs</a></p>
+<p>目前已经可以正常访问, 不过还有一个问题存在, 本地与vps之间同步的问题, 本来在vps
+上建立了一个git的仓库, 但是由于git极度不熟练的缘故,导致我push的文件,始终无法在
+vps找到,更不要说设置nginx的root路径了, 于是,目前使用scp方式更新文件.... 表喷我傻... :-(</p>
+<p>经过这么几分钟的观察,感觉还算是满意的..</p>
+		<a class="btnmore" href="/posts/2013/09/01/cai-yong-pelicanjing-tai-blog/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">186</p>
+		<p class="metayear">2013</p>
+		<p class="metacategory">python</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2013/07/05/2345zi-dong-qian-dao-qi-bian-xie-jing-guo/ " >2345自动签到器编写经过</a>
+		<p>2345这个流氓东西 虽然我很不齿, 但是我还是继续每天签到. 
+不为别的,只为了给女友兑换腾迅那个无聊的xx钻. 10Q币/月 这笔钱就靠2345给我省下了..</p>
+<p>由于这个玩意推广着实在太累了.差不多一年没有继续推广过了..
+(就算推广也就那么几个人点击我的链接 :D ) 昨天给女友兑换Q币的时候,
+突然想到它的签到有积分赠送的,反正我也推广不起来,不如拿它的免费积分算鸟. 
+但是要我每天都记得要签到,这是何等痛苦的事情… 自动签到 势在必行.. </p>
+<p>说到签到,无非就是自动登录加访问特定url</p>
+<p>首先分析2345的登录机制和签到url在哪里</p>
+<p>拿出<strong>mitmproxy</strong> 然后设置chromium为本地代理,</p>
+<p><img alt="" src="/image/DeepinScrot-1803.png" /></p>
+<p>很好,登录过程全部抓出来了, (这里要说一下,因为2345登录的时候会自动跳转,
+用chromium的开发者工具无法中止它的跳转,无法得到post的内容和post的url,
+所以这里我使用mitmproxy, 这家伙是<a href="http://lilydjwg.is-programmer.com/">百合仙子</a>
+推荐给我的. 很不错的东西,很好用, 
+现在我也推荐给你们… :P )</p>
+<p>然后我们看看post的内容, 按下回车之后</p>
+<p><img alt="" src="/image/DeepinScrot-2146.png" /></p>
+<p>这里需要主意的是密码是经过md5加密的, 所以在post密码的时候,需要事前将它加密</p>
+<p>如何自动登录实在是很简单的事情.. 不再浪费篇章. 
+上面主要是表现下<strong>mitmproxy</strong>工具的犀利 ...</p>
+		<a class="btnmore" href="/posts/2013/07/05/2345zi-dong-qian-dao-qi-bian-xie-jing-guo/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">154</p>
+		<p class="metayear">2013</p>
+		<p class="metacategory">python</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2013/06/03/pythondai-cookiesfang-wen/ " >python带cookies访问</a>
+		<p>本人是运维一枚,使用次数最多的就是Vandyke的<a href="https://secure.vandyke.com/cgi-bin/download_form.php?pid=securecrt_ubuntu1264_deb_71&amp;st=4&amp;">SecureCRT</a>.
+在win系统下面有各种大牛
+破解的scrt版本,但是在咱debian下面 就只能使用官方正版的,但是因为scrt是收费的,
+而且还死贵死贵($99), 咱这种中下农,搞不起这货, 只能使用它的免费30天,时间一到,
+要么就是删除它的认证文件,要么就是卸载原有的,然后重新安装, 非常麻烦…</p>
+<p>于是就想着能不能通过cron自动下载安装, 于是就有了第一版本的<a href="(https://code.google.com/p/sharepythoncode/downloads/detail?name=Vandyke_update.py&amp;can=2&amp;q=)">Vandyke_update.py</a> 脚本,
+通过抓包分析到Vandyke 的post数据,通过urllib2提交,并下载, 跑了一年都挺好的, </p>
+<p>但是今天有同事(ubuntu)使用我的脚本自动更新的时候,发现无效了,返回信息提示”Bad product id”,
+然后通过chrome的开发者工具跟踪了一下,发现post数据的字段改变了. 不再提供”sid”这个字段
+(每次Vandyke用户登录之后都会在cookie中分配这个这个id,是不变的),只好重新分析它post内容,</p>
+<p>看见它post内容变的非常简单,只有两个字段:</p>
+<ol>
+<li>pid(product id)</li>
+<li>status ...</li></ol>
+		<a class="btnmore" href="/posts/2013/06/03/pythondai-cookiesfang-wen/">more ...</a>
+	</div>
+</div>
+
+<p class="paginator">
+    Page 1 / 2
+        <a href="http://eleveni386.7axu.com/tag/python2.html">next&raquo;</a>
+</p>
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+</div>
+
+<div class="sidebarpages">
+</div>
+
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://www.linuxzen.com/" target="_blank">cold</a></li>
+    <li><a href="http://lilydjwg.is-programmer.com/" target="_blank">依云</a></li>
+    <li><a href="https://www.7axu.com/" target="_blank">小柒'网络志</a></li>
+    <li><a href="http://neteue.com/" target="_blank">小邪兽</a></li>
+    <li><a href="http://supercat-lab.org/" target="_blank">老猫</a></li>
+    <li><a href="http://evilbinary.org/" target="_blank">ee</a></li>
+    <li><a href="http://www.awaysoft.com/taor/" target="_blank">ACTom</a></li>
+    <li><a href="http://blog.woodelf.org/" target="_blank">woodelf</a></li>
+</div>
+
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="https://github.com/eleveni386">GitHub</a></li>
+    <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

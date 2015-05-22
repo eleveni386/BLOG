@@ -1,156 +1,59 @@
 <!DOCTYPE html>
 <html lang="zh_cn">
 <head>
-        <title>Eleven.I386's Blog - Articles by eleven.i386</title>
-        <meta charset="utf-8" />
-        <link href="http://eleveni386.7axu.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Eleven.I386's Blog Full Atom Feed" />
-        <link href="http://eleveni386.7axu.com/feeds/rss.xml" type="application/atom+xml" rel="alternate" title="Eleven.I386's Blog Atom Feed" />
+	<title>Eleven.I386's Blog - eleven.i386</title>
+	<meta charset="utf-8" />
+    <meta name="author" content="eleven.i386">
+	<link rel="stylesheet" href="http://eleveni386.7axu.com/theme/css/franticworld.css" type="text/css" />
+	<link href="http://eleveni386.7axu.com/theme/css/pygments.css" rel="stylesheet">
 </head>
-
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="http://eleveni386.7axu.com">Eleven.I386's Blog <strong></strong></a></h1>
-        </header><!-- /#banner -->
-        <nav id="menu"><ul>
-        </ul></nav><!-- /#menu -->
-<section id="content">
+<body background="http://eleveni386.7axu.com/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+		</div>
+		
+		<div class="content">
 <h2>Articles by eleven.i386</h2>
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+</div>
 
-<ol id="post-list">
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="http://eleveni386.7axu.com/posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/" rel="bookmark" title="Permalink to Linux桌面流量监控工具">Linux桌面流量监控工具</a></h2> </header>
-                <footer class="post-info">
-                    <abbr class="published" title="2013-04-26T00:00:00"> 五 26 四月 2013 </abbr>
-<address class="vcard author">By <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a></address>                </footer><!-- /.post-info -->
-                <div class="entry-content"> <h2>大图show</h2>
-<p><img alt="" src="/image/1365580966.png" /></p>
-<p><a href="(https://github.com/eleveni386/netmonitor)"><strong>悬浮窗口-- 流量监视器</strong></a></p>
-<p>一个利用<strong>pcap</strong>写的流量监视工具</p>
-<h2>依赖</h2>
-<p><strong>python-pypcap</strong></p>
-<p><strong>python-dpkt</strong></p>
-<p>请自行下载安装两个包</p>
-<h2>启动</h2>
-<p>执行<code>./netmon</code> 第一次执行会要求输入密码, 之后不再需要 此次更新:</p>
-<h2>更新</h2>
-<p>2013-04-25</p>
-<p>修正UI被流量采集模块堵塞问题</p>
-<p>2013-04-10:</p>
-<p>降低cpu占用率, 由原来的12-20% 到现在的3%
-重写了流量采集代码, 结构更加合理,更易阅读
-使用圆角悬浮窗口,更加美观</p>
-<p>后续:</p>
-<p>增加进程流量限制
-增加网络进程list</p> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="http://eleveni386.7axu.com/posts/2013/04/25/wang-qia-zhong-duan-bang-ding/" rel="bookmark" title="Permalink to 网卡中断绑定">网卡中断绑定</a></h2> </header>
-                <footer class="post-info">
-                    <abbr class="published" title="2013-04-25T00:00:00"> 四 25 四月 2013 </abbr>
-<address class="vcard author">By <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a></address>                </footer><!-- /.post-info -->
-                <div class="entry-content"> <blockquote>
-<p>中断亲和力是指将一个或多个中断源绑定到特定的 CPU 上运行</p>
-</blockquote>
-<h2>操作</h2>
-<p><a href="http://liuxin1982.blog.51cto.com/4338970/1019825">参考</a></p>
-<p>今天我是来吐槽该文中的一个shell脚本</p>
-<div class="highlight"><pre><span class="cp"># setting up irq affinity according to /proc/interrupts</span>
-<span class="cp"># 2008-11-25 Robert Olsson</span>
-<span class="cp"># 2009-02-19 updated by Jesse Brandeburg</span>
-<span class="cp">#</span>
-<span class="cp"># &gt; Dave Miller:</span>
-<span class="cp"># (To get consistent naming in /proc/interrups)</span>
-<span class="cp"># I would suggest that people use something like:</span>
-<span class="cp"># char buf[IFNAMSIZ+6];</span>
-<span class="cp">#</span>
-<span class="cp"># sprintf(buf, &quot;%s-%s-%d&quot;,</span>
-<span class="cp">#         netdev-&gt;name ...</span></pre></div> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/" rel="bookmark" title="Permalink to 记. 一次ddos攻击,导致服务器死机">记. 一次ddos攻击,导致服务器死机</a></h2> </header>
-                <footer class="post-info">
-                    <abbr class="published" title="2013-03-29T00:00:00"> 五 29 三月 2013 </abbr>
-<address class="vcard author">By <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a></address>                </footer><!-- /.post-info -->
-                <div class="entry-content"> <h2>背景</h2>
-<p>某年某月某天,eleven所属单位 被未知生物ddos攻击, 攻击时间 凌晨00:15 左右, 
-eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上面命令找出服务器弱点.
-同时还原攻击现场,</p>
-<h2>检查</h2>
-<p>通过<strong>Zenoss</strong>监控图, 看见在00:15左右, 突然进来了大量的数据包, 大概40w左右, 
-但是流量没有明显异常(即没有瞬间增高), 好吧, 看见这个现象就猜到了.. 小包<strong>DDos</strong>攻击.
-通过服务器的message日志里面看见了<em>syn flood on 80</em> 记录,结合监控图上的大量数据包,
-断定服务器被人采用<strong>syn半开攻击</strong>手法给攻击</p>
-<h2>服务器配置</h2>
-<p>观察了服务器的内核参数配置,因为我记得我们所有服务器都有对于<strong>syn flood</strong>的防御策略,
-在sysctl.conf里面<strong>syn_cookies</strong>已经开启, 而且也看见syn队列增加到了1w6, 
-按理来说单纯的半开攻击应该对于我们机器是无压力的说 ...</p> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="http://eleveni386.7axu.com/posts/2013/03/11/ji-ci-an-zhuang-fcitxguo-cheng/" rel="bookmark" title="Permalink to 记一次安装fcitx过程">记一次安装fcitx过程</a></h2> </header>
-                <footer class="post-info">
-                    <abbr class="published" title="2013-03-11T00:00:00"> 一 11 三月 2013 </abbr>
-<address class="vcard author">By <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a></address>                </footer><!-- /.post-info -->
-                <div class="entry-content"> <p>今天实在无法忍受<em>ibus</em>的启动速度和词汇准确性了. 将ibus更换成<strong>fcitx</strong>, </p>
-<div class="highlight"><pre><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">fcitx</span>
-<span class="n">im</span><span class="o">-</span><span class="k">switch</span> <span class="o">-</span><span class="n">s</span> <span class="n">fcitx</span>
-<span class="n">im</span><span class="o">-</span><span class="k">switch</span> <span class="o">-</span><span class="n">s</span> <span class="n">fcitx</span> <span class="o">-</span><span class="n">z</span> <span class="k">default</span>
-</pre></div>
+<div class="sidebarpages">
+</div>
 
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://www.linuxzen.com/" target="_blank">cold</a></li>
+    <li><a href="http://lilydjwg.is-programmer.com/" target="_blank">依云</a></li>
+    <li><a href="https://www.7axu.com/" target="_blank">小柒'网络志</a></li>
+    <li><a href="http://neteue.com/" target="_blank">小邪兽</a></li>
+    <li><a href="http://supercat-lab.org/" target="_blank">老猫</a></li>
+    <li><a href="http://evilbinary.org/" target="_blank">ee</a></li>
+    <li><a href="http://www.awaysoft.com/taor/" target="_blank">ACTom</a></li>
+    <li><a href="http://blog.woodelf.org/" target="_blank">woodelf</a></li>
+</div>
 
-<p>然后在<em>autostart</em>中加入fcitx的自启动.. 注销X界面之后, 发现fcitx是启动起来了, 
-只是应用程序的默认输入法还是<em>Ibus</em>, 于是google之 ,找到了fcitx环境变量设置, 
-在<strong>~/.xprofile</strong> 中加入fcitx的环境变量:</p>
-<div class="highlight"><pre><span class="n">export</span> <span class="n">GTK_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
-<span class="n">export</span> <span class="n">XMODIFIERS</span><span class="o">=</span><span class="err">@</span><span class="n">im</span><span class="o">=</span><span class="n">fcitx</span>
-<span class="n">export</span> <span class="n">QT_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
-</pre></div>
-
-
-<p>注销X界面 再次进入系统,<code>echo $GTK_IM_MODULE</code> 发现这个变量已经是fcitx, 但是应用
-程序默认输入法还是<strong>Ibus</strong> , 来来回回折腾了几次 ...</p> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="http://eleveni386.7axu.com/posts/2013/02/28/wps-for-linux-bate1-shi-yong/" rel="bookmark" title="Permalink to wps for linux Bate1 试用">wps for linux Bate1 试用</a></h2> </header>
-                <footer class="post-info">
-                    <abbr class="published" title="2013-02-28T00:00:00"> 四 28 二月 2013 </abbr>
-<address class="vcard author">By <a class="url fn" href="http://eleveni386.7axu.com/author/eleveni386.html">eleven.i386</a></address>                </footer><!-- /.post-info -->
-                <div class="entry-content"> <p>虽然很早就知道了<strong>wps for linux</strong>的测试版本出来了,不过一直懒的去下载,直至今天
-公司要求所有的windows系统同事卸载有点软的office而安装<strong>wps</strong>,我才突然想到,
-我也该换换了,咱用的<strong>openoffice</strong>实在拿不出手了..</p>
-<p>于是到wps的官方下载了测试版本回来, 不需要安装, 解压即可以使用,里面有三个东西
-是需要用到的,</p>
-<ol>
-<li>
-<p>wps/wps word文档</p>
-</li>
-<li>
-<p>wps/et excel</p>
-</li>
-<li>
-<p>wps/wpp 幻灯片</p>
-</li>
-</ol>
-<p>好了,直接打开看看效果</p>
-<p><img alt="" src="/image/1362046109.png" /></p>
-<p>看上去好像不错,再来张excel的</p>
-<p><img alt="" src="/image/1362046180.png" /></p>
-<p>也有点样子,现在可以将它们投入到工作当中了..</p>
-<p>于是找了一个doc文档双击打开… 尼玛,怎么还是openoffice打开的哇.. 
-好吧,貌似我们忘记了<em>文件关联</em>的事情了..</p>
-<p>下面让我们建立<em>doc</em>,<em>xls</em>文件关联到<strong>wps</strong>和<strong>et</strong>这两个wps程序上</p>
-<p><a href="(http://linux-wiki.cn/wiki/zh-hans/%E6%96%87%E4%BB%B6%E5%85%B3%E8%81%94)">文件关联 ...</a></p> </div><!-- /.entry-content -->
-        </article></li>
-</ol><!-- /#posts-list -->
-<p class="paginator">
-        <a href="http://eleveni386.7axu.com/author/eleveni3864.html">&laquo;</a>
-    Page 5 / 8
-        <a href="http://eleveni386.7axu.com/author/eleveni3866.html">&raquo;</a>
-</p>
-</section><!-- /#content -->
-        <footer id="contentinfo" class="body">
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="https://github.com/eleveni386">GitHub</a></li>
+    <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
                 <address id="about" class="vcard body">
                 Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                which takes great advantage of <a href="http://python.org">Python</a>.
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
                 </address><!-- /#about -->
         </footer><!-- /#contentinfo -->
 </body>

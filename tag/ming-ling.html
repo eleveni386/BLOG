@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+	<title>Eleven.I386's Blog - 命令</title>
+	<meta charset="utf-8" />
+    <meta name="author" content="eleven.i386">
+	<link rel="stylesheet" href="http://eleveni386.7axu.com/theme/css/franticworld.css" type="text/css" />
+	<link href="http://eleveni386.7axu.com/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body background="http://eleveni386.7axu.com/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+		</div>
+		
+		<div class="content">
+
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">325</p>
+		<p class="metayear">2014</p>
+		<p class="metacategory">Linux运维</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2014/11/21/pythonban-rmming-ling/ " >python版rm命令</a>
+		<h1>安全的linux rm 命令</h1>
+<blockquote>
+<p>-- python版rm命令</p>
+</blockquote>
+<p>众所周知 linux 下 大杀器之一 rm 是多么恐怖的东西存在</p>
+<p>众多系统管理员 对此命令是又爱 又恨,  基于本人也是一枚系统管理员, 写下这个小 工具
+方便自己 随心所欲的使用大杀器</p>
+<p>麻麻再也不用担心 我使用rm了</p>
+<h2>特性</h2>
+<div class="highlight"><pre><span class="mf">1.</span>  <span class="err">删除日志记录</span>
+<span class="mf">2.</span> <span class="err">安全目录</span>
+<span class="mf">3.</span> <span class="err">垃圾箱机制</span>
+</pre></div>
+
+
+<h2>参数</h2>
+<div class="highlight"><pre><span class="n">usage</span><span class="o">:</span> <span class="n">rm</span> <span class="o">[-</span><span class="n">h</span><span class="o">]</span> <span class="o">[-</span><span class="n">r</span><span class="o">]</span> <span class="o">[-</span><span class="n">f</span><span class="o">]</span> <span class="o">[--</span><span class="n">log</span><span class="o">]</span> <span class="o">[-</span><span class="n">a</span> <span class="n">SAFE_DIR</span><span class="o">]</span> <span class="o">[</span><span class="n">file</span> <span class="o">[</span><span class="n">file</span> <span class="o">...]]</span>
+
+<span class="err">用于替换系统的</span><span class="n">rm</span><span class="err">命令</span>
+<span class="err">自带回收站</span>
+<span class="n">exp</span><span class="o">:</span>
+    <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/$&#39;</span> <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/home/?$&#39;</span> <span class="err">#</span> <span class="err">增加</span><span class="sr">/ 和 /</span><span class="n">home</span> <span class="err">目录不可删除 ...</span></pre></div>
+		<a class="btnmore" href="/posts/2014/11/21/pythonban-rmming-ling/">more ...</a>
+	</div>
+</div>
+
+<p class="paginator">
+    Page 1 / 1
+</p>
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+</div>
+
+<div class="sidebarpages">
+</div>
+
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://www.linuxzen.com/" target="_blank">cold</a></li>
+    <li><a href="http://lilydjwg.is-programmer.com/" target="_blank">依云</a></li>
+    <li><a href="https://www.7axu.com/" target="_blank">小柒'网络志</a></li>
+    <li><a href="http://neteue.com/" target="_blank">小邪兽</a></li>
+    <li><a href="http://supercat-lab.org/" target="_blank">老猫</a></li>
+    <li><a href="http://evilbinary.org/" target="_blank">ee</a></li>
+    <li><a href="http://www.awaysoft.com/taor/" target="_blank">ACTom</a></li>
+    <li><a href="http://blog.woodelf.org/" target="_blank">woodelf</a></li>
+</div>
+
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="https://github.com/eleveni386">GitHub</a></li>
+    <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

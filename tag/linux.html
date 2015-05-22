@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+	<title>Eleven.I386's Blog - Linux</title>
+	<meta charset="utf-8" />
+    <meta name="author" content="eleven.i386">
+	<link rel="stylesheet" href="http://eleveni386.7axu.com/theme/css/franticworld.css" type="text/css" />
+	<link href="http://eleveni386.7axu.com/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body background="http://eleveni386.7axu.com/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+		</div>
+		
+		<div class="content">
+
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">325</p>
+		<p class="metayear">2014</p>
+		<p class="metacategory">Linux运维</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2014/11/21/pythonban-rmming-ling/ " >python版rm命令</a>
+		<h1>安全的linux rm 命令</h1>
+<blockquote>
+<p>-- python版rm命令</p>
+</blockquote>
+<p>众所周知 linux 下 大杀器之一 rm 是多么恐怖的东西存在</p>
+<p>众多系统管理员 对此命令是又爱 又恨,  基于本人也是一枚系统管理员, 写下这个小 工具
+方便自己 随心所欲的使用大杀器</p>
+<p>麻麻再也不用担心 我使用rm了</p>
+<h2>特性</h2>
+<div class="highlight"><pre><span class="mf">1.</span>  <span class="err">删除日志记录</span>
+<span class="mf">2.</span> <span class="err">安全目录</span>
+<span class="mf">3.</span> <span class="err">垃圾箱机制</span>
+</pre></div>
+
+
+<h2>参数</h2>
+<div class="highlight"><pre><span class="n">usage</span><span class="o">:</span> <span class="n">rm</span> <span class="o">[-</span><span class="n">h</span><span class="o">]</span> <span class="o">[-</span><span class="n">r</span><span class="o">]</span> <span class="o">[-</span><span class="n">f</span><span class="o">]</span> <span class="o">[--</span><span class="n">log</span><span class="o">]</span> <span class="o">[-</span><span class="n">a</span> <span class="n">SAFE_DIR</span><span class="o">]</span> <span class="o">[</span><span class="n">file</span> <span class="o">[</span><span class="n">file</span> <span class="o">...]]</span>
+
+<span class="err">用于替换系统的</span><span class="n">rm</span><span class="err">命令</span>
+<span class="err">自带回收站</span>
+<span class="n">exp</span><span class="o">:</span>
+    <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/$&#39;</span> <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/home/?$&#39;</span> <span class="err">#</span> <span class="err">增加</span><span class="sr">/ 和 /</span><span class="n">home</span> <span class="err">目录不可删除 ...</span></pre></div>
+		<a class="btnmore" href="/posts/2014/11/21/pythonban-rmming-ling/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">066</p>
+		<p class="metayear">2014</p>
+		<p class="metacategory">Linux运维</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2014/03/07/squidzheng-xiang-dai-li/ " >squid正向代理</a>
+		<h2>匿名代理</h2>
+<p>squid 要做到匿名代理 只需要添加</p>
+<div class="highlight"><pre><span class="n">header_access</span> <span class="n">Via</span> <span class="n">deny</span> <span class="n">all</span> 
+<span class="n">header_access</span>  <span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span> <span class="n">deny</span> <span class="n">all</span>
+</pre></div>
+
+
+<p>即可</p>
+<h2>代理验证</h2>
+<p>谁都不想自己的代理服务器被他人随意拿来使用.. 于是 我们就需要给代理服务器加上密码</p>
+<div class="highlight"><pre><span class="n">auth_param</span> <span class="n">basic</span> <span class="n">program</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">squid2</span><span class="mf">.7</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ncsa_auth</span>
+<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">children</span> <span class="mi">1</span>
+<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">realm</span> <span class="s">&quot;Welcome to eleven&#39;s proxy server&quot;</span>
+<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">credentialsttl</span> <span class="mi">12</span> <span class="n">hours</span>
+</pre></div>
+
+
+<p>这里的<strong>ncsa_auth</strong> 是自己写的shell脚本 ...</p>
+		<a class="btnmore" href="/posts/2014/03/07/squidzheng-xiang-dai-li/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">058</p>
+		<p class="metayear">2014</p>
+		<p class="metacategory">Linux运维</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/ " >记一次ssh密钥登录失败</a>
+		<h2>环境</h2>
+<p>我们的私钥是通过SecureCRT工具生成的. 在Debian5/6下面使用正常
+有问题的主机是Debian7 系统, 客户端是Debian6 系统
+Debian7 的ssh server版本是1.6 客户端的ssh client是1.5
+使用的ssh协议均是2</p>
+<h2>现象</h2>
+<p>昨天我们一台Debian7主机, 无法通过私钥登录. 每次登录提示需要输入密码. 这是我们第一次使用Debian7的系统, 以往的主机都是Debian5/6的系统</p>
+<p>开启ssh的debug参数, 观看登录过程,发现如下</p>
+<div class="highlight"><pre><span class="n">debug2</span><span class="o">:</span> <span class="n">key_type_from_name</span><span class="o">:</span> <span class="n">unknown</span> <span class="n">key</span> <span class="n">type</span> <span class="s1">&#39;-----BEGIN&#39;</span>
+<span class="n">debug2</span><span class="o">:</span> <span class="n">key_type_from_name</span><span class="o">:</span> <span class="n">unknown</span> <span class="n">key</span> <span class="n">type</span> <span class="s1">&#39;-----END&#39;</span>
+<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
+<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
+<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace ...</span></pre></div>
+		<a class="btnmore" href="/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">225</p>
+		<p class="metayear">2013</p>
+		<p class="metacategory">vim</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2013/08/13/vimzhong-wen-luan-ma/ " >vim中文乱码</a>
+		<p>今天 用本地客户端登录服务器编辑文件时, 出现中文乱码 表现为 某些字符正常显示, 某些又显示乱码, 有图有真相</p>
+<p><img alt="" src="/image/DeepinScrot-3437-300x30.png" /></p>
+<p>如图所示, 部分能显示出来,部分无法显示出来</p>
+<p>用SecureCRT登录时,没有任何问题, 一开始以为是自己本地xfce-terminal字符编码问题,
+结果更换了几个终端都是同样的结果,gnome-terminal, xterm 都尝试过.. 看来问题还是服务器本身</p>
+<p>在服务器上输入<code>locale</code> </p>
+<div class="highlight"><pre><span class="n">locale</span><span class="o">:</span> <span class="n">Cannot</span> <span class="kd">set</span> <span class="n">LC_CTYPE</span> <span class="n">to</span> <span class="k">default</span> <span class="n">locale</span><span class="o">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
+<span class="n">locale</span><span class="o">:</span> <span class="n">Cannot</span> <span class="kd">set</span> <span class="n">LC_MESSAGES</span> <span class="n">to</span> <span class="k">default</span> <span class="n">locale</span><span class="o">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
+<span class="n">locale</span><span class="o">:</span> <span class="n">Cannot</span> <span class="kd">set</span> <span class="n">LC_ALL</span> <span class="n">to</span> <span class="k">default ...</span></pre></div>
+		<a class="btnmore" href="/posts/2013/08/13/vimzhong-wen-luan-ma/">more ...</a>
+	</div>
+</div>
+
+<p class="paginator">
+    Page 1 / 1
+</p>
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+</div>
+
+<div class="sidebarpages">
+</div>
+
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://www.linuxzen.com/" target="_blank">cold</a></li>
+    <li><a href="http://lilydjwg.is-programmer.com/" target="_blank">依云</a></li>
+    <li><a href="https://www.7axu.com/" target="_blank">小柒'网络志</a></li>
+    <li><a href="http://neteue.com/" target="_blank">小邪兽</a></li>
+    <li><a href="http://supercat-lab.org/" target="_blank">老猫</a></li>
+    <li><a href="http://evilbinary.org/" target="_blank">ee</a></li>
+    <li><a href="http://www.awaysoft.com/taor/" target="_blank">ACTom</a></li>
+    <li><a href="http://blog.woodelf.org/" target="_blank">woodelf</a></li>
+</div>
+
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="https://github.com/eleveni386">GitHub</a></li>
+    <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

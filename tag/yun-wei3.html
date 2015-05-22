@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+	<title>Eleven.I386's Blog - 运维</title>
+	<meta charset="utf-8" />
+    <meta name="author" content="eleven.i386">
+	<link rel="stylesheet" href="http://eleveni386.7axu.com/theme/css/franticworld.css" type="text/css" />
+	<link href="http://eleveni386.7axu.com/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body background="http://eleveni386.7axu.com/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+		</div>
+		
+		<div class="content">
+
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">290</p>
+		<p class="metayear">2012</p>
+		<p class="metacategory">Linux运维</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2012/10/16/keepalivedyuan-li-yu-shi-zhan-jing-jiang/ " >Keepalived原理与实战精讲</a>
+		<p><strong>此为转贴</strong>
+<a href="http://bbs.ywlm.net/thread-845-1-1.html">原文地址</a></p>
+<p><img alt="" src="/image/Keepalived.png" /></p>
+		<a class="btnmore" href="/posts/2012/10/16/keepalivedyuan-li-yu-shi-zhan-jing-jiang/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">254</p>
+		<p class="metayear">2012</p>
+		<p class="metacategory">python</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2012/09/10/python-jin-du-tiao/ " >python 进度条</a>
+		<p>最近在写批量上传文件的脚本,用的库是<strong>paramiko</strong>,以后将写下paramiko的使用心得,
+这次记录下python有关进度条的东西,</p>
+<p>众所周知上传,下载,如果有一个进度显示的话, 对使用者也不是枯燥的等待, 起码.. 
+起码知道脚本在正常工作, 也知道下载/上传 的进度了.</p>
+<p>正好这次脚本也有上传的部分.就将这次的心得记录下</p>
+<p>首先,所谓的进度条和print没啥不不同,都是将结果输出而已, 但是如果用print就注定
+悲剧, 因为print的时候会带一个<code>\n</code>,可以想象如果我们的进度条还换行, 
+那还算条子嘛.. 恶汗..</p>
+<p>一个最简单的进度条 实现原理就是 再输出完毕后，把光标移动到行首，继续在那里输
+出更长的进度条即可实现，新的更长的进度条把旧的短覆盖，就形成了动画效果</p>
+<p>我们可以利用<code>\r</code>, 转义符<code>\r</code>就可以把光标移动到行首而不换行，转义符<code>\n</code>就把光
+标移动到行首并且换行。 这里用一个例子来说明,这是我脚本中的一个函数,
+用于接收<code>paramiko.sftp_client.sftp</code> 中的put方法的callback数据 ...</p>
+		<a class="btnmore" href="/posts/2012/09/10/python-jin-du-tiao/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">253</p>
+		<p class="metayear">2012</p>
+		<p class="metacategory">软件推荐</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/ " >sshpass 非交互ssh密码验证</a>
+		<h2>转载linuxtoy文章</h2>
+<p>OpenSSH 自带的 ssh 客户端程序（也就是 ‘ssh’ 命令）默认不允许你以非交互的方式传递密码，如：</p>
+<div class="highlight"><pre><span class="n">ssh</span> <span class="n">www</span><span class="p">.</span><span class="n">iredmail</span><span class="p">.</span><span class="n">org</span> <span class="o">&lt;&lt;</span><span class="n">EOF</span> <span class="n">ssh_password</span> <span class="n">ls</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span> <span class="n">EOF</span>
+</pre></div>
+
+
+<p>Shell 里这样的输入重定向使用得非常普遍，而且通常都工作得很好。但是 ssh 不允许这
+样的方式来传递密码，所以需要远程连上服务器后进行的批处理就无法进行。</p>
+<p><code>sshpass</code> 的出现，解决了这一问题。它允许你用 <code>-p</code> 参数指定明文密码，
+然后直接登录远程服务器。例如：</p>
+<div class="highlight"><pre><span class="n">sshpass</span> <span class="o">-</span><span class="n">p</span> <span class="err">&#39;</span><span class="n">ssh_password</span><span class="err">&#39;</span> <span class="n">ssh</span> <span class="n">www</span><span class="p">.</span><span class="n">iredmail</span><span class="p">.</span><span class="n">org</span>
+</pre></div>
+
+
+<p>用 <code>-p</code> 指定了密码后，还需要在后面跟上标准的 ssh 连接命令。</p>
+<p>用法就是这么简单。</p>
+		<a class="btnmore" href="/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">252</p>
+		<p class="metayear">2012</p>
+		<p class="metacategory">python</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2012/09/08/duo-xian-cheng-sshfen-fa-jiao-ben/ " >多线程ssh分发脚本</a>
+		<p>说到自动化运维工具, 那是一个满天飞. 我也首推<code>puppet</code>,无疑灰常的强大.但是强大
+是强大. 就是有点依赖部署,如果部署不好,后期使用会很难受,各种不顺手. 现在我就是这样,
+使用puppet是一个前辈部署的.我们puppet应用也灰常简单.就是做服务器应用平台初始化用,</p>
+<p>很多简单的操作.比如10几台需要更新杀毒软件,这个时候使用puppet,又需要重新建立配
+置文件,(ps:都是前期没有做好规划).这样一个简单的工作就变的复杂话了,如果不使用自动
+运维工具,那么… 恩. 你就将新的病毒库一个一个scp到各个主机上. 然后一个一个登录主
+机,执行一遍<code>update</code> 命令吧..</p>
+<p>这个时候如果有一个自动ssh登录工具, 并且具备<code>scp</code>功能的工具就好了. 
+我记得以前有一个叫做<strong>abs</strong>的shell脚本. 利用<strong>ssh+sshpass+except</strong> 做的自动登录ssh,
+并且避免一个一个输入密码的烦恼, 这也是一个很不错的小工具, 不过..google了半天 
+都没有线索 ...</p>
+		<a class="btnmore" href="/posts/2012/09/08/duo-xian-cheng-sshfen-fa-jiao-ben/">more ...</a>
+	</div>
+</div>
+
+<p class="paginator">
+            <a href="http://eleveni386.7axu.com/tag/yun-wei2.html">&laquo;</a>
+    Page 3 / 3
+</p>
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+</div>
+
+<div class="sidebarpages">
+</div>
+
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://www.linuxzen.com/" target="_blank">cold</a></li>
+    <li><a href="http://lilydjwg.is-programmer.com/" target="_blank">依云</a></li>
+    <li><a href="https://www.7axu.com/" target="_blank">小柒'网络志</a></li>
+    <li><a href="http://neteue.com/" target="_blank">小邪兽</a></li>
+    <li><a href="http://supercat-lab.org/" target="_blank">老猫</a></li>
+    <li><a href="http://evilbinary.org/" target="_blank">ee</a></li>
+    <li><a href="http://www.awaysoft.com/taor/" target="_blank">ACTom</a></li>
+    <li><a href="http://blog.woodelf.org/" target="_blank">woodelf</a></li>
+</div>
+
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="https://github.com/eleveni386">GitHub</a></li>
+    <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

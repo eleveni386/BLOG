@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+	<title>Eleven.I386's Blog - gtk</title>
+	<meta charset="utf-8" />
+    <meta name="author" content="eleven.i386">
+	<link rel="stylesheet" href="http://eleveni386.7axu.com/theme/css/franticworld.css" type="text/css" />
+	<link href="http://eleveni386.7axu.com/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body background="http://eleveni386.7axu.com/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+		</div>
+		
+		<div class="content">
+
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">344</p>
+		<p class="metayear">2013</p>
+		<p class="metacategory">Linux桌面</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2013/12/10/markdownbian-ji-qi/ " >markdown编辑器</a>
+		<h1>前言</h1>
+<p>本人是今年开始使用<code>markdown</code>的, 短时间内,就喜欢上这种编辑文档的方法.遂将自己的blog
+都替换为<code>pelican</code>. 个人笔记也采用 <code>markdown</code>语法来记录. 看着我的零散的markdown
+文件很是头疼. 就想着有一个markdown编辑器可以附带文件管理功能,但是找了好久都没找到</p>
+<p>于是就想着自己开发一个. 于是就有了这货, 用时半年,一直断断续续开发,在快结束的时候
+突然发现了<code>gedit</code>, 给它安装markdown插件之后 完全可以满足我的需求.. 突然发现我这半年
+都在浪费时间(虽然没认真花时间在这个上面).最终还是草草结束了这次的开发..</p>
+<p>在写<code>MyEditor</code>期间,多谢网友"老猫" 和 <a href="http://neteue.com/">"小邪兽"</a> 给予的帮助</p>
+<p>"老猫" 告诉了我<code>gtksourceview2</code>的存在. 同时解答了我许多疑问</p>
+<p>"兽兽君" 更是直接给我提供了一些示例代码.</p>
+<h1>截图</h1>
+<p><img alt="" src="/image/markdown.png" /></p>
+<h1>依赖</h1>
+<ol>
+<li>pygtk</li>
+<li>python-markdown</li>
+<li>python-webkit</li>
+<li>python-gtksourceview2 ...</li></ol>
+		<a class="btnmore" href="/posts/2013/12/10/markdownbian-ji-qi/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">116</p>
+		<p class="metayear">2013</p>
+		<p class="metacategory">python</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/ " >Linux桌面流量监控工具</a>
+		<h2>大图show</h2>
+<p><img alt="" src="/image/1365580966.png" /></p>
+<p><a href="(https://github.com/eleveni386/netmonitor)"><strong>悬浮窗口-- 流量监视器</strong></a></p>
+<p>一个利用<strong>pcap</strong>写的流量监视工具</p>
+<h2>依赖</h2>
+<p><strong>python-pypcap</strong></p>
+<p><strong>python-dpkt</strong></p>
+<p>请自行下载安装两个包</p>
+<h2>启动</h2>
+<p>执行<code>./netmon</code> 第一次执行会要求输入密码, 之后不再需要 此次更新:</p>
+<h2>更新</h2>
+<p>2013-04-25</p>
+<p>修正UI被流量采集模块堵塞问题</p>
+<p>2013-04-10:</p>
+<p>降低cpu占用率, 由原来的12-20% 到现在的3%
+重写了流量采集代码, 结构更加合理,更易阅读
+使用圆角悬浮窗口,更加美观</p>
+<p>后续:</p>
+<p>增加进程流量限制
+增加网络进程list</p>
+		<a class="btnmore" href="/posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/">more ...</a>
+	</div>
+</div>
+
+<p class="paginator">
+    Page 1 / 1
+</p>
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
+</div>
+
+<div class="sidebarpages">
+</div>
+
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://www.linuxzen.com/" target="_blank">cold</a></li>
+    <li><a href="http://lilydjwg.is-programmer.com/" target="_blank">依云</a></li>
+    <li><a href="https://www.7axu.com/" target="_blank">小柒'网络志</a></li>
+    <li><a href="http://neteue.com/" target="_blank">小邪兽</a></li>
+    <li><a href="http://supercat-lab.org/" target="_blank">老猫</a></li>
+    <li><a href="http://evilbinary.org/" target="_blank">ee</a></li>
+    <li><a href="http://www.awaysoft.com/taor/" target="_blank">ACTom</a></li>
+    <li><a href="http://blog.woodelf.org/" target="_blank">woodelf</a></li>
+</div>
+
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="https://github.com/eleveni386">GitHub</a></li>
+    <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>
