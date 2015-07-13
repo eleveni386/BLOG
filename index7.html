@@ -30,31 +30,6 @@
 </div>
 <div class="summarycontainer">
 	<div class="metabox">
-		<p class="metaday">273</p>
-		<p class="metayear">2012</p>
-		<p class="metacategory">python</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2012/09/29/liang-ge-xiao-jiao-ben-tian-qi-cha-xun-he-zhong-ying-ri-fan-yi/ " >两个小脚本- 天气查询和中英日翻译</a>
-		<p>最近在和朋友弄gtalk群聊, 框架已经写好, 并且可以正常使用, 有兴趣的朋友欢迎加入, 
-我们gtalk群<strong>pythonerclub@gmail.com</strong> (开发者<a href="(http://www.linuxzen.com/)">Cold</a>)加它为好友就可以进入我们
-群组, 群聊 功能指令输入 <code>$help</code>.</p>
-<p>在写功能机器人的时候, 顺便给自己方便方便, 就从机器人那边的部分功能代码 ,
-copy到本地, 就是天气查询, 和翻译</p>
-<p>脚本效果截图:</p>
-<p><img alt="" src="/image/2012-09-29-121615.png" /></p>
-<p>翻译 是用的google翻译, 天气查询用的中央气象局天气预报, 显示当天天气</p>
-<p><a href="(http://code.google.com/p/sharepythoncode/downloads/detail?name=Complex.tar.gz&amp;can=2&amp;q=#makechanges)">源码</a></p>
-<p>安装使用很简单, 解压之后 将Complex/* 丢到/usr/sbin/下,</p>
-<p>天气查询, 就要求一个参数, 就是市级地名</p>
-<p><code>tq 广州</code></p>
-<p>翻译 , 默认是英汉翻译,需要其它翻译,比如汉-&gt;英, 汉-&gt;日,日-&gt;汉,</p>
-<p><code>fanyi eleven ...</code></p>
-		<a class="btnmore" href="/posts/2012/09/29/liang-ge-xiao-jiao-ben-tian-qi-cha-xun-he-zhong-ying-ri-fan-yi/">more ...</a>
-	</div>
-</div>
-<div class="summarycontainer">
-	<div class="metabox">
 		<p class="metaday">264</p>
 		<p class="metayear">2012</p>
 		<p class="metacategory">软件推荐</p>
@@ -119,6 +94,33 @@ copy到本地, 就是天气查询, 和翻译</p>
 		<a class="btnmore" href="/posts/2012/09/10/python-jin-du-tiao/">more ...</a>
 	</div>
 </div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">253</p>
+		<p class="metayear">2012</p>
+		<p class="metacategory">软件推荐</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/ " >sshpass 非交互ssh密码验证</a>
+		<h2>转载linuxtoy文章</h2>
+<p>OpenSSH 自带的 ssh 客户端程序（也就是 ‘ssh’ 命令）默认不允许你以非交互的方式传递密码，如：</p>
+<div class="highlight"><pre><span class="n">ssh</span> <span class="n">www</span><span class="p">.</span><span class="n">iredmail</span><span class="p">.</span><span class="n">org</span> <span class="o">&lt;&lt;</span><span class="n">EOF</span> <span class="n">ssh_password</span> <span class="n">ls</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span> <span class="n">EOF</span>
+</pre></div>
+
+
+<p>Shell 里这样的输入重定向使用得非常普遍，而且通常都工作得很好。但是 ssh 不允许这
+样的方式来传递密码，所以需要远程连上服务器后进行的批处理就无法进行。</p>
+<p><code>sshpass</code> 的出现，解决了这一问题。它允许你用 <code>-p</code> 参数指定明文密码，
+然后直接登录远程服务器。例如：</p>
+<div class="highlight"><pre><span class="n">sshpass</span> <span class="o">-</span><span class="n">p</span> <span class="err">&#39;</span><span class="n">ssh_password</span><span class="err">&#39;</span> <span class="n">ssh</span> <span class="n">www</span><span class="p">.</span><span class="n">iredmail</span><span class="p">.</span><span class="n">org</span>
+</pre></div>
+
+
+<p>用 <code>-p</code> 指定了密码后，还需要在后面跟上标准的 ssh 连接命令。</p>
+<p>用法就是这么简单。</p>
+		<a class="btnmore" href="/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/">more ...</a>
+	</div>
+</div>
 
 <p class="paginator">
             <a href="http://eleveni386.7axu.com/index6.html">&laquo;</a>
@@ -146,7 +148,7 @@ copy到本地, 就是天气查询, 和翻译</p>
 <h4>Blogroll</h4>
     <li><a href="http://www.linuxzen.com/" target="_blank">cold</a></li>
     <li><a href="http://lilydjwg.is-programmer.com/" target="_blank">依云</a></li>
-    <li><a href="https://www.7axu.com/" target="_blank">小柒'网络志</a></li>
+    <li><a href="https://www.gehaowu.com/" target="_blank">小柒'网络志</a></li>
     <li><a href="http://neteue.com/" target="_blank">小邪兽</a></li>
     <li><a href="http://supercat-lab.org/" target="_blank">老猫</a></li>
     <li><a href="http://evilbinary.org/" target="_blank">ee</a></li>

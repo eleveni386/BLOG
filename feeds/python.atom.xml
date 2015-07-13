@@ -124,20 +124,7 @@ Python 标准库中的 urllib2 模块提供了大部分你需要的HTTP功能,�
 使用圆角悬浮窗口,更加美观&lt;/p&gt;
 &lt;p&gt;后续:&lt;/p&gt;
 &lt;p&gt;增加进程流量限制
-增加网络进程list&lt;/p&gt;</summary><category term="gtk"></category><category term="python"></category><category term="悬浮窗"></category></entry><entry><title>两个小脚本- 天气查询和中英日翻译</title><link href="http://eleveni386.7axu.com/posts/2012/09/29/liang-ge-xiao-jiao-ben-tian-qi-cha-xun-he-zhong-ying-ri-fan-yi/" rel="alternate"></link><updated>2012-09-29T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2012-09-29:posts/2012/09/29/liang-ge-xiao-jiao-ben-tian-qi-cha-xun-he-zhong-ying-ri-fan-yi/</id><summary type="html">&lt;p&gt;最近在和朋友弄gtalk群聊, 框架已经写好, 并且可以正常使用, 有兴趣的朋友欢迎加入, 
-我们gtalk群&lt;strong&gt;pythonerclub@gmail.com&lt;/strong&gt; (开发者&lt;a href="(http://www.linuxzen.com/)"&gt;Cold&lt;/a&gt;)加它为好友就可以进入我们
-群组, 群聊 功能指令输入 &lt;code&gt;$help&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;在写功能机器人的时候, 顺便给自己方便方便, 就从机器人那边的部分功能代码 ,
-copy到本地, 就是天气查询, 和翻译&lt;/p&gt;
-&lt;p&gt;脚本效果截图:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="/image/2012-09-29-121615.png" /&gt;&lt;/p&gt;
-&lt;p&gt;翻译 是用的google翻译, 天气查询用的中央气象局天气预报, 显示当天天气&lt;/p&gt;
-&lt;p&gt;&lt;a href="(http://code.google.com/p/sharepythoncode/downloads/detail?name=Complex.tar.gz&amp;amp;can=2&amp;amp;q=#makechanges)"&gt;源码&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;安装使用很简单, 解压之后 将Complex/* 丢到/usr/sbin/下,&lt;/p&gt;
-&lt;p&gt;天气查询, 就要求一个参数, 就是市级地名&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;tq 广州&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;翻译 , 默认是英汉翻译,需要其它翻译,比如汉-&amp;gt;英, 汉-&amp;gt;日,日-&amp;gt;汉,&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;fanyi eleven &amp;amp;&amp;amp; fanyi zh-en 十一 &amp;amp;&amp;amp; fanyi ja-zh 死ぬ &amp;amp;&amp;amp; fanyi zh-ja 去死&lt;/code&gt;&lt;/p&gt;</summary><category term="gtalk"></category><category term="翻译"></category></entry><entry><title>python 进度条</title><link href="http://eleveni386.7axu.com/posts/2012/09/10/python-jin-du-tiao/" rel="alternate"></link><updated>2012-09-10T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2012-09-10:posts/2012/09/10/python-jin-du-tiao/</id><summary type="html">&lt;p&gt;最近在写批量上传文件的脚本,用的库是&lt;strong&gt;paramiko&lt;/strong&gt;,以后将写下paramiko的使用心得,
+增加网络进程list&lt;/p&gt;</summary><category term="gtk"></category><category term="python"></category><category term="悬浮窗"></category></entry><entry><title>python 进度条</title><link href="http://eleveni386.7axu.com/posts/2012/09/10/python-jin-du-tiao/" rel="alternate"></link><updated>2012-09-10T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2012-09-10:posts/2012/09/10/python-jin-du-tiao/</id><summary type="html">&lt;p&gt;最近在写批量上传文件的脚本,用的库是&lt;strong&gt;paramiko&lt;/strong&gt;,以后将写下paramiko的使用心得,
 这次记录下python有关进度条的东西,&lt;/p&gt;
 &lt;p&gt;众所周知上传,下载,如果有一个进度显示的话, 对使用者也不是枯燥的等待, 起码.. 
 起码知道脚本在正常工作, 也知道下载/上传 的进度了.&lt;/p&gt;
