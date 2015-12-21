@@ -31,9 +31,9 @@
 方便自己 随心所欲的使用大杀器</p>
 <p>麻麻再也不用担心 我使用rm了</p>
 <h2>特性</h2>
-<div class="highlight"><pre><span class="mf">1.</span>  <span class="err">删除日志记录</span>
-<span class="mf">2.</span> <span class="err">安全目录</span>
-<span class="mf">3.</span> <span class="err">垃圾箱机制</span>
+<div class="highlight"><pre>1.  删除日志记录
+2. 安全目录
+3. 垃圾箱机制
 </pre></div>
 
 
@@ -45,35 +45,6 @@
 <span class="n">exp</span><span class="o">:</span>
     <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/$&#39;</span> <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/home/?$&#39;</span> <span class="err">#</span> <span class="err">增加</span><span class="sr">/ 和 /</span><span class="n">home</span> <span class="err">目录不可删除 ...</span></pre></div>
 		<a class="btnmore" href="/posts/2014/11/21/pythonban-rmming-ling/">more ...</a>
-	</div>
-</div>
-<div class="summarycontainer">
-	<div class="metabox">
-		<p class="metaday">344</p>
-		<p class="metayear">2013</p>
-		<p class="metacategory">Linux桌面</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/12/10/markdownbian-ji-qi/ " >markdown编辑器</a>
-		<h1>前言</h1>
-<p>本人是今年开始使用<code>markdown</code>的, 短时间内,就喜欢上这种编辑文档的方法.遂将自己的blog
-都替换为<code>pelican</code>. 个人笔记也采用 <code>markdown</code>语法来记录. 看着我的零散的markdown
-文件很是头疼. 就想着有一个markdown编辑器可以附带文件管理功能,但是找了好久都没找到</p>
-<p>于是就想着自己开发一个. 于是就有了这货, 用时半年,一直断断续续开发,在快结束的时候
-突然发现了<code>gedit</code>, 给它安装markdown插件之后 完全可以满足我的需求.. 突然发现我这半年
-都在浪费时间(虽然没认真花时间在这个上面).最终还是草草结束了这次的开发..</p>
-<p>在写<code>MyEditor</code>期间,多谢网友"老猫" 和 <a href="http://neteue.com/">"小邪兽"</a> 给予的帮助</p>
-<p>"老猫" 告诉了我<code>gtksourceview2</code>的存在. 同时解答了我许多疑问</p>
-<p>"兽兽君" 更是直接给我提供了一些示例代码.</p>
-<h1>截图</h1>
-<p><img alt="" src="/image/markdown.png" /></p>
-<h1>依赖</h1>
-<ol>
-<li>pygtk</li>
-<li>python-markdown</li>
-<li>python-webkit</li>
-<li>python-gtksourceview2 ...</li></ol>
-		<a class="btnmore" href="/posts/2013/12/10/markdownbian-ji-qi/">more ...</a>
 	</div>
 </div>
 <div class="summarycontainer">
@@ -102,37 +73,6 @@ vps找到,更不要说设置nginx的root路径了, 于是,目前使用scp方式�
 </div>
 <div class="summarycontainer">
 	<div class="metabox">
-		<p class="metaday">186</p>
-		<p class="metayear">2013</p>
-		<p class="metacategory">python</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/07/05/2345zi-dong-qian-dao-qi-bian-xie-jing-guo/ " >2345自动签到器编写经过</a>
-		<p>2345这个流氓东西 虽然我很不齿, 但是我还是继续每天签到. 
-不为别的,只为了给女友兑换腾迅那个无聊的xx钻. 10Q币/月 这笔钱就靠2345给我省下了..</p>
-<p>由于这个玩意推广着实在太累了.差不多一年没有继续推广过了..
-(就算推广也就那么几个人点击我的链接 :D ) 昨天给女友兑换Q币的时候,
-突然想到它的签到有积分赠送的,反正我也推广不起来,不如拿它的免费积分算鸟. 
-但是要我每天都记得要签到,这是何等痛苦的事情… 自动签到 势在必行.. </p>
-<p>说到签到,无非就是自动登录加访问特定url</p>
-<p>首先分析2345的登录机制和签到url在哪里</p>
-<p>拿出<strong>mitmproxy</strong> 然后设置chromium为本地代理,</p>
-<p><img alt="" src="/image/DeepinScrot-1803.png" /></p>
-<p>很好,登录过程全部抓出来了, (这里要说一下,因为2345登录的时候会自动跳转,
-用chromium的开发者工具无法中止它的跳转,无法得到post的内容和post的url,
-所以这里我使用mitmproxy, 这家伙是<a href="http://lilydjwg.is-programmer.com/">百合仙子</a>
-推荐给我的. 很不错的东西,很好用, 
-现在我也推荐给你们… :P )</p>
-<p>然后我们看看post的内容, 按下回车之后</p>
-<p><img alt="" src="/image/DeepinScrot-2146.png" /></p>
-<p>这里需要主意的是密码是经过md5加密的, 所以在post密码的时候,需要事前将它加密</p>
-<p>如何自动登录实在是很简单的事情.. 不再浪费篇章. 
-上面主要是表现下<strong>mitmproxy</strong>工具的犀利 ...</p>
-		<a class="btnmore" href="/posts/2013/07/05/2345zi-dong-qian-dao-qi-bian-xie-jing-guo/">more ...</a>
-	</div>
-</div>
-<div class="summarycontainer">
-	<div class="metabox">
 		<p class="metaday">154</p>
 		<p class="metayear">2013</p>
 		<p class="metacategory">python</p>
@@ -156,10 +96,31 @@ vps找到,更不要说设置nginx的root路径了, 于是,目前使用scp方式�
 		<a class="btnmore" href="/posts/2013/06/03/pythondai-cookiesfang-wen/">more ...</a>
 	</div>
 </div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">252</p>
+		<p class="metayear">2012</p>
+		<p class="metacategory">python</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2012/09/08/duo-xian-cheng-sshfen-fa-jiao-ben/ " >多线程ssh分发脚本</a>
+		<p>说到自动化运维工具, 那是一个满天飞. 我也首推<code>puppet</code>,无疑灰常的强大.但是强大
+是强大. 就是有点依赖部署,如果部署不好,后期使用会很难受,各种不顺手. 现在我就是这样,
+使用puppet是一个前辈部署的.我们puppet应用也灰常简单.就是做服务器应用平台初始化用,</p>
+<p>很多简单的操作.比如10几台需要更新杀毒软件,这个时候使用puppet,又需要重新建立配
+置文件,(ps:都是前期没有做好规划).这样一个简单的工作就变的复杂话了,如果不使用自动
+运维工具,那么… 恩. 你就将新的病毒库一个一个scp到各个主机上. 然后一个一个登录主
+机,执行一遍<code>update</code> 命令吧..</p>
+<p>这个时候如果有一个自动ssh登录工具, 并且具备<code>scp</code>功能的工具就好了. 
+我记得以前有一个叫做<strong>abs</strong>的shell脚本. 利用<strong>ssh+sshpass+except</strong> 做的自动登录ssh,
+并且避免一个一个输入密码的烦恼, 这也是一个很不错的小工具, 不过..google了半天 
+都没有线索 ...</p>
+		<a class="btnmore" href="/posts/2012/09/08/duo-xian-cheng-sshfen-fa-jiao-ben/">more ...</a>
+	</div>
+</div>
 
 <p class="paginator">
-    Page 1 / 2
-        <a href="http://eleveni386.7axu.com/tag/python2.html">next&raquo;</a>
+    Page 1 / 1
 </p>
 		</div>
 		
@@ -169,10 +130,8 @@ vps找到,更不要说设置nginx的root路径了, 于是,目前使用scp方式�
 	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
 </div>
 
 <div class="sidebarpages">

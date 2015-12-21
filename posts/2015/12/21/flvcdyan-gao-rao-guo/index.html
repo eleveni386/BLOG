@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+	<title>flvcd广告绕过 | Eleven.I386's Blog</title>
+	<meta charset="utf-8" />
+    <meta name="author" content="eleven.i386">
+	<link rel="stylesheet" href="http://eleveni386.7axu.com/theme/css/franticworld.css" type="text/css" />
+	<link href="http://eleveni386.7axu.com/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body background="http://eleveni386.7axu.com/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="http://eleveni386.7axu.com">Eleven.I386's Blog</a>
+		</div>
+		
+		<div class="content">
+
+<div class="metabox">
+	<p class="metaday">355</p>
+	<p class="metayear">2015</p>
+	<p class="metacategory">Linux桌面</p>
+</div>
+<div class="arcticlecontentbox">
+	<div class="articlecontent">
+		<a class="articletitle" href="/posts/2015/12/21/flvcdyan-gao-rao-guo/ " >flvcd广告绕过</a>
+		<h1>背景</h1>
+<p>原本是想寻找让mplayer播放youku视频的. 但是想了好多种方法. 都不知道如何让mplayer接管flash来播放视频. 最终在研究这个问题的过程中.发现了flvcd居然出现了,广告!!!, 虽然我能理解flvcd的做法.毕竟他们破解了人家视频网站的加密url, 让他们损失了不少的广告流量. 但是flvcd好歹提供一种更加友好(自动化)的广告播放方式吖. 你用flash是算什么吖!  </p>
+<h1>flvcd广告</h1>
+<p>flvcd目前限制了部分浏览器访问(或许是操作系统.比如我Linux系统访问时. 就会出现apache的欢迎页), 通过修改浏览器UA即可. 
+  然后在点击Go之后, 跳转到本来应该是视频真实地址列表页. 但是这里出现了原视频的广告列表. 要求用户必须浏览其中任意一个广告,才能出现真实地址列表.</p>
+<p>点击其中一个广告之后. 出现flash的播放器. 不过好歹flvcd还是比较良心. 只需要等待3秒. 就可以选择跳过广告了. 虽然良心. 但是我是需要自动化获取真实地址的. 于是我被这个广告列表拦截了. 通过多次尝试. 发现flvcd在广告播放完毕之后, 会在cookie中增加2个新键<code>go</code>, <code>avdGggggtt</code>,  其中多次观察.<code>go</code>参数是一个加密值, <code>avdGggggtt</code>是当前的时间戳, 有了这个发现.那么可以认为. 我如果要提交一个视频页地址给flvcd帮我解析. 那么势必我需要带上这两个参数. 不然就会出现广告页. 那么问题来了 <code>go</code> 参数如何得到. 他是怎么计算出来的 </p>
+<h1>破解之路</h1>
+<p>首先想到的就是<em>swf</em>了, 他的广告播放器. 因为每次都是广告结束之后, 才会写入cookie. 于是我用wget下载了他的swf播放器.</p>
+<p><code>wget 'http://www.flvcd.com/swf/avd.swf?v=20151126' --user-agent='Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36' -O avd.swf</code></p>
+<p>反编译出AS脚本. 跟踪<strong>cookie</strong>的传递以及上下文找到了<strong>playOverCallback</strong>属性.</p>
+<p><code>text.htmlText = "&lt;font color='#0a4055'&gt;1&lt;/font&gt;秒后可跳过广告";
+  text.y = 8;
+  this.skipLayer.addChild(text);
+  this.skipLayer.buttonMode = true;
+  this.skipLayer.addEventListener(MouseEvent.CLICK, function (_arg1:MouseEvent):void{
+    if (netStream.time &lt; maxSkipBegin){
+        return;
+    };
+    ExternalInterface.call(playOverCallback);
+  });
+  this.skipLayer.x = ((this.mediaLayer.width - this.skipLayer.width) - 60);
+  this.skipLayer.y = ((this.mediaLayer.height - this.skipLayer.height) - 100);
+  this.skipLayer.visible = false;</code></p>
+<p>发现这里调用了js的<strong>playOverCallback</strong>变量, 跟踪到flvcd页面, 搜索<strong>playOverCallback</strong>, 找到这么一串东西</p>
+<p><code>eval(function(p,a,c,k,e,r){e=function(c){return(c&lt;a?'':e(parseInt(c/a)))+((c=c%a)&gt;35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('2 E=Q;2 D=13;3 R(a,b){$("#f").k({m:X,n:K});r.J(\'f\');D={1b:[{18:a,17:b}],10:"N"};y()}3 y(){I(!E){4.c(y,W);l}2 a=O("F");V{a.T(D);a.H()}S(e){q(\'2 g = s(u, d);2 1 = h i();1.x(1.j()+z*5);6.9="C="+g+";8="+1.7();6.9="B="+d+";8="+1.7();4.c(3(){4.A.p();}, o);\');l}}3 N(){r.U();$("#f").k({G:"M",m:0,n:0});q(\'2 g = s(u, d);2 1 = h i();1.x(1.j()+z*5);6.9="C="+g+";8="+1.7();6.9="B="+d+";8="+1.7();4.c(3(){4.A.p();}, o);\')}3 O(a){l Y.Z(a)}2 w=0;3 11(){$("#F").12();$("#P").k({G:"M"});$("#f").k({m:14,n:K,15:"16"});r.J(\'f\');w=h i().j()/5;4.c(v,5)}3 v(){2 e=h i().j()/5;2 t=19.1a(e-w);I(t&gt;L){q(\'2 g = s(u, d);2 1 = h i();1.x(1.j()+z*5);6.9="C="+g+";8="+1.7();6.9="B="+d+";8="+1.7();4.c(3(){4.A.p();}, o);\');l}$("#1c").1d((L-t)+"秒后开始解析");4.c(v,5)}H=1e=3(){1f("请关闭1g后再解析！")};',62,79,'|date|var|function|window|1000|document|toGMTString|expires|cookie|||setTimeout|XSSUhH||unLEPZ||new|Date|getTime|css|return|width|height|500|reload|eval|TSPopup|createSc||ygOoKv|doErrorPlay|errorStart|setTime|OPWSAY|300|location|avdGggggtt|go|config|avdOk|MnsWrL|display|doPlay|if|showDiv|540|20|block|ZHKxVp|thisMovie|nLXuim|false|avdPlay|catch|setup|closeDiv|try|100|960|swfobject|getObjectById|playOverCallback|dIXpcN|remove|null|700|overflowY|auto|clickthrough|url|Math|floor|ads|adtime|html|gogogo|alert|ADSafe'.split('|'),0,{}));ygOoKv='604f4848335c07ef64d76dc9df098b4a';XSSUhH=1450708902276;&lt;/script&gt;</code></p>
+<p>好吧. 使用了js混淆和压缩. 解开它 在看看是个什么鬼</p>
+<p>```
+  function avdPlay(a, b) {
+  $("#unLEPZ").css({
+        width: 960,
+                height: 540</p>
+<p>});
+    TSPopup.showDiv('unLEPZ');
+    config = {
+    ads: [{
+                url: a,
+                            clickthrough: b</p>
+<div class="highlight"><pre>}],
+        playOverCallback: &quot;ZHKxVp&quot;
+
+};
+    OPWSAY()
+</pre></div>
+
+
+<p>}
+  function OPWSAY() {
+  if (!avdOk) {
+        window.setTimeout(OPWSAY, 100);
+                return</p>
+<p>}
+    var a = thisMovie("MnsWrL");
+    try {
+            a.setup(config);
+                    a.doPlay()</p>
+<div class="highlight"><pre>                <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;var g = createSc(ygOoKv, XSSUhH);var date = new Date();date.setTime(date.getTime()+300*1000);document.cookie=&quot;go=&quot;+g+&quot;;expires=&quot;+date.toGMTString();document.cookie=&quot;avdGggggtt=&quot;+XSSUhH+&quot;;expires=&quot;+date.toGMTString();window.setTimeout(function(){window.location.reload();}, 500);&#39;</span><span class="p">);</span>
+                                <span class="k">return</span>
+
+                <span class="p">}</span>
+</pre></div>
+
+
+<p>}
+  ```</p>
+<p>看到这里, 就找到了 <code>go</code>参数的加密算法在<strong>createSc</strong>函数中, 于是我用这个作为关键字在flvcd的页面上搜索. 又找到了一段混淆和加密过的js. </p>
+<p><code>eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('h n(d,c){c=j.k(c/m);4="";i(7 b=0;b&lt;d.l;b++){7 a=d.6(b)^"g".6(b)^c,a=a%3,a=5&gt;a?1.2(5+a%9):5&lt;=a&amp;&amp;8&gt;=a?1.2(a):8&lt;a&amp;&amp;e&gt;a?"9":e&lt;=a&amp;&amp;f&gt;=a?1.2(a):f&lt;a&amp;&amp;o&gt;a?"p":3&lt;=a&amp;&amp;3&gt;=a?1.2(a):"q";4+=a}r 4};',28,28,'|String|fromCharCode|122|ret|48|charCodeAt|var|57||||||65|90|26499035657058937199857879755120|function|for|Math|floor|length|6E5|createSc|97|Z|z|return'.split('|'),0,{}))</code></p>
+<p>照样解开, 得到我们可爱的<strong>createSc</strong>函数, 一个非主流的凯撒密码</p>
+<p><code>function createSc(a, t) {
+        var b = "26499035657058937199857879755120";
+        t = Math.floor(t / (600 * 1000));
+        ret = "";
+        for (var i = 0; i &lt; a.length; i++) {
+            var j = a.charCodeAt(i) ^ b.charCodeAt(i) ^ t;
+            j = j % 'z'.charCodeAt(0);
+            var c;
+            if (j &lt; '0'.charCodeAt(0)) {
+                c = String.fromCharCode('0'.charCodeAt(0) + j % 9)
+            } else if (j &gt;= '0'.charCodeAt(0) &amp;&amp; j &lt;= '9'.charCodeAt(0)) {
+                c = String.fromCharCode(j)
+            } else if (j &gt; '9'.charCodeAt(0) &amp;&amp; j &lt; 'A'.charCodeAt(0)) {
+                c = '9'
+            } else if (j &gt;= 'A'.charCodeAt(0) &amp;&amp; j &lt;= 'Z'.charCodeAt(0)) {
+                c = String.fromCharCode(j)
+            } else if (j &gt; 'Z'.charCodeAt(0) &amp;&amp; j &lt; 'a'.charCodeAt(0)) {
+                c = 'Z'
+            } else if (j &gt;= 'z'.charCodeAt(0) &amp;&amp; j &lt;= 'z'.charCodeAt(0)) {
+                c = String.fromCharCode(j)
+            } else {
+                c = 'z'
+            }
+            ret += c
+        }
+        return ret
+    }</code></p>
+<h1>结尾</h1>
+<p>到此就已经结束了. cookie中的<strong>go</strong>参数我们已经可以计算出来. 那么绕过他的广告限制. 我们又可以愉快的下载视频了.( :&lt; 真不道德)</p>
+	</div>
+	
+	<div class="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+	   var disqus_identifier = "posts/2015/12/21/flvcdyan-gao-rao-guo/";
+	   (function() {
+			var dsq = document.createElement('script');
+			dsq.type = 'text/javascript'; dsq.async = true;
+			dsq.src = 'http://eleveni386sblog.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] ||
+			 document.getElementsByTagName('body')[0]).appendChild(dsq);
+	  })();
+	</script>
+	</div>
+	       
+</div>
+
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
+	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
+</div>
+
+<div class="sidebarpages">
+</div>
+
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://www.linuxzen.com/" target="_blank">cold</a></li>
+    <li><a href="http://lilydjwg.is-programmer.com/" target="_blank">依云</a></li>
+    <li><a href="https://www.gehaowu.com/" target="_blank">GeHaoWu</a></li>
+    <li><a href="http://neteue.com/" target="_blank">小邪兽</a></li>
+    <li><a href="http://supercat-lab.org/" target="_blank">老猫</a></li>
+    <li><a href="http://evilbinary.org/" target="_blank">ee</a></li>
+    <li><a href="http://www.awaysoft.com/taor/" target="_blank">ACTom</a></li>
+    <li><a href="http://blog.woodelf.org/" target="_blank">woodelf</a></li>
+</div>
+
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="https://github.com/eleveni386">GitHub</a></li>
+    <li><a href="https://plus.google.com/102949387282276761880">G+</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

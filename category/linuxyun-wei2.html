@@ -16,33 +16,6 @@
 
 <div class="summarycontainer">
 	<div class="metabox">
-		<p class="metaday">137</p>
-		<p class="metayear">2013</p>
-		<p class="metacategory">Linux运维</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/05/17/kangle-zuo-httpni-ming-dai-li/ " >Kangle 做HTTP匿名代理</a>
-		<blockquote>
-<p>kangle web服务器（简称：kangle）是一款跨平台、功能强大、安全稳定、
-易操作的高性能web服务器和反向代理服务器软件。除此：kangle也是一款专为做虚拟主机
-研发的web服务器。实现虚拟主机独立进程、独立身份运行。用户之间安全隔离，一个用户
-出问题不影响其他用户。安全支持php、asp、asp·net、java、ruby等多种动态开发语言。
-                                                        百度百科</p>
-</blockquote>
-<h2>安装</h2>
-<p>下载源码
-  <code>wget http://www.kanglesoft.com/download/src/kangle-3.2.3.tar.gz</code></p>
-<p>编译环境</p>
-<p><code>apt-get install build-essential</code></p>
-<p>安装pcre库</p>
-<p><code>apt-get install libpcre++-dev</code></p>
-<p>安装ssl库</p>
-<p><code>apt-get install libssl-dev ...</code></p>
-		<a class="btnmore" href="/posts/2013/05/17/kangle-zuo-httpni-ming-dai-li/">more ...</a>
-	</div>
-</div>
-<div class="summarycontainer">
-	<div class="metabox">
 		<p class="metaday">115</p>
 		<p class="metayear">2013</p>
 		<p class="metacategory">Linux运维</p>
@@ -55,17 +28,17 @@
 <h2>操作</h2>
 <p><a href="http://liuxin1982.blog.51cto.com/4338970/1019825">参考</a></p>
 <p>今天我是来吐槽该文中的一个shell脚本</p>
-<div class="highlight"><pre><span class="cp"># setting up irq affinity according to /proc/interrupts</span>
-<span class="cp"># 2008-11-25 Robert Olsson</span>
-<span class="cp"># 2009-02-19 updated by Jesse Brandeburg</span>
-<span class="cp">#</span>
-<span class="cp"># &gt; Dave Miller:</span>
-<span class="cp"># (To get consistent naming in /proc/interrups)</span>
-<span class="cp"># I would suggest that people use something like:</span>
-<span class="cp"># char buf[IFNAMSIZ+6];</span>
-<span class="cp">#</span>
-<span class="cp"># sprintf(buf, &quot;%s-%s-%d&quot;,</span>
-<span class="cp">#         netdev-&gt;name ...</span></pre></div>
+<div class="highlight"><pre><span class="err">#</span><span class="x"> setting up irq affinity according to /proc/interrupts</span>
+<span class="err">#</span><span class="x"> 2008-11-25 Robert Olsson</span>
+<span class="err">#</span><span class="x"> 2009-02-19 updated by Jesse Brandeburg</span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> &gt; Dave Miller:</span>
+<span class="err">#</span><span class="x"> (To get consistent naming in /proc/interrups)</span>
+<span class="err">#</span><span class="x"> I would suggest that people use something like:</span>
+<span class="err">#</span><span class="x"> char buf[IFNAMSIZ+6];</span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> sprintf(buf, &quot;%s-%s-%d&quot;,</span>
+<span class="err">#</span><span class="x">         netdev-&gt;name ...</span></pre></div>
 		<a class="btnmore" href="/posts/2013/04/25/wang-qia-zhong-duan-bang-ding/">more ...</a>
 	</div>
 </div>
@@ -76,7 +49,7 @@
 		<p class="metacategory">Linux运维</p>
 	</div>
 	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/ " >记. 一次ddos攻击,导致服务器死机</a>
+		<a class="summarytitle" href="/posts/2013/03/29/ji-yi-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/ " >记. 一次ddos攻击,导致服务器死机</a>
 		<h2>背景</h2>
 <p>某年某月某天,eleven所属单位 被未知生物ddos攻击, 攻击时间 凌晨00:15 左右, 
 eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上面命令找出服务器弱点.
@@ -90,51 +63,13 @@ eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上
 <p>观察了服务器的内核参数配置,因为我记得我们所有服务器都有对于<strong>syn flood</strong>的防御策略,
 在sysctl.conf里面<strong>syn_cookies</strong>已经开启, 而且也看见syn队列增加到了1w6, 
 按理来说单纯的半开攻击应该对于我们机器是无压力的说 ...</p>
-		<a class="btnmore" href="/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/">more ...</a>
-	</div>
-</div>
-<div class="summarycontainer">
-	<div class="metabox">
-		<p class="metaday">292</p>
-		<p class="metayear">2012</p>
-		<p class="metacategory">Linux运维</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2012/10/18/nginx-shuang-ji-re-bei-shi-zhan/ " >nginx 双机热备-实战</a>
-		<p>上次发布了<em>nginx</em>做负载均衡器使用, 这次在原有的基础上加上了 <strong>双机热备</strong>
-另外,此篇文章做为引子,为的是引导使用<strong>keepalived</strong>文中的配置,请酌情修改
-这只是一个简单的<strong>keepalived</strong>应用, 关于文中使用到的<strong>keepalived</strong>参数很少, 
-更多的内容看blog中的keepalived配置文件详解 那篇文章</p>
-<p>首先上一个 <strong>nginx高可用</strong> 架构图</p>
-<p><img alt="" src="/image/2012-10-18-163233-300x225.png" /></p>
-<h2>配置</h2>
-<p>总共两台机器 A , B</p>
-<p>在A,B机器上面 配置好 nginx调度器, 相同的配置.</p>
-<p>A nginx 跑在 eth0 192.168.2.12 上</p>
-<p>B nginx 跑在 eth0 192.168.2.11 上</p>
-<p>在A ...</p>
-		<a class="btnmore" href="/posts/2012/10/18/nginx-shuang-ji-re-bei-shi-zhan/">more ...</a>
-	</div>
-</div>
-<div class="summarycontainer">
-	<div class="metabox">
-		<p class="metaday">290</p>
-		<p class="metayear">2012</p>
-		<p class="metacategory">Linux运维</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2012/10/16/keepalivedyuan-li-yu-shi-zhan-jing-jiang/ " >Keepalived原理与实战精讲</a>
-		<p><strong>此为转贴</strong>
-<a href="http://bbs.ywlm.net/thread-845-1-1.html">原文地址</a></p>
-<p><img alt="" src="/image/Keepalived.png" /></p>
-		<a class="btnmore" href="/posts/2012/10/16/keepalivedyuan-li-yu-shi-zhan-jing-jiang/">more ...</a>
+		<a class="btnmore" href="/posts/2013/03/29/ji-yi-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/">more ...</a>
 	</div>
 </div>
 
 <p class="paginator">
             <a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">&laquo;prev</a>
-    Page 2 / 3
-        <a href="http://eleveni386.7axu.com/category/linuxyun-wei3.html">next&raquo;</a>
+    Page 2 / 2
 </p>
 		</div>
 		
@@ -144,10 +79,8 @@ eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上
 	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
 </div>
 
 <div class="sidebarpages">

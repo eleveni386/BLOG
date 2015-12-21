@@ -121,35 +121,35 @@ http://www.xxx.com/mobile/xxx/mobile.html?ref=www.xxi.com/</p>
 
 <p>将此脚本给予 执行权限<code>chmod +x mobile_redirect.py</code></p>
 <p>然后在squid.conf中增加</p>
-<div class="highlight"><pre><span class="n">acl</span> <span class="n">Debian</span> <span class="n">browser</span> <span class="n">Chrome</span> 
-<span class="n">acl</span> <span class="n">Iphone</span> <span class="n">browser</span> <span class="o">-</span><span class="n">i</span> <span class="p">(</span><span class="n">iPhone</span><span class="o">|</span><span class="n">iPad</span><span class="p">)</span>
-<span class="n">acl</span> <span class="n">Android</span> <span class="n">browser</span> <span class="o">-</span><span class="n">i</span> <span class="n">Android</span>
-<span class="n">redirect_program</span> <span class="o">/</span><span class="n">squidpath</span><span class="o">/</span><span class="n">mobile_redirect</span><span class="p">.</span><span class="n">py</span>
-<span class="n">redirect_children</span> <span class="mi">6</span>
-<span class="n">redirector_access</span> <span class="n">allow</span> <span class="n">Debian</span>
-<span class="n">redirector_access</span> <span class="n">allow</span> <span class="n">Iphone</span>
-<span class="n">redirector_access</span> <span class="n">allow</span> <span class="n">Android</span>
+<div class="highlight"><pre>acl Debian browser Chrome 
+acl Iphone browser -i (iPhone|iPad)
+acl Android browser -i Android
+redirect_program /squidpath/mobile_redirect.py
+redirect_children 6
+redirector_access allow Debian
+redirector_access allow Iphone
+redirector_access allow Android
 </pre></div>
 
 
 <p>重启squid之后, 观察结果</p>
 <p>客户端请求 www.xxx.com</p>
 <p>squid 日志中</p>
-<div class="highlight"><pre><span class="mf">1381544425.298</span>      <span class="mi">0</span> <span class="mf">14.23.156.2</span> <span class="n">TCP_MISS</span><span class="o">/</span><span class="mi">302</span> <span class="mi">522</span> <span class="n">GET</span> <span class="n">http</span><span class="o">:</span><span class="c1">//www.xx.com/mobile/</span>
-<span class="n">xxx</span><span class="o">/</span><span class="n">mobile</span><span class="p">.</span><span class="n">html</span><span class="o">?</span><span class="n">ref</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//www.xxx.com/ - NONE/- -</span>
+<div class="highlight"><pre>1381544425.298      0 14.23.156.2 TCP_MISS/302 522 GET http://www.xx.com/mobile/
+xxx/mobile.html?ref=http://www.xxx.com/ - NONE/- -
 </pre></div>
 
 
 <p>客户端返回</p>
-<div class="highlight"><pre><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.0</span> <span class="mi">302</span> <span class="n">Moved</span> <span class="n">Temporarily</span>
-<span class="nl">Server:</span> <span class="n">squid</span>
-<span class="nl">Date:</span> <span class="n">Sat</span><span class="p">,</span> <span class="mi">12</span> <span class="n">Oct</span> <span class="mi">2013</span> <span class="mo">02</span><span class="o">:</span><span class="mi">19</span><span class="o">:</span><span class="mi">37</span> <span class="n">GMT</span>
-<span class="n">Content</span><span class="o">-</span><span class="n">Length</span><span class="o">:</span> <span class="mi">0</span>
-<span class="nl">Location:</span> <span class="n">http</span><span class="o">:</span><span class="c1">//www.xx.com/mobile/xxx/mobile.html?ref=http://www.xxx.com/</span>
-<span class="n">X</span><span class="o">-</span><span class="n">Cache</span><span class="o">:</span> <span class="n">MISS</span> <span class="n">from</span> <span class="mf">0.</span><span class="n">cnc</span><span class="p">.</span><span class="n">cache</span><span class="p">.</span><span class="n">xx</span><span class="p">.</span><span class="n">com</span>
-<span class="n">X</span><span class="o">-</span><span class="n">Cache</span><span class="o">-</span><span class="n">Lookup</span><span class="o">:</span> <span class="n">HIT</span> <span class="n">from</span> <span class="mf">0.</span><span class="n">cnc</span><span class="p">.</span><span class="n">cache</span><span class="p">.</span><span class="n">xx</span><span class="p">.</span><span class="n">com</span><span class="o">:</span><span class="mi">80</span>
-<span class="nl">Via:</span> <span class="mf">1.1</span> <span class="mf">0.</span><span class="n">cnc</span><span class="p">.</span><span class="n">cache</span><span class="p">.</span><span class="n">xx</span><span class="p">.</span><span class="n">com</span><span class="o">:</span><span class="mi">80</span> <span class="p">(</span><span class="n">squid</span><span class="p">)</span>
-<span class="nl">Connection:</span> <span class="n">close</span>
+<div class="highlight"><pre>HTTP/1.0 302 Moved Temporarily
+Server: squid
+Date: Sat, 12 Oct 2013 02:19:37 GMT
+Content-Length: 0
+Location: http://www.xx.com/mobile/xxx/mobile.html?ref=http://www.xxx.com/
+X-Cache: MISS from 0.cnc.cache.xx.com
+X-Cache-Lookup: HIT from 0.cnc.cache.xx.com:80
+Via: 1.1 0.cnc.cache.xx.com:80 (squid)
+Connection: close
 </pre></div>
 
 
@@ -184,10 +184,8 @@ http://www.xxx.com/mobile/xxx/mobile.html?ref=www.xxi.com/</p>
 	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
 </div>
 
 <div class="sidebarpages">

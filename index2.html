@@ -16,87 +16,6 @@
 
 <div class="summarycontainer">
 	<div class="metabox">
-		<p class="metaday">058</p>
-		<p class="metayear">2014</p>
-		<p class="metacategory">Linux运维</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/ " >记一次ssh密钥登录失败</a>
-		<h2>环境</h2>
-<p>我们的私钥是通过SecureCRT工具生成的. 在Debian5/6下面使用正常
-有问题的主机是Debian7 系统, 客户端是Debian6 系统
-Debian7 的ssh server版本是1.6 客户端的ssh client是1.5
-使用的ssh协议均是2</p>
-<h2>现象</h2>
-<p>昨天我们一台Debian7主机, 无法通过私钥登录. 每次登录提示需要输入密码. 这是我们第一次使用Debian7的系统, 以往的主机都是Debian5/6的系统</p>
-<p>开启ssh的debug参数, 观看登录过程,发现如下</p>
-<div class="highlight"><pre><span class="n">debug2</span><span class="o">:</span> <span class="n">key_type_from_name</span><span class="o">:</span> <span class="n">unknown</span> <span class="n">key</span> <span class="n">type</span> <span class="s1">&#39;-----BEGIN&#39;</span>
-<span class="n">debug2</span><span class="o">:</span> <span class="n">key_type_from_name</span><span class="o">:</span> <span class="n">unknown</span> <span class="n">key</span> <span class="n">type</span> <span class="s1">&#39;-----END&#39;</span>
-<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
-<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
-<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace ...</span></pre></div>
-		<a class="btnmore" href="/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/">more ...</a>
-	</div>
-</div>
-<div class="summarycontainer">
-	<div class="metabox">
-		<p class="metaday">001</p>
-		<p class="metayear">2014</p>
-		<p class="metacategory">软件推荐</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2014/01/01/wiz-for-linux-210ban-ben-gong-neng-jie-shao/ " >Wiz for linux 2.1.0版本功能介绍</a>
-		<h1>截图</h1>
-<p><img alt="" src="/image/wiz.png" /></p>
-<h1>介绍</h1>
-<p><code>wiz笔记</code> 一款知识管理软件, 界面效果如上图. </p>
-<p>在 <a href="https://github.com/WizTeam/WizQTClient">Wiz 2.1.0</a> 版本中 
-首次对Linux支持<code>markdown语法</code>.</p>
-<p>( <strong>Ubuntu用户按照官网上的方法安装,不是最新版本哦, 是不支持markdown语法的</strong> )</p>
-<h1>要求</h1>
-<p>安装<a href="https://github.com/WizTeam/WizQTClient">Wiz 2.1.0</a> 版本</p>
-<p>是需要QT4/5 的支持, 另外需要cmake工具</p>
-<h1>插件</h1>
-<p>安装好之后, 点击菜单栏上的 帮助-&gt; 关于插件 </p>
-<p>可以发现 <code>markdown语法</code>的支持是由于插件的原因. 因此 其他人也是可以编写自己的插件实现
-不同的功能呢. 咱技术差了点. 又没有一个官方的API, 咱无法写出自己的插件. 不过有了
-markdown语法支持插件 咱就足矣 :)</p>
-<p>另外一个插件 则是网页截取. 参考<a href="http://blog.wiz.cn/wiz-manual-save-web-page.html">为知博客</a></p>
-<p>得知chrome下有一款网页截取的插件. 遂安装之 ...</p>
-		<a class="btnmore" href="/posts/2014/01/01/wiz-for-linux-210ban-ben-gong-neng-jie-shao/">more ...</a>
-	</div>
-</div>
-<div class="summarycontainer">
-	<div class="metabox">
-		<p class="metaday">344</p>
-		<p class="metayear">2013</p>
-		<p class="metacategory">Linux桌面</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/12/10/markdownbian-ji-qi/ " >markdown编辑器</a>
-		<h1>前言</h1>
-<p>本人是今年开始使用<code>markdown</code>的, 短时间内,就喜欢上这种编辑文档的方法.遂将自己的blog
-都替换为<code>pelican</code>. 个人笔记也采用 <code>markdown</code>语法来记录. 看着我的零散的markdown
-文件很是头疼. 就想着有一个markdown编辑器可以附带文件管理功能,但是找了好久都没找到</p>
-<p>于是就想着自己开发一个. 于是就有了这货, 用时半年,一直断断续续开发,在快结束的时候
-突然发现了<code>gedit</code>, 给它安装markdown插件之后 完全可以满足我的需求.. 突然发现我这半年
-都在浪费时间(虽然没认真花时间在这个上面).最终还是草草结束了这次的开发..</p>
-<p>在写<code>MyEditor</code>期间,多谢网友"老猫" 和 <a href="http://neteue.com/">"小邪兽"</a> 给予的帮助</p>
-<p>"老猫" 告诉了我<code>gtksourceview2</code>的存在. 同时解答了我许多疑问</p>
-<p>"兽兽君" 更是直接给我提供了一些示例代码.</p>
-<h1>截图</h1>
-<p><img alt="" src="/image/markdown.png" /></p>
-<h1>依赖</h1>
-<ol>
-<li>pygtk</li>
-<li>python-markdown</li>
-<li>python-webkit</li>
-<li>python-gtksourceview2 ...</li></ol>
-		<a class="btnmore" href="/posts/2013/12/10/markdownbian-ji-qi/">more ...</a>
-	</div>
-</div>
-<div class="summarycontainer">
-	<div class="metabox">
 		<p class="metaday">286</p>
 		<p class="metayear">2013</p>
 		<p class="metacategory">Linux运维</p>
@@ -118,60 +37,100 @@ http://www.xxx.com/mobile/xxx/mobile.html?ref=www.xxi.com/</p>
 </div>
 <div class="summarycontainer">
 	<div class="metabox">
-		<p class="metaday">265</p>
+		<p class="metaday">244</p>
+		<p class="metayear">2013</p>
+		<p class="metacategory">python</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2013/09/01/cai-yong-pelicanjing-tai-blog/ " >采用pelican静态blog</a>
+		<h2>引子</h2>
+<blockquote>
+<p>因为我们的gtalk群组机器人需要更改Mysql为Mongo, 正好我也有想法使用静态博客程序</p>
+</blockquote>
+<p>在研究了几天<code>pelican</code>之后, 今天就开始动手搬家了.. 唉,只是可惜了我哪些google收录的说 :-(</p>
+<p>最终效果如您所见.. 如何您是我和<a href="(http://www.linuxzen.com/)">cold</a>的熟人,那么别惊讶为何我的blog和他的那么相似.</p>
+<p>介个要归结于,<code>pelican</code>有限的主题,和自己不擅长css的原因, 在众多主题中来回选择,
+不断尝试,最终介个入围了...</p>
+<p>使用中的主题<a href="(https://github.com/getpelican/pelican-themes/tree/master/tuxlite_tbs)">tuxlite_tbs</a></p>
+<p>目前已经可以正常访问, 不过还有一个问题存在, 本地与vps之间同步的问题, 本来在vps
+上建立了一个git的仓库, 但是由于git极度不熟练的缘故,导致我push的文件,始终无法在
+vps找到,更不要说设置nginx的root路径了, 于是,目前使用scp方式更新文件.... 表喷我傻... :-(</p>
+<p>经过这么几分钟的观察,感觉还算是满意的..</p>
+		<a class="btnmore" href="/posts/2013/09/01/cai-yong-pelicanjing-tai-blog/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">242</p>
+		<p class="metayear">2013</p>
+		<p class="metacategory">python</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2013/08/30/clijian-yi-mi-ma-guan-li-gong-ju/ " >CLI简易密码管理工具</a>
+		<p>最近用上了<strong>tmux</strong>, 抛弃了<strong>SecureCRT</strong>,  但是没有便利的密码输入功能. 每次登录上服务器之后我都要将鼠标移动到状态栏 点击<strong>KeepassX</strong>,然后在<strong>Keepassx</strong>里面找到我需要的密码,然后在贴在<strong>tmux</strong>上..完成一次密码输入过程.  </p>
+<p>这种过程与使用<strong>tmux</strong>给我带来的便利(快捷键的存在,让我可以完全抛弃鼠标,事实用了<strong>tmux</strong>我就没有使用鼠标了.) 格格不入.. 感觉就像开着一辆跑车.结果却时不时的要停下来加油.. 这种感觉十分难受..(不打点会死星人)  </p>
+<p>于是就想到一个办法, 利用<strong>tmux</strong>的缓冲区, 来完成挑选密码的过程.  </p>
+<p>首先:  </p>
+<p><strong>tmux</strong>拥有自己的黏贴板,在<strong>tmux</strong>中复制的时候,可以通过<code>tmux show-buffer</code>找到复制的内容;</p>
+<p>然后:  </p>
+<p>使用一个工具,截获<strong>tmux</strong>的缓冲,得到里面的ip, 根据ip地址去数据内寻找相应的密码 ...</p>
+		<a class="btnmore" href="/posts/2013/08/30/clijian-yi-mi-ma-guan-li-gong-ju/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">235</p>
 		<p class="metayear">2013</p>
 		<p class="metacategory">Linux桌面</p>
 	</div>
 	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/09/22/ji-yi-wang-rtxmi-ma/ " >记.遗忘RTX密码</a>
-		<h2>引子</h2>
-<blockquote>
-<p>在虚拟机中rtx密码是保存的,第一次拿到密码,没有做第三方的记录.
-中秋期间,wine了一个rtx. 结果发现自己忘记密码了</p>
-</blockquote>
-<h2>过程</h2>
-<p>由于有了之前的遗忘密码事件 (<a href="/posts/2012/11/28/wang-ji-mi-ma-zhi-svn/">遗忘密码之svn</a>,<a href="/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/">记.一次邮箱密码丢失</a>)</p>
-<p>一开始的思路是在登录rtx的时候抓包分析,rtx的验证数据包, 不过还是习惯性的google了一下
-没想到真找到了更简单的方法.</p>
-<blockquote>
-<p>有资料显示rtx在内存中明文存储密码
-by the goole</p>
-</blockquote>
-<h3>WINHEX打开RTX的内存</h3>
+		<a class="summarytitle" href="/posts/2013/08/23/tmuxduo-paneltong-bu/ " >tmux多panel同步</a>
+		<p>上一篇说过 我已经使用<strong>tmux</strong> 代替<strong>SecureCRT</strong>进行运维工作 , 
+为此写了一个<a href="https://github.com/eleveni386/clipm">密码管理工具</a>,来配合<strong>tmux</strong>使用,
+经过两天的使用,感觉良好.<strong>KeepassX</strong> 已经直接被我卸载了,今天要说的是<strong>SecureCRT</strong>另外一个功能
+<strong>批量执行命令</strong></p>
+<p>用过<strong>SecureCRT</strong>的孩纸,都知道它有一个很方便的功能,开启多个终端的时候,可以同时在这些终端输入命令,
+极大的方便了我们的工作,我搬家到<strong>tmux</strong> 也一直纠结这个功能.经过多次google之后 终于被我找到了.原来<strong>tmux</strong>
+也是有批量执行命令的, <strong>tmux panel sync</strong>, <strong>panel同步</strong></p>
+<p>使用效果如下:</p>
+<p><img alt="" src="http://blog.sanctum.geek.nz/wp-content/uploads/2012/08/synchronize-panes.gif" /></p>
+<p>(PS:这里偷了别人的图,我懒得找gif制作工具)</p>
+<p>开启这个功能:  </p>
+<p><code>:setw synchronize-panes</code></p>
+<p>这是一个开关,需要的时候键入, 不需要的时候键入同样的指令,即可关闭.</p>
+<p>友情提示 ...</p>
+		<a class="btnmore" href="/posts/2013/08/23/tmuxduo-paneltong-bu/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">154</p>
+		<p class="metayear">2013</p>
+		<p class="metacategory">python</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2013/06/03/pythondai-cookiesfang-wen/ " >python带cookies访问</a>
+		<p>本人是运维一枚,使用次数最多的就是Vandyke的<a href="https://secure.vandyke.com/cgi-bin/download_form.php?pid=securecrt_ubuntu1264_deb_71&amp;st=4&amp;">SecureCRT</a>.
+在win系统下面有各种大牛
+破解的scrt版本,但是在咱debian下面 就只能使用官方正版的,但是因为scrt是收费的,
+而且还死贵死贵($99), 咱这种中下农,搞不起这货, 只能使用它的免费30天,时间一到,
+要么就是删除它的认证文件,要么就是卸载原有的,然后重新安装, 非常麻烦…</p>
+<p>于是就想着能不能通过cron自动下载安装, 于是就有了第一版本的<a href="(https://code.google.com/p/sharepythoncode/downloads/detail?name=Vandyke_update.py&amp;can=2&amp;q=)">Vandyke_update.py</a> 脚本,
+通过抓包分析到Vandyke 的post数据,通过urllib2提交,并下载, 跑了一年都挺好的, </p>
+<p>但是今天有同事(ubuntu)使用我的脚本自动更新的时候,发现无效了,返回信息提示”Bad product id”,
+然后通过chrome的开发者工具跟踪了一下,发现post数据的字段改变了. 不再提供”sid”这个字段
+(每次Vandyke用户登录之后都会在cookie中分配这个这个id,是不变的),只好重新分析它post内容,</p>
+<p>看见它post内容变的非常简单,只有两个字段:</p>
 <ol>
-<li>
-<p>winhex打开rtx的内存
-    <img alt="" src="/image/step.png" /></p>
-<ol>
-<li>点击图片中1的位置.<strong>open Ram</strong></li>
-<li>在窗口中找到rtx.</li>
-<li>选择<strong>主要内存</strong>.<em>Primary Memory</em></li>
-</ol>
-</li>
-<li>
-<p>查找16进制字符串<strong>40000000500061007300730077006F0072006400</strong>
-    <img alt="" src="/image/step1.png" /></p>
-<ol>
-<li>点击图片中1的位置.<strong>Find Hex values</strong></li>
-<li>在文本框内输入要搜索的16进制字符串<strong>40000000500061007300730077006F0072006400</strong></li>
-</ol>
-</li>
-<li>
-<p>password下面的位置就是明文密码
-    <img alt="" src="/image/step2.png" /></p>
-</li>
-</ol>
-<h2>结果</h2>
-<p>好了,明文密码得到了.只是这样的rtx是否安全呢...</p>
-<p><strong>wine rtx</strong> 真的很简单</p>
-<p><a href="http://www.2cto.com/Article/201308/236529.html">参考地址</a></p>
-		<a class="btnmore" href="/posts/2013/09/22/ji-yi-wang-rtxmi-ma/">more ...</a>
+<li>pid(product id)</li>
+<li>status ...</li></ol>
+		<a class="btnmore" href="/posts/2013/06/03/pythondai-cookiesfang-wen/">more ...</a>
 	</div>
 </div>
 
 <p class="paginator">
             <a href="http://eleveni386.7axu.com/index.html">&laquo;prev</a>
-    Page 2 / 8
+    Page 2 / 4
         <a href="http://eleveni386.7axu.com/index3.html">next&raquo;</a>
 </p>
 		</div>
@@ -182,10 +141,8 @@ by the goole</p>
 	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
 </div>
 
 <div class="sidebarpages">

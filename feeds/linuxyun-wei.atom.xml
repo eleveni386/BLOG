@@ -8,9 +8,9 @@
 方便自己 随心所欲的使用大杀器&lt;/p&gt;
 &lt;p&gt;麻麻再也不用担心 我使用rm了&lt;/p&gt;
 &lt;h2&gt;特性&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mf"&gt;1.&lt;/span&gt;  &lt;span class="err"&gt;删除日志记录&lt;/span&gt;
-&lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="err"&gt;安全目录&lt;/span&gt;
-&lt;span class="mf"&gt;3.&lt;/span&gt; &lt;span class="err"&gt;垃圾箱机制&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;1.  删除日志记录
+2. 安全目录
+3. 垃圾箱机制
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -54,41 +54,41 @@ Recycle.conf 是安全目录配置文件&lt;/p&gt;
 https://github.com/eleveni386/remove&lt;/p&gt;
 &lt;/blockquote&gt;</summary><category term="python"></category><category term="Linux"></category><category term="命令"></category><category term="工具"></category></entry><entry><title>squid正向代理</title><link href="http://eleveni386.7axu.com/posts/2014/03/07/squidzheng-xiang-dai-li/" rel="alternate"></link><updated>2014-03-07T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-03-07:posts/2014/03/07/squidzheng-xiang-dai-li/</id><summary type="html">&lt;h2&gt;匿名代理&lt;/h2&gt;
 &lt;p&gt;squid 要做到匿名代理 只需要添加&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;header_access&lt;/span&gt; &lt;span class="n"&gt;Via&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt; 
-&lt;span class="n"&gt;header_access&lt;/span&gt;  &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Forwarded&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;For&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;header_access Via deny all 
+header_access  X-Forwarded-For deny all
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;即可&lt;/p&gt;
 &lt;h2&gt;代理验证&lt;/h2&gt;
 &lt;p&gt;谁都不想自己的代理服务器被他人随意拿来使用.. 于是 我们就需要给代理服务器加上密码&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;auth_param&lt;/span&gt; &lt;span class="n"&gt;basic&lt;/span&gt; &lt;span class="n"&gt;program&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;eleven&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;squid2&lt;/span&gt;&lt;span class="mf"&gt;.7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ncsa_auth&lt;/span&gt;
-&lt;span class="n"&gt;auth_param&lt;/span&gt; &lt;span class="n"&gt;basic&lt;/span&gt; &lt;span class="n"&gt;children&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="n"&gt;auth_param&lt;/span&gt; &lt;span class="n"&gt;basic&lt;/span&gt; &lt;span class="n"&gt;realm&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Welcome to eleven&amp;#39;s proxy server&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;auth_param&lt;/span&gt; &lt;span class="n"&gt;basic&lt;/span&gt; &lt;span class="n"&gt;credentialsttl&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;hours&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;auth_param basic program /data/home/eleven/squid2.7/bin/ncsa_auth
+auth_param basic children 1
+auth_param basic realm &amp;quot;Welcome to eleven&amp;#39;s proxy server&amp;quot;
+auth_param basic credentialsttl 12 hours
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;这里的&lt;strong&gt;ncsa_auth&lt;/strong&gt; 是自己写的shell脚本, 我的squid版本是2.7, 没有自带ncsa_auth程序&lt;/p&gt;
 &lt;h2&gt;一个简单的代理验证脚本&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="k"&gt;do&lt;/span&gt;
-    &lt;span class="n"&gt;read&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;
-    &lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;awk&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;awk&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;while true;&lt;/span&gt;
+&lt;span class="x"&gt;do&lt;/span&gt;
+&lt;span class="x"&gt;    read line&lt;/span&gt;
+&lt;span class="x"&gt;    username=`echo &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;line&lt;/span&gt;&lt;span class="x"&gt; | awk &amp;#39;&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;print &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt;1}&amp;#39;`;&lt;/span&gt;
+&lt;span class="x"&gt;    password=`echo &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;line&lt;/span&gt;&lt;span class="x"&gt; | awk &amp;#39;&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;print &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt;2}&amp;#39;`;&lt;/span&gt;
 
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;x$username&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;xeleven&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
-    &lt;span class="n"&gt;then&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;x$password&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;x*****&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
-        &lt;span class="n"&gt;then&lt;/span&gt;
-            &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;OK&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="k"&gt;else&lt;/span&gt;
-            &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;Err&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="n"&gt;fi&lt;/span&gt;  
-    &lt;span class="k"&gt;else&lt;/span&gt;
-        &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;Err&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="n"&gt;fi&lt;/span&gt;  
-&lt;span class="n"&gt;done&lt;/span&gt;
+&lt;span class="x"&gt;    if [ &amp;quot;x&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;username&lt;/span&gt;&lt;span class="x"&gt;&amp;quot; == &amp;quot;xeleven&amp;quot; ]&lt;/span&gt;
+&lt;span class="x"&gt;    then&lt;/span&gt;
+&lt;span class="x"&gt;        if [ &amp;quot;x&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;password&lt;/span&gt;&lt;span class="x"&gt;&amp;quot; == &amp;quot;x*****&amp;quot; ]&lt;/span&gt;
+&lt;span class="x"&gt;        then&lt;/span&gt;
+&lt;span class="x"&gt;            echo OK;&lt;/span&gt;
+&lt;span class="x"&gt;        else&lt;/span&gt;
+&lt;span class="x"&gt;            echo Err;&lt;/span&gt;
+&lt;span class="x"&gt;        fi  &lt;/span&gt;
+&lt;span class="x"&gt;    else&lt;/span&gt;
+&lt;span class="x"&gt;        echo Err;&lt;/span&gt;
+&lt;span class="x"&gt;    fi  &lt;/span&gt;
+&lt;span class="x"&gt;done&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -96,57 +96,57 @@ https://github.com/eleveni386/remove&lt;/p&gt;
 使用的脚本. 都是脚本从squid处接收需要处理的信息, 脚本处理完毕之后返回给squid结果&lt;/p&gt;
 &lt;h2&gt;squid正向代理, 搭建 http 代理服务器&lt;/h2&gt;
 &lt;p&gt;以下是一份完整的squid正向代理的配置文件&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;auth_param&lt;/span&gt; &lt;span class="n"&gt;basic&lt;/span&gt; &lt;span class="n"&gt;program&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;eleven&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;squid2&lt;/span&gt;&lt;span class="mf"&gt;.7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ncsa_auth&lt;/span&gt;
-&lt;span class="n"&gt;auth_param&lt;/span&gt; &lt;span class="n"&gt;basic&lt;/span&gt; &lt;span class="n"&gt;children&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="n"&gt;auth_param&lt;/span&gt; &lt;span class="n"&gt;basic&lt;/span&gt; &lt;span class="n"&gt;realm&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Welcome to eleven&amp;#39;s proxy server&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;auth_param&lt;/span&gt; &lt;span class="n"&gt;basic&lt;/span&gt; &lt;span class="n"&gt;credentialsttl&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;hours&lt;/span&gt;
-&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt; 
-&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;squid_user&lt;/span&gt; &lt;span class="n"&gt;proxy_auth&lt;/span&gt; &lt;span class="n"&gt;REQUIRED&lt;/span&gt;
-&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;manager&lt;/span&gt; &lt;span class="n"&gt;proto&lt;/span&gt; &lt;span class="n"&gt;cache_object&lt;/span&gt;
-&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;localhost&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt; &lt;span class="mf"&gt;127.0.0.1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;
-&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;SSL_ports&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;443&lt;/span&gt; 
-&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;Safe_ports&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;      &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;
-&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;Safe_ports&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;21&lt;/span&gt;      &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;ftp&lt;/span&gt;
-&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;Safe_ports&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;443&lt;/span&gt;     &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;
-&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;CONNECT&lt;/span&gt; &lt;span class="n"&gt;method&lt;/span&gt; &lt;span class="n"&gt;CONNECT&lt;/span&gt;
-&lt;span class="n"&gt;http_access&lt;/span&gt; &lt;span class="n"&gt;allow&lt;/span&gt; &lt;span class="n"&gt;manager&lt;/span&gt; &lt;span class="n"&gt;localhost&lt;/span&gt;
-&lt;span class="n"&gt;http_access&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;manager&lt;/span&gt;
-&lt;span class="n"&gt;http_access&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;Safe_ports&lt;/span&gt;
-&lt;span class="n"&gt;http_access&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;CONNECT&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;SSL_ports&lt;/span&gt;
-&lt;span class="n"&gt;http_access&lt;/span&gt; &lt;span class="n"&gt;allow&lt;/span&gt; &lt;span class="n"&gt;localhost&lt;/span&gt;
-&lt;span class="cp"&gt;# 允许密码用户登录&lt;/span&gt;
-&lt;span class="n"&gt;http_access&lt;/span&gt; &lt;span class="n"&gt;allow&lt;/span&gt; &lt;span class="n"&gt;squid_user&lt;/span&gt;
-&lt;span class="cp"&gt;# 拒绝其他所有请求&lt;/span&gt;
-&lt;span class="n"&gt;http_access&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt;
-&lt;span class="cp"&gt;# Squid的监听端口&lt;/span&gt;
-&lt;span class="n"&gt;http_port&lt;/span&gt; &lt;span class="o"&gt;****&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="err"&gt;不准暴力猜解我的密码&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="err"&gt;哼&lt;/span&gt;
-&lt;span class="cp"&gt;# DNS 域名服务器配置&lt;/span&gt;
-&lt;span class="n"&gt;dns_nameservers&lt;/span&gt; &lt;span class="mf"&gt;8.8.8.8&lt;/span&gt;
-&lt;span class="cp"&gt;# 启动squid2.7的用户&lt;/span&gt;
-&lt;span class="n"&gt;cache_effective_user&lt;/span&gt; &lt;span class="n"&gt;eleven&lt;/span&gt;
-&lt;span class="n"&gt;cache_effective_group&lt;/span&gt; &lt;span class="n"&gt;eleven&lt;/span&gt;
-&lt;span class="cp"&gt;# squid2.7访问日志; 调试时开启&lt;/span&gt;
-&lt;span class="cp"&gt;#cache_access_log /var/log/squid/access.log&lt;/span&gt;
-&lt;span class="cp"&gt;#cache_log /var/log/squid/cache.log&lt;/span&gt;
-&lt;span class="cp"&gt;# squid2.7挂掉后，core文件位置&lt;/span&gt;
-&lt;span class="n"&gt;coredump_dir&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;eleven&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;squid2&lt;/span&gt;&lt;span class="mf"&gt;.7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
-&lt;span class="cp"&gt;# 高匿&lt;/span&gt;
-&lt;span class="n"&gt;header_access&lt;/span&gt; &lt;span class="n"&gt;Via&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt;
-&lt;span class="n"&gt;header_access&lt;/span&gt;  &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Forwarded&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;For&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt;
-&lt;span class="cp"&gt;# 出现cgi-bin或者？的URL不予缓存&lt;/span&gt;
-&lt;span class="n"&gt;hierarchy_stoplist&lt;/span&gt; &lt;span class="n"&gt;cgi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;
-&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;QUERY&lt;/span&gt; &lt;span class="n"&gt;urlpath_regex&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;cgi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;asp&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jsp&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cgi&lt;/span&gt;
-&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;download&lt;/span&gt; &lt;span class="n"&gt;urlpath_regex&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;avi&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rmvb&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rm&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ra&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ram&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mpe&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;smi&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;
-&lt;span class="n"&gt;cache&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;QUERY&lt;/span&gt;
-&lt;span class="n"&gt;cache&lt;/span&gt; &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;download&lt;/span&gt;
-&lt;span class="cp"&gt;# 磁盘缓存目录&lt;/span&gt;
-&lt;span class="n"&gt;cache_dir&lt;/span&gt; &lt;span class="n"&gt;ufs&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;eleven&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;squid2&lt;/span&gt;&lt;span class="mf"&gt;.7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cdir&lt;/span&gt; &lt;span class="mi"&gt;500&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt; &lt;span class="mi"&gt;256&lt;/span&gt;
-&lt;span class="cp"&gt;# 内存缓冲大小&lt;/span&gt;
-&lt;span class="n"&gt;cache_mem&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;
-&lt;span class="cp"&gt;# 刷新缓存规则&lt;/span&gt;
-&lt;span class="n"&gt;refresh_pattern&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="n"&gt;ftp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;       &lt;span class="mi"&gt;1440&lt;/span&gt;    &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;10080&lt;/span&gt;
-&lt;span class="n"&gt;refresh_pattern&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cgi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/|&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;  &lt;span class="mi"&gt;0&lt;/span&gt;
-&lt;span class="n"&gt;refresh_pattern&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;       &lt;span class="mi"&gt;0&lt;/span&gt;   &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;4320&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;auth_param basic program /data/home/eleven/squid2.7/bin/ncsa_auth
+auth_param basic children 1
+auth_param basic realm &amp;quot;Welcome to eleven&amp;#39;s proxy server&amp;quot;
+auth_param basic credentialsttl 12 hours
+acl all src all 
+acl squid_user proxy_auth REQUIRED
+acl manager proto cache_object
+acl localhost src 127.0.0.1/32
+acl SSL_ports port 443 
+acl Safe_ports port 80      # http
+acl Safe_ports port 21      # ftp
+acl Safe_ports port 443     # https
+acl CONNECT method CONNECT
+http_access allow manager localhost
+http_access deny manager
+http_access deny !Safe_ports
+http_access deny CONNECT !SSL_ports
+http_access allow localhost
+# 允许密码用户登录
+http_access allow squid_user
+# 拒绝其他所有请求
+http_access deny all
+# Squid的监听端口
+http_port **** # 不准暴力猜解我的密码. 哼
+# DNS 域名服务器配置
+dns_nameservers 8.8.8.8
+# 启动squid2.7的用户
+cache_effective_user eleven
+cache_effective_group eleven
+# squid2.7访问日志; 调试时开启
+#cache_access_log /var/log/squid/access.log
+#cache_log /var/log/squid/cache.log
+# squid2.7挂掉后，core文件位置
+coredump_dir /data/home/eleven/squid2.7/
+# 高匿
+header_access Via deny all
+header_access  X-Forwarded-For deny all
+# 出现cgi-bin或者？的URL不予缓存
+hierarchy_stoplist cgi-bin ? \.php
+acl QUERY urlpath_regex -i cgi-bin [^html]\? \.asp \.php \.jsp \.cgi
+acl download urlpath_regex -i \.avi$ \.rmvb$ \.rm$ \.ra$ \.ram$ \.mpe$ \.smi$
+cache deny QUERY
+cache deny download
+# 磁盘缓存目录
+cache_dir ufs /data/home/eleven/squid2.7/cdir 500 16 256
+# 内存缓冲大小
+cache_mem 2M
+# 刷新缓存规则
+refresh_pattern ^ftp:       1440    20% 10080
+refresh_pattern -i (/cgi-bin/|\?) 0 0%  0
+refresh_pattern .       0   20% 4320
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -158,7 +158,7 @@ https://github.com/eleveni386/remove&lt;/p&gt;
 &lt;p&gt;至此, 一个全新的支持https访问的 http代理就搭建成功了. 第一次访问会要求你输入帐号和密码
 相信看过本人此前的文章 都知道我曾经使用了一个叫做&lt;strong&gt;kangle&lt;/strong&gt;的工具 搭建了一个http代理.
 不知道从什么时候开始 &lt;strong&gt;kangle&lt;/strong&gt; 搭建的代理 无法访问https协议的 站点. 于是,才迫使我
-转而使用squid. &lt;/p&gt;</summary><category term="运维"></category><category term="Linux"></category><category term="squid"></category><category term="http代理"></category><category term="匿名代理"></category></entry><entry><title>记一次ssh密钥登录失败</title><link href="http://eleveni386.7axu.com/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/" rel="alternate"></link><updated>2014-02-27T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-02-27:posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/</id><summary type="html">&lt;h2&gt;环境&lt;/h2&gt;
+转而使用squid. &lt;/p&gt;</summary><category term="运维"></category><category term="Linux"></category><category term="squid"></category><category term="http代理"></category><category term="匿名代理"></category></entry><entry><title>记一次ssh密钥登录失败</title><link href="http://eleveni386.7axu.com/posts/2014/02/27/ji-yi-ci-sshmi-yao-deng-lu-shi-bai/" rel="alternate"></link><updated>2014-02-27T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2014-02-27:posts/2014/02/27/ji-yi-ci-sshmi-yao-deng-lu-shi-bai/</id><summary type="html">&lt;h2&gt;环境&lt;/h2&gt;
 &lt;p&gt;我们的私钥是通过SecureCRT工具生成的. 在Debian5/6下面使用正常
 有问题的主机是Debian7 系统, 客户端是Debian6 系统
 Debian7 的ssh server版本是1.6 客户端的ssh client是1.5
@@ -187,13 +187,13 @@ Debian7 的ssh server版本是1.6 客户端的ssh client是1.5
 &lt;p&gt;好吧, 为了排查方便我切换到了root下, 我却不记得了. &lt;/p&gt;
 &lt;p&gt;切换到cache用户下 再次执行ssh-keygen &lt;/p&gt;
 &lt;p&gt;在使用ssh-keygen的时候 有一个提示引起了我的注意 &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;open&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cache&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;id_rsa&lt;/span&gt; &lt;span class="n"&gt;failed&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Permission&lt;/span&gt; &lt;span class="n"&gt;denied&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    open /home/cache/.ssh/id_rsa failed: Permission denied
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;为什么会Permission denied ? &lt;/p&gt;
 &lt;p&gt;果断查看家目录下的 .ssh 目录权限.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;drw&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="n"&gt;cache&lt;/span&gt; &lt;span class="n"&gt;cache&lt;/span&gt; &lt;span class="mi"&gt;4096&lt;/span&gt; &lt;span class="n"&gt;Feb&lt;/span&gt; &lt;span class="mi"&gt;27&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;03&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    drw-r--r-- 2 cache cache 4096 Feb 27 11:03 .ssh/
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -299,35 +299,35 @@ http://www.xxx.com/mobile/xxx/mobile.html?ref=www.xxi.com/&lt;/p&gt;
 
 &lt;p&gt;将此脚本给予 执行权限&lt;code&gt;chmod +x mobile_redirect.py&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;然后在squid.conf中增加&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;Debian&lt;/span&gt; &lt;span class="n"&gt;browser&lt;/span&gt; &lt;span class="n"&gt;Chrome&lt;/span&gt; 
-&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;Iphone&lt;/span&gt; &lt;span class="n"&gt;browser&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;iPhone&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;iPad&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;acl&lt;/span&gt; &lt;span class="n"&gt;Android&lt;/span&gt; &lt;span class="n"&gt;browser&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;Android&lt;/span&gt;
-&lt;span class="n"&gt;redirect_program&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;squidpath&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mobile_redirect&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
-&lt;span class="n"&gt;redirect_children&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;
-&lt;span class="n"&gt;redirector_access&lt;/span&gt; &lt;span class="n"&gt;allow&lt;/span&gt; &lt;span class="n"&gt;Debian&lt;/span&gt;
-&lt;span class="n"&gt;redirector_access&lt;/span&gt; &lt;span class="n"&gt;allow&lt;/span&gt; &lt;span class="n"&gt;Iphone&lt;/span&gt;
-&lt;span class="n"&gt;redirector_access&lt;/span&gt; &lt;span class="n"&gt;allow&lt;/span&gt; &lt;span class="n"&gt;Android&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;acl Debian browser Chrome 
+acl Iphone browser -i (iPhone|iPad)
+acl Android browser -i Android
+redirect_program /squidpath/mobile_redirect.py
+redirect_children 6
+redirector_access allow Debian
+redirector_access allow Iphone
+redirector_access allow Android
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;重启squid之后, 观察结果&lt;/p&gt;
 &lt;p&gt;客户端请求 www.xxx.com&lt;/p&gt;
 &lt;p&gt;squid 日志中&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mf"&gt;1381544425.298&lt;/span&gt;      &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="mf"&gt;14.23.156.2&lt;/span&gt; &lt;span class="n"&gt;TCP_MISS&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;302&lt;/span&gt; &lt;span class="mi"&gt;522&lt;/span&gt; &lt;span class="n"&gt;GET&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//www.xx.com/mobile/&lt;/span&gt;
-&lt;span class="n"&gt;xxx&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mobile&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;&lt;span class="n"&gt;ref&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//www.xxx.com/ - NONE/- -&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;1381544425.298      0 14.23.156.2 TCP_MISS/302 522 GET http://www.xx.com/mobile/
+xxx/mobile.html?ref=http://www.xxx.com/ - NONE/- -
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;客户端返回&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;HTTP&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;1.0&lt;/span&gt; &lt;span class="mi"&gt;302&lt;/span&gt; &lt;span class="n"&gt;Moved&lt;/span&gt; &lt;span class="n"&gt;Temporarily&lt;/span&gt;
-&lt;span class="nl"&gt;Server:&lt;/span&gt; &lt;span class="n"&gt;squid&lt;/span&gt;
-&lt;span class="nl"&gt;Date:&lt;/span&gt; &lt;span class="n"&gt;Sat&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;Oct&lt;/span&gt; &lt;span class="mi"&gt;2013&lt;/span&gt; &lt;span class="mo"&gt;02&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;37&lt;/span&gt; &lt;span class="n"&gt;GMT&lt;/span&gt;
-&lt;span class="n"&gt;Content&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Length&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-&lt;span class="nl"&gt;Location:&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//www.xx.com/mobile/xxx/mobile.html?ref=http://www.xxx.com/&lt;/span&gt;
-&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Cache&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;MISS&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="mf"&gt;0.&lt;/span&gt;&lt;span class="n"&gt;cnc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cache&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
-&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Cache&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Lookup&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;HIT&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="mf"&gt;0.&lt;/span&gt;&lt;span class="n"&gt;cnc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cache&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;
-&lt;span class="nl"&gt;Via:&lt;/span&gt; &lt;span class="mf"&gt;1.1&lt;/span&gt; &lt;span class="mf"&gt;0.&lt;/span&gt;&lt;span class="n"&gt;cnc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cache&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;squid&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="nl"&gt;Connection:&lt;/span&gt; &lt;span class="n"&gt;close&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;HTTP/1.0 302 Moved Temporarily
+Server: squid
+Date: Sat, 12 Oct 2013 02:19:37 GMT
+Content-Length: 0
+Location: http://www.xx.com/mobile/xxx/mobile.html?ref=http://www.xxx.com/
+X-Cache: MISS from 0.cnc.cache.xx.com
+X-Cache-Lookup: HIT from 0.cnc.cache.xx.com:80
+Via: 1.1 0.cnc.cache.xx.com:80 (squid)
+Connection: close
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -354,28 +354,28 @@ Stunnel 服务器主要执行两个功能：
 &lt;p&gt;在make install 的时候会要求你输入一些信息,用来生成证书, 按照提示输入即可&lt;/p&gt;
 &lt;h2&gt;配置&lt;/h2&gt;
 &lt;h3&gt;这里仅作为proxy&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;syslog&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;yes&lt;/span&gt;  &lt;span class="err"&gt;#使用&lt;/span&gt;&lt;span class="n"&gt;syslog&lt;/span&gt;&lt;span class="err"&gt;日志&lt;/span&gt;
-&lt;span class="n"&gt;fips&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt;  &lt;span class="err"&gt;#关闭&lt;/span&gt;&lt;span class="n"&gt;fips&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;如果你支持&lt;/span&gt;&lt;span class="n"&gt;fips&lt;/span&gt; &lt;span class="err"&gt;默认就好了&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;默认配置文件里面是没有这个的&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;如果在启动&lt;/span&gt;&lt;span class="n"&gt;stunnel&lt;/span&gt;&lt;span class="err"&gt;服务的时候&lt;/span&gt; &lt;span class="err"&gt;提示&lt;/span&gt;&lt;span class="n"&gt;fips&lt;/span&gt; &lt;span class="err"&gt;不支持那么就关闭它&lt;/span&gt;
-&lt;span class="n"&gt;cert&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;youtpath&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;stunnel&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;stunnel&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;stunnel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pem&lt;/span&gt;
-&lt;span class="err"&gt;然后将&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;syslog = yes  #使用syslog日志
+fips = no  #关闭fips , 如果你支持fips 默认就好了, 默认配置文件里面是没有这个的, 如果在启动stunnel服务的时候 提示fips 不支持那么就关闭它
+cert = /youtpath/stunnel/etc/stunnel/stunnel.pem
+然后将
 
-&lt;span class="p"&gt;;[&lt;/span&gt;&lt;span class="n"&gt;pop3s&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;accept&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;995&lt;/span&gt;
-&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;110&lt;/span&gt;
+;[pop3s]
+;accept = 995
+;connect = 110
 
-&lt;span class="p"&gt;;[&lt;/span&gt;&lt;span class="n"&gt;imaps&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;accept&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;993&lt;/span&gt;
-&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;143&lt;/span&gt;
+;[imaps]
+;accept = 993
+;connect = 143
 
-&lt;span class="p"&gt;;[&lt;/span&gt;&lt;span class="n"&gt;ssmtp&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;accept&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;465&lt;/span&gt;
-&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;25&lt;/span&gt;
-&lt;span class="err"&gt;注释掉&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;注释符号&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;
+;[ssmtp]
+;accept = 465
+;connect = 25
+注释掉, 注释符号 ;
 
-&lt;span class="err"&gt;新增加&lt;/span&gt;
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;proxy&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="n"&gt;accept&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;8081&lt;/span&gt;
-&lt;span class="n"&gt;connect&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;8082&lt;/span&gt;
+新增加
+[proxy]
+accept = 8081
+connect = 8082
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -393,124 +393,88 @@ Stunnel 服务器主要执行两个功能：
 这样本地的http请求就被加密了, 上层运营商无法过滤你http请求了.可以畅快的访问各个站点&lt;/p&gt;
 &lt;p&gt;我自己为了方便, 将上面的命令写到开机启动里面, 
 这样每次开机就自动监听了本地的8082端口,我需要使用代理的时候 只要在浏览器上面切换就好了,&lt;/p&gt;
-&lt;p&gt;我的浏览器是google-chrome 用的代理工具是SwitchySharp&lt;/p&gt;</summary><category term="代理"></category><category term="安全"></category><category term="翻墙"></category><category term="http"></category></entry><entry><title>Kangle 做HTTP匿名代理</title><link href="http://eleveni386.7axu.com/posts/2013/05/17/kangle-zuo-httpni-ming-dai-li/" rel="alternate"></link><updated>2013-05-17T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-05-17:posts/2013/05/17/kangle-zuo-httpni-ming-dai-li/</id><summary type="html">&lt;blockquote&gt;
-&lt;p&gt;kangle web服务器（简称：kangle）是一款跨平台、功能强大、安全稳定、
-易操作的高性能web服务器和反向代理服务器软件。除此：kangle也是一款专为做虚拟主机
-研发的web服务器。实现虚拟主机独立进程、独立身份运行。用户之间安全隔离，一个用户
-出问题不影响其他用户。安全支持php、asp、asp·net、java、ruby等多种动态开发语言。
-                                                        百度百科&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;安装&lt;/h2&gt;
-&lt;p&gt;下载源码
-  &lt;code&gt;wget http://www.kanglesoft.com/download/src/kangle-3.2.3.tar.gz&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;编译环境&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;apt-get install build-essential&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;安装pcre库&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;apt-get install libpcre++-dev&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;安装ssl库&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;apt-get install libssl-dev&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;编译&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;configure&lt;/span&gt; &lt;span class="err"&gt;–&lt;/span&gt;&lt;span class="n"&gt;prefix&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;kangel&lt;/span&gt;
-&lt;span class="n"&gt;make&lt;/span&gt; 
-&lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h2&gt;配置&lt;/h2&gt;
-&lt;p&gt;安装完之后,在./kangle/etc/下有一个config.xml 文件&lt;/p&gt;
-&lt;p&gt;可以在这里修改 &lt;em&gt;http监听端口&lt;/em&gt; 和&lt;em&gt;web管理端口&lt;/em&gt;, 以及其他的选项,
-当然也可以直接启动kangle然后通过web管理界面进行选项修改&lt;/p&gt;
-&lt;p&gt;设置匿名代理&lt;/p&gt;
-&lt;p&gt;在web控制台–请求控制–插入一条新的规则&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="/image/1368197336.png" /&gt;&lt;/p&gt;
-&lt;p&gt;在&lt;strong&gt;可用的标记模块&lt;/strong&gt;中选择&lt;strong&gt;flag&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="/image/1368197369.png" /&gt;&lt;/p&gt;
-&lt;p&gt;然后勾选&lt;strong&gt;no_x_forared_for&lt;/strong&gt;,点击提交&lt;/p&gt;
-&lt;h2&gt;结语&lt;/h2&gt;
-&lt;p&gt;设置本机浏览器的代理地址为kangle地址之后
-访问www.ip138.com会发现客户端的ip变成了代理服务器的ip, 实现了匿名访问&lt;/p&gt;
-&lt;p&gt;其实做这种正向代理, 用&lt;strong&gt;nginx&lt;/strong&gt; 也是完全可以的.没必要用这种不是很信任的软件&lt;/p&gt;</summary><category term="代理"></category><category term="翻墙"></category></entry><entry><title>网卡中断绑定</title><link href="http://eleveni386.7axu.com/posts/2013/04/25/wang-qia-zhong-duan-bang-ding/" rel="alternate"></link><updated>2013-04-25T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-04-25:posts/2013/04/25/wang-qia-zhong-duan-bang-ding/</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;我的浏览器是google-chrome 用的代理工具是SwitchySharp&lt;/p&gt;</summary><category term="代理"></category><category term="安全"></category><category term="翻墙"></category><category term="http"></category></entry><entry><title>网卡中断绑定</title><link href="http://eleveni386.7axu.com/posts/2013/04/25/wang-qia-zhong-duan-bang-ding/" rel="alternate"></link><updated>2013-04-25T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-04-25:posts/2013/04/25/wang-qia-zhong-duan-bang-ding/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;中断亲和力是指将一个或多个中断源绑定到特定的 CPU 上运行&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;操作&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://liuxin1982.blog.51cto.com/4338970/1019825"&gt;参考&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;今天我是来吐槽该文中的一个shell脚本&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;# setting up irq affinity according to /proc/interrupts&lt;/span&gt;
-&lt;span class="cp"&gt;# 2008-11-25 Robert Olsson&lt;/span&gt;
-&lt;span class="cp"&gt;# 2009-02-19 updated by Jesse Brandeburg&lt;/span&gt;
-&lt;span class="cp"&gt;#&lt;/span&gt;
-&lt;span class="cp"&gt;# &amp;gt; Dave Miller:&lt;/span&gt;
-&lt;span class="cp"&gt;# (To get consistent naming in /proc/interrups)&lt;/span&gt;
-&lt;span class="cp"&gt;# I would suggest that people use something like:&lt;/span&gt;
-&lt;span class="cp"&gt;# char buf[IFNAMSIZ+6];&lt;/span&gt;
-&lt;span class="cp"&gt;#&lt;/span&gt;
-&lt;span class="cp"&gt;# sprintf(buf, &amp;quot;%s-%s-%d&amp;quot;,&lt;/span&gt;
-&lt;span class="cp"&gt;#         netdev-&amp;gt;name,&lt;/span&gt;
-&lt;span class="cp"&gt;#  (RX_INTERRUPT ? &amp;quot;rx&amp;quot; : &amp;quot;tx&amp;quot;),&lt;/span&gt;
-&lt;span class="cp"&gt;#  queue-&amp;gt;index);&lt;/span&gt;
-&lt;span class="cp"&gt;#&lt;/span&gt;
-&lt;span class="cp"&gt;#  Assuming a device with two RX and TX queues.&lt;/span&gt;
-&lt;span class="cp"&gt;#  This script will assign: &lt;/span&gt;
-&lt;span class="cp"&gt;#&lt;/span&gt;
-&lt;span class="cp"&gt;# eth0-rx-0  CPU0&lt;/span&gt;
-&lt;span class="cp"&gt;# eth0-rx-1  CPU1&lt;/span&gt;
-&lt;span class="cp"&gt;# eth0-tx-0  CPU0&lt;/span&gt;
-&lt;span class="cp"&gt;# eth0-tx-1  CPU1&lt;/span&gt;
-&lt;span class="cp"&gt;#&lt;/span&gt;
-&lt;span class="n"&gt;set_affinity&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;MASK&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;VEC&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;%s mask=%X for /proc/irq/%d/smp_affinity&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;DEV&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;MASK&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;IRQ&lt;/span&gt;
-    &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;%X&amp;quot;&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;MASK&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;proc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;irq&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;IRQ&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;smp_affinity&lt;/span&gt;
-    &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;DEV&lt;/span&gt; &lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;MASK&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;proc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;irq&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;IRQ&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;smp_affinity&lt;/span&gt;
-    &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;MASK&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;proc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;irq&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;IRQ&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;smp_affinity&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$1&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt;
-&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Description:&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;    This script attempts to bind each queue of a multi-queue NIC&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;    to the same numbered core, ie tx0¦rx0 --&amp;gt; cpu0, tx1¦rx1 --&amp;gt; cpu1&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;usage:&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;    $0 eth0 [eth1 eth2 eth3]&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;fi&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; setting up irq affinity according to /proc/interrupts&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; 2008-11-25 Robert Olsson&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; 2009-02-19 updated by Jesse Brandeburg&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; &amp;gt; Dave Miller:&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; (To get consistent naming in /proc/interrups)&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; I would suggest that people use something like:&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; char buf[IFNAMSIZ+6];&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; sprintf(buf, &amp;quot;%s-%s-%d&amp;quot;,&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt;         netdev-&amp;gt;name,&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt;  (RX_INTERRUPT ? &amp;quot;rx&amp;quot; : &amp;quot;tx&amp;quot;),&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt;  queue-&amp;gt;index);&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt;  Assuming a device with two RX and TX queues.&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt;  This script will assign: &lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; eth0-rx-0  CPU0&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; eth0-rx-1  CPU1&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; eth0-tx-0  CPU0&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; eth0-tx-1  CPU1&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;set_affinity()&lt;/span&gt;
+&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;    MASK=&lt;/span&gt;&lt;span class="p"&gt;$((&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="err"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;VEC&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;    printf &amp;quot;%s mask=%X for /proc/irq/%d/smp_affinity\n&amp;quot; &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;DEV&lt;/span&gt;&lt;span class="x"&gt; &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;MASK&lt;/span&gt;&lt;span class="x"&gt; &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;IRQ&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;    printf &amp;quot;%X&amp;quot; &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;MASK&lt;/span&gt;&lt;span class="x"&gt; &amp;gt; /proc/irq/&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;IRQ&lt;/span&gt;&lt;span class="x"&gt;/smp_affinity&lt;/span&gt;
+&lt;span class="x"&gt;    &lt;/span&gt;&lt;span class="cp"&gt;#&lt;/span&gt;&lt;span class="nf"&gt;echo&lt;/span&gt;&lt;span class="x"&gt; &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;DEV&lt;/span&gt;&lt;span class="x"&gt; mask=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;MASK&lt;/span&gt;&lt;span class="x"&gt; for /proc/irq/&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;IRQ&lt;/span&gt;&lt;span class="x"&gt;/smp_affinity&lt;/span&gt;
+&lt;span class="x"&gt;    &lt;/span&gt;&lt;span class="cp"&gt;#&lt;/span&gt;&lt;span class="nf"&gt;echo&lt;/span&gt;&lt;span class="x"&gt; &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;MASK&lt;/span&gt;&lt;span class="x"&gt; &amp;gt; /proc/irq/&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;IRQ&lt;/span&gt;&lt;span class="x"&gt;/smp_affinity&lt;/span&gt;
+&lt;span class="x"&gt;}&lt;/span&gt;
+&lt;span class="x"&gt;if [ &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt;1&amp;quot; = &amp;quot;&amp;quot; ] ; then&lt;/span&gt;
+&lt;span class="x"&gt;echo &amp;quot;Description:&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;echo &amp;quot;    This script attempts to bind each queue of a multi-queue NIC&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;echo &amp;quot;    to the same numbered core, ie tx0¦rx0 --&amp;gt; cpu0, tx1¦rx1 --&amp;gt; cpu1&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;echo &amp;quot;usage:&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;echo &amp;quot;    &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt;0 eth0 [eth1 eth2 eth3]&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;fi&lt;/span&gt;
 
-&lt;span class="cp"&gt;# check for irqbalance running&lt;/span&gt;
-&lt;span class="n"&gt;IRQBALANCE_ON&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;ps&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="err"&gt;¦&lt;/span&gt; &lt;span class="n"&gt;grep&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="n"&gt;grep&lt;/span&gt; &lt;span class="err"&gt;¦&lt;/span&gt; &lt;span class="n"&gt;grep&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt; &lt;span class="n"&gt;irqbalance&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$IRQBALANCE_ON&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt;
-&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; WARNING: irqbalance is running and will&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;          likely override this script&amp;#39;s affinitization.&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;          Please stop the irqbalance service and/or execute&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;          &amp;#39;killall irqbalance&amp;#39;&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;fi&lt;/span&gt;
-&lt;span class="cp"&gt;#&lt;/span&gt;
-&lt;span class="cp"&gt;# Set up the desired devices.&lt;/span&gt;
-&lt;span class="cp"&gt;#&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;DEV&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;
-&lt;span class="k"&gt;do&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="kt"&gt;DIR&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;rx&lt;/span&gt; &lt;span class="n"&gt;tx&lt;/span&gt; &lt;span class="n"&gt;TxRx&lt;/span&gt;
-&lt;span class="k"&gt;do&lt;/span&gt;
-    &lt;span class="n"&gt;MAX&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;grep&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;DEV&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="kt"&gt;DIR&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;proc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;interrupts&lt;/span&gt; &lt;span class="err"&gt;¦&lt;/span&gt; &lt;span class="n"&gt;wc&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$MAX&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt;
-    &lt;span class="n"&gt;MAX&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;egrep&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$DEV:.*$DIR&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;proc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;interrupts&lt;/span&gt; &lt;span class="err"&gt;¦&lt;/span&gt; &lt;span class="n"&gt;wc&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;
-    &lt;span class="n"&gt;fi&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$MAX&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt;
-    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="kt"&gt;DIR&lt;/span&gt; &lt;span class="n"&gt;vectors&lt;/span&gt; &lt;span class="n"&gt;found&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;DEV&lt;/span&gt;
-    &lt;span class="k"&gt;continue&lt;/span&gt;
-    &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-    &lt;span class="n"&gt;fi&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;VEC&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;seq&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;MAX&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;
-     &lt;span class="k"&gt;do&lt;/span&gt;
-        &lt;span class="n"&gt;IRQ&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;proc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;interrupts&lt;/span&gt; &lt;span class="err"&gt;¦&lt;/span&gt; &lt;span class="n"&gt;grep&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;DEV&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="kt"&gt;DIR&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;VEC&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;$&amp;quot;&lt;/span&gt;  &lt;span class="err"&gt;¦&lt;/span&gt; &lt;span class="n"&gt;cut&lt;/span&gt;  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f1&lt;/span&gt; &lt;span class="err"&gt;¦&lt;/span&gt; &lt;span class="n"&gt;sed&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;s/ //g&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;  &lt;span class="s"&gt;&amp;quot;$IRQ&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt;
-        &lt;span class="n"&gt;set_affinity&lt;/span&gt;
-        &lt;span class="k"&gt;else&lt;/span&gt;
-        &lt;span class="n"&gt;IRQ&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;proc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;interrupts&lt;/span&gt; &lt;span class="err"&gt;¦&lt;/span&gt; &lt;span class="n"&gt;egrep&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;DEV&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;VEC&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="kt"&gt;DIR&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;$&amp;quot;&lt;/span&gt;  &lt;span class="err"&gt;¦&lt;/span&gt; &lt;span class="n"&gt;cut&lt;/span&gt;  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f1&lt;/span&gt; &lt;span class="err"&gt;¦&lt;/span&gt; &lt;span class="n"&gt;sed&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;s/ //g&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;  &lt;span class="s"&gt;&amp;quot;$IRQ&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt;
-            &lt;span class="n"&gt;set_affinity&lt;/span&gt;
-        &lt;span class="n"&gt;fi&lt;/span&gt;
-        &lt;span class="n"&gt;fi&lt;/span&gt;
-    &lt;span class="n"&gt;done&lt;/span&gt;
-&lt;span class="n"&gt;done&lt;/span&gt;
-&lt;span class="n"&gt;done&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; check for irqbalance running&lt;/span&gt;
+&lt;span class="x"&gt;IRQBALANCE_ON=`ps ax ¦ grep -v grep ¦ grep -q irqbalance; echo &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt;?`&lt;/span&gt;
+&lt;span class="x"&gt;if [ &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;IRQBALANCE_ON&lt;/span&gt;&lt;span class="x"&gt;&amp;quot; == &amp;quot;0&amp;quot; ] ; then&lt;/span&gt;
+&lt;span class="x"&gt;echo &amp;quot; WARNING: irqbalance is running and will&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;echo &amp;quot;          likely override this script&amp;#39;s affinitization.&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;echo &amp;quot;          Please stop the irqbalance service and/or execute&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;echo &amp;quot;          &amp;#39;killall irqbalance&amp;#39;&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;fi&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Set up the desired devices.&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;for DEV in &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt;*&lt;/span&gt;
+&lt;span class="x"&gt;do&lt;/span&gt;
+&lt;span class="x"&gt;for DIR in rx tx TxRx&lt;/span&gt;
+&lt;span class="x"&gt;do&lt;/span&gt;
+&lt;span class="x"&gt;    MAX=`grep &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;DEV&lt;/span&gt;&lt;span class="x"&gt;-&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;DIR&lt;/span&gt;&lt;span class="x"&gt; /proc/interrupts ¦ wc -l`&lt;/span&gt;
+&lt;span class="x"&gt;    if [ &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;MAX&lt;/span&gt;&lt;span class="x"&gt;&amp;quot; == &amp;quot;0&amp;quot; ] ; then&lt;/span&gt;
+&lt;span class="x"&gt;    MAX=`egrep -i &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;DEV&lt;/span&gt;&lt;span class="x"&gt;:.*&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;DIR&lt;/span&gt;&lt;span class="x"&gt;&amp;quot; /proc/interrupts ¦ wc -l`&lt;/span&gt;
+&lt;span class="x"&gt;    fi&lt;/span&gt;
+&lt;span class="x"&gt;    if [ &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;MAX&lt;/span&gt;&lt;span class="x"&gt;&amp;quot; == &amp;quot;0&amp;quot; ] ; then&lt;/span&gt;
+&lt;span class="x"&gt;    echo no &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;DIR&lt;/span&gt;&lt;span class="x"&gt; vectors found on &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;DEV&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;    continue&lt;/span&gt;
+&lt;span class="x"&gt;    &lt;/span&gt;&lt;span class="cp"&gt;#&lt;/span&gt;&lt;span class="nf"&gt;exit&lt;/span&gt;&lt;span class="x"&gt; 1&lt;/span&gt;
+&lt;span class="x"&gt;    fi&lt;/span&gt;
+&lt;span class="x"&gt;    for VEC in `seq 0 1 &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;MAX&lt;/span&gt;&lt;span class="x"&gt;`&lt;/span&gt;
+&lt;span class="x"&gt;     do&lt;/span&gt;
+&lt;span class="x"&gt;        IRQ=`cat /proc/interrupts ¦ grep -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;DEV&lt;/span&gt;&lt;span class="x"&gt;-&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;DIR&lt;/span&gt;&lt;span class="x"&gt;-&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;VEC&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;  ¦ cut  -d:  -f1 ¦ sed &amp;quot;s/ //g&amp;quot;`&lt;/span&gt;
+&lt;span class="x"&gt;        if [ -n  &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;IRQ&lt;/span&gt;&lt;span class="x"&gt;&amp;quot; ]; then&lt;/span&gt;
+&lt;span class="x"&gt;        set_affinity&lt;/span&gt;
+&lt;span class="x"&gt;        else&lt;/span&gt;
+&lt;span class="x"&gt;        IRQ=`cat /proc/interrupts ¦ egrep -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;DEV&lt;/span&gt;&lt;span class="x"&gt;:v&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;VEC&lt;/span&gt;&lt;span class="x"&gt;-&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;DIR&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;  ¦ cut  -d:  -f1 ¦ sed &amp;quot;s/ //g&amp;quot;`&lt;/span&gt;
+&lt;span class="x"&gt;        if [ -n  &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;IRQ&lt;/span&gt;&lt;span class="x"&gt;&amp;quot; ]; then&lt;/span&gt;
+&lt;span class="x"&gt;            set_affinity&lt;/span&gt;
+&lt;span class="x"&gt;        fi&lt;/span&gt;
+&lt;span class="x"&gt;        fi&lt;/span&gt;
+&lt;span class="x"&gt;    done&lt;/span&gt;
+&lt;span class="x"&gt;done&lt;/span&gt;
+&lt;span class="x"&gt;done&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -616,7 +580,7 @@ Stunnel 服务器主要执行两个功能：
 &lt;p&gt;附 参考资料:&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://blog.netzhou.net/?p=181"&gt;http://blog.netzhou.net/?p=181&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.ibm.com/developerworks/cn/linux/l-cn-linuxkernelint/"&gt;http://www.ibm.com/developerworks/cn/linux/l-cn-linuxkernelint/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.igigo.net/archives/231"&gt;http://www.igigo.net/archives/231&lt;/a&gt;&lt;/p&gt;</summary><category term="脚本"></category><category term="运维"></category></entry><entry><title>记. 一次ddos攻击,导致服务器死机</title><link href="http://eleveni386.7axu.com/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/" rel="alternate"></link><updated>2013-03-29T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-03-29:posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/</id><summary type="html">&lt;h2&gt;背景&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://www.igigo.net/archives/231"&gt;http://www.igigo.net/archives/231&lt;/a&gt;&lt;/p&gt;</summary><category term="脚本"></category><category term="运维"></category></entry><entry><title>记. 一次ddos攻击,导致服务器死机</title><link href="http://eleveni386.7axu.com/posts/2013/03/29/ji-yi-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/" rel="alternate"></link><updated>2013-03-29T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-03-29:posts/2013/03/29/ji-yi-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/</id><summary type="html">&lt;h2&gt;背景&lt;/h2&gt;
 &lt;p&gt;某年某月某天,eleven所属单位 被未知生物ddos攻击, 攻击时间 凌晨00:15 左右, 
 eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上面命令找出服务器弱点.
 同时还原攻击现场,&lt;/p&gt;
@@ -660,162 +624,4 @@ kern.log, syslog.log, message.log, debug.log 都没有任何信息,仅有一条 
 &lt;p&gt;到dell官方下载最新的bnx2驱动. 更新驱动之后,继续测试.. 这时不断怎么攻击,
 都无法将网卡打死. 只能造成业务无法正常访问而已.&lt;/p&gt;
 &lt;p&gt;没有做软中断的负载均衡.当攻击的时候网卡中断都集中在cpu0上,正常的数据包都被
-攻击数据包给淹没了..自然无法提供服务.&lt;/p&gt;</summary><category term="安全"></category><category term="运维"></category><category term="ddos"></category></entry><entry><title>nginx 双机热备-实战</title><link href="http://eleveni386.7axu.com/posts/2012/10/18/nginx-shuang-ji-re-bei-shi-zhan/" rel="alternate"></link><updated>2012-10-18T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2012-10-18:posts/2012/10/18/nginx-shuang-ji-re-bei-shi-zhan/</id><summary type="html">&lt;p&gt;上次发布了&lt;em&gt;nginx&lt;/em&gt;做负载均衡器使用, 这次在原有的基础上加上了 &lt;strong&gt;双机热备&lt;/strong&gt;
-另外,此篇文章做为引子,为的是引导使用&lt;strong&gt;keepalived&lt;/strong&gt;文中的配置,请酌情修改
-这只是一个简单的&lt;strong&gt;keepalived&lt;/strong&gt;应用, 关于文中使用到的&lt;strong&gt;keepalived&lt;/strong&gt;参数很少, 
-更多的内容看blog中的keepalived配置文件详解 那篇文章&lt;/p&gt;
-&lt;p&gt;首先上一个 &lt;strong&gt;nginx高可用&lt;/strong&gt; 架构图&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="/image/2012-10-18-163233-300x225.png" /&gt;&lt;/p&gt;
-&lt;h2&gt;配置&lt;/h2&gt;
-&lt;p&gt;总共两台机器 A , B&lt;/p&gt;
-&lt;p&gt;在A,B机器上面 配置好 nginx调度器, 相同的配置.&lt;/p&gt;
-&lt;p&gt;A nginx 跑在 eth0 192.168.2.12 上&lt;/p&gt;
-&lt;p&gt;B nginx 跑在 eth0 192.168.2.11 上&lt;/p&gt;
-&lt;p&gt;在A,B机器上面 配置好 varnish, 相同配置.&lt;/p&gt;
-&lt;p&gt;A varnish 跑在eth1 192.168.1.12 的8080端口上&lt;/p&gt;
-&lt;p&gt;B varnish 跑在eth1 192.168.1.11 的8080端口上&lt;/p&gt;
-&lt;p&gt;nginx的配置.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;upstream&lt;/span&gt; &lt;span class="n"&gt;backend&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="mf"&gt;192.168.1.12&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;8080&lt;/span&gt; &lt;span class="n"&gt;weight&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt; &lt;span class="n"&gt;fail_timeout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="mf"&gt;192.168.1.11&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;8080&lt;/span&gt; &lt;span class="n"&gt;weight&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt; &lt;span class="n"&gt;fail_timeout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;两边nginx一样配置. 平衡权重,实现负载均衡&lt;/p&gt;
-&lt;p&gt;安装&lt;strong&gt;keepalived&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;安装过程很简单, 经典的编译 三部曲&lt;/p&gt;
-&lt;p&gt;如此安装是通用的.. 如果你不需要lvs功能, 你可以将lvs去掉&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;./configure –prefix=/opt/keepalived –disable-lvs-syncd –disable-lvs&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;cp 编译目录/keepalived/etc/rc.d/init.d/keepalived /etc/init.d/&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;接下来是重点部分, 就是配置..&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;Configuration&lt;/span&gt; &lt;span class="n"&gt;File&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;keepalived&lt;/span&gt;
-
-&lt;span class="n"&gt;global_defs&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="err"&gt;#全局配置&lt;/span&gt;
-&lt;span class="n"&gt;router_id&lt;/span&gt; &lt;span class="n"&gt;nginx_ha&lt;/span&gt; &lt;span class="err"&gt;#唯一名称&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="n"&gt;vrrp_script&lt;/span&gt; &lt;span class="n"&gt;check&lt;/span&gt; &lt;span class="n"&gt;httpcheck&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="err"&gt;#实例脚本&lt;/span&gt;
-&lt;span class="n"&gt;script&lt;/span&gt; &lt;span class="err"&gt;“&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;keepalived&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;keepalived&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;check_http&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt; &lt;span class="err"&gt;#脚本路径&lt;/span&gt;
-&lt;span class="n"&gt;interval&lt;/span&gt; &lt;span class="mi"&gt;60&lt;/span&gt; &lt;span class="err"&gt;#间隔&lt;/span&gt;
-&lt;span class="n"&gt;weight&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt; &lt;span class="err"&gt;#权重&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="n"&gt;vrrp_instance&lt;/span&gt; &lt;span class="n"&gt;VI_2&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;VRRP&lt;/span&gt;&lt;span class="err"&gt;实例&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;instance&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="n"&gt;BACKUP&lt;/span&gt; &lt;span class="err"&gt;#初始状态&lt;/span&gt;
-&lt;span class="n"&gt;interface&lt;/span&gt; &lt;span class="n"&gt;eth0&lt;/span&gt; &lt;span class="err"&gt;#网络接口&lt;/span&gt;
-&lt;span class="n"&gt;virtual_router_id&lt;/span&gt; &lt;span class="mi"&gt;60&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;VRID&lt;/span&gt;&lt;span class="err"&gt;，这里非常重要，相同的&lt;/span&gt;&lt;span class="n"&gt;VRID&lt;/span&gt;&lt;span class="err"&gt;为一个组，他将决定多播的&lt;/span&gt;&lt;span class="n"&gt;MAC&lt;/span&gt;&lt;span class="err"&gt;地址&lt;/span&gt;
-&lt;span class="cp"&gt;#nopreempt #设置不抢占，这里只能设置在state为backup的节点上，而且这个节点的优先级必须别另外的高&lt;/span&gt;
-&lt;span class="n"&gt;priority&lt;/span&gt; &lt;span class="mi"&gt;150&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="err"&gt;优先级&lt;/span&gt;
-&lt;span class="n"&gt;advert_int&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="err"&gt;检查间隔，默认为&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="err"&gt;秒&lt;/span&gt;
-&lt;span class="n"&gt;notify_master&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;keepalived&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;keepalived&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;master&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="err"&gt;#当它是&lt;/span&gt;&lt;span class="n"&gt;master&lt;/span&gt;&lt;span class="err"&gt;时&lt;/span&gt; &lt;span class="err"&gt;运行的脚本&lt;/span&gt;
-&lt;span class="n"&gt;notify_backup&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;keepalived&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;keepalived&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;backup&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="err"&gt;#当它是&lt;/span&gt;&lt;span class="n"&gt;backup&lt;/span&gt;&lt;span class="err"&gt;时&lt;/span&gt; &lt;span class="err"&gt;运行的脚本&lt;/span&gt;
-&lt;span class="n"&gt;virtual_ipaddress&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;VIP&lt;/span&gt;
-&lt;span class="mf"&gt;192.168.4.3&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;24&lt;/span&gt; &lt;span class="n"&gt;dev&lt;/span&gt; &lt;span class="n"&gt;eth0&lt;/span&gt; &lt;span class="n"&gt;scope&lt;/span&gt; &lt;span class="n"&gt;global&lt;/span&gt; &lt;span class="n"&gt;label&lt;/span&gt; &lt;span class="n"&gt;eth0&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="n"&gt;authentication&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="err"&gt;#设置认证&lt;/span&gt;
-&lt;span class="n"&gt;auth_type&lt;/span&gt; &lt;span class="n"&gt;PASS&lt;/span&gt; &lt;span class="err"&gt;#认证类型&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="err"&gt;可以是&lt;/span&gt;&lt;span class="n"&gt;PASS&lt;/span&gt;&lt;span class="err"&gt;或&lt;/span&gt;&lt;span class="n"&gt;AH&lt;/span&gt;&lt;span class="err"&gt;两种认证方式&lt;/span&gt;
-&lt;span class="n"&gt;auth_pass&lt;/span&gt; &lt;span class="o"&gt;***&lt;/span&gt; &lt;span class="err"&gt;#认证密码&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="n"&gt;track_script&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="err"&gt;在实例&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vrrp_instance&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;里面引用，有点类似脚本里面的函数引用一样：先定义，后引用函数名&lt;/span&gt;
-&lt;span class="n"&gt;httpcheck&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;同样的配置在B机器也配置一份,&lt;/p&gt;
-&lt;p&gt;最后在A机器上启动 &lt;code&gt;/etc/init.d/keepalived&lt;/code&gt;&lt;/p&gt;
-&lt;h3&gt;观察日志&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Starting&lt;/span&gt; &lt;span class="n"&gt;Keepalived&lt;/span&gt; &lt;span class="n"&gt;v1&lt;/span&gt;&lt;span class="mf"&gt;.2.2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2012&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Starting&lt;/span&gt; &lt;span class="n"&gt;Healthcheck&lt;/span&gt; &lt;span class="n"&gt;child&lt;/span&gt; &lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5837&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_vrrp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Registering&lt;/span&gt; &lt;span class="n"&gt;Kernel&lt;/span&gt; &lt;span class="n"&gt;netlink&lt;/span&gt; &lt;span class="n"&gt;reflector&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_vrrp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Registering&lt;/span&gt; &lt;span class="n"&gt;Kernel&lt;/span&gt; &lt;span class="n"&gt;netlink&lt;/span&gt; &lt;span class="n"&gt;command&lt;/span&gt; &lt;span class="n"&gt;channel&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_vrrp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Registering&lt;/span&gt; &lt;span class="n"&gt;gratutious&lt;/span&gt; &lt;span class="n"&gt;ARP&lt;/span&gt; &lt;span class="n"&gt;shared&lt;/span&gt; &lt;span class="n"&gt;channel&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Starting&lt;/span&gt; &lt;span class="n"&gt;VRRP&lt;/span&gt; &lt;span class="n"&gt;child&lt;/span&gt; &lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5839&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;kernel&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;IPVS&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Registered&lt;/span&gt; &lt;span class="n"&gt;protocols&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;UDP&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;AH&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ESP&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;kernel&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;IPVS&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Connection&lt;/span&gt; &lt;span class="n"&gt;hash&lt;/span&gt; &lt;span class="n"&gt;table&lt;/span&gt; &lt;span class="n"&gt;configured&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4096&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memory&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="n"&gt;Kbytes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;kernel&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;IPVS&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ipvs&lt;/span&gt; &lt;span class="n"&gt;loaded&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_healthcheckers&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Registering&lt;/span&gt; &lt;span class="n"&gt;Kernel&lt;/span&gt; &lt;span class="n"&gt;netlink&lt;/span&gt; &lt;span class="n"&gt;reflector&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_healthcheckers&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Registering&lt;/span&gt; &lt;span class="n"&gt;Kernel&lt;/span&gt; &lt;span class="n"&gt;netlink&lt;/span&gt; &lt;span class="n"&gt;command&lt;/span&gt; &lt;span class="n"&gt;channel&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_healthcheckers&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Opening&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;keepalived&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;keepalived&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;keepalived&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_vrrp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Opening&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;keepalived&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;keepalived&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;keepalived&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_vrrp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Configuration&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;36252&lt;/span&gt; &lt;span class="n"&gt;Bytes&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_vrrp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Using&lt;/span&gt; &lt;span class="n"&gt;LinkWatch&lt;/span&gt; &lt;span class="n"&gt;kernel&lt;/span&gt; &lt;span class="n"&gt;netlink&lt;/span&gt; &lt;span class="n"&gt;reflector&lt;/span&gt;&lt;span class="err"&gt;…&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_healthcheckers&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Configuration&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6271&lt;/span&gt; &lt;span class="n"&gt;Bytes&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_healthcheckers&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Using&lt;/span&gt; &lt;span class="n"&gt;LinkWatch&lt;/span&gt; &lt;span class="n"&gt;kernel&lt;/span&gt; &lt;span class="n"&gt;netlink&lt;/span&gt; &lt;span class="n"&gt;reflector&lt;/span&gt;&lt;span class="err"&gt;…&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_vrrp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;VRRP_Instance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;VI_2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Entering&lt;/span&gt; &lt;span class="n"&gt;BACKUP&lt;/span&gt; &lt;span class="n"&gt;STATE&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;同样的在B机器启动 keepalived&lt;/p&gt;
-&lt;h3&gt;观察日志&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Starting&lt;/span&gt; &lt;span class="n"&gt;Keepalived&lt;/span&gt; &lt;span class="n"&gt;v1&lt;/span&gt;&lt;span class="mf"&gt;.2.2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2012&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Starting&lt;/span&gt; &lt;span class="n"&gt;Healthcheck&lt;/span&gt; &lt;span class="n"&gt;child&lt;/span&gt; &lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5837&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_vrrp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Registering&lt;/span&gt; &lt;span class="n"&gt;Kernel&lt;/span&gt; &lt;span class="n"&gt;netlink&lt;/span&gt; &lt;span class="n"&gt;reflector&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_vrrp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Registering&lt;/span&gt; &lt;span class="n"&gt;Kernel&lt;/span&gt; &lt;span class="n"&gt;netlink&lt;/span&gt; &lt;span class="n"&gt;command&lt;/span&gt; &lt;span class="n"&gt;channel&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_vrrp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Registering&lt;/span&gt; &lt;span class="n"&gt;gratutious&lt;/span&gt; &lt;span class="n"&gt;ARP&lt;/span&gt; &lt;span class="n"&gt;shared&lt;/span&gt; &lt;span class="n"&gt;channel&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Starting&lt;/span&gt; &lt;span class="n"&gt;VRRP&lt;/span&gt; &lt;span class="n"&gt;child&lt;/span&gt; &lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5839&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;kernel&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;IPVS&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Registered&lt;/span&gt; &lt;span class="n"&gt;protocols&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TCP&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;UDP&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;AH&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ESP&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;kernel&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;IPVS&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Connection&lt;/span&gt; &lt;span class="n"&gt;hash&lt;/span&gt; &lt;span class="n"&gt;table&lt;/span&gt; &lt;span class="n"&gt;configured&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4096&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memory&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="n"&gt;Kbytes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;kernel&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;IPVS&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ipvs&lt;/span&gt; &lt;span class="n"&gt;loaded&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_healthcheckers&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Registering&lt;/span&gt; &lt;span class="n"&gt;Kernel&lt;/span&gt; &lt;span class="n"&gt;netlink&lt;/span&gt; &lt;span class="n"&gt;reflector&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_healthcheckers&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Registering&lt;/span&gt; &lt;span class="n"&gt;Kernel&lt;/span&gt; &lt;span class="n"&gt;netlink&lt;/span&gt; &lt;span class="n"&gt;command&lt;/span&gt; &lt;span class="n"&gt;channel&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_healthcheckers&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Opening&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;keepalived&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;keepalived&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;keepalived&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_vrrp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Opening&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;keepalived&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;keepalived&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;keepalived&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_vrrp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Configuration&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;36252&lt;/span&gt; &lt;span class="n"&gt;Bytes&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_vrrp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Using&lt;/span&gt; &lt;span class="n"&gt;LinkWatch&lt;/span&gt; &lt;span class="n"&gt;kernel&lt;/span&gt; &lt;span class="n"&gt;netlink&lt;/span&gt; &lt;span class="n"&gt;reflector&lt;/span&gt;&lt;span class="err"&gt;…&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_healthcheckers&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Configuration&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6271&lt;/span&gt; &lt;span class="n"&gt;Bytes&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_healthcheckers&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Using&lt;/span&gt; &lt;span class="n"&gt;LinkWatch&lt;/span&gt; &lt;span class="n"&gt;kernel&lt;/span&gt; &lt;span class="n"&gt;netlink&lt;/span&gt; &lt;span class="n"&gt;reflector&lt;/span&gt;&lt;span class="err"&gt;…&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_vrrp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;VRRP_Instance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;VI_2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Entering&lt;/span&gt; &lt;span class="n"&gt;BACKUP&lt;/span&gt; &lt;span class="n"&gt;STATE&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;从日志可以看出，启动都没有问题，并且安装我给的优先级完成了竞选，各自成就了各自的状态 &lt;/p&gt;
-&lt;p&gt;关闭节点A的网卡测试切换是否正常&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;ifdown eth0&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;观察节点B的日志：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;55&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_vrrp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;VRRP_Instance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;VI_2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Transition&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;MASTER&lt;/span&gt; &lt;span class="n"&gt;STATE&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;33&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;00&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_vrrp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;VRRP_Instance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;VI_2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Entering&lt;/span&gt; &lt;span class="n"&gt;MASTER&lt;/span&gt; &lt;span class="n"&gt;STATE&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;33&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;00&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;avahi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;daemon&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2531&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Registering&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;address&lt;/span&gt; &lt;span class="n"&gt;record&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="mf"&gt;192.168.4.3&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;eth0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;启动节点A的网卡测试切换是否正常&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;ifup eth0&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;观察节点B的日志：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;33&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;31&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_vrrp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;VRRP_Instance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;VI_2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Received&lt;/span&gt; &lt;span class="n"&gt;higher&lt;/span&gt; &lt;span class="n"&gt;prio&lt;/span&gt; &lt;span class="n"&gt;advert&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;33&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;31&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;Keepalived_vrrp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;VRRP_Instance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;VI_2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Entering&lt;/span&gt; &lt;span class="n"&gt;BACKUP&lt;/span&gt; &lt;span class="n"&gt;STATE&lt;/span&gt;
-&lt;span class="n"&gt;Sep&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;33&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;31&lt;/span&gt; &lt;span class="n"&gt;centosb&lt;/span&gt; &lt;span class="n"&gt;avahi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;daemon&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2531&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Withdrawing&lt;/span&gt; &lt;span class="n"&gt;address&lt;/span&gt; &lt;span class="n"&gt;record&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="mf"&gt;192.168.4.3&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;eth0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;strong&gt;Received higher prio advert&lt;/strong&gt; 表示接收到更高优先级的公告(advert公告的意思)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Withdrawing&lt;/strong&gt; 撤回的意思，可以看出切换过程一目了然&lt;/p&gt;
-&lt;p&gt;现在我们监控了网络故障和keepalived本身进程，在网络或者keepalived进程出现问题的时候会切换,
-但是我的目的是要实现nginx的高可用, 一旦A,B任何一台nginx挂了, 我要无缝切换.. 这里就需要用到脚本&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;/opt/keepalived/etc/keepalived/script/check_http.sh&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;这个脚本 就是用来监控nginx的.&lt;/p&gt;
-&lt;p&gt;大概内容就是, 先检查本机的nginx进程是否存在&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;if [ 'ps -ef |grep nginx|wc -l' -ne 0 ]&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;然后检查nginx的端口是否开放&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;nc -z -vv 192.168.2.12 80 &amp;gt; /dev/null &amp;amp;&amp;amp; status=$? &amp;amp;&amp;amp; if [ $status -ne 0 ] ;then /etc/init.d/keepalived stop ;fi&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;一旦,进程或者端口不存在,或者没开放, 我们就认为nginx服务不可用了, 于是在脚本里面就执行 &lt;/p&gt;
-&lt;p&gt;&lt;code&gt;/etc/init.d/keepalived stop&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;将keepalived停掉. 然后另外一台keepalived就会将VIP给抢过去.继续服务..&lt;/p&gt;
-&lt;p&gt;从上面的架构图可以看得出来.. 我们dns是解析在VIP上的, 所以, 只要两台机器任意一
-台机器存活, 我们&lt;em&gt;VIP&lt;/em&gt;都不会断网, 我们的nginx的服务 就可以一直提供..&lt;/p&gt;</summary><category term="nginx"></category><category term="运维"></category></entry><entry><title>Keepalived原理与实战精讲</title><link href="http://eleveni386.7axu.com/posts/2012/10/16/keepalivedyuan-li-yu-shi-zhan-jing-jiang/" rel="alternate"></link><updated>2012-10-16T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2012-10-16:posts/2012/10/16/keepalivedyuan-li-yu-shi-zhan-jing-jiang/</id><summary type="html">&lt;p&gt;&lt;strong&gt;此为转贴&lt;/strong&gt;
-&lt;a href="http://bbs.ywlm.net/thread-845-1-1.html"&gt;原文地址&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="/image/Keepalived.png" /&gt;&lt;/p&gt;</summary><category term="运维"></category><category term="keepalived"></category></entry><entry><title>记. 一次邮箱密码丢失</title><link href="http://eleveni386.7axu.com/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/" rel="alternate"></link><updated>2012-09-17T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2012-09-17:posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/</id><summary type="html">&lt;p&gt;话说某年某月某天, 某人丢失公司分配的邮箱密码,&lt;/p&gt;
-&lt;p&gt;在虚拟机中的windows,用foxmail客户端, 因为某些原因密码丢失,而公司邮件又需要用
-该客户端发送,于是就有了下面的过程,&lt;/p&gt;
-&lt;p&gt;在物理机中的雷鸟客户端保存了密码, 首先需要客户端上的密码加密,主要是smtp密码传输加密&lt;/p&gt;
-&lt;p&gt;好了,然后就用&lt;strong&gt;tcpdump&lt;/strong&gt; 就可以了,&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;tcpdump -X -i eth0 port 587 -vv&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;TLS/STARTTLS 端口是587 ,雷鸟和foxmail都自动认出来端口是587,所以我也捕抓发往587端口的数据&lt;/p&gt;
-&lt;p&gt;从结果中分析,下图是客户端跟服务端验证过程&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="/image/2012-09-17-163233_1365x306_scrot1.png" /&gt;&lt;/p&gt;
-&lt;p&gt;得到一个base64的密码,&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;echo -n "password" | base64 -d&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;解开就是明文密码&lt;/p&gt;</summary><category term="密码"></category><category term="邮箱"></category><category term="安全"></category></entry></feed>
+攻击数据包给淹没了..自然无法提供服务.&lt;/p&gt;</summary><category term="安全"></category><category term="运维"></category><category term="ddos"></category></entry></feed>

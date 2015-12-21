@@ -24,7 +24,7 @@
 		<a class="articletitle" href="/posts/2012/09/09/sshpass-fei-jiao-hu-sshmi-ma-yan-zheng/ " >sshpass 非交互ssh密码验证</a>
 		<h2>转载linuxtoy文章</h2>
 <p>OpenSSH 自带的 ssh 客户端程序（也就是 ‘ssh’ 命令）默认不允许你以非交互的方式传递密码，如：</p>
-<div class="highlight"><pre><span class="n">ssh</span> <span class="n">www</span><span class="p">.</span><span class="n">iredmail</span><span class="p">.</span><span class="n">org</span> <span class="o">&lt;&lt;</span><span class="n">EOF</span> <span class="n">ssh_password</span> <span class="n">ls</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span> <span class="n">EOF</span>
+<div class="highlight"><pre>ssh www.iredmail.org &lt;&lt;EOF ssh_password ls /var/ EOF
 </pre></div>
 
 
@@ -32,7 +32,7 @@
 样的方式来传递密码，所以需要远程连上服务器后进行的批处理就无法进行。</p>
 <p><code>sshpass</code> 的出现，解决了这一问题。它允许你用 <code>-p</code> 参数指定明文密码，
 然后直接登录远程服务器。例如：</p>
-<div class="highlight"><pre><span class="n">sshpass</span> <span class="o">-</span><span class="n">p</span> <span class="err">&#39;</span><span class="n">ssh_password</span><span class="err">&#39;</span> <span class="n">ssh</span> <span class="n">www</span><span class="p">.</span><span class="n">iredmail</span><span class="p">.</span><span class="n">org</span>
+<div class="highlight"><pre>sshpass -p &#39;ssh_password&#39; ssh www.iredmail.org
 </pre></div>
 
 
@@ -64,10 +64,8 @@
 	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
 </div>
 
 <div class="sidebarpages">

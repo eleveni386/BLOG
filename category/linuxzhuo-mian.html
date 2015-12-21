@@ -16,78 +16,19 @@
 
 <div class="summarycontainer">
 	<div class="metabox">
-		<p class="metaday">101</p>
+		<p class="metaday">355</p>
 		<p class="metayear">2015</p>
 		<p class="metacategory">Linux桌面</p>
 	</div>
 	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2015/04/11/you-dao-fan-yi-hua-ci-fan-yi/ " >有道翻译 --划词翻译</a>
-		<blockquote>
-<p>google的翻译实在太机械了, 大赞有道. 如果官方能出Linux版的有道实在太好了</p>
-</blockquote>
-<h1>划词翻译</h1>
-<p><img alt="" src="/image/youdao.png" /></p>
-<h1>特性</h1>
-<ol>
-<li>鼠标选词. 在鼠标所在位置出现翻译框</li>
-<li>托盘图标. 右键托盘图标, 设置开启划词或者关闭划词</li>
-<li>全局热键. <code>Ctrl+F8</code> 开启或者关闭划词</li>
-<li>支持pdf, 网页</li>
-</ol>
-<h1>依赖</h1>
-<p>python-Xlib
-requests
-python-webkit
-python-gtk</p>
-<h1>安装</h1>
-<p>修改openyoudao.desktop中的相关路径</p>
-<p>修改项包括但不仅限于:
-<code>Exec=</code>
-<code>Icon=</code></p>
-<p>以你本地实际路径为准. 将修改好的openyoudao.desktop 放置 <code>/usr/share/applications/</code> 下即可</p>
-<h1>下载</h1>
-<p><a href="https://github.com/eleveni386/youdaodict">戳我吧</a></p>
-		<a class="btnmore" href="/posts/2015/04/11/you-dao-fan-yi-hua-ci-fan-yi/">more ...</a>
-	</div>
-</div>
-<div class="summarycontainer">
-	<div class="metabox">
-		<p class="metaday">272</p>
-		<p class="metayear">2014</p>
-		<p class="metacategory">Linux桌面</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2014/09/29/shen-du-jie-tu-gong-ju/ " >深度截图工具</a>
-		<blockquote>
-<p>竟然找不到 小邪兽 版的 DeepinScrot 的github地址了,   ╮(╯▽╰)╭</p>
-</blockquote>
-<h2>截图工具的截图</h2>
-<p><img alt="" src="/image/deepin-scrot.png" /></p>
-<h2>说明</h2>
-<p>深度公司的原员工  <strong>小邪兽</strong>  的作品. </p>
-<p>感叹于QQ的截图工具的便利性, 苦于Linux desktop下没有一款能与之匹敌工具.</p>
-<p>该工具做到了与QQ截图工具一样的便利性.</p>
-<h2>特性</h2>
-<ol>
-<li>区域截图, </li>
-<li>截图修改, </li>
-<li>本地保存, 以及 保存到 黏贴板 </li>
-</ol>
-<p>以上为 原版 功能, 本人新增了一项功能 图床分享</p>
-<ol>
-<li>图床分享, 默认为 本人的图床   </li>
-</ol>
-<h2>安装要求</h2>
-<ol>
-<li>>= python2.6</li>
-<li>python-xlib</li>
-<li>python-requests</li>
-<li>xsel</li>
-</ol>
-<h2>更改图床</h2>
-<p>用你喜欢的 编辑器 编辑 <code>src/sharepic.py</code> 文件</p>
-<p>修改 <code>pic_bed = 'http://eleveni386.7axu.com/Image ...</code></p>
-		<a class="btnmore" href="/posts/2014/09/29/shen-du-jie-tu-gong-ju/">more ...</a>
+		<a class="summarytitle" href="/posts/2015/12/21/flvcdyan-gao-rao-guo/ " >flvcd广告绕过</a>
+		<h1>背景</h1>
+<p>原本是想寻找让mplayer播放youku视频的. 但是想了好多种方法. 都不知道如何让mplayer接管flash来播放视频. 最终在研究这个问题的过程中.发现了flvcd居然出现了,广告!!!, 虽然我能理解flvcd的做法.毕竟他们破解了人家视频网站的加密url, 让他们损失了不少的广告流量. 但是flvcd好歹提供一种更加友好(自动化)的广告播放方式吖. 你用flash是算什么吖!  </p>
+<h1>flvcd广告</h1>
+<p>flvcd目前限制了部分浏览器访问(或许是操作系统.比如我Linux系统访问时. 就会出现apache的欢迎页), 通过修改浏览器UA即可. 
+  然后在点击Go之后, 跳转到本来应该是视频真实地址列表页. 但是这里出现了原视频的广告列表. 要求用户必须浏览其中任意一个广告,才能出现真实地址列表.</p>
+<p>点击其中一个广告之后. 出现flash的播放器. 不过好歹flvcd还是比较良心. 只需要等待3秒. 就可以选择跳过广告了. 虽然良心. 但是我是需要自动化获取真实地址的. 于是我被这个广告列表拦截了. 通过多次尝试. 发现flvcd在广告播放完毕之后, 会在cookie中增加2个新键<code>go</code>, <code>avdGggggtt</code>,  其中多次观察.<code>go</code>参数是一个加密值, <code>avdGggggtt</code>是当前的时间戳, 有了这个发现.那么可以认为. 我如果要提交一个视频页地址给flvcd帮我解析. 那么势必我需要带上这两个参数. 不然就会出现广告页. 那么问题来了 <code>go ...</code></p>
+		<a class="btnmore" href="/posts/2015/12/21/flvcdyan-gao-rao-guo/">more ...</a>
 	</div>
 </div>
 <div class="summarycontainer">
@@ -108,101 +49,74 @@ python-gtk</p>
 <p>操作方式都很变扭, 用习惯了Pidgin的<code>Esc</code>,很难适应<code>Ctrl+W</code>方式.</p>
 <h2>修改</h2>
 <p><strong>被修改的文件</strong></p>
-<div class="highlight"><pre><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">empathy</span><span class="o">/</span><span class="n">empathy</span><span class="o">-</span><span class="n">chat</span><span class="o">-</span><span class="n">window</span><span class="p">.</span><span class="n">ui</span>
+<div class="highlight"><pre>/usr/share/empathy/empathy-chat-window.ui
 </pre></div>
 
 
 <p>通过搜索 <strong>gtk-close</strong> 找到一下内容</p>
-<div class="highlight"><pre><span class="mi">55</span>           <span class="o">&lt;</span><span class="nb">object</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;GtkAction&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s2">&quot;menu_conv_close&quot;</span><span class="o">&gt;</span>                        
-<span class="mi">56</span>             <span class="o">&lt;</span><span class="nx">property</span> <span class="n">name ...</span></pre></div>
+<div class="highlight"><pre>55           <span class="nt">&lt;object</span> <span class="na">class=</span><span class="s">&quot;GtkAction&quot;</span> <span class="na">id=</span><span class="s">&quot;menu_conv_close&quot;</span><span class="nt">&gt;</span>                        
+56             <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;stock_id&quot;</span><span class="nt">&gt;</span>gtk-close ...</pre></div>
 		<a class="btnmore" href="/posts/2014/04/10/empathykuai-su-guan-bi-liao-tian-chuang-kou/">more ...</a>
 	</div>
 </div>
 <div class="summarycontainer">
 	<div class="metabox">
-		<p class="metaday">344</p>
+		<p class="metaday">235</p>
 		<p class="metayear">2013</p>
 		<p class="metacategory">Linux桌面</p>
 	</div>
 	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/12/10/markdownbian-ji-qi/ " >markdown编辑器</a>
-		<h1>前言</h1>
-<p>本人是今年开始使用<code>markdown</code>的, 短时间内,就喜欢上这种编辑文档的方法.遂将自己的blog
-都替换为<code>pelican</code>. 个人笔记也采用 <code>markdown</code>语法来记录. 看着我的零散的markdown
-文件很是头疼. 就想着有一个markdown编辑器可以附带文件管理功能,但是找了好久都没找到</p>
-<p>于是就想着自己开发一个. 于是就有了这货, 用时半年,一直断断续续开发,在快结束的时候
-突然发现了<code>gedit</code>, 给它安装markdown插件之后 完全可以满足我的需求.. 突然发现我这半年
-都在浪费时间(虽然没认真花时间在这个上面).最终还是草草结束了这次的开发..</p>
-<p>在写<code>MyEditor</code>期间,多谢网友"老猫" 和 <a href="http://neteue.com/">"小邪兽"</a> 给予的帮助</p>
-<p>"老猫" 告诉了我<code>gtksourceview2</code>的存在. 同时解答了我许多疑问</p>
-<p>"兽兽君" 更是直接给我提供了一些示例代码.</p>
-<h1>截图</h1>
-<p><img alt="" src="/image/markdown.png" /></p>
-<h1>依赖</h1>
-<ol>
-<li>pygtk</li>
-<li>python-markdown</li>
-<li>python-webkit</li>
-<li>python-gtksourceview2 ...</li></ol>
-		<a class="btnmore" href="/posts/2013/12/10/markdownbian-ji-qi/">more ...</a>
+		<a class="summarytitle" href="/posts/2013/08/23/tmuxduo-paneltong-bu/ " >tmux多panel同步</a>
+		<p>上一篇说过 我已经使用<strong>tmux</strong> 代替<strong>SecureCRT</strong>进行运维工作 , 
+为此写了一个<a href="https://github.com/eleveni386/clipm">密码管理工具</a>,来配合<strong>tmux</strong>使用,
+经过两天的使用,感觉良好.<strong>KeepassX</strong> 已经直接被我卸载了,今天要说的是<strong>SecureCRT</strong>另外一个功能
+<strong>批量执行命令</strong></p>
+<p>用过<strong>SecureCRT</strong>的孩纸,都知道它有一个很方便的功能,开启多个终端的时候,可以同时在这些终端输入命令,
+极大的方便了我们的工作,我搬家到<strong>tmux</strong> 也一直纠结这个功能.经过多次google之后 终于被我找到了.原来<strong>tmux</strong>
+也是有批量执行命令的, <strong>tmux panel sync</strong>, <strong>panel同步</strong></p>
+<p>使用效果如下:</p>
+<p><img alt="" src="http://blog.sanctum.geek.nz/wp-content/uploads/2012/08/synchronize-panes.gif" /></p>
+<p>(PS:这里偷了别人的图,我懒得找gif制作工具)</p>
+<p>开启这个功能:  </p>
+<p><code>:setw synchronize-panes</code></p>
+<p>这是一个开关,需要的时候键入, 不需要的时候键入同样的指令,即可关闭.</p>
+<p>友情提示 ...</p>
+		<a class="btnmore" href="/posts/2013/08/23/tmuxduo-paneltong-bu/">more ...</a>
 	</div>
 </div>
 <div class="summarycontainer">
 	<div class="metabox">
-		<p class="metaday">265</p>
+		<p class="metaday">070</p>
 		<p class="metayear">2013</p>
 		<p class="metacategory">Linux桌面</p>
 	</div>
 	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/09/22/ji-yi-wang-rtxmi-ma/ " >记.遗忘RTX密码</a>
-		<h2>引子</h2>
-<blockquote>
-<p>在虚拟机中rtx密码是保存的,第一次拿到密码,没有做第三方的记录.
-中秋期间,wine了一个rtx. 结果发现自己忘记密码了</p>
-</blockquote>
-<h2>过程</h2>
-<p>由于有了之前的遗忘密码事件 (<a href="/posts/2012/11/28/wang-ji-mi-ma-zhi-svn/">遗忘密码之svn</a>,<a href="/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/">记.一次邮箱密码丢失</a>)</p>
-<p>一开始的思路是在登录rtx的时候抓包分析,rtx的验证数据包, 不过还是习惯性的google了一下
-没想到真找到了更简单的方法.</p>
-<blockquote>
-<p>有资料显示rtx在内存中明文存储密码
-by the goole</p>
-</blockquote>
-<h3>WINHEX打开RTX的内存</h3>
-<ol>
-<li>
-<p>winhex打开rtx的内存
-    <img alt="" src="/image/step.png" /></p>
-<ol>
-<li>点击图片中1的位置.<strong>open Ram</strong></li>
-<li>在窗口中找到rtx.</li>
-<li>选择<strong>主要内存</strong>.<em>Primary Memory</em></li>
-</ol>
-</li>
-<li>
-<p>查找16进制字符串<strong>40000000500061007300730077006F0072006400</strong>
-    <img alt="" src="/image/step1.png" /></p>
-<ol>
-<li>点击图片中1的位置.<strong>Find Hex values</strong></li>
-<li>在文本框内输入要搜索的16进制字符串<strong>40000000500061007300730077006F0072006400</strong></li>
-</ol>
-</li>
-<li>
-<p>password下面的位置就是明文密码
-    <img alt="" src="/image/step2.png" /></p>
-</li>
-</ol>
-<h2>结果</h2>
-<p>好了,明文密码得到了.只是这样的rtx是否安全呢...</p>
-<p><strong>wine rtx</strong> 真的很简单</p>
-<p><a href="http://www.2cto.com/Article/201308/236529.html">参考地址</a></p>
-		<a class="btnmore" href="/posts/2013/09/22/ji-yi-wang-rtxmi-ma/">more ...</a>
+		<a class="summarytitle" href="/posts/2013/03/11/ji-yi-ci-an-zhuang-fcitxguo-cheng/ " >记一次安装fcitx过程</a>
+		<p>今天实在无法忍受<em>ibus</em>的启动速度和词汇准确性了. 将ibus更换成<strong>fcitx</strong>, </p>
+<div class="highlight"><pre>apt-get install fcitx
+im-switch -s fcitx
+im-switch -s fcitx -z default
+</pre></div>
+
+
+<p>然后在<em>autostart</em>中加入fcitx的自启动.. 注销X界面之后, 发现fcitx是启动起来了, 
+只是应用程序的默认输入法还是<em>Ibus</em>, 于是google之 ,找到了fcitx环境变量设置, 
+在<strong>~/.xprofile</strong> 中加入fcitx的环境变量:</p>
+<div class="highlight"><pre>export GTK_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export QT_IM_MODULE=fcitx
+</pre></div>
+
+
+<p>注销X界面 再次进入系统,<code>echo $GTK_IM_MODULE</code> 发现这个变量已经是fcitx, 但是应用
+程序默认输入法还是<strong>Ibus</strong> , 来来回回折腾了几次, 忍不住吐槽了下Ibus的无耻.. 
+结果无意中dpkg -l ...</p>
+		<a class="btnmore" href="/posts/2013/03/11/ji-yi-ci-an-zhuang-fcitxguo-cheng/">more ...</a>
 	</div>
 </div>
 
 <p class="paginator">
-    Page 1 / 2
-        <a href="http://eleveni386.7axu.com/category/linuxzhuo-mian2.html">next&raquo;</a>
+    Page 1 / 1
 </p>
 		</div>
 		
@@ -212,10 +126,8 @@ by the goole</p>
 	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
 </div>
 
 <div class="sidebarpages">

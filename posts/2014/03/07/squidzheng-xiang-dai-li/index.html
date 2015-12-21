@@ -24,41 +24,41 @@
 		<a class="articletitle" href="/posts/2014/03/07/squidzheng-xiang-dai-li/ " >squid正向代理</a>
 		<h2>匿名代理</h2>
 <p>squid 要做到匿名代理 只需要添加</p>
-<div class="highlight"><pre><span class="n">header_access</span> <span class="n">Via</span> <span class="n">deny</span> <span class="n">all</span> 
-<span class="n">header_access</span>  <span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span> <span class="n">deny</span> <span class="n">all</span>
+<div class="highlight"><pre>header_access Via deny all 
+header_access  X-Forwarded-For deny all
 </pre></div>
 
 
 <p>即可</p>
 <h2>代理验证</h2>
 <p>谁都不想自己的代理服务器被他人随意拿来使用.. 于是 我们就需要给代理服务器加上密码</p>
-<div class="highlight"><pre><span class="n">auth_param</span> <span class="n">basic</span> <span class="n">program</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">squid2</span><span class="mf">.7</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ncsa_auth</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">children</span> <span class="mi">1</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">realm</span> <span class="s">&quot;Welcome to eleven&#39;s proxy server&quot;</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">credentialsttl</span> <span class="mi">12</span> <span class="n">hours</span>
+<div class="highlight"><pre>auth_param basic program /data/home/eleven/squid2.7/bin/ncsa_auth
+auth_param basic children 1
+auth_param basic realm &quot;Welcome to eleven&#39;s proxy server&quot;
+auth_param basic credentialsttl 12 hours
 </pre></div>
 
 
 <p>这里的<strong>ncsa_auth</strong> 是自己写的shell脚本, 我的squid版本是2.7, 没有自带ncsa_auth程序</p>
 <h2>一个简单的代理验证脚本</h2>
-<div class="highlight"><pre><span class="k">while</span> <span class="nb">true</span><span class="p">;</span>
-<span class="k">do</span>
-    <span class="n">read</span> <span class="n">line</span>
-    <span class="n">username</span><span class="o">=</span><span class="err">`</span><span class="n">echo</span> <span class="err">$</span><span class="n">line</span> <span class="o">|</span> <span class="n">awk</span> <span class="err">&#39;</span><span class="p">{</span><span class="n">print</span> <span class="err">$</span><span class="mi">1</span><span class="p">}</span><span class="err">&#39;`</span><span class="p">;</span>
-    <span class="n">password</span><span class="o">=</span><span class="err">`</span><span class="n">echo</span> <span class="err">$</span><span class="n">line</span> <span class="o">|</span> <span class="n">awk</span> <span class="err">&#39;</span><span class="p">{</span><span class="n">print</span> <span class="err">$</span><span class="mi">2</span><span class="p">}</span><span class="err">&#39;`</span><span class="p">;</span>
+<div class="highlight"><pre><span class="x">while true;</span>
+<span class="x">do</span>
+<span class="x">    read line</span>
+<span class="x">    username=`echo </span><span class="p">$</span><span class="nv">line</span><span class="x"> | awk &#39;</span><span class="err">{</span><span class="x">print </span><span class="p">$</span><span class="x">1}&#39;`;</span>
+<span class="x">    password=`echo </span><span class="p">$</span><span class="nv">line</span><span class="x"> | awk &#39;</span><span class="err">{</span><span class="x">print </span><span class="p">$</span><span class="x">2}&#39;`;</span>
 
-    <span class="k">if</span> <span class="p">[</span> <span class="s">&quot;x$username&quot;</span> <span class="o">==</span> <span class="s">&quot;xeleven&quot;</span> <span class="p">]</span>
-    <span class="n">then</span>
-        <span class="k">if</span> <span class="p">[</span> <span class="s">&quot;x$password&quot;</span> <span class="o">==</span> <span class="s">&quot;x*****&quot;</span> <span class="p">]</span>
-        <span class="n">then</span>
-            <span class="n">echo</span> <span class="n">OK</span><span class="p">;</span>
-        <span class="k">else</span>
-            <span class="n">echo</span> <span class="n">Err</span><span class="p">;</span>
-        <span class="n">fi</span>  
-    <span class="k">else</span>
-        <span class="n">echo</span> <span class="n">Err</span><span class="p">;</span>
-    <span class="n">fi</span>  
-<span class="n">done</span>
+<span class="x">    if [ &quot;x</span><span class="p">$</span><span class="nv">username</span><span class="x">&quot; == &quot;xeleven&quot; ]</span>
+<span class="x">    then</span>
+<span class="x">        if [ &quot;x</span><span class="p">$</span><span class="nv">password</span><span class="x">&quot; == &quot;x*****&quot; ]</span>
+<span class="x">        then</span>
+<span class="x">            echo OK;</span>
+<span class="x">        else</span>
+<span class="x">            echo Err;</span>
+<span class="x">        fi  </span>
+<span class="x">    else</span>
+<span class="x">        echo Err;</span>
+<span class="x">    fi  </span>
+<span class="x">done</span>
 </pre></div>
 
 
@@ -66,57 +66,57 @@
 使用的脚本. 都是脚本从squid处接收需要处理的信息, 脚本处理完毕之后返回给squid结果</p>
 <h2>squid正向代理, 搭建 http 代理服务器</h2>
 <p>以下是一份完整的squid正向代理的配置文件</p>
-<div class="highlight"><pre><span class="n">auth_param</span> <span class="n">basic</span> <span class="n">program</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">squid2</span><span class="mf">.7</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ncsa_auth</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">children</span> <span class="mi">1</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">realm</span> <span class="s">&quot;Welcome to eleven&#39;s proxy server&quot;</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">credentialsttl</span> <span class="mi">12</span> <span class="n">hours</span>
-<span class="n">acl</span> <span class="n">all</span> <span class="n">src</span> <span class="n">all</span> 
-<span class="n">acl</span> <span class="n">squid_user</span> <span class="n">proxy_auth</span> <span class="n">REQUIRED</span>
-<span class="n">acl</span> <span class="n">manager</span> <span class="n">proto</span> <span class="n">cache_object</span>
-<span class="n">acl</span> <span class="n">localhost</span> <span class="n">src</span> <span class="mf">127.0.0.1</span><span class="o">/</span><span class="mi">32</span>
-<span class="n">acl</span> <span class="n">SSL_ports</span> <span class="n">port</span> <span class="mi">443</span> 
-<span class="n">acl</span> <span class="n">Safe_ports</span> <span class="n">port</span> <span class="mi">80</span>      <span class="err">#</span> <span class="n">http</span>
-<span class="n">acl</span> <span class="n">Safe_ports</span> <span class="n">port</span> <span class="mi">21</span>      <span class="err">#</span> <span class="n">ftp</span>
-<span class="n">acl</span> <span class="n">Safe_ports</span> <span class="n">port</span> <span class="mi">443</span>     <span class="err">#</span> <span class="n">https</span>
-<span class="n">acl</span> <span class="n">CONNECT</span> <span class="n">method</span> <span class="n">CONNECT</span>
-<span class="n">http_access</span> <span class="n">allow</span> <span class="n">manager</span> <span class="n">localhost</span>
-<span class="n">http_access</span> <span class="n">deny</span> <span class="n">manager</span>
-<span class="n">http_access</span> <span class="n">deny</span> <span class="o">!</span><span class="n">Safe_ports</span>
-<span class="n">http_access</span> <span class="n">deny</span> <span class="n">CONNECT</span> <span class="o">!</span><span class="n">SSL_ports</span>
-<span class="n">http_access</span> <span class="n">allow</span> <span class="n">localhost</span>
-<span class="cp"># 允许密码用户登录</span>
-<span class="n">http_access</span> <span class="n">allow</span> <span class="n">squid_user</span>
-<span class="cp"># 拒绝其他所有请求</span>
-<span class="n">http_access</span> <span class="n">deny</span> <span class="n">all</span>
-<span class="cp"># Squid的监听端口</span>
-<span class="n">http_port</span> <span class="o">****</span> <span class="err">#</span> <span class="err">不准暴力猜解我的密码</span><span class="p">.</span> <span class="err">哼</span>
-<span class="cp"># DNS 域名服务器配置</span>
-<span class="n">dns_nameservers</span> <span class="mf">8.8.8.8</span>
-<span class="cp"># 启动squid2.7的用户</span>
-<span class="n">cache_effective_user</span> <span class="n">eleven</span>
-<span class="n">cache_effective_group</span> <span class="n">eleven</span>
-<span class="cp"># squid2.7访问日志; 调试时开启</span>
-<span class="cp">#cache_access_log /var/log/squid/access.log</span>
-<span class="cp">#cache_log /var/log/squid/cache.log</span>
-<span class="cp"># squid2.7挂掉后，core文件位置</span>
-<span class="n">coredump_dir</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">squid2</span><span class="mf">.7</span><span class="o">/</span>
-<span class="cp"># 高匿</span>
-<span class="n">header_access</span> <span class="n">Via</span> <span class="n">deny</span> <span class="n">all</span>
-<span class="n">header_access</span>  <span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span> <span class="n">deny</span> <span class="n">all</span>
-<span class="cp"># 出现cgi-bin或者？的URL不予缓存</span>
-<span class="n">hierarchy_stoplist</span> <span class="n">cgi</span><span class="o">-</span><span class="n">bin</span> <span class="o">?</span> <span class="err">\</span><span class="p">.</span><span class="n">php</span>
-<span class="n">acl</span> <span class="n">QUERY</span> <span class="n">urlpath_regex</span> <span class="o">-</span><span class="n">i</span> <span class="n">cgi</span><span class="o">-</span><span class="n">bin</span> <span class="p">[</span><span class="o">^</span><span class="n">html</span><span class="p">]</span><span class="err">\</span><span class="o">?</span> <span class="err">\</span><span class="p">.</span><span class="n">asp</span> <span class="err">\</span><span class="p">.</span><span class="n">php</span> <span class="err">\</span><span class="p">.</span><span class="n">jsp</span> <span class="err">\</span><span class="p">.</span><span class="n">cgi</span>
-<span class="n">acl</span> <span class="n">download</span> <span class="n">urlpath_regex</span> <span class="o">-</span><span class="n">i</span> <span class="err">\</span><span class="p">.</span><span class="n">avi</span><span class="err">$</span> <span class="err">\</span><span class="p">.</span><span class="n">rmvb</span><span class="err">$</span> <span class="err">\</span><span class="p">.</span><span class="n">rm</span><span class="err">$</span> <span class="err">\</span><span class="p">.</span><span class="n">ra</span><span class="err">$</span> <span class="err">\</span><span class="p">.</span><span class="n">ram</span><span class="err">$</span> <span class="err">\</span><span class="p">.</span><span class="n">mpe</span><span class="err">$</span> <span class="err">\</span><span class="p">.</span><span class="n">smi</span><span class="err">$</span>
-<span class="n">cache</span> <span class="n">deny</span> <span class="n">QUERY</span>
-<span class="n">cache</span> <span class="n">deny</span> <span class="n">download</span>
-<span class="cp"># 磁盘缓存目录</span>
-<span class="n">cache_dir</span> <span class="n">ufs</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">squid2</span><span class="mf">.7</span><span class="o">/</span><span class="n">cdir</span> <span class="mi">500</span> <span class="mi">16</span> <span class="mi">256</span>
-<span class="cp"># 内存缓冲大小</span>
-<span class="n">cache_mem</span> <span class="mi">2</span><span class="n">M</span>
-<span class="cp"># 刷新缓存规则</span>
-<span class="n">refresh_pattern</span> <span class="o">^</span><span class="n">ftp</span><span class="o">:</span>       <span class="mi">1440</span>    <span class="mi">20</span><span class="o">%</span> <span class="mi">10080</span>
-<span class="n">refresh_pattern</span> <span class="o">-</span><span class="n">i</span> <span class="p">(</span><span class="o">/</span><span class="n">cgi</span><span class="o">-</span><span class="n">bin</span><span class="o">/|</span><span class="err">\</span><span class="o">?</span><span class="p">)</span> <span class="mi">0</span> <span class="mi">0</span><span class="o">%</span>  <span class="mi">0</span>
-<span class="n">refresh_pattern</span> <span class="p">.</span>       <span class="mi">0</span>   <span class="mi">20</span><span class="o">%</span> <span class="mi">4320</span>
+<div class="highlight"><pre>auth_param basic program /data/home/eleven/squid2.7/bin/ncsa_auth
+auth_param basic children 1
+auth_param basic realm &quot;Welcome to eleven&#39;s proxy server&quot;
+auth_param basic credentialsttl 12 hours
+acl all src all 
+acl squid_user proxy_auth REQUIRED
+acl manager proto cache_object
+acl localhost src 127.0.0.1/32
+acl SSL_ports port 443 
+acl Safe_ports port 80      # http
+acl Safe_ports port 21      # ftp
+acl Safe_ports port 443     # https
+acl CONNECT method CONNECT
+http_access allow manager localhost
+http_access deny manager
+http_access deny !Safe_ports
+http_access deny CONNECT !SSL_ports
+http_access allow localhost
+# 允许密码用户登录
+http_access allow squid_user
+# 拒绝其他所有请求
+http_access deny all
+# Squid的监听端口
+http_port **** # 不准暴力猜解我的密码. 哼
+# DNS 域名服务器配置
+dns_nameservers 8.8.8.8
+# 启动squid2.7的用户
+cache_effective_user eleven
+cache_effective_group eleven
+# squid2.7访问日志; 调试时开启
+#cache_access_log /var/log/squid/access.log
+#cache_log /var/log/squid/cache.log
+# squid2.7挂掉后，core文件位置
+coredump_dir /data/home/eleven/squid2.7/
+# 高匿
+header_access Via deny all
+header_access  X-Forwarded-For deny all
+# 出现cgi-bin或者？的URL不予缓存
+hierarchy_stoplist cgi-bin ? \.php
+acl QUERY urlpath_regex -i cgi-bin [^html]\? \.asp \.php \.jsp \.cgi
+acl download urlpath_regex -i \.avi$ \.rmvb$ \.rm$ \.ra$ \.ram$ \.mpe$ \.smi$
+cache deny QUERY
+cache deny download
+# 磁盘缓存目录
+cache_dir ufs /data/home/eleven/squid2.7/cdir 500 16 256
+# 内存缓冲大小
+cache_mem 2M
+# 刷新缓存规则
+refresh_pattern ^ftp:       1440    20% 10080
+refresh_pattern -i (/cgi-bin/|\?) 0 0%  0
+refresh_pattern .       0   20% 4320
 </pre></div>
 
 
@@ -155,10 +155,8 @@
 	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
 </div>
 
 <div class="sidebarpages">

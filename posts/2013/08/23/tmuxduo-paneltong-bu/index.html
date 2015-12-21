@@ -38,51 +38,51 @@
 <p>友情提示:将它绑定到某一个快捷键上效果更佳哦 :-)</p>
 <p>btw, 我的tmux配置, 许多是参考网络上现有的.没太多个性化的东西.不过胜在实用</p>
 <h2>Base</h2>
-<div class="highlight"><pre><span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="k">default</span><span class="o">-</span><span class="n">terminal</span> <span class="err">“</span><span class="n">screen</span><span class="o">-</span><span class="mi">256</span><span class="n">color</span><span class="err">”</span>
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">display</span><span class="o">-</span><span class="n">time</span> <span class="mi">3000</span>
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">history</span><span class="o">-</span><span class="n">limit</span> <span class="mi">65535</span>
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">mouse</span><span class="o">-</span><span class="n">select</span><span class="o">-</span><span class="n">pane</span> <span class="n">on</span>
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">mode</span><span class="o">-</span><span class="n">mouse</span> <span class="n">on</span>
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">mouse</span><span class="o">-</span><span class="n">resize</span><span class="o">-</span><span class="n">pane</span> <span class="n">on</span>
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">mouse</span><span class="o">-</span><span class="n">select</span><span class="o">-</span><span class="n">window</span> <span class="n">on</span>
+<div class="highlight"><pre>set -g default-terminal “screen-256color”
+set -g display-time 3000
+set -g history-limit 65535
+set -g mouse-select-pane on
+set -g mode-mouse on
+set -g mouse-resize-pane on
+set -g mouse-select-window on
 </pre></div>
 
 
 <h2>Key bind</h2>
-<div class="highlight"><pre><span class="n">unbind</span> <span class="n">C</span><span class="o">-</span><span class="n">b</span>
-<span class="n">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">prefix</span> <span class="n">C</span><span class="o">-</span><span class="n">l</span>
-<span class="n">bind</span> <span class="n">C</span><span class="o">-</span><span class="n">l</span> <span class="n">send</span><span class="o">-</span><span class="n">prefix</span>
+<div class="highlight"><pre>unbind C-b
+set -g prefix C-l
+bind C-l send-prefix
 
-<span class="n">unbind</span> <span class="err">‘”‘</span>
-<span class="n">bind</span> <span class="err">–</span> <span class="n">splitw</span> <span class="o">-</span><span class="n">v</span>
-<span class="n">unbind</span> <span class="o">%</span>
-<span class="n">bind</span> <span class="o">|</span> <span class="n">splitw</span> <span class="o">-</span><span class="n">h</span>
-<span class="n">bind</span> <span class="n">c</span> <span class="n">run</span> <span class="err">“</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">Yunio</span><span class="o">/</span><span class="n">SystemBackup</span><span class="o">/</span><span class="n">tmux</span><span class="o">-</span><span class="n">shell</span><span class="o">/</span><span class="n">tmux</span><span class="o">-</span><span class="n">cpy</span><span class="p">.</span><span class="n">py</span><span class="err">”</span>
-<span class="n">bind</span> <span class="n">r</span> <span class="n">source</span><span class="o">-</span><span class="n">file</span> <span class="o">~/</span><span class="p">.</span><span class="n">tmux</span><span class="p">.</span><span class="n">conf</span> <span class="err">\</span><span class="p">;</span> <span class="n">display</span> <span class="err">“</span><span class="n">Reloaded</span><span class="o">!</span><span class="err">”</span>
-<span class="n">bind</span> <span class="n">s</span> <span class="n">setw</span> <span class="n">synchronize</span><span class="o">-</span><span class="n">panes</span>
+unbind ‘”‘
+bind – splitw -v
+unbind %
+bind | splitw -h
+bind c run “/usr/bin/python /home/eleven/Yunio/SystemBackup/tmux-shell/tmux-cpy.py”
+bind r source-file ~/.tmux.conf \; display “Reloaded!”
+bind s setw synchronize-panes
 
-<span class="n">bind</span> <span class="n">k</span> <span class="n">selectp</span> <span class="o">-</span><span class="n">U</span>
-<span class="n">bind</span> <span class="n">j</span> <span class="n">selectp</span> <span class="o">-</span><span class="n">D</span>
-<span class="n">bind</span> <span class="n">h</span> <span class="n">selectp</span> <span class="o">-</span><span class="n">L</span>
-<span class="n">bind</span> <span class="n">l</span> <span class="n">selectp</span> <span class="o">-</span><span class="n">R</span>
+bind k selectp -U
+bind j selectp -D
+bind h selectp -L
+bind l selectp -R
 </pre></div>
 
 
 <h2>status bar</h2>
-<div class="highlight"><pre><span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">keys</span> <span class="n">vi</span>
-<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">utf8</span> <span class="n">on</span>
-<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">interval</span> <span class="mi">1</span>
-<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">justify</span> <span class="err">“</span><span class="n">centre</span><span class="err">”</span>
-<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">left</span><span class="o">-</span><span class="n">length</span> <span class="mi">60</span>
-<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">right</span><span class="o">-</span><span class="n">length</span> <span class="mi">90</span>
-<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">left</span> <span class="err">“#</span><span class="p">(</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">soft</span><span class="o">/</span><span class="n">tmux</span><span class="o">-</span><span class="n">powerline</span><span class="o">/</span><span class="n">powerline</span><span class="p">.</span><span class="n">sh</span> <span class="n">left</span><span class="p">)</span><span class="err">”</span>
-<span class="n">set</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">status</span><span class="o">-</span><span class="n">right</span> <span class="err">“#</span><span class="p">(</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">soft</span><span class="o">/</span><span class="n">tmux</span><span class="o">-</span><span class="n">powerline</span><span class="o">/</span><span class="n">powerline</span><span class="p">.</span><span class="n">sh</span> <span class="n">right</span><span class="p">)</span><span class="err">”</span>
+<div class="highlight"><pre>set-option -g status-keys vi
+set-option -g status-utf8 on
+set-option -g status-interval 1
+set-option -g status-justify “centre”
+set-option -g status-left-length 60
+set-option -g status-right-length 90
+set-option -g status-left “#(/opt/data/soft/tmux-powerline/powerline.sh left)”
+set-option -g status-right “#(/opt/data/soft/tmux-powerline/powerline.sh right)”
 </pre></div>
 
 
 <h2>Other</h2>
-<div class="highlight"><pre><span class="n">set</span><span class="o">-</span><span class="n">window</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">mode</span><span class="o">-</span><span class="n">keys</span> <span class="n">vi</span>
-<span class="n">set</span><span class="o">-</span><span class="n">window</span><span class="o">-</span><span class="n">option</span> <span class="o">-</span><span class="n">g</span> <span class="n">utf8</span> <span class="n">on</span>
+<div class="highlight"><pre>set-window-option -g mode-keys vi
+set-window-option -g utf8 on
 </pre></div>
 	</div>
 	
@@ -110,10 +110,8 @@
 	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
 </div>
 
 <div class="sidebarpages">

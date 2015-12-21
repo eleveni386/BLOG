@@ -16,85 +16,6 @@
 
 <div class="summarycontainer">
 	<div class="metabox">
-		<p class="metaday">265</p>
-		<p class="metayear">2013</p>
-		<p class="metacategory">Linux桌面</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/09/22/ji-yi-wang-rtxmi-ma/ " >记.遗忘RTX密码</a>
-		<h2>引子</h2>
-<blockquote>
-<p>在虚拟机中rtx密码是保存的,第一次拿到密码,没有做第三方的记录.
-中秋期间,wine了一个rtx. 结果发现自己忘记密码了</p>
-</blockquote>
-<h2>过程</h2>
-<p>由于有了之前的遗忘密码事件 (<a href="/posts/2012/11/28/wang-ji-mi-ma-zhi-svn/">遗忘密码之svn</a>,<a href="/posts/2012/09/17/ji-ci-you-xiang-mi-ma-diu-shi/">记.一次邮箱密码丢失</a>)</p>
-<p>一开始的思路是在登录rtx的时候抓包分析,rtx的验证数据包, 不过还是习惯性的google了一下
-没想到真找到了更简单的方法.</p>
-<blockquote>
-<p>有资料显示rtx在内存中明文存储密码
-by the goole</p>
-</blockquote>
-<h3>WINHEX打开RTX的内存</h3>
-<ol>
-<li>
-<p>winhex打开rtx的内存
-    <img alt="" src="/image/step.png" /></p>
-<ol>
-<li>点击图片中1的位置.<strong>open Ram</strong></li>
-<li>在窗口中找到rtx.</li>
-<li>选择<strong>主要内存</strong>.<em>Primary Memory</em></li>
-</ol>
-</li>
-<li>
-<p>查找16进制字符串<strong>40000000500061007300730077006F0072006400</strong>
-    <img alt="" src="/image/step1.png" /></p>
-<ol>
-<li>点击图片中1的位置.<strong>Find Hex values</strong></li>
-<li>在文本框内输入要搜索的16进制字符串<strong>40000000500061007300730077006F0072006400</strong></li>
-</ol>
-</li>
-<li>
-<p>password下面的位置就是明文密码
-    <img alt="" src="/image/step2.png" /></p>
-</li>
-</ol>
-<h2>结果</h2>
-<p>好了,明文密码得到了.只是这样的rtx是否安全呢...</p>
-<p><strong>wine rtx</strong> 真的很简单</p>
-<p><a href="http://www.2cto.com/Article/201308/236529.html">参考地址</a></p>
-		<a class="btnmore" href="/posts/2013/09/22/ji-yi-wang-rtxmi-ma/">more ...</a>
-	</div>
-</div>
-<div class="summarycontainer">
-	<div class="metabox">
-		<p class="metaday">223</p>
-		<p class="metayear">2013</p>
-		<p class="metacategory">木马病毒</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/08/11/tu-pian-hou-men-fen-xi/ " >图片后门分析</a>
-		<p>就在刚才, 我们服务器拦截一个用户上传的图片, 有php.hide类型的木马问题, 
-我将图片抓到本地pc上改名为xx, 然后上传到http://www.virscan.org/ 进行多病毒库扫描, 
-发现只有clamav报毒, (我本地pc用的也是它) 我先确定这家伙都是不是图片.</p>
-<div class="highlight"><pre>    <span class="n">file</span> <span class="n">xx</span><span class="p">.</span><span class="n">png</span>
-    <span class="n">xx</span><span class="p">.</span><span class="n">jpg</span><span class="o">:</span> <span class="n">JPEG</span> <span class="o">/</span><span class="n">image</span> <span class="n">data</span><span class="p">,</span> <span class="n">JFIF</span> <span class="n">standard</span> <span class="mf">1.01</span>
-</pre></div>
-
-
-<p>很好,这货还是一张图片, 再看看这个图片隐藏了啥木马,一般人都喜欢往图片的尾巴上插入内容,</p>
-<p><code>tail -n 10 xx.png</code></p>
-<p><img alt="" src="/image/DeepinScrot-2016-300x70.png" /></p>
-<p>好吧,这货看上去很无辜的样子, 但是咱很相信<strong>clamav</strong>的说 :-),  <strong>clamv</strong>既然说
-这货不干净,那么就肯定有什么奇怪的东西混进去了, 那就看看图片头部上有啥东西</p>
-<p><code>head -n 1 xx.png</code></p>
-<p><img alt="" src="/image/DeepinScrot-2239-300x19.png" /></p>
-<p>嘿嘿 ...</p>
-		<a class="btnmore" href="/posts/2013/08/11/tu-pian-hou-men-fen-xi/">more ...</a>
-	</div>
-</div>
-<div class="summarycontainer">
-	<div class="metabox">
 		<p class="metaday">137</p>
 		<p class="metayear">2013</p>
 		<p class="metacategory">Linux运维</p>
@@ -120,7 +41,7 @@ Stunnel 服务器主要执行两个功能：
 <p>在make install 的时候会要求你输入一些信息,用来生成证书, 按照提示输入即可</p>
 <h2>配置</h2>
 <h3>这里仅作为proxy</h3>
-<div class="highlight"><pre><span class="n">syslog</span> <span class="o">=</span> <span class="n">yes</span>  <span class="err">#使用 ...</span></pre></div>
+<div class="highlight"><pre>syslog = yes  #使用syslog日志 ...</pre></div>
 		<a class="btnmore" href="/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/">more ...</a>
 	</div>
 </div>
@@ -131,7 +52,7 @@ Stunnel 服务器主要执行两个功能：
 		<p class="metacategory">Linux运维</p>
 	</div>
 	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/ " >记. 一次ddos攻击,导致服务器死机</a>
+		<a class="summarytitle" href="/posts/2013/03/29/ji-yi-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/ " >记. 一次ddos攻击,导致服务器死机</a>
 		<h2>背景</h2>
 <p>某年某月某天,eleven所属单位 被未知生物ddos攻击, 攻击时间 凌晨00:15 左右, 
 eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上面命令找出服务器弱点.
@@ -145,35 +66,12 @@ eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上
 <p>观察了服务器的内核参数配置,因为我记得我们所有服务器都有对于<strong>syn flood</strong>的防御策略,
 在sysctl.conf里面<strong>syn_cookies</strong>已经开启, 而且也看见syn队列增加到了1w6, 
 按理来说单纯的半开攻击应该对于我们机器是无压力的说 ...</p>
-		<a class="btnmore" href="/posts/2013/03/29/ji-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/">more ...</a>
-	</div>
-</div>
-<div class="summarycontainer">
-	<div class="metabox">
-		<p class="metaday">333</p>
-		<p class="metayear">2012</p>
-		<p class="metacategory">Linux桌面</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2012/11/28/wang-ji-mi-ma-zhi-svn/ " >忘记密码之 Svn</a>
-		<p>今天,突发奇想在虚拟机中装一个<em>svn客户端</em>,这样就省的每次更改或者提交日志文档的时候,
-需要将文件从虚拟机中拖到本地,然后输入<code>svn ci</code> 命令了, 于是,遂安装之.. 在<code>checkout</code>的时候,
-突然想到自己不记得密码了,(一直以来所有密码都是直接保存的,自己记不住)</p>
-<p>于是找管理员要, 一看, .. 咱们svn管理员没在线, 看来还是要自己动手,</p>
-<p>工具准备: <strong>file</strong>一枚, <strong>cat</strong>一把</p>
-<p>由于我之前一直都是在linux下用命令提交更新, 在linux下已经<code>checkout</code>过一次了,
-同时我也选择了保存密码到本地, 因此 在我本地的某一个地方肯定会有svn的相关记录,
-于是google之.. 找到了 svn的密码文件是保存在<strong>$HOME/.subversion/auth/svn.simple</strong> 下,
-由于我在code.google.com上也有一个svn帐号,因此我这里有两个文件,</p>
-<p><img alt="" src="/image/2012-11-28-104153-300x31.png" /></p>
-<p>由于不清楚这两个文件是啥, 于是<code>file</code>之 ...</p>
-		<a class="btnmore" href="/posts/2012/11/28/wang-ji-mi-ma-zhi-svn/">more ...</a>
+		<a class="btnmore" href="/posts/2013/03/29/ji-yi-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/">more ...</a>
 	</div>
 </div>
 
 <p class="paginator">
-    Page 1 / 2
-        <a href="http://eleveni386.7axu.com/tag/an-quan2.html">next&raquo;</a>
+    Page 1 / 1
 </p>
 		</div>
 		
@@ -183,10 +81,8 @@ eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上
 	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
 </div>
 
 <div class="sidebarpages">

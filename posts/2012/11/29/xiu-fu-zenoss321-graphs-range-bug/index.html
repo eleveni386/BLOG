@@ -30,47 +30,47 @@
 <p><code>apt-get install sun-java6-jdk</code></p>
 <p>然后确认下java版本</p>
 <p><code>java -version</code></p>
-<div class="highlight"><pre><span class="n">java</span> <span class="n">version</span> <span class="err">“</span><span class="mf">1.6.0</span><span class="n">_26</span><span class="err">″</span>
-<span class="n">Java</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> <span class="n">SE</span> <span class="n">Runtime</span> <span class="n">Environment</span> <span class="p">(</span><span class="n">build</span> <span class="mf">1.6.0</span><span class="n">_26</span><span class="o">-</span><span class="n">b03</span><span class="p">)</span>
-<span class="n">Java</span> <span class="n">HotSpot</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span> <span class="mi">64</span><span class="o">-</span><span class="n">Bit</span> <span class="n">Server</span> <span class="n">VM</span> <span class="p">(</span><span class="n">build</span> <span class="mf">20.1</span><span class="o">-</span><span class="n">b02</span><span class="p">,</span> <span class="n">mixed</span> <span class="n">mode</span><span class="p">)</span>
+<div class="highlight"><pre>java version “1.6.0_26″
+Java(TM) SE Runtime Environment (build 1.6.0_26-b03)
+Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02, mixed mode)
 </pre></div>
 
 
 <p>然后切换到zenoss用户下执行以下操作 <code>su zenoss</code></p>
 <p>打上26403补丁</p>
 <p><code>/usr/local/zenoss/zenoss/bin/zenpatch 26403</code></p>
-<div class="highlight"><pre><span class="n">Getting</span> <span class="n">patch</span> <span class="n">from</span> <span class="n">Internet</span><span class="err">…</span>
+<div class="highlight"><pre>Getting patch from Internet…
 
-<span class="nl">http:</span><span class="c1">//dev.zenoss.org/trac/changeset/26403?format=diff&amp;new=26403</span>
+http://dev.zenoss.org/trac/changeset/26403?format=diff&amp;new=26403
 
-<span class="o">%</span> <span class="n">Total</span> <span class="o">%</span> <span class="n">Received</span> <span class="o">%</span> <span class="n">Xferd</span> <span class="n">Average</span> <span class="n">Speed</span> <span class="n">Time</span> <span class="n">Time</span> <span class="n">Time</span> <span class="n">Current</span>
-<span class="n">Dload</span> <span class="n">Upload</span> <span class="n">Total</span> <span class="n">Spent</span> <span class="n">Left</span> <span class="n">Speed</span>
-<span class="mi">100</span> <span class="mi">1899</span> <span class="mi">0</span> <span class="mi">1899</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1845</span> <span class="mi">0</span> <span class="err">–</span><span class="o">:</span><span class="err">–</span><span class="o">:</span><span class="err">–</span> <span class="mi">0</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mo">01</span> <span class="err">–</span><span class="o">:</span><span class="err">–</span><span class="o">:</span><span class="err">–</span> <span class="mi">2748</span>
-<span class="n">determining</span> <span class="n">strip</span> <span class="n">size</span> <span class="k">for</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">Products</span><span class="o">/</span><span class="n">r26403</span><span class="p">.</span><span class="n">patch</span>
+% Total % Received % Xferd Average Speed Time Time Time Current
+Dload Upload Total Spent Left Speed
+100 1899 0 1899 0 0 1845 0 –:–:– 0:00:01 –:–:– 2748
+determining strip size for /usr/local/zenoss/zenoss/Products/r26403.patch
 
-<span class="n">Applying</span> <span class="n">patch</span> <span class="n">with</span> <span class="n">strip</span><span class="o">=</span><span class="mi">3</span>
-<span class="n">patch</span> <span class="o">-</span><span class="n">b</span> <span class="err">–</span><span class="n">strip</span><span class="o">=</span><span class="mi">3</span> <span class="o">&lt;</span> <span class="n">r26403</span><span class="p">.</span><span class="n">patch</span>
-<span class="p">(</span><span class="n">Stripping</span> <span class="n">trailing</span> <span class="n">CRs</span> <span class="n">from</span> <span class="n">patch</span><span class="p">.)</span>
-<span class="n">patching</span> <span class="n">file</span> <span class="n">ZenUI3</span><span class="o">/</span><span class="n">browser</span><span class="o">/</span><span class="n">resources</span><span class="o">/</span><span class="n">js</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">ComponentPanel</span><span class="p">.</span><span class="n">js</span>
-<span class="p">(</span><span class="n">Stripping</span> <span class="n">trailing</span> <span class="n">CRs</span> <span class="n">from</span> <span class="n">patch</span><span class="p">.)</span>
-<span class="n">patching</span> <span class="n">file</span> <span class="n">ZenUI3</span><span class="o">/</span><span class="n">browser</span><span class="o">/</span><span class="n">resources</span><span class="o">/</span><span class="n">js</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">form</span><span class="o">/</span><span class="n">graphPanel</span><span class="p">.</span><span class="n">js</span>
-<span class="n">zenoss</span><span class="err">@</span><span class="n">bgp</span><span class="o">-</span><span class="n">guangzhou</span><span class="o">-</span><span class="mi">17</span><span class="o">:~</span><span class="err">$</span> <span class="n">wget</span> <span class="n">http</span><span class="o">:</span><span class="c1">//dev.zenoss.org/trac/export/26262/trunk/inst/buildjs.sh</span>
-<span class="err">–</span><span class="mi">2012</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">29</span> <span class="mi">13</span><span class="o">:</span><span class="mi">56</span><span class="o">:</span><span class="mi">21</span><span class="err">–</span> <span class="n">http</span><span class="o">:</span><span class="c1">//dev.zenoss.org/trac/export/26262/trunk/inst/buildjs.sh</span>
-<span class="n">Resolving</span> <span class="n">dev</span><span class="p">.</span><span class="n">zenoss</span><span class="p">.</span><span class="n">org</span><span class="err">…</span> <span class="mf">204.12.105.194</span>
-<span class="n">Connecting</span> <span class="n">to</span> <span class="n">dev</span><span class="p">.</span><span class="n">zenoss</span><span class="p">.</span><span class="n">org</span><span class="o">|</span><span class="mf">204.12.105.194</span><span class="o">|:</span><span class="mi">80</span><span class="err">…</span> <span class="n">connected</span><span class="p">.</span>
-<span class="n">HTTP</span> <span class="n">request</span> <span class="n">sent</span><span class="p">,</span> <span class="n">awaiting</span> <span class="n">response</span><span class="err">…</span> <span class="mi">200</span> <span class="n">OK</span>
-<span class="nl">Length:</span> <span class="mi">1714</span> <span class="p">(</span><span class="mf">1.7</span><span class="n">K</span><span class="p">)</span> <span class="p">[</span><span class="n">application</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">sh</span><span class="p">]</span>
-<span class="n">Saving</span> <span class="n">to</span><span class="o">:</span> <span class="err">“</span><span class="n">buildjs</span><span class="p">.</span><span class="n">sh</span><span class="mf">.1</span><span class="err">”</span>
+Applying patch with strip=3
+patch -b –strip=3 &lt; r26403.patch
+(Stripping trailing CRs from patch.)
+patching file ZenUI3/browser/resources/js/zenoss/ComponentPanel.js
+(Stripping trailing CRs from patch.)
+patching file ZenUI3/browser/resources/js/zenoss/form/graphPanel.js
+zenoss@bgp-guangzhou-17:~$ wget http://dev.zenoss.org/trac/export/26262/trunk/inst/buildjs.sh
+–2012-11-29 13:56:21– http://dev.zenoss.org/trac/export/26262/trunk/inst/buildjs.sh
+Resolving dev.zenoss.org… 204.12.105.194
+Connecting to dev.zenoss.org|204.12.105.194|:80… connected.
+HTTP request sent, awaiting response… 200 OK
+Length: 1714 (1.7K) [application/x-sh]
+Saving to: “buildjs.sh.1”
 
-<span class="mi">100</span><span class="o">%</span><span class="p">[</span><span class="o">====================================</span>
+100%[====================================
 
-<span class="o">===================================</span>
+===================================
 
-<span class="o">======================================</span>
+======================================
 
-<span class="o">================&gt;</span><span class="p">]</span> <span class="mi">1</span><span class="p">,</span><span class="mi">714</span> <span class="err">–</span><span class="p">.</span><span class="o">-</span><span class="n">K</span><span class="o">/</span><span class="n">s</span> <span class="n">in</span> <span class="mi">0</span><span class="n">s</span>
+================&gt;] 1,714 –.-K/s in 0s
 
-<span class="mi">2012</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">29</span> <span class="mi">13</span><span class="o">:</span><span class="mi">56</span><span class="o">:</span><span class="mi">22</span> <span class="p">(</span><span class="mi">388</span> <span class="n">MB</span><span class="o">/</span><span class="n">s</span><span class="p">)</span> <span class="err">–</span> <span class="err">“</span><span class="n">buildjs</span><span class="p">.</span><span class="n">sh</span><span class="mf">.1</span><span class="err">”</span> <span class="n">saved</span> <span class="p">[</span><span class="mi">1714</span><span class="o">/</span><span class="mi">1714</span><span class="p">]</span>
+2012-11-29 13:56:22 (388 MB/s) – “buildjs.sh.1” saved [1714/1714]
 </pre></div>
 
 
@@ -78,9 +78,9 @@
 并在选项中正确调用这一方法，使得性能图像中的时间范围与选项中的同步。</p>
 <p>具体说明见<a href="http://dev.zenoss.org/trac/changeset/26403">http://dev.zenoss.org/trac/changeset/26403</a></p>
 <p>下载JSBulid程序，运行使JS补丁生效</p>
-<div class="highlight"><pre><span class="n">wget</span> <span class="n">http</span><span class="o">:</span><span class="c1">//dev.zenoss.org/trac/export/26262/trunk/inst/buildjs.sh</span>
-<span class="n">sh</span> <span class="n">buildjs</span><span class="p">.</span><span class="n">sh</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">zenoss</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">zopectl</span> <span class="n">restart</span>
+<div class="highlight"><pre>wget http://dev.zenoss.org/trac/export/26262/trunk/inst/buildjs.sh
+sh buildjs.sh
+/usr/local/zenoss/zenoss/bin/zopectl restart
 </pre></div>
 
 
@@ -113,10 +113,8 @@
 	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
 </div>
 
 <div class="sidebarpages">

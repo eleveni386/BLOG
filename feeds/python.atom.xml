@@ -19,49 +19,7 @@ vps找到,更不要说设置nginx的root路径了, 于是,目前使用scp方式�
 &lt;p&gt;然后:  &lt;/p&gt;
 &lt;p&gt;使用一个工具,截获&lt;strong&gt;tmux&lt;/strong&gt;的缓冲,得到里面的ip, 根据ip地址去数据内寻找相应的密码;&lt;/p&gt;
 &lt;p&gt;带着这个想法, 在群里询问了一下群友, 是否有命令行版本的密码管理工具, 群友推荐一个叫做&lt;a href="http://zx2c4.com/projects/password-store/"&gt;Pass&lt;/a&gt;的东西,经过试用,感觉不适合这个地方, 因为&lt;strong&gt;Pass&lt;/strong&gt;是交互式的CLI工具, 无法于tmux结合, 难到木有办法了? 那就自己动手吧&lt;/p&gt;
-&lt;p&gt;经过一夜努力, 出来了这货&lt;a href="https://github.com/eleveni386/clipm"&gt;clipm.py&lt;/a&gt; 使用方法参考github的README&lt;/p&gt;</summary><category term="tmux"></category><category term="运维"></category></entry><entry><title>2345自动签到器编写经过</title><link href="http://eleveni386.7axu.com/posts/2013/07/05/2345zi-dong-qian-dao-qi-bian-xie-jing-guo/" rel="alternate"></link><updated>2013-07-05T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-07-05:posts/2013/07/05/2345zi-dong-qian-dao-qi-bian-xie-jing-guo/</id><summary type="html">&lt;p&gt;2345这个流氓东西 虽然我很不齿, 但是我还是继续每天签到. 
-不为别的,只为了给女友兑换腾迅那个无聊的xx钻. 10Q币/月 这笔钱就靠2345给我省下了..&lt;/p&gt;
-&lt;p&gt;由于这个玩意推广着实在太累了.差不多一年没有继续推广过了..
-(就算推广也就那么几个人点击我的链接 :D ) 昨天给女友兑换Q币的时候,
-突然想到它的签到有积分赠送的,反正我也推广不起来,不如拿它的免费积分算鸟. 
-但是要我每天都记得要签到,这是何等痛苦的事情… 自动签到 势在必行.. &lt;/p&gt;
-&lt;p&gt;说到签到,无非就是自动登录加访问特定url&lt;/p&gt;
-&lt;p&gt;首先分析2345的登录机制和签到url在哪里&lt;/p&gt;
-&lt;p&gt;拿出&lt;strong&gt;mitmproxy&lt;/strong&gt; 然后设置chromium为本地代理,&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="/image/DeepinScrot-1803.png" /&gt;&lt;/p&gt;
-&lt;p&gt;很好,登录过程全部抓出来了, (这里要说一下,因为2345登录的时候会自动跳转,
-用chromium的开发者工具无法中止它的跳转,无法得到post的内容和post的url,
-所以这里我使用mitmproxy, 这家伙是&lt;a href="http://lilydjwg.is-programmer.com/"&gt;百合仙子&lt;/a&gt;
-推荐给我的. 很不错的东西,很好用, 
-现在我也推荐给你们… :P )&lt;/p&gt;
-&lt;p&gt;然后我们看看post的内容, 按下回车之后&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="/image/DeepinScrot-2146.png" /&gt;&lt;/p&gt;
-&lt;p&gt;这里需要主意的是密码是经过md5加密的, 所以在post密码的时候,需要事前将它加密&lt;/p&gt;
-&lt;p&gt;如何自动登录实在是很简单的事情.. 不再浪费篇章. 
-上面主要是表现下&lt;strong&gt;mitmproxy&lt;/strong&gt;工具的犀利, 在这次开发过程中,全靠了它,我才能做下去.
-不然连登录过程都不清楚,如何编码? 更多关于mitmproxy请看&lt;a href="http://mitmproxy.org/"&gt;mitmproxy&lt;/a&gt;
-,(友情提示: 翻墙戴好装备,小心墙上玻璃 :P )&lt;/p&gt;
-&lt;p&gt;用python搞这个,大家都会想到, 上&lt;strong&gt;urllib2&lt;/strong&gt;, &lt;strong&gt;urllib&lt;/strong&gt;,是的,我一开始也是直接上这2个模块. 
-刷刷,十几行代码写完… &lt;/p&gt;
-&lt;p&gt;然后运行的时候, 却发现怎么样都无法登录, 经过几个小时的跟踪,跟踪,再跟踪.. 
-一再确认我的post数据没有错误, 然后看见了, 恩.. cookies这家伙.. 于是我又加上&lt;strong&gt;cookielib&lt;/strong&gt;, 
-再次访问. 好吧, 再次失败..&lt;/p&gt;
-&lt;p&gt;通过对比发现, 脚本登录过程和浏览器登录过程前面两步都没有问题, post的数据正确,
-服务器也给我加上了cookie,但是在第三步最后一个302到登录之后的页面的时候 出现问题了. 
-脚本没有附带上cookies去访问jifen.2345.com/index.php  , 然后我将cookies保存到文件. 
-发现cookies文件内果然是空的..这时怎么回事 ? 服务器明明给了我cookies .. 
-好了不要纠结了… (这个问题还是没想明白,但是我也懒的去搞明白了,因为我遇上了&lt;strong&gt;Requests&lt;/strong&gt;)&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://cn.python-requests.org/en/latest/user/quickstart.html#cookies"&gt;关于Requests&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Requests&lt;/strong&gt; 是用Python语言编写，采用&lt;strong&gt;Apache2 Licensed&lt;/strong&gt;开源协议的 HTTP 库
-Python 标准库中的 urllib2 模块提供了大部分你需要的HTTP功能,但是它的API彻底地被破坏 了。
-它是专为不同时间-不同网络而写的，这需要大量的工作（甚至是方法覆盖）去执行简单的任务。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Requests官方介绍&lt;/p&gt;
-&lt;p&gt;使用&lt;strong&gt;Requests&lt;/strong&gt;之后,果断登录成功&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="/image/DeepinScrot-4411.png" /&gt;&lt;/p&gt;
-&lt;p&gt;看到木有,带上了&lt;strong&gt;cookies&lt;/strong&gt;有木有… 而且,用&lt;strong&gt;requests&lt;/strong&gt;编码 心情很愉快的说.. 
-比每次用urllib2/urllib 要爽快多了.. 谁用谁知道..&lt;/p&gt;</summary><category term="chromium"></category><category term="http"></category><category term="mitmproxy"></category><category term="python"></category><category term="requests"></category></entry><entry><title>python带cookies访问</title><link href="http://eleveni386.7axu.com/posts/2013/06/03/pythondai-cookiesfang-wen/" rel="alternate"></link><updated>2013-06-03T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-06-03:posts/2013/06/03/pythondai-cookiesfang-wen/</id><summary type="html">&lt;p&gt;本人是运维一枚,使用次数最多的就是Vandyke的&lt;a href="https://secure.vandyke.com/cgi-bin/download_form.php?pid=securecrt_ubuntu1264_deb_71&amp;amp;st=4&amp;amp;"&gt;SecureCRT&lt;/a&gt;.
+&lt;p&gt;经过一夜努力, 出来了这货&lt;a href="https://github.com/eleveni386/clipm"&gt;clipm.py&lt;/a&gt; 使用方法参考github的README&lt;/p&gt;</summary><category term="tmux"></category><category term="运维"></category></entry><entry><title>python带cookies访问</title><link href="http://eleveni386.7axu.com/posts/2013/06/03/pythondai-cookiesfang-wen/" rel="alternate"></link><updated>2013-06-03T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-06-03:posts/2013/06/03/pythondai-cookiesfang-wen/</id><summary type="html">&lt;p&gt;本人是运维一枚,使用次数最多的就是Vandyke的&lt;a href="https://secure.vandyke.com/cgi-bin/download_form.php?pid=securecrt_ubuntu1264_deb_71&amp;amp;st=4&amp;amp;"&gt;SecureCRT&lt;/a&gt;.
 在win系统下面有各种大牛
 破解的scrt版本,但是在咱debian下面 就只能使用官方正版的,但是因为scrt是收费的,
 而且还死贵死贵($99), 咱这种中下农,搞不起这货, 只能使用它的免费30天,时间一到,
@@ -79,24 +37,24 @@ Python 标准库中的 urllib2 模块提供了大部分你需要的HTTP功能,�
 &lt;p&gt;尝试了几次,发现它现在所有认证信息都是从cookies里面获取的, 咱就只能模拟登录,
 保留cookies,带着cookies访问它的下载页面&lt;/p&gt;
 &lt;p&gt;模拟登录,及带着cookies访问其他页面代码如下&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;urllib&lt;/span&gt;
-&lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;cookielib&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib2&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nn"&gt;urllib&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;cookielib&lt;/span&gt;
 
-&lt;span class="n"&gt;cj&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cookielib&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CookieJar&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;opener&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;build_opener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;HTTPCookieProcessor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cj&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;install_opener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;opener&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;cj&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cookielib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CookieJar&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;opener&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;build_opener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;HTTPCookieProcessor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cj&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;install_opener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;opener&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="n"&gt;post&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urllib&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urlencode&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;pid&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;:&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;securecrt_ubuntu1264_deb_71&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;\
-                          &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;:&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;eleven&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;i386&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;gmail&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;\
-                          &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;:&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;*******&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;\
-                          &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;:&amp;#39;&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;span class="n"&gt;post&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urllib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urlencode&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;pid&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;securecrt_ubuntu1264_deb_71&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;\
+                          &lt;span class="s"&gt;&amp;#39;username&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;eleven.i386@gmail.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;\
+                          &lt;span class="s"&gt;&amp;#39;password&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;*******&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;\
+                          &lt;span class="s"&gt;&amp;#39;status&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;4&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
 
-&lt;span class="n"&gt;post2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urllib&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urlencode&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;pid&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;:&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;securecrt_ubuntu1264_deb_71&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;\
-                          &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;:&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;self&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;span class="n"&gt;post2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urllib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urlencode&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;pid&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;securecrt_ubuntu1264_deb_71&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;\
+                          &lt;span class="s"&gt;&amp;#39;status&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;self&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
 
-&lt;span class="n"&gt;req&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urlopen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//secure.vandyke.com/cgi-bin/account_verify.php&amp;#39;,post)&lt;/span&gt;
+&lt;span class="n"&gt;req&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urlopen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;https://secure.vandyke.com/cgi-bin/account_verify.php&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="n"&gt;req2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urlopen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//secure.vandyke.com/cgi-bin/download.php&amp;#39;,post2)&lt;/span&gt;
+&lt;span class="n"&gt;req2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urlopen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;https://secure.vandyke.com/cgi-bin/download.php&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;post2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -105,59 +63,7 @@ Python 标准库中的 urllib2 模块提供了大部分你需要的HTTP功能,�
 &lt;h3&gt;参数说明&lt;/h3&gt;
 &lt;p&gt;第一个post, 用于做登录. 提交用户名和密码,&lt;/p&gt;
 &lt;p&gt;第二个post,用于发送下载请求,提交请求资源的id,和status(这玩意一直不知道干嘛的),
-请求资源的文件名称,在第一个post的respose header的Content-Disposition字段里面,&lt;/p&gt;</summary><category term="python"></category><category term="桌面"></category><category term="运维"></category></entry><entry><title>Linux桌面流量监控工具</title><link href="http://eleveni386.7axu.com/posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/" rel="alternate"></link><updated>2013-04-26T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2013-04-26:posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/</id><summary type="html">&lt;h2&gt;大图show&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="" src="/image/1365580966.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="(https://github.com/eleveni386/netmonitor)"&gt;&lt;strong&gt;悬浮窗口-- 流量监视器&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;一个利用&lt;strong&gt;pcap&lt;/strong&gt;写的流量监视工具&lt;/p&gt;
-&lt;h2&gt;依赖&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;python-pypcap&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;python-dpkt&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;请自行下载安装两个包&lt;/p&gt;
-&lt;h2&gt;启动&lt;/h2&gt;
-&lt;p&gt;执行&lt;code&gt;./netmon&lt;/code&gt; 第一次执行会要求输入密码, 之后不再需要 此次更新:&lt;/p&gt;
-&lt;h2&gt;更新&lt;/h2&gt;
-&lt;p&gt;2013-04-25&lt;/p&gt;
-&lt;p&gt;修正UI被流量采集模块堵塞问题&lt;/p&gt;
-&lt;p&gt;2013-04-10:&lt;/p&gt;
-&lt;p&gt;降低cpu占用率, 由原来的12-20% 到现在的3%
-重写了流量采集代码, 结构更加合理,更易阅读
-使用圆角悬浮窗口,更加美观&lt;/p&gt;
-&lt;p&gt;后续:&lt;/p&gt;
-&lt;p&gt;增加进程流量限制
-增加网络进程list&lt;/p&gt;</summary><category term="gtk"></category><category term="python"></category><category term="悬浮窗"></category></entry><entry><title>python 进度条</title><link href="http://eleveni386.7axu.com/posts/2012/09/10/python-jin-du-tiao/" rel="alternate"></link><updated>2012-09-10T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2012-09-10:posts/2012/09/10/python-jin-du-tiao/</id><summary type="html">&lt;p&gt;最近在写批量上传文件的脚本,用的库是&lt;strong&gt;paramiko&lt;/strong&gt;,以后将写下paramiko的使用心得,
-这次记录下python有关进度条的东西,&lt;/p&gt;
-&lt;p&gt;众所周知上传,下载,如果有一个进度显示的话, 对使用者也不是枯燥的等待, 起码.. 
-起码知道脚本在正常工作, 也知道下载/上传 的进度了.&lt;/p&gt;
-&lt;p&gt;正好这次脚本也有上传的部分.就将这次的心得记录下&lt;/p&gt;
-&lt;p&gt;首先,所谓的进度条和print没啥不不同,都是将结果输出而已, 但是如果用print就注定
-悲剧, 因为print的时候会带一个&lt;code&gt;\n&lt;/code&gt;,可以想象如果我们的进度条还换行, 
-那还算条子嘛.. 恶汗..&lt;/p&gt;
-&lt;p&gt;一个最简单的进度条 实现原理就是 再输出完毕后，把光标移动到行首，继续在那里输
-出更长的进度条即可实现，新的更长的进度条把旧的短覆盖，就形成了动画效果&lt;/p&gt;
-&lt;p&gt;我们可以利用&lt;code&gt;\r&lt;/code&gt;, 转义符&lt;code&gt;\r&lt;/code&gt;就可以把光标移动到行首而不换行，转义符&lt;code&gt;\n&lt;/code&gt;就把光
-标移动到行首并且换行。 这里用一个例子来说明,这是我脚本中的一个函数,
-用于接收&lt;code&gt;paramiko.sftp_client.sftp&lt;/code&gt; 中的put方法的callback数据,by the way, 
-利用paramiko的sftp的put方法,可以将本地文件上传至服务器,默认参数中有一个callback=None,
-别人可以利用callback来接收文件上传的进度, 每隔32768字节返回一次进度,我们可以构造一个callback来接收, &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;def&lt;/span&gt; &lt;span class="n"&gt;_callback&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdout&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;Data&lt;/span&gt; &lt;span class="n"&gt;Transmission&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="mf"&gt;3.2f&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mf"&gt;100.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-    &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdout&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flush&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;这样在使用put方法的时候 就可以put(本地文件,远程路径,_callback)&lt;/p&gt;
-&lt;p&gt;在默认情况下put方法是不需要后面的callback参数的, 只需要本地路径和远程路径, 
-因为我们需要知道上传进度. 因此加一个callback上去,在callback函数定一个 进度&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdout&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;Data&lt;/span&gt; &lt;span class="n"&gt;Transmission&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="mf"&gt;3.2f&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mf"&gt;100.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;这样当使用put方法的时候. 就可以得到一个文件上传的进度的百分比. 类似这样&lt;/p&gt;
-&lt;p&gt;Data Transmission 234524 [55%]&lt;/p&gt;
-&lt;p&gt;同时234524 [55%]  不断变化 直至100%&lt;/p&gt;
-&lt;p&gt;python丰富的模块,提供了无限可能,这里还有一个好东西叫做&lt;a href="(http://pypi.python.org/pypi/progressbar/)"&gt;progressbar&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;直接上效果图,ps:我自己没这种需求,就用了最简单的实现模式,这个是我找相关进度条资料的时候顺带找到的&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="/image/2012-09-10-141920_641x57_scrot.png" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="运维"></category><category term="paramiko"></category></entry><entry><title>多线程ssh分发脚本</title><link href="http://eleveni386.7axu.com/posts/2012/09/08/duo-xian-cheng-sshfen-fa-jiao-ben/" rel="alternate"></link><updated>2012-09-08T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2012-09-08:posts/2012/09/08/duo-xian-cheng-sshfen-fa-jiao-ben/</id><summary type="html">&lt;p&gt;说到自动化运维工具, 那是一个满天飞. 我也首推&lt;code&gt;puppet&lt;/code&gt;,无疑灰常的强大.但是强大
+请求资源的文件名称,在第一个post的respose header的Content-Disposition字段里面,&lt;/p&gt;</summary><category term="python"></category><category term="桌面"></category><category term="运维"></category></entry><entry><title>多线程ssh分发脚本</title><link href="http://eleveni386.7axu.com/posts/2012/09/08/duo-xian-cheng-sshfen-fa-jiao-ben/" rel="alternate"></link><updated>2012-09-08T00:00:00+08:00</updated><author><name>eleven.i386</name></author><id>tag:eleveni386.7axu.com,2012-09-08:posts/2012/09/08/duo-xian-cheng-sshfen-fa-jiao-ben/</id><summary type="html">&lt;p&gt;说到自动化运维工具, 那是一个满天飞. 我也首推&lt;code&gt;puppet&lt;/code&gt;,无疑灰常的强大.但是强大
 是强大. 就是有点依赖部署,如果部署不好,后期使用会很难受,各种不顺手. 现在我就是这样,
 使用puppet是一个前辈部署的.我们puppet应用也灰常简单.就是做服务器应用平台初始化用,&lt;/p&gt;
 &lt;p&gt;很多简单的操作.比如10几台需要更新杀毒软件,这个时候使用puppet,又需要重新建立配
@@ -178,20 +84,20 @@ Python 标准库中的 urllib2 模块提供了大部分你需要的HTTP功能,�
 &lt;p&gt;1台Debian5 机器 位于 B机房 (双线) &lt;code&gt;pbs&lt;/code&gt;所在主机&lt;/p&gt;
 &lt;p&gt;对比如下&lt;/p&gt;
 &lt;p&gt;上传文件 clamav.tar.gz 79MB&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;scp&lt;/span&gt;                                            &lt;span class="n"&gt;pbs&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;scp                                            pbs
 
-&lt;span class="n"&gt;real&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="n"&gt;m24&lt;/span&gt;&lt;span class="mf"&gt;.490&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;                           &lt;span class="n"&gt;real&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="n"&gt;m11&lt;/span&gt;&lt;span class="mf"&gt;.375&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;
-&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;m28&lt;/span&gt;&lt;span class="mf"&gt;.462&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;                            &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;m30&lt;/span&gt;&lt;span class="mf"&gt;.842&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;
-&lt;span class="n"&gt;sys&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;m1&lt;/span&gt;&lt;span class="mf"&gt;.924&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;                              &lt;span class="n"&gt;sys&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;m2&lt;/span&gt;&lt;span class="mf"&gt;.428&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;
+real 12m24.490s                           real 5m11.375s
+user 0m28.462s                            user 0m30.842s
+sys 0m1.924s                              sys 0m2.428s
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;上传文件 lighttpd.tar.gz 1.9MB&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;scp&lt;/span&gt;                                           &lt;span class="n"&gt;pbs&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;scp                                           pbs
 
-&lt;span class="n"&gt;real&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;m44&lt;/span&gt;&lt;span class="mf"&gt;.138&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;                            &lt;span class="n"&gt;real&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;m10&lt;/span&gt;&lt;span class="mf"&gt;.583&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;
-&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;m1&lt;/span&gt;&lt;span class="mf"&gt;.564&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;                             &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;m1&lt;/span&gt;&lt;span class="mf"&gt;.616&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;
-&lt;span class="n"&gt;sys&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;m0&lt;/span&gt;&lt;span class="mf"&gt;.080&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;                              &lt;span class="n"&gt;sys&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;m0&lt;/span&gt;&lt;span class="mf"&gt;.116&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;
+real 0m44.138s                            real 0m10.583s
+user 0m1.564s                             user 0m1.616s
+sys 0m0.080s                              sys 0m0.116s
 &lt;/pre&gt;&lt;/div&gt;
 
 

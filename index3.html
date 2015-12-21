@@ -16,122 +16,143 @@
 
 <div class="summarycontainer">
 	<div class="metabox">
-		<p class="metaday">244</p>
+		<p class="metaday">137</p>
 		<p class="metayear">2013</p>
-		<p class="metacategory">python</p>
+		<p class="metacategory">Linux运维</p>
 	</div>
 	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/09/01/cai-yong-pelicanjing-tai-blog/ " >采用pelican静态blog</a>
-		<h2>引子</h2>
+		<a class="summarytitle" href="/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/ " >加密你的HTTP请求(穿墙)</a>
+		<p>之前用<strong>kangle</strong>在香港的vps上做了一个http代理
+  但是在使用的时候发现,访问国外的一些站点 还是无法正常访问,但是在vps上面访问正常,
+而且kangle日志里面看见国外那些站点返回的状态码也是200,说明vps请求那些站点是没问题的
+那么问题就是发生在客户端跟vps之间了,因为这一段的数据是明文的HTTP请求, 很容易被上层运营商过滤掉
+那么我们就将客户端跟vps之间这段http过程加密就好了,</p>
+<h2>Stunnel</h2>
 <blockquote>
-<p>因为我们的gtalk群组机器人需要更改Mysql为Mongo, 正好我也有想法使用静态博客程序</p>
+<p>Stunnel 是一种程序，使程序员和系统管理员可以很轻松地对任意 TCP 会话加密。
+您可以很轻松地在客户机和服务器上启用 SSL ― 而且这样做不会影响程序源代码。
+Stunnel 服务器主要执行两个功能：
+一，首先，接收未加密的数据流，进行 SSL 加密，然后将其通过网络发送；
+二，对已进行 SSL 加密的数据流进行解密，并将其通过网络发送给另一个程序
+（该程序通常驻留在同一机器上，以避免本地网络上的窥探攻击）。</p>
 </blockquote>
-<p>在研究了几天<code>pelican</code>之后, 今天就开始动手搬家了.. 唉,只是可惜了我哪些google收录的说 :-(</p>
-<p>最终效果如您所见.. 如何您是我和<a href="(http://www.linuxzen.com/)">cold</a>的熟人,那么别惊讶为何我的blog和他的那么相似.</p>
-<p>介个要归结于,<code>pelican</code>有限的主题,和自己不擅长css的原因, 在众多主题中来回选择,
-不断尝试,最终介个入围了...</p>
-<p>使用中的主题<a href="(https://github.com/getpelican/pelican-themes/tree/master/tuxlite_tbs)">tuxlite_tbs</a></p>
-<p>目前已经可以正常访问, 不过还有一个问题存在, 本地与vps之间同步的问题, 本来在vps
-上建立了一个git的仓库, 但是由于git极度不熟练的缘故,导致我push的文件,始终无法在
-vps找到,更不要说设置nginx的root路径了, 于是,目前使用scp方式更新文件.... 表喷我傻... :-(</p>
-<p>经过这么几分钟的观察,感觉还算是满意的..</p>
-		<a class="btnmore" href="/posts/2013/09/01/cai-yong-pelicanjing-tai-blog/">more ...</a>
+<p><a href="https://www.stunnel.org/downloads.html">下载地址</a></p>
+<h2>安装注意</h2>
+<p>在make install 的时候会要求你输入一些信息,用来生成证书, 按照提示输入即可</p>
+<h2>配置</h2>
+<h3>这里仅作为proxy</h3>
+<div class="highlight"><pre>syslog = yes  #使用syslog日志 ...</pre></div>
+		<a class="btnmore" href="/posts/2013/05/17/jia-mi-ni-de-httpqing-qiu-chuan-qiang/">more ...</a>
 	</div>
 </div>
 <div class="summarycontainer">
 	<div class="metabox">
-		<p class="metaday">242</p>
+		<p class="metaday">115</p>
 		<p class="metayear">2013</p>
-		<p class="metacategory">python</p>
+		<p class="metacategory">Linux运维</p>
 	</div>
 	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/08/30/clijian-yi-mi-ma-guan-li-gong-ju/ " >CLI简易密码管理工具</a>
-		<p>最近用上了<strong>tmux</strong>, 抛弃了<strong>SecureCRT</strong>,  但是没有便利的密码输入功能. 每次登录上服务器之后我都要将鼠标移动到状态栏 点击<strong>KeepassX</strong>,然后在<strong>Keepassx</strong>里面找到我需要的密码,然后在贴在<strong>tmux</strong>上..完成一次密码输入过程.  </p>
-<p>这种过程与使用<strong>tmux</strong>给我带来的便利(快捷键的存在,让我可以完全抛弃鼠标,事实用了<strong>tmux</strong>我就没有使用鼠标了.) 格格不入.. 感觉就像开着一辆跑车.结果却时不时的要停下来加油.. 这种感觉十分难受..(不打点会死星人)  </p>
-<p>于是就想到一个办法, 利用<strong>tmux</strong>的缓冲区, 来完成挑选密码的过程.  </p>
-<p>首先:  </p>
-<p><strong>tmux</strong>拥有自己的黏贴板,在<strong>tmux</strong>中复制的时候,可以通过<code>tmux show-buffer</code>找到复制的内容;</p>
-<p>然后:  </p>
-<p>使用一个工具,截获<strong>tmux</strong>的缓冲,得到里面的ip, 根据ip地址去数据内寻找相应的密码 ...</p>
-		<a class="btnmore" href="/posts/2013/08/30/clijian-yi-mi-ma-guan-li-gong-ju/">more ...</a>
+		<a class="summarytitle" href="/posts/2013/04/25/wang-qia-zhong-duan-bang-ding/ " >网卡中断绑定</a>
+		<blockquote>
+<p>中断亲和力是指将一个或多个中断源绑定到特定的 CPU 上运行</p>
+</blockquote>
+<h2>操作</h2>
+<p><a href="http://liuxin1982.blog.51cto.com/4338970/1019825">参考</a></p>
+<p>今天我是来吐槽该文中的一个shell脚本</p>
+<div class="highlight"><pre><span class="err">#</span><span class="x"> setting up irq affinity according to /proc/interrupts</span>
+<span class="err">#</span><span class="x"> 2008-11-25 Robert Olsson</span>
+<span class="err">#</span><span class="x"> 2009-02-19 updated by Jesse Brandeburg</span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> &gt; Dave Miller:</span>
+<span class="err">#</span><span class="x"> (To get consistent naming in /proc/interrups)</span>
+<span class="err">#</span><span class="x"> I would suggest that people use something like:</span>
+<span class="err">#</span><span class="x"> char buf[IFNAMSIZ+6];</span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> sprintf(buf, &quot;%s-%s-%d&quot;,</span>
+<span class="err">#</span><span class="x">         netdev-&gt;name ...</span></pre></div>
+		<a class="btnmore" href="/posts/2013/04/25/wang-qia-zhong-duan-bang-ding/">more ...</a>
 	</div>
 </div>
 <div class="summarycontainer">
 	<div class="metabox">
-		<p class="metaday">235</p>
+		<p class="metaday">088</p>
+		<p class="metayear">2013</p>
+		<p class="metacategory">Linux运维</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2013/03/29/ji-yi-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/ " >记. 一次ddos攻击,导致服务器死机</a>
+		<h2>背景</h2>
+<p>某年某月某天,eleven所属单位 被未知生物ddos攻击, 攻击时间 凌晨00:15 左右, 
+eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上面命令找出服务器弱点.
+同时还原攻击现场,</p>
+<h2>检查</h2>
+<p>通过<strong>Zenoss</strong>监控图, 看见在00:15左右, 突然进来了大量的数据包, 大概40w左右, 
+但是流量没有明显异常(即没有瞬间增高), 好吧, 看见这个现象就猜到了.. 小包<strong>DDos</strong>攻击.
+通过服务器的message日志里面看见了<em>syn flood on 80</em> 记录,结合监控图上的大量数据包,
+断定服务器被人采用<strong>syn半开攻击</strong>手法给攻击</p>
+<h2>服务器配置</h2>
+<p>观察了服务器的内核参数配置,因为我记得我们所有服务器都有对于<strong>syn flood</strong>的防御策略,
+在sysctl.conf里面<strong>syn_cookies</strong>已经开启, 而且也看见syn队列增加到了1w6, 
+按理来说单纯的半开攻击应该对于我们机器是无压力的说 ...</p>
+		<a class="btnmore" href="/posts/2013/03/29/ji-yi-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">070</p>
 		<p class="metayear">2013</p>
 		<p class="metacategory">Linux桌面</p>
 	</div>
 	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/08/23/tmuxduo-paneltong-bu/ " >tmux多panel同步</a>
-		<p>上一篇说过 我已经使用<strong>tmux</strong> 代替<strong>SecureCRT</strong>进行运维工作 , 
-为此写了一个<a href="https://github.com/eleveni386/clipm">密码管理工具</a>,来配合<strong>tmux</strong>使用,
-经过两天的使用,感觉良好.<strong>KeepassX</strong> 已经直接被我卸载了,今天要说的是<strong>SecureCRT</strong>另外一个功能
-<strong>批量执行命令</strong></p>
-<p>用过<strong>SecureCRT</strong>的孩纸,都知道它有一个很方便的功能,开启多个终端的时候,可以同时在这些终端输入命令,
-极大的方便了我们的工作,我搬家到<strong>tmux</strong> 也一直纠结这个功能.经过多次google之后 终于被我找到了.原来<strong>tmux</strong>
-也是有批量执行命令的, <strong>tmux panel sync</strong>, <strong>panel同步</strong></p>
-<p>使用效果如下:</p>
-<p><img alt="" src="http://blog.sanctum.geek.nz/wp-content/uploads/2012/08/synchronize-panes.gif" /></p>
-<p>(PS:这里偷了别人的图,我懒得找gif制作工具)</p>
-<p>开启这个功能:  </p>
-<p><code>:setw synchronize-panes</code></p>
-<p>这是一个开关,需要的时候键入, 不需要的时候键入同样的指令,即可关闭.</p>
-<p>友情提示 ...</p>
-		<a class="btnmore" href="/posts/2013/08/23/tmuxduo-paneltong-bu/">more ...</a>
+		<a class="summarytitle" href="/posts/2013/03/11/ji-yi-ci-an-zhuang-fcitxguo-cheng/ " >记一次安装fcitx过程</a>
+		<p>今天实在无法忍受<em>ibus</em>的启动速度和词汇准确性了. 将ibus更换成<strong>fcitx</strong>, </p>
+<div class="highlight"><pre>apt-get install fcitx
+im-switch -s fcitx
+im-switch -s fcitx -z default
+</pre></div>
+
+
+<p>然后在<em>autostart</em>中加入fcitx的自启动.. 注销X界面之后, 发现fcitx是启动起来了, 
+只是应用程序的默认输入法还是<em>Ibus</em>, 于是google之 ,找到了fcitx环境变量设置, 
+在<strong>~/.xprofile</strong> 中加入fcitx的环境变量:</p>
+<div class="highlight"><pre>export GTK_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export QT_IM_MODULE=fcitx
+</pre></div>
+
+
+<p>注销X界面 再次进入系统,<code>echo $GTK_IM_MODULE</code> 发现这个变量已经是fcitx, 但是应用
+程序默认输入法还是<strong>Ibus</strong> , 来来回回折腾了几次, 忍不住吐槽了下Ibus的无耻.. 
+结果无意中dpkg -l ...</p>
+		<a class="btnmore" href="/posts/2013/03/11/ji-yi-ci-an-zhuang-fcitxguo-cheng/">more ...</a>
 	</div>
 </div>
 <div class="summarycontainer">
 	<div class="metabox">
-		<p class="metaday">225</p>
-		<p class="metayear">2013</p>
-		<p class="metacategory">vim</p>
+		<p class="metaday">334</p>
+		<p class="metayear">2012</p>
+		<p class="metacategory">监控系统</p>
 	</div>
 	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/08/13/vimzhong-wen-luan-ma/ " >vim中文乱码</a>
-		<p>今天 用本地客户端登录服务器编辑文件时, 出现中文乱码 表现为 某些字符正常显示, 某些又显示乱码, 有图有真相</p>
-<p><img alt="" src="/image/DeepinScrot-3437-300x30.png" /></p>
-<p>如图所示, 部分能显示出来,部分无法显示出来</p>
-<p>用SecureCRT登录时,没有任何问题, 一开始以为是自己本地xfce-terminal字符编码问题,
-结果更换了几个终端都是同样的结果,gnome-terminal, xterm 都尝试过.. 看来问题还是服务器本身</p>
-<p>在服务器上输入<code>locale</code> </p>
-<div class="highlight"><pre><span class="n">locale</span><span class="o">:</span> <span class="n">Cannot</span> <span class="kd">set</span> <span class="n">LC_CTYPE</span> <span class="n">to</span> <span class="k">default</span> <span class="n">locale</span><span class="o">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
-<span class="n">locale</span><span class="o">:</span> <span class="n">Cannot</span> <span class="kd">set</span> <span class="n">LC_MESSAGES</span> <span class="n">to</span> <span class="k">default</span> <span class="n">locale</span><span class="o">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
-<span class="n">locale</span><span class="o">:</span> <span class="n">Cannot</span> <span class="kd">set</span> <span class="n">LC_ALL</span> <span class="n">to</span> <span class="k">default ...</span></pre></div>
-		<a class="btnmore" href="/posts/2013/08/13/vimzhong-wen-luan-ma/">more ...</a>
-	</div>
-</div>
-<div class="summarycontainer">
-	<div class="metabox">
-		<p class="metaday">223</p>
-		<p class="metayear">2013</p>
-		<p class="metacategory">软件推荐</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/08/11/clementine-yin-le-bo-fang-qi/ " >Clementine 音乐播放器</a>
-		<p>咱来推荐一款好看和好用的音乐播放器了 &lt;(=＞﹏＜=)&gt;</p>
-<p>鉴于eleven苦苦追求多种音乐播放器无果之下…. 发现这货了…</p>
-<p>虽然这货还是依然无法支持网络播放, 不过界面和易用性差不多抵消了我对无法支持网络播放的怨念了..</p>
-<p>先上效果图:</p>
-<p><img alt="" src="/image/DeepinScrot-4032-300x187.png" /></p>
-<p><strong>Clementine</strong> 是一款多平台音乐播放器。 它的灵感来源于<strong>Amarok 1.4</strong>
-致力于开发一个易于使用的界面，令您能够快速地搜索和播放您的音乐。</p>
-<p><img alt="" src="/image/DeepinScrot-4152-273x300.png" /></p>
-<h2>缺点</h2>
-<ol>
-<li>不支持网络播放</li>
-<li>图形库基于QT</li>
-<li>我的aac格式不支持</li>
-</ol>
-<h2>链接</h2>
-<p><a href="http://www.clementine-player.org/">http://www.clementine-player.org/</a></p>
-		<a class="btnmore" href="/posts/2013/08/11/clementine-yin-le-bo-fang-qi/">more ...</a>
+		<a class="summarytitle" href="/posts/2012/11/29/xiu-fu-zenoss321-graphs-range-bug/ " >修复zenoss3.2.1 graphs range bug</a>
+		<p>前段时间将<strong>zenoss</strong>升级到3.2.1 (别问咱怎么使用这么老的版本,领导要求stable,
+目前zenoss只有3.2.1是最新的stable版本),然后昨天使用的时候发现了一个小小的bug,
+就是在device的graphs中, 选择range会出现性能图不更新的情况.</p>
+<p>要修复这个bug,确定<em>java</em>版本是否大于1.6</p>
+<p>我自己debian 由于没有安装java 因此我这里安装一下</p>
+<p><code>apt-get install sun-java6-jdk</code></p>
+<p>然后确认下java版本</p>
+<p><code>java -version</code></p>
+<div class="highlight"><pre>java version “1.6.0_26″
+Java(TM) SE Runtime Environment (build 1.6.0_26-b03)
+Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02 ...</pre></div>
+		<a class="btnmore" href="/posts/2012/11/29/xiu-fu-zenoss321-graphs-range-bug/">more ...</a>
 	</div>
 </div>
 
 <p class="paginator">
             <a href="http://eleveni386.7axu.com/index2.html">&laquo;</a>
-    Page 3 / 8
+    Page 3 / 4
         <a href="http://eleveni386.7axu.com/index4.html">next&raquo;</a>
 </p>
 		</div>
@@ -142,10 +163,8 @@ vps找到,更不要说设置nginx的root路径了, 于是,目前使用scp方式�
 	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
 </div>
 
 <div class="sidebarpages">

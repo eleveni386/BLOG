@@ -41,28 +41,28 @@ Stunnel 服务器主要执行两个功能：
 <p>在make install 的时候会要求你输入一些信息,用来生成证书, 按照提示输入即可</p>
 <h2>配置</h2>
 <h3>这里仅作为proxy</h3>
-<div class="highlight"><pre><span class="n">syslog</span> <span class="o">=</span> <span class="n">yes</span>  <span class="err">#使用</span><span class="n">syslog</span><span class="err">日志</span>
-<span class="n">fips</span> <span class="o">=</span> <span class="n">no</span>  <span class="err">#关闭</span><span class="n">fips</span> <span class="p">,</span> <span class="err">如果你支持</span><span class="n">fips</span> <span class="err">默认就好了</span><span class="p">,</span> <span class="err">默认配置文件里面是没有这个的</span><span class="p">,</span> <span class="err">如果在启动</span><span class="n">stunnel</span><span class="err">服务的时候</span> <span class="err">提示</span><span class="n">fips</span> <span class="err">不支持那么就关闭它</span>
-<span class="n">cert</span> <span class="o">=</span> <span class="o">/</span><span class="n">youtpath</span><span class="o">/</span><span class="n">stunnel</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">stunnel</span><span class="o">/</span><span class="n">stunnel</span><span class="p">.</span><span class="n">pem</span>
-<span class="err">然后将</span>
+<div class="highlight"><pre>syslog = yes  #使用syslog日志
+fips = no  #关闭fips , 如果你支持fips 默认就好了, 默认配置文件里面是没有这个的, 如果在启动stunnel服务的时候 提示fips 不支持那么就关闭它
+cert = /youtpath/stunnel/etc/stunnel/stunnel.pem
+然后将
 
-<span class="p">;[</span><span class="n">pop3s</span><span class="p">]</span>
-<span class="p">;</span><span class="n">accept</span> <span class="o">=</span> <span class="mi">995</span>
-<span class="p">;</span><span class="n">connect</span> <span class="o">=</span> <span class="mi">110</span>
+;[pop3s]
+;accept = 995
+;connect = 110
 
-<span class="p">;[</span><span class="n">imaps</span><span class="p">]</span>
-<span class="p">;</span><span class="n">accept</span> <span class="o">=</span> <span class="mi">993</span>
-<span class="p">;</span><span class="n">connect</span> <span class="o">=</span> <span class="mi">143</span>
+;[imaps]
+;accept = 993
+;connect = 143
 
-<span class="p">;[</span><span class="n">ssmtp</span><span class="p">]</span>
-<span class="p">;</span><span class="n">accept</span> <span class="o">=</span> <span class="mi">465</span>
-<span class="p">;</span><span class="n">connect</span> <span class="o">=</span> <span class="mi">25</span>
-<span class="err">注释掉</span><span class="p">,</span> <span class="err">注释符号</span> <span class="p">;</span>
+;[ssmtp]
+;accept = 465
+;connect = 25
+注释掉, 注释符号 ;
 
-<span class="err">新增加</span>
-<span class="p">[</span><span class="n">proxy</span><span class="p">]</span>
-<span class="n">accept</span> <span class="o">=</span> <span class="mi">8081</span>
-<span class="n">connect</span> <span class="o">=</span> <span class="mi">8082</span>
+新增加
+[proxy]
+accept = 8081
+connect = 8082
 </pre></div>
 
 
@@ -107,10 +107,8 @@ Stunnel 服务器主要执行两个功能：
 	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
 </div>
 
 <div class="sidebarpages">

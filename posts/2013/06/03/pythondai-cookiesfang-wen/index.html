@@ -40,24 +40,24 @@
 <p>尝试了几次,发现它现在所有认证信息都是从cookies里面获取的, 咱就只能模拟登录,
 保留cookies,带着cookies访问它的下载页面</p>
 <p>模拟登录,及带着cookies访问其他页面代码如下</p>
-<div class="highlight"><pre><span class="n">import</span> <span class="n">urllib2</span><span class="p">,</span><span class="n">urllib</span>
-<span class="n">import</span> <span class="n">cookielib</span>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">urllib2</span><span class="o">,</span><span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">cookielib</span>
 
-<span class="n">cj</span> <span class="o">=</span> <span class="n">cookielib</span><span class="p">.</span><span class="n">CookieJar</span><span class="p">()</span>
-<span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">urllib2</span><span class="p">.</span><span class="n">HTTPCookieProcessor</span><span class="p">(</span><span class="n">cj</span><span class="p">))</span>
-<span class="n">urllib2</span><span class="p">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
+<span class="n">cj</span> <span class="o">=</span> <span class="n">cookielib</span><span class="o">.</span><span class="n">CookieJar</span><span class="p">()</span>
+<span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPCookieProcessor</span><span class="p">(</span><span class="n">cj</span><span class="p">))</span>
+<span class="n">urllib2</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
 
-<span class="n">post</span> <span class="o">=</span> <span class="n">urllib</span><span class="p">.</span><span class="n">urlencode</span><span class="p">({</span><span class="err">&#39;</span><span class="n">pid</span><span class="sc">&#39;:&#39;</span><span class="n">securecrt_ubuntu1264_deb_71</span><span class="err">&#39;</span><span class="p">,</span>\
-                          <span class="err">&#39;</span><span class="n">username</span><span class="sc">&#39;:&#39;</span><span class="n">eleven</span><span class="p">.</span><span class="n">i386</span><span class="err">@</span><span class="n">gmail</span><span class="p">.</span><span class="n">com</span><span class="err">&#39;</span><span class="p">,</span>\
-                          <span class="err">&#39;</span><span class="n">password</span><span class="sc">&#39;:&#39;</span><span class="o">*******</span><span class="err">&#39;</span><span class="p">,</span>\
-                          <span class="err">&#39;</span><span class="n">status</span><span class="sc">&#39;:&#39;</span><span class="mi">4</span><span class="err">&#39;</span><span class="p">})</span>
+<span class="n">post</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">({</span><span class="s">&#39;pid&#39;</span><span class="p">:</span><span class="s">&#39;securecrt_ubuntu1264_deb_71&#39;</span><span class="p">,</span>\
+                          <span class="s">&#39;username&#39;</span><span class="p">:</span><span class="s">&#39;eleven.i386@gmail.com&#39;</span><span class="p">,</span>\
+                          <span class="s">&#39;password&#39;</span><span class="p">:</span><span class="s">&#39;*******&#39;</span><span class="p">,</span>\
+                          <span class="s">&#39;status&#39;</span><span class="p">:</span><span class="s">&#39;4&#39;</span><span class="p">})</span>
 
-<span class="n">post2</span> <span class="o">=</span> <span class="n">urllib</span><span class="p">.</span><span class="n">urlencode</span><span class="p">({</span><span class="err">&#39;</span><span class="n">pid</span><span class="sc">&#39;:&#39;</span><span class="n">securecrt_ubuntu1264_deb_71</span><span class="err">&#39;</span><span class="p">,</span>\
-                          <span class="err">&#39;</span><span class="n">status</span><span class="sc">&#39;:&#39;</span><span class="n">self</span><span class="err">&#39;</span><span class="p">})</span>
+<span class="n">post2</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">({</span><span class="s">&#39;pid&#39;</span><span class="p">:</span><span class="s">&#39;securecrt_ubuntu1264_deb_71&#39;</span><span class="p">,</span>\
+                          <span class="s">&#39;status&#39;</span><span class="p">:</span><span class="s">&#39;self&#39;</span><span class="p">})</span>
 
-<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">urlopen</span><span class="p">(</span><span class="err">&#39;</span><span class="n">https</span><span class="o">:</span><span class="c1">//secure.vandyke.com/cgi-bin/account_verify.php&#39;,post)</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;https://secure.vandyke.com/cgi-bin/account_verify.php&#39;</span><span class="p">,</span><span class="n">post</span><span class="p">)</span>
 
-<span class="n">req2</span> <span class="o">=</span> <span class="n">urllib2</span><span class="p">.</span><span class="n">urlopen</span><span class="p">(</span><span class="err">&#39;</span><span class="n">https</span><span class="o">:</span><span class="c1">//secure.vandyke.com/cgi-bin/download.php&#39;,post2)</span>
+<span class="n">req2</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;https://secure.vandyke.com/cgi-bin/download.php&#39;</span><span class="p">,</span><span class="n">post2</span><span class="p">)</span>
 </pre></div>
 
 
@@ -93,10 +93,8 @@
 	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
 </div>
 
 <div class="sidebarpages">

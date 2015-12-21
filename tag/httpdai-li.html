@@ -24,22 +24,22 @@
 		<a class="summarytitle" href="/posts/2014/03/07/squidzheng-xiang-dai-li/ " >squid正向代理</a>
 		<h2>匿名代理</h2>
 <p>squid 要做到匿名代理 只需要添加</p>
-<div class="highlight"><pre><span class="n">header_access</span> <span class="n">Via</span> <span class="n">deny</span> <span class="n">all</span> 
-<span class="n">header_access</span>  <span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span> <span class="n">deny</span> <span class="n">all</span>
+<div class="highlight"><pre>header_access Via deny all 
+header_access  X-Forwarded-For deny all
 </pre></div>
 
 
 <p>即可</p>
 <h2>代理验证</h2>
 <p>谁都不想自己的代理服务器被他人随意拿来使用.. 于是 我们就需要给代理服务器加上密码</p>
-<div class="highlight"><pre><span class="n">auth_param</span> <span class="n">basic</span> <span class="n">program</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">squid2</span><span class="mf">.7</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ncsa_auth</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">children</span> <span class="mi">1</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">realm</span> <span class="s">&quot;Welcome to eleven&#39;s proxy server&quot;</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">credentialsttl</span> <span class="mi">12</span> <span class="n">hours</span>
+<div class="highlight"><pre>auth_param basic program /data/home/eleven/squid2.7/bin/ncsa_auth
+auth_param basic children 1
+auth_param basic realm &quot;Welcome to eleven&#39;s proxy server&quot;
+auth_param basic credentialsttl 12 hours
 </pre></div>
 
 
-<p>这里的<strong>ncsa_auth</strong> 是自己写的shell脚本 ...</p>
+<p>这里的<strong>ncsa_auth</strong> 是自己写的shell脚本, 我的squid版本是2.7 ...</p>
 		<a class="btnmore" href="/posts/2014/03/07/squidzheng-xiang-dai-li/">more ...</a>
 	</div>
 </div>
@@ -55,10 +55,8 @@
 	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
 </div>
 
 <div class="sidebarpages">

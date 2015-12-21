@@ -16,38 +16,19 @@
 
 <div class="summarycontainer">
 	<div class="metabox">
-		<p class="metaday">101</p>
+		<p class="metaday">355</p>
 		<p class="metayear">2015</p>
 		<p class="metacategory">Linux桌面</p>
 	</div>
 	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2015/04/11/you-dao-fan-yi-hua-ci-fan-yi/ " >有道翻译 --划词翻译</a>
-		<blockquote>
-<p>google的翻译实在太机械了, 大赞有道. 如果官方能出Linux版的有道实在太好了</p>
-</blockquote>
-<h1>划词翻译</h1>
-<p><img alt="" src="/image/youdao.png" /></p>
-<h1>特性</h1>
-<ol>
-<li>鼠标选词. 在鼠标所在位置出现翻译框</li>
-<li>托盘图标. 右键托盘图标, 设置开启划词或者关闭划词</li>
-<li>全局热键. <code>Ctrl+F8</code> 开启或者关闭划词</li>
-<li>支持pdf, 网页</li>
-</ol>
-<h1>依赖</h1>
-<p>python-Xlib
-requests
-python-webkit
-python-gtk</p>
-<h1>安装</h1>
-<p>修改openyoudao.desktop中的相关路径</p>
-<p>修改项包括但不仅限于:
-<code>Exec=</code>
-<code>Icon=</code></p>
-<p>以你本地实际路径为准. 将修改好的openyoudao.desktop 放置 <code>/usr/share/applications/</code> 下即可</p>
-<h1>下载</h1>
-<p><a href="https://github.com/eleveni386/youdaodict">戳我吧</a></p>
-		<a class="btnmore" href="/posts/2015/04/11/you-dao-fan-yi-hua-ci-fan-yi/">more ...</a>
+		<a class="summarytitle" href="/posts/2015/12/21/flvcdyan-gao-rao-guo/ " >flvcd广告绕过</a>
+		<h1>背景</h1>
+<p>原本是想寻找让mplayer播放youku视频的. 但是想了好多种方法. 都不知道如何让mplayer接管flash来播放视频. 最终在研究这个问题的过程中.发现了flvcd居然出现了,广告!!!, 虽然我能理解flvcd的做法.毕竟他们破解了人家视频网站的加密url, 让他们损失了不少的广告流量. 但是flvcd好歹提供一种更加友好(自动化)的广告播放方式吖. 你用flash是算什么吖!  </p>
+<h1>flvcd广告</h1>
+<p>flvcd目前限制了部分浏览器访问(或许是操作系统.比如我Linux系统访问时. 就会出现apache的欢迎页), 通过修改浏览器UA即可. 
+  然后在点击Go之后, 跳转到本来应该是视频真实地址列表页. 但是这里出现了原视频的广告列表. 要求用户必须浏览其中任意一个广告,才能出现真实地址列表.</p>
+<p>点击其中一个广告之后. 出现flash的播放器. 不过好歹flvcd还是比较良心. 只需要等待3秒. 就可以选择跳过广告了. 虽然良心. 但是我是需要自动化获取真实地址的. 于是我被这个广告列表拦截了. 通过多次尝试. 发现flvcd在广告播放完毕之后, 会在cookie中增加2个新键<code>go</code>, <code>avdGggggtt</code>,  其中多次观察.<code>go</code>参数是一个加密值, <code>avdGggggtt</code>是当前的时间戳, 有了这个发现.那么可以认为. 我如果要提交一个视频页地址给flvcd帮我解析. 那么势必我需要带上这两个参数. 不然就会出现广告页. 那么问题来了 <code>go ...</code></p>
+		<a class="btnmore" href="/posts/2015/12/21/flvcdyan-gao-rao-guo/">more ...</a>
 	</div>
 </div>
 <div class="summarycontainer">
@@ -67,9 +48,9 @@ python-gtk</p>
 方便自己 随心所欲的使用大杀器</p>
 <p>麻麻再也不用担心 我使用rm了</p>
 <h2>特性</h2>
-<div class="highlight"><pre><span class="mf">1.</span>  <span class="err">删除日志记录</span>
-<span class="mf">2.</span> <span class="err">安全目录</span>
-<span class="mf">3.</span> <span class="err">垃圾箱机制</span>
+<div class="highlight"><pre>1.  删除日志记录
+2. 安全目录
+3. 垃圾箱机制
 </pre></div>
 
 
@@ -81,46 +62,6 @@ python-gtk</p>
 <span class="n">exp</span><span class="o">:</span>
     <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/$&#39;</span> <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;^/home/?$&#39;</span> <span class="err">#</span> <span class="err">增加</span><span class="sr">/ 和 /</span><span class="n">home</span> <span class="err">目录不可删除 ...</span></pre></div>
 		<a class="btnmore" href="/posts/2014/11/21/pythonban-rmming-ling/">more ...</a>
-	</div>
-</div>
-<div class="summarycontainer">
-	<div class="metabox">
-		<p class="metaday">272</p>
-		<p class="metayear">2014</p>
-		<p class="metacategory">Linux桌面</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2014/09/29/shen-du-jie-tu-gong-ju/ " >深度截图工具</a>
-		<blockquote>
-<p>竟然找不到 小邪兽 版的 DeepinScrot 的github地址了,   ╮(╯▽╰)╭</p>
-</blockquote>
-<h2>截图工具的截图</h2>
-<p><img alt="" src="/image/deepin-scrot.png" /></p>
-<h2>说明</h2>
-<p>深度公司的原员工  <strong>小邪兽</strong>  的作品. </p>
-<p>感叹于QQ的截图工具的便利性, 苦于Linux desktop下没有一款能与之匹敌工具.</p>
-<p>该工具做到了与QQ截图工具一样的便利性.</p>
-<h2>特性</h2>
-<ol>
-<li>区域截图, </li>
-<li>截图修改, </li>
-<li>本地保存, 以及 保存到 黏贴板 </li>
-</ol>
-<p>以上为 原版 功能, 本人新增了一项功能 图床分享</p>
-<ol>
-<li>图床分享, 默认为 本人的图床   </li>
-</ol>
-<h2>安装要求</h2>
-<ol>
-<li>>= python2.6</li>
-<li>python-xlib</li>
-<li>python-requests</li>
-<li>xsel</li>
-</ol>
-<h2>更改图床</h2>
-<p>用你喜欢的 编辑器 编辑 <code>src/sharepic.py</code> 文件</p>
-<p>修改 <code>pic_bed = 'http://eleveni386.7axu.com/Image ...</code></p>
-		<a class="btnmore" href="/posts/2014/09/29/shen-du-jie-tu-gong-ju/">more ...</a>
 	</div>
 </div>
 <div class="summarycontainer">
@@ -141,13 +82,13 @@ python-gtk</p>
 <p>操作方式都很变扭, 用习惯了Pidgin的<code>Esc</code>,很难适应<code>Ctrl+W</code>方式.</p>
 <h2>修改</h2>
 <p><strong>被修改的文件</strong></p>
-<div class="highlight"><pre><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">empathy</span><span class="o">/</span><span class="n">empathy</span><span class="o">-</span><span class="n">chat</span><span class="o">-</span><span class="n">window</span><span class="p">.</span><span class="n">ui</span>
+<div class="highlight"><pre>/usr/share/empathy/empathy-chat-window.ui
 </pre></div>
 
 
 <p>通过搜索 <strong>gtk-close</strong> 找到一下内容</p>
-<div class="highlight"><pre><span class="mi">55</span>           <span class="o">&lt;</span><span class="nb">object</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;GtkAction&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s2">&quot;menu_conv_close&quot;</span><span class="o">&gt;</span>                        
-<span class="mi">56</span>             <span class="o">&lt;</span><span class="nx">property</span> <span class="n">name ...</span></pre></div>
+<div class="highlight"><pre>55           <span class="nt">&lt;object</span> <span class="na">class=</span><span class="s">&quot;GtkAction&quot;</span> <span class="na">id=</span><span class="s">&quot;menu_conv_close&quot;</span><span class="nt">&gt;</span>                        
+56             <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;stock_id&quot;</span><span class="nt">&gt;</span>gtk-close ...</pre></div>
 		<a class="btnmore" href="/posts/2014/04/10/empathykuai-su-guan-bi-liao-tian-chuang-kou/">more ...</a>
 	</div>
 </div>
@@ -161,28 +102,52 @@ python-gtk</p>
 		<a class="summarytitle" href="/posts/2014/03/07/squidzheng-xiang-dai-li/ " >squid正向代理</a>
 		<h2>匿名代理</h2>
 <p>squid 要做到匿名代理 只需要添加</p>
-<div class="highlight"><pre><span class="n">header_access</span> <span class="n">Via</span> <span class="n">deny</span> <span class="n">all</span> 
-<span class="n">header_access</span>  <span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span> <span class="n">deny</span> <span class="n">all</span>
+<div class="highlight"><pre>header_access Via deny all 
+header_access  X-Forwarded-For deny all
 </pre></div>
 
 
 <p>即可</p>
 <h2>代理验证</h2>
 <p>谁都不想自己的代理服务器被他人随意拿来使用.. 于是 我们就需要给代理服务器加上密码</p>
-<div class="highlight"><pre><span class="n">auth_param</span> <span class="n">basic</span> <span class="n">program</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">squid2</span><span class="mf">.7</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ncsa_auth</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">children</span> <span class="mi">1</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">realm</span> <span class="s">&quot;Welcome to eleven&#39;s proxy server&quot;</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">credentialsttl</span> <span class="mi">12</span> <span class="n">hours</span>
+<div class="highlight"><pre>auth_param basic program /data/home/eleven/squid2.7/bin/ncsa_auth
+auth_param basic children 1
+auth_param basic realm &quot;Welcome to eleven&#39;s proxy server&quot;
+auth_param basic credentialsttl 12 hours
 </pre></div>
 
 
-<p>这里的<strong>ncsa_auth</strong> 是自己写的shell脚本 ...</p>
+<p>这里的<strong>ncsa_auth</strong> 是自己写的shell脚本, 我的squid版本是2.7 ...</p>
 		<a class="btnmore" href="/posts/2014/03/07/squidzheng-xiang-dai-li/">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">058</p>
+		<p class="metayear">2014</p>
+		<p class="metacategory">Linux运维</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/posts/2014/02/27/ji-yi-ci-sshmi-yao-deng-lu-shi-bai/ " >记一次ssh密钥登录失败</a>
+		<h2>环境</h2>
+<p>我们的私钥是通过SecureCRT工具生成的. 在Debian5/6下面使用正常
+有问题的主机是Debian7 系统, 客户端是Debian6 系统
+Debian7 的ssh server版本是1.6 客户端的ssh client是1.5
+使用的ssh协议均是2</p>
+<h2>现象</h2>
+<p>昨天我们一台Debian7主机, 无法通过私钥登录. 每次登录提示需要输入密码. 这是我们第一次使用Debian7的系统, 以往的主机都是Debian5/6的系统</p>
+<p>开启ssh的debug参数, 观看登录过程,发现如下</p>
+<div class="highlight"><pre><span class="n">debug2</span><span class="o">:</span> <span class="n">key_type_from_name</span><span class="o">:</span> <span class="n">unknown</span> <span class="n">key</span> <span class="n">type</span> <span class="s1">&#39;-----BEGIN&#39;</span>
+<span class="n">debug2</span><span class="o">:</span> <span class="n">key_type_from_name</span><span class="o">:</span> <span class="n">unknown</span> <span class="n">key</span> <span class="n">type</span> <span class="s1">&#39;-----END&#39;</span>
+<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
+<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
+<span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace ...</span></pre></div>
+		<a class="btnmore" href="/posts/2014/02/27/ji-yi-ci-sshmi-yao-deng-lu-shi-bai/">more ...</a>
 	</div>
 </div>
 
 <p class="paginator">
-    Page 1 / 8
+    Page 1 / 4
         <a href="http://eleveni386.7axu.com/index2.html">next&raquo;</a>
 </p>
 		</div>
@@ -193,10 +158,8 @@ python-gtk</p>
 	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
 </div>
 
 <div class="sidebarpages">

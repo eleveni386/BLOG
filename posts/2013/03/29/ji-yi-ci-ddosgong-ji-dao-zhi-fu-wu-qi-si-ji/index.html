@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh_cn">
 <head>
-	<title>Eleven.I386's Blog - ddos</title>
+	<title>记. 一次ddos攻击,导致服务器死机 | Eleven.I386's Blog</title>
 	<meta charset="utf-8" />
     <meta name="author" content="eleven.i386">
 	<link rel="stylesheet" href="http://eleveni386.7axu.com/theme/css/franticworld.css" type="text/css" />
@@ -14,14 +14,14 @@
 		
 		<div class="content">
 
-<div class="summarycontainer">
-	<div class="metabox">
-		<p class="metaday">088</p>
-		<p class="metayear">2013</p>
-		<p class="metacategory">Linux运维</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/03/29/ji-yi-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/ " >记. 一次ddos攻击,导致服务器死机</a>
+<div class="metabox">
+	<p class="metaday">088</p>
+	<p class="metayear">2013</p>
+	<p class="metacategory">Linux运维</p>
+</div>
+<div class="arcticlecontentbox">
+	<div class="articlecontent">
+		<a class="articletitle" href="/posts/2013/03/29/ji-yi-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/ " >记. 一次ddos攻击,导致服务器死机</a>
 		<h2>背景</h2>
 <p>某年某月某天,eleven所属单位 被未知生物ddos攻击, 攻击时间 凌晨00:15 左右, 
 eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上面命令找出服务器弱点.
@@ -34,14 +34,57 @@ eleven不在现场.其他同事处理的, 第二天eleven来到公司, 接到上
 <h2>服务器配置</h2>
 <p>观察了服务器的内核参数配置,因为我记得我们所有服务器都有对于<strong>syn flood</strong>的防御策略,
 在sysctl.conf里面<strong>syn_cookies</strong>已经开启, 而且也看见syn队列增加到了1w6, 
-按理来说单纯的半开攻击应该对于我们机器是无压力的说 ...</p>
-		<a class="btnmore" href="/posts/2013/03/29/ji-yi-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/">more ...</a>
+按理来说单纯的半开攻击应该对于我们机器是无压力的说.</p>
+<p>我们服务器是</p>
+<p>Dell R210</p>
+<p>Debian 6.0.7</p>
+<p>2.6.32 kernel</p>
+<p>网卡 Broadcom Corporation NetXtreme II BCM5716</p>
+<p>网卡驱动 bnx2 版本2.0.2</p>
+<h2>攻击模拟</h2>
+<p>一开始自己用scapy写了一个syn攻击脚本,但是发包速度太慢了.于是想起了<strong>hping3</strong>,
+这个东西,</p>
+<p>挑选两台机器A君,B君, 对主机1.2.3.4发起syn攻击</p>
+<p><code>hping3 -i u1 -S -p 80 1.2.3.4 –rand-source</code></p>
+<p><style type="text/css">p.ex {color:rgb(0,0,255)}</style>
+  <p>以上攻击命令,请勿随意尝试.</p></p>
+<p>2秒之后, 1.2.34 挂了..&lt;(=－︿－=)&gt;</p>
+<p>通过远程管理卡登录服务器发现,机器并没有死机, 只是网络不通了.机器无法ping通交换机,
+交换机也无法ping通服务器, 重启服务器网卡, 恢复正常,判断网卡异常down掉. 找遍所有日志
+kern.log, syslog.log, message.log, debug.log 都没有任何信息,仅有一条 syn flood on 80
+和凌晨攻击的现象何其相似..</p>
+<p>经过一下午的不断测试.确定了仅用一台机器就可以瞬间秒挂1.2.3.4这台服务器, 
+奇怪.我们机器怎么就这么脆弱…</p>
+<p>后来经过几次测试.排除了应用程序问题 替换nginx, lighttp, apache, 排除了交换机问题,
+(白痴都想得到.交换机要是死了,我们所有业务就崩溃了),那么就剩下服务器自身的问题,
+但是服务器没有死机.那么就只剩下服务器网卡..</p>
+<p>经过一番搜索..发现google上也有同志发现了<em>宝兰网卡</em>异常down掉的情况. 看到这里,
+我就找到一台Intel网卡的机器. 然后继续做ddos测试, 发现Intel网卡机器,虽然无法提供服务了..
+系统被我拖的死死的.但是只要我停止攻击,系统就能很快的恢复. 而不会出现停止攻击了,
+还无法登录服务器(网卡死掉). 可以肯定我们服务器这次浩劫的原因就是网卡的问题了..</p>
+<h2>结语</h2>
+<p>到dell官方下载最新的bnx2驱动. 更新驱动之后,继续测试.. 这时不断怎么攻击,
+都无法将网卡打死. 只能造成业务无法正常访问而已.</p>
+<p>没有做软中断的负载均衡.当攻击的时候网卡中断都集中在cpu0上,正常的数据包都被
+攻击数据包给淹没了..自然无法提供服务.</p>
 	</div>
+	
+	<div class="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+	   var disqus_identifier = "posts/2013/03/29/ji-yi-ci-ddosgong-ji-dao-zhi-fu-wu-qi-si-ji/";
+	   (function() {
+			var dsq = document.createElement('script');
+			dsq.type = 'text/javascript'; dsq.async = true;
+			dsq.src = 'http://eleveni386sblog.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] ||
+			 document.getElementsByTagName('body')[0]).appendChild(dsq);
+	  })();
+	</script>
+	</div>
+	       
 </div>
 
-<p class="paginator">
-    Page 1 / 1
-</p>
 		</div>
 		
 		<div class="sidebar">

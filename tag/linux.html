@@ -31,9 +31,9 @@
 方便自己 随心所欲的使用大杀器</p>
 <p>麻麻再也不用担心 我使用rm了</p>
 <h2>特性</h2>
-<div class="highlight"><pre><span class="mf">1.</span>  <span class="err">删除日志记录</span>
-<span class="mf">2.</span> <span class="err">安全目录</span>
-<span class="mf">3.</span> <span class="err">垃圾箱机制</span>
+<div class="highlight"><pre>1.  删除日志记录
+2. 安全目录
+3. 垃圾箱机制
 </pre></div>
 
 
@@ -57,22 +57,22 @@
 		<a class="summarytitle" href="/posts/2014/03/07/squidzheng-xiang-dai-li/ " >squid正向代理</a>
 		<h2>匿名代理</h2>
 <p>squid 要做到匿名代理 只需要添加</p>
-<div class="highlight"><pre><span class="n">header_access</span> <span class="n">Via</span> <span class="n">deny</span> <span class="n">all</span> 
-<span class="n">header_access</span>  <span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span> <span class="n">deny</span> <span class="n">all</span>
+<div class="highlight"><pre>header_access Via deny all 
+header_access  X-Forwarded-For deny all
 </pre></div>
 
 
 <p>即可</p>
 <h2>代理验证</h2>
 <p>谁都不想自己的代理服务器被他人随意拿来使用.. 于是 我们就需要给代理服务器加上密码</p>
-<div class="highlight"><pre><span class="n">auth_param</span> <span class="n">basic</span> <span class="n">program</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eleven</span><span class="o">/</span><span class="n">squid2</span><span class="mf">.7</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ncsa_auth</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">children</span> <span class="mi">1</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">realm</span> <span class="s">&quot;Welcome to eleven&#39;s proxy server&quot;</span>
-<span class="n">auth_param</span> <span class="n">basic</span> <span class="n">credentialsttl</span> <span class="mi">12</span> <span class="n">hours</span>
+<div class="highlight"><pre>auth_param basic program /data/home/eleven/squid2.7/bin/ncsa_auth
+auth_param basic children 1
+auth_param basic realm &quot;Welcome to eleven&#39;s proxy server&quot;
+auth_param basic credentialsttl 12 hours
 </pre></div>
 
 
-<p>这里的<strong>ncsa_auth</strong> 是自己写的shell脚本 ...</p>
+<p>这里的<strong>ncsa_auth</strong> 是自己写的shell脚本, 我的squid版本是2.7 ...</p>
 		<a class="btnmore" href="/posts/2014/03/07/squidzheng-xiang-dai-li/">more ...</a>
 	</div>
 </div>
@@ -83,7 +83,7 @@
 		<p class="metacategory">Linux运维</p>
 	</div>
 	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/ " >记一次ssh密钥登录失败</a>
+		<a class="summarytitle" href="/posts/2014/02/27/ji-yi-ci-sshmi-yao-deng-lu-shi-bai/ " >记一次ssh密钥登录失败</a>
 		<h2>环境</h2>
 <p>我们的私钥是通过SecureCRT工具生成的. 在Debian5/6下面使用正常
 有问题的主机是Debian7 系统, 客户端是Debian6 系统
@@ -97,27 +97,7 @@ Debian7 的ssh server版本是1.6 客户端的ssh client是1.5
 <span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
 <span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace</span>
 <span class="n">debug3</span><span class="o">:</span> <span class="n">key_read</span><span class="o">:</span> <span class="n">missing</span> <span class="n">whitespace ...</span></pre></div>
-		<a class="btnmore" href="/posts/2014/02/27/ji-ci-sshmi-yao-deng-lu-shi-bai/">more ...</a>
-	</div>
-</div>
-<div class="summarycontainer">
-	<div class="metabox">
-		<p class="metaday">225</p>
-		<p class="metayear">2013</p>
-		<p class="metacategory">vim</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/08/13/vimzhong-wen-luan-ma/ " >vim中文乱码</a>
-		<p>今天 用本地客户端登录服务器编辑文件时, 出现中文乱码 表现为 某些字符正常显示, 某些又显示乱码, 有图有真相</p>
-<p><img alt="" src="/image/DeepinScrot-3437-300x30.png" /></p>
-<p>如图所示, 部分能显示出来,部分无法显示出来</p>
-<p>用SecureCRT登录时,没有任何问题, 一开始以为是自己本地xfce-terminal字符编码问题,
-结果更换了几个终端都是同样的结果,gnome-terminal, xterm 都尝试过.. 看来问题还是服务器本身</p>
-<p>在服务器上输入<code>locale</code> </p>
-<div class="highlight"><pre><span class="n">locale</span><span class="o">:</span> <span class="n">Cannot</span> <span class="kd">set</span> <span class="n">LC_CTYPE</span> <span class="n">to</span> <span class="k">default</span> <span class="n">locale</span><span class="o">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
-<span class="n">locale</span><span class="o">:</span> <span class="n">Cannot</span> <span class="kd">set</span> <span class="n">LC_MESSAGES</span> <span class="n">to</span> <span class="k">default</span> <span class="n">locale</span><span class="o">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
-<span class="n">locale</span><span class="o">:</span> <span class="n">Cannot</span> <span class="kd">set</span> <span class="n">LC_ALL</span> <span class="n">to</span> <span class="k">default ...</span></pre></div>
-		<a class="btnmore" href="/posts/2013/08/13/vimzhong-wen-luan-ma/">more ...</a>
+		<a class="btnmore" href="/posts/2014/02/27/ji-yi-ci-sshmi-yao-deng-lu-shi-bai/">more ...</a>
 	</div>
 </div>
 
@@ -132,10 +112,8 @@ Debian7 的ssh server版本是1.6 客户端的ssh client是1.5
 	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
 </div>
 
 <div class="sidebarpages">

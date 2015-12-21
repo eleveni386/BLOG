@@ -58,37 +58,6 @@ vps找到,更不要说设置nginx的root路径了, 于是,目前使用scp方式�
 </div>
 <div class="summarycontainer">
 	<div class="metabox">
-		<p class="metaday">186</p>
-		<p class="metayear">2013</p>
-		<p class="metacategory">python</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/07/05/2345zi-dong-qian-dao-qi-bian-xie-jing-guo/ " >2345自动签到器编写经过</a>
-		<p>2345这个流氓东西 虽然我很不齿, 但是我还是继续每天签到. 
-不为别的,只为了给女友兑换腾迅那个无聊的xx钻. 10Q币/月 这笔钱就靠2345给我省下了..</p>
-<p>由于这个玩意推广着实在太累了.差不多一年没有继续推广过了..
-(就算推广也就那么几个人点击我的链接 :D ) 昨天给女友兑换Q币的时候,
-突然想到它的签到有积分赠送的,反正我也推广不起来,不如拿它的免费积分算鸟. 
-但是要我每天都记得要签到,这是何等痛苦的事情… 自动签到 势在必行.. </p>
-<p>说到签到,无非就是自动登录加访问特定url</p>
-<p>首先分析2345的登录机制和签到url在哪里</p>
-<p>拿出<strong>mitmproxy</strong> 然后设置chromium为本地代理,</p>
-<p><img alt="" src="/image/DeepinScrot-1803.png" /></p>
-<p>很好,登录过程全部抓出来了, (这里要说一下,因为2345登录的时候会自动跳转,
-用chromium的开发者工具无法中止它的跳转,无法得到post的内容和post的url,
-所以这里我使用mitmproxy, 这家伙是<a href="http://lilydjwg.is-programmer.com/">百合仙子</a>
-推荐给我的. 很不错的东西,很好用, 
-现在我也推荐给你们… :P )</p>
-<p>然后我们看看post的内容, 按下回车之后</p>
-<p><img alt="" src="/image/DeepinScrot-2146.png" /></p>
-<p>这里需要主意的是密码是经过md5加密的, 所以在post密码的时候,需要事前将它加密</p>
-<p>如何自动登录实在是很简单的事情.. 不再浪费篇章. 
-上面主要是表现下<strong>mitmproxy</strong>工具的犀利 ...</p>
-		<a class="btnmore" href="/posts/2013/07/05/2345zi-dong-qian-dao-qi-bian-xie-jing-guo/">more ...</a>
-	</div>
-</div>
-<div class="summarycontainer">
-	<div class="metabox">
 		<p class="metaday">154</p>
 		<p class="metayear">2013</p>
 		<p class="metacategory">python</p>
@@ -114,39 +83,29 @@ vps找到,更不要说设置nginx的root路径了, 于是,目前使用scp方式�
 </div>
 <div class="summarycontainer">
 	<div class="metabox">
-		<p class="metaday">116</p>
-		<p class="metayear">2013</p>
+		<p class="metaday">252</p>
+		<p class="metayear">2012</p>
 		<p class="metacategory">python</p>
 	</div>
 	<div class="summarybox">
-		<a class="summarytitle" href="/posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/ " >Linux桌面流量监控工具</a>
-		<h2>大图show</h2>
-<p><img alt="" src="/image/1365580966.png" /></p>
-<p><a href="(https://github.com/eleveni386/netmonitor)"><strong>悬浮窗口-- 流量监视器</strong></a></p>
-<p>一个利用<strong>pcap</strong>写的流量监视工具</p>
-<h2>依赖</h2>
-<p><strong>python-pypcap</strong></p>
-<p><strong>python-dpkt</strong></p>
-<p>请自行下载安装两个包</p>
-<h2>启动</h2>
-<p>执行<code>./netmon</code> 第一次执行会要求输入密码, 之后不再需要 此次更新:</p>
-<h2>更新</h2>
-<p>2013-04-25</p>
-<p>修正UI被流量采集模块堵塞问题</p>
-<p>2013-04-10:</p>
-<p>降低cpu占用率, 由原来的12-20% 到现在的3%
-重写了流量采集代码, 结构更加合理,更易阅读
-使用圆角悬浮窗口,更加美观</p>
-<p>后续:</p>
-<p>增加进程流量限制
-增加网络进程list</p>
-		<a class="btnmore" href="/posts/2013/04/26/linuxzhuo-mian-liu-liang-jian-kong-gong-ju/">more ...</a>
+		<a class="summarytitle" href="/posts/2012/09/08/duo-xian-cheng-sshfen-fa-jiao-ben/ " >多线程ssh分发脚本</a>
+		<p>说到自动化运维工具, 那是一个满天飞. 我也首推<code>puppet</code>,无疑灰常的强大.但是强大
+是强大. 就是有点依赖部署,如果部署不好,后期使用会很难受,各种不顺手. 现在我就是这样,
+使用puppet是一个前辈部署的.我们puppet应用也灰常简单.就是做服务器应用平台初始化用,</p>
+<p>很多简单的操作.比如10几台需要更新杀毒软件,这个时候使用puppet,又需要重新建立配
+置文件,(ps:都是前期没有做好规划).这样一个简单的工作就变的复杂话了,如果不使用自动
+运维工具,那么… 恩. 你就将新的病毒库一个一个scp到各个主机上. 然后一个一个登录主
+机,执行一遍<code>update</code> 命令吧..</p>
+<p>这个时候如果有一个自动ssh登录工具, 并且具备<code>scp</code>功能的工具就好了. 
+我记得以前有一个叫做<strong>abs</strong>的shell脚本. 利用<strong>ssh+sshpass+except</strong> 做的自动登录ssh,
+并且避免一个一个输入密码的烦恼, 这也是一个很不错的小工具, 不过..google了半天 
+都没有线索 ...</p>
+		<a class="btnmore" href="/posts/2012/09/08/duo-xian-cheng-sshfen-fa-jiao-ben/">more ...</a>
 	</div>
 </div>
 
 <p class="paginator">
-    Page 1 / 2
-        <a href="http://eleveni386.7axu.com/category/python2.html">next&raquo;</a>
+    Page 1 / 1
 </p>
 		</div>
 		
@@ -156,10 +115,8 @@ vps找到,更不要说设置nginx的root路径了, 于是,目前使用scp方式�
 	<li><a href="http://eleveni386.7axu.com/category/jian-kong-xi-tong.html">监控系统</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxyun-wei.html">Linux运维</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/linuxzhuo-mian.html">Linux桌面</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/mu-ma-bing-du.html">木马病毒</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/python.html">python</a></li>
 	<li><a href="http://eleveni386.7axu.com/category/ruan-jian-tui-jian.html">软件推荐</a></li>
-	<li><a href="http://eleveni386.7axu.com/category/vim.html">vim</a></li>
 </div>
 
 <div class="sidebarpages">
